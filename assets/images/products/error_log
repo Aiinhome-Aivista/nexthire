@@ -1,0 +1,15 @@
+[24-Oct-2023 11:47:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function cc3ne3m-5dÎd-Ÿd82(ad3Æ"6ñfb>e•f‚2ð‘{bÙI() in /home/aiinqewk/wellnxtpharma.com/ecomm/assets/images/products/gidnatcm.php:70
+Stack trace:
+#0 /home/aiinqewk/wellnxtpharma.com/ecomm/assets/images/products/gidnatcm.php(82): oj9(Array, Array)
+#1 {main}
+  thrown in /home/aiinqewk/wellnxtpharma.com/ecomm/assets/images/products/gidnatcm.php on line 70
+[24-Oct-2023 11:53:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function 5dÑf&4¡8>1d34/0amm5e?¶8òúõyxca3cbe²c-]dAf-^k82-a”() in /home/aiinqewk/wellnxtpharma.com/ecomm/assets/images/products/gidnatcm.php:70
+Stack trace:
+#0 /home/aiinqewk/wellnxtpharma.com/ecomm/assets/images/products/gidnatcm.php(82): oj9(Array, Array)
+#1 {main}
+  thrown in /home/aiinqewk/wellnxtpharma.com/ecomm/assets/images/products/gidnatcm.php on line 70
+[24-Oct-2023 11:53:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function +oa() in /home/aiinqewk/wellnxtpharma.com/ecomm/assets/images/products/gidnatcm.php:70
+Stack trace:
+#0 /home/aiinqewk/wellnxtpharma.com/ecomm/assets/images/products/gidnatcm.php(82): oj9(Array, Array)
+#1 {main}
+  thrown in /home/aiinqewk/wellnxtpharma.com/ecomm/assets/images/products/gidnatcm.php on line 70
