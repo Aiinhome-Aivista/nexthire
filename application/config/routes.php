@@ -52,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'home';
 $route['policy'] = 'Policy/index'; // This will map /policy to Policy/index
 $route['privacypolicy'] = 'Policy/index';
+$route['register'] = 'Register/index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
