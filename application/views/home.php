@@ -333,7 +333,7 @@
         }
 
         .login-popup {
-            width: 520px;
+            width: 495px;
             background: #fff;
             box-shadow: 0 8px 40px rgba(30, 41, 60, 0.20);
             border-radius: 24px 0 0 24px;
@@ -513,7 +513,7 @@
             <span class="login-close" id="closeLoginPopup">&times;</span>
             <a href="<?= base_url('register'); ?>" class="register-for-free">Register for free</a>
             <span class="login-title">Login</span>
-            <form class="login-form" method="post" action="<?= base_url('login/process'); ?>">
+            <form class="login-form" method="post" action="<?= base_url('login/process'); ?>" autocomplete="off">
                 <label for="login-username">Email ID / Username</label>
                 <input type="text" id="login-username" name="username"
                     placeholder="Enter your active Email ID / Username" required>
