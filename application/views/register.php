@@ -615,52 +615,7 @@
       document.getElementById('workStatus').value = status;
     }
   </script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-auth-compat.js"></script>
-  <script>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyC8OEcPJYb5iSV-ob1M7yUBvRzWknQ0Zlo",
-      authDomain: "nexthire-10b05.firebaseapp.com",
-      projectId: "nexthire-10b05",
-      storageBucket: "nexthire-10b05.firebasestorage.app",
-      messagingSenderId: "971803353604",
-      appId: "1:971803353604:web:2aeabd19b2cd7bfc584b51",
-      measurementId: "G-N35EDREBVQ"
-    };
-
-    // Init Firebase
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-
-    document.getElementById('googleLogin').addEventListener('click', () => {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      auth.signInWithPopup(provider)
-        .then((result) => {
-          result.user.getIdToken().then((idToken) => {
-            fetch("<?= base_url('auth/firebase_login') ?>", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify({ token: idToken })
-            })
-              .then(res => res.json())
-              .then(data => {
-                if (data.status === "success") {
-                  window.location.href = "<?= base_url('dashboard') ?>";
-                } else {
-                  alert("Login failed!");
-                }
-              });
-          });
-        })
-        .catch((error) => {
-          console.error(error);
-          alert("Google login failed!");
-        });
-    });
-  </script>
 </body>
 
 </html>
