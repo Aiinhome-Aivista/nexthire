@@ -45,33 +45,22 @@
         style="background:#fc5a36; color:#fff; border-radius:24px; padding:8px 24px; font-size:16px; text-decoration:none; transition: all 0.3s ease;">
         Register
       </a>
-      <div style="width:1px; height:24px; background:#ccc; margin: 0 12px;"></div> <!-- Divider -->
-      <div class="employer-dropdown" style="position:relative; display: flex; justify-content: center;">
-        <a href="#" class="employer-link"
-          style="color:#27365c; font-size:18px; text-decoration:none; display:flex; align-items:center; gap:4px; position:relative; padding-bottom:4px;">
+      <div style="width:1px; height:24px; background:#ccc; margin: 0 12px;"></div>
+
+      <div class="employer-dropdown" id="employerDropdown">
+        <a href="#" class="employer-link" id="employerToggle">
           For employers
-          <span style="font-size:20px; line-height:1;">˅</span>
+          <span class="caret"></span>
         </a>
-        <span class="employer-underline"
-          style="display:none; position:absolute; left:0; right:0; bottom:0; height:4px; background:#fc5a36; border-radius:2px;"></span>
-        <div class="employer-menu"
-          style="display:none; position:absolute; top:46px; left:50%; transform:translateX(-50%); min-width:160px; background:#fff; box-shadow:0 4px 16px rgba(0,0,0,0.08); border-radius:16px; padding:18px 0; z-index:100;">
-          <a href="#"
-            style="display:block; padding:8px 24px; color:#27365c; text-decoration:none; font-size:16px;">Employer
-            Login</a>
+        <span class="employer-underline"></span>
+        <div class="employer-menu">
+         <a href="<?= base_url('employer_register'); ?>">Employer Login</a>
         </div>
       </div>
+
     </div>
   </div>
   <style>
-    .employer-dropdown:hover .employer-underline {
-      display: block !important;
-    }
-
-    .employer-dropdown:hover .employer-menu {
-      display: block !important;
-    }
-
     .menu-item-underline:hover .menu-underline {
       display: block !important;
     }
@@ -96,8 +85,108 @@
     .login-button {
       cursor: pointer;
     }
+
+    .employer-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .employer-link {
+      color: #27365c;
+      font-size: 18px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding-bottom: 4px;
+      cursor: pointer;
+    }
+
+    .caret {
+      border: solid #27365c;
+      border-width: 0 2px 2px 0;
+      display: inline-block;
+      padding: 3px;
+      transform: rotate(45deg);
+      margin-top: 2px;
+      transition: transform 0.3s ease;
+    }
+
+    .employer-underline {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 3px;
+      background: #fc5a36;
+      border-radius: 2px;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.3s ease;
+    }
+
+    /* Active state underline */
+    .employer-dropdown.active .employer-underline {
+      transform: scaleX(1);
+    }
+
+    .employer-menu {
+      display: none;
+      position: absolute;
+      top: 46px;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 180px;
+      background: #fff;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+      padding: 12px 0;
+      z-index: 100;
+    }
+
+    .employer-menu a {
+      display: block;
+      padding: 10px 20px;
+      color: #27365c;
+      font-size: 16px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .employer-menu a:hover {
+      background: #f7f8fa;
+    }
+
+    /* Active state shows menu */
+    .employer-dropdown.active .employer-menu {
+      display: block;
+    }
+
+    /* Active state flips caret */
+    .employer-dropdown.active .caret {
+      transform: rotate(-135deg);
+    }
   </style>
 </header>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.getElementById("employerToggle");
+    const dropdown = document.getElementById("employerDropdown");
+
+    // Toggle on click
+    toggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      dropdown.classList.toggle("active");
+    });
+
+    // Close when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove("active");
+      }
+    });
+  });
+</script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var loginBtn = document.getElementById('showLoginPopup');
