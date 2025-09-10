@@ -55,6 +55,7 @@ $route['privacypolicy'] = 'Policy/index';
 $route['register'] = 'Register/index';
 $route['employer_register'] = 'Recruiter/index';
 $route['employer_login'] = 'Recruiter_login/index';
+$route['job_search'] = 'Jobsearch/index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
