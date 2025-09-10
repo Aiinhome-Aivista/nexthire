@@ -4,8 +4,8 @@
     <!-- Logo Section -->
     <div style="position:relative;">
       <a href="<?= base_url(); ?>">
-        <img src="<?= base_url('assets/images/indeed-logo.png'); ?>" alt="Indeed"
-          style="height:45px; width:auto; display:block; position:absolute; top:-25px; left:0;">
+        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="Indeed"
+          style="height:70px; width:auto; display:block; position:absolute; top:-38px; left:0;">
       </a>
     </div>
     <!-- Menu Section -->

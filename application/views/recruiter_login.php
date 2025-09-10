@@ -22,7 +22,7 @@
       width: 100%;
       background: #fff;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-      padding: 16px 0;
+      /* padding: 16px 0; */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -46,7 +46,7 @@
 
     .logo img {
       width: auto;
-      height: 45px;
+      height: 70px;
       display: block;
     }
 
@@ -336,7 +336,8 @@
   <div class="header">
     <div class="header-content">
       <div class="logo">
-        <img src="<?= base_url('assets/images/indeed-logo.png'); ?>" alt="Naukri Recruiter">
+        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="Indeed"
+         >
       </div>
       <div class="signup-link">
         New Recruiter? <a href="<?= base_url('employer_register'); ?>">Register</a> here
