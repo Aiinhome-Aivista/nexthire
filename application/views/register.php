@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Naukri Registration</title>
@@ -9,22 +10,25 @@
       box-sizing: border-box;
       font-family: 'Inter', Arial, sans-serif;
     }
+
     body {
       margin: 0;
       padding: 0;
       background: #f7f8fa;
       color: #222;
     }
+
     .header {
       width: 100%;
       background: #fff;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
       padding: 16px 0;
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
     }
+
     .header-content {
       width: 1200px;
       margin: 0 auto;
@@ -33,21 +37,25 @@
       justify-content: left;
       position: relative;
     }
+
     .logo {
       display: flex;
       align-items: right;
       gap: 100px;
     }
+
     .logo img {
       width: 40px;
       height: 40px;
     }
+
     .logo span {
       font-size: 2rem;
       font-weight: 700;
       color: #1d4ed8;
       letter-spacing: -1px;
     }
+
     .login-link {
       position: absolute;
       right: 0;
@@ -56,11 +64,13 @@
       font-size: 15px;
       color: #666;
     }
+
     .login-link a {
       color: #1d4ed8;
       text-decoration: none;
       font-weight: 500;
     }
+
     .container {
       display: flex;
       justify-content: center;
@@ -69,10 +79,11 @@
       min-height: 80vh;
       gap: 40px;
     }
+
     .left-card {
       background: #fff;
       border-radius: 14px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
       padding: 40px 30px 30px 30px;
       width: 320px;
       display: flex;
@@ -83,6 +94,7 @@
       top: 32px;
       z-index: 2;
     }
+
     .left-card img {
       width: 120px;
       height: 120px;
@@ -92,6 +104,7 @@
       background: #f2f3f8;
       border: 2px solid #eee;
     }
+
     .left-card h3 {
       font-size: 20px;
       font-weight: 600;
@@ -99,12 +112,14 @@
       width: 100%;
       margin-bottom: 18px;
     }
+
     .left-card ul {
       list-style: none;
       padding: 0;
       margin: 0;
       width: 100%;
     }
+
     .left-card ul li {
       font-size: 16px;
       margin-bottom: 14px;
@@ -113,6 +128,7 @@
       gap: 8px;
       color: #222;
     }
+
     .left-card ul li .green-dot {
       width: 16px;
       height: 16px;
@@ -122,6 +138,7 @@
       margin-right: 4px;
       position: relative;
     }
+
     .left-card ul li .green-dot::before {
       content: '✔';
       color: #fff;
@@ -131,10 +148,11 @@
       font-size: 13px;
       font-weight: bold;
     }
+
     .form-card {
       background: #fff;
       border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
       width: 900px;
       min-width: 320px;
       padding: 36px 48px 36px 48px;
@@ -143,39 +161,46 @@
       flex-direction: column;
       min-height: 680px;
     }
+
     .form-title {
       font-size: 24px;
       font-weight: 600;
       margin-bottom: 6px;
     }
+
     .form-subtitle {
       font-size: 14px;
       color: #666;
       margin-bottom: 28px;
     }
+
     .form-row {
       display: flex;
       gap: 24px;
       align-items: flex-start;
       position: relative;
     }
+
     .form-fields {
       flex: 1;
       display: flex;
       flex-direction: column;
       gap: 22px;
     }
+
     .form-group {
       display: flex;
       flex-direction: column;
       gap: 6px;
     }
+
     .form-group label {
       font-size: 15px;
       font-weight: 500;
       color: #0c0c0c;
       margin-bottom: 1px;
     }
+
     .form-group input {
       padding: 13px 18px;
       font-size: 16px;
@@ -185,25 +210,30 @@
       background: #f6f8fb;
       transition: border 0.2s;
     }
+
     .form-group input:focus {
       border: 1.5px solid #1d4ed8;
       background: #fff;
     }
+
     .form-group .input-hint {
       font-size: 13px;
       color: #8a95ad;
       margin-top: 2px;
     }
+
     .form-group input[type="checkbox"] {
       width: 18px;
       height: 18px;
       margin-right: 6px;
     }
+
     .work-status-group {
       display: flex;
       gap: 18px;
       margin-top: 4px;
     }
+
     .work-status-card {
       border: 1.5px solid #d7dbe3;
       border-radius: 12px;
@@ -219,11 +249,13 @@
       position: relative;
       min-width: 180px;
     }
+
     .work-status-card.selected {
       border: 2px solid #1d4ed8;
       background: #eef4ff;
-      box-shadow: 0 2px 8px rgba(29,78,216,0.08);
+      box-shadow: 0 2px 8px rgba(29, 78, 216, 0.08);
     }
+
     .work-status-card .icon {
       width: 28px;
       height: 28px;
@@ -235,26 +267,31 @@
       font-size: 20px;
       border: 1.5px solid #e1e6ef;
     }
+
     .work-status-card .info {
       display: flex;
       flex-direction: column;
       gap: 2px;
     }
+
     .work-status-card .info .title {
       font-weight: 600;
       color: #222;
       font-size: 15px;
     }
+
     .work-status-card .info .desc {
       font-size: 13px;
       color: #8a95ad;
     }
+
     .checkbox-row {
       margin-top: 16px;
       display: flex;
       align-items: center;
       gap: 4px;
     }
+
     .checkbox-row label {
       font-size: 15px;
       color: #222;
@@ -262,16 +299,19 @@
       margin-left: 3px;
       cursor: pointer;
     }
+
     .terms-row {
       font-size: 13px;
       color: #8a95ad;
       margin-top: 20px;
     }
+
     .terms-row a {
       color: #1d4ed8;
       text-decoration: none;
       margin: 0 2px;
     }
+
     .register-btn {
       margin-top: 24px;
       background: #1d4ed8;
@@ -283,12 +323,14 @@
       padding: 13px 0;
       width: 170px;
       cursor: pointer;
-      box-shadow: 0 2px 8px rgba(29,78,216,0.04);
+      box-shadow: 0 2px 8px rgba(29, 78, 216, 0.04);
       transition: background 0.2s;
     }
+
     .register-btn:hover {
       background: #1742b0;
     }
+
     /* Fixed Google section styles */
     .google-section {
       display: flex;
@@ -300,27 +342,22 @@
       padding-left: 24px;
       margin-left: 24px;
     }
-    .google-section::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 1px;
-      background-color: #e8e8e8;
-    }
+
+
     .or-text {
       font-size: 14px;
       color: #666;
       margin-bottom: 12px;
       font-weight: 500;
     }
+
     .continue-text {
       font-size: 15px;
       color: #222;
       font-weight: 500;
       margin-bottom: 12px;
     }
+
     .google-btn {
       border: 1px solid #D0D5DD;
       border-radius: 8px;
@@ -337,13 +374,16 @@
       width: 100%;
       justify-content: center;
     }
+
     .google-btn:hover {
       background: #f8f9fa;
     }
+
     .google-btn img {
       width: 18px;
       height: 18px;
     }
+
     /* Footer Styles */
     .footer {
       margin-top: 50px;
@@ -352,6 +392,7 @@
       font-family: 'Inter', Arial, sans-serif;
       background: transparent;
     }
+
     .footer-links {
       display: inline-flex;
       align-items: center;
@@ -360,16 +401,19 @@
       margin-bottom: 8px;
       color: #1d4ed8;
     }
+
     .footer-links a {
       color: #1d4ed8;
       text-decoration: none;
       transition: color 0.15s;
       font-weight: 400;
     }
+
     .footer-links a:hover {
       text-decoration: underline;
       color: #1742b0;
     }
+
     .footer-links .divider {
       width: 1px;
       height: 16px;
@@ -378,6 +422,7 @@
       display: inline-block;
       vertical-align: middle;
     }
+
     .footer-copyright {
       font-size: 12px;
       color: #7a86a1;
@@ -385,19 +430,23 @@
       font-weight: 400;
       letter-spacing: 0.01em;
     }
+
     @media (max-width: 1100px) {
       .container {
         flex-direction: column;
         align-items: center;
       }
+
       .form-card {
         width: 90vw;
         min-width: 320px;
         padding: 32px 12vw;
       }
+
       .left-card {
         margin-bottom: 32px;
       }
+
       .google-section {
         width: 100%;
         margin-left: 0;
@@ -407,34 +456,42 @@
         border-top: 1px solid #e8e8e8;
         border-left: none;
       }
+
       .google-section::before {
         display: none;
       }
+
       .footer-links {
         font-size: 15px;
         gap: 18px;
       }
+
       .footer-copyright {
         font-size: 14px;
       }
     }
+
     @media (max-width: 600px) {
       .form-card {
         padding: 22px 4vw;
       }
+
       .header-content {
         width: 94vw;
       }
+
       .footer-links {
         font-size: 12px;
         gap: 6px;
       }
+
       .footer-copyright {
         font-size: 12px;
       }
     }
   </style>
 </head>
+
 <body>
   <div class="header">
     <div class="header-content">
@@ -443,7 +500,7 @@
         <!-- <span>naukri</span> -->
       </div>
       <div class="login-link">
-        Already Registered? <a href="#">Login</a> here
+        Already Registered? <a href="<?= base_url('home'); ?>">Login</a> here
       </div>
     </div>
   </div>
@@ -460,26 +517,28 @@
     <div class="form-card">
       <div class="form-title">Create your Naukri profile</div>
       <div class="form-subtitle">Search & apply to jobs from India's No.1 Job Site</div>
-      <form>
+      <form action="<?= base_url('register/submit'); ?>" method="post">
         <div class="form-row">
           <div class="form-fields">
             <div class="form-group">
               <label for="fullname">Full name<span style="color:#e42e2e;">*</span></label>
-              <input type="text" id="fullname" placeholder="Full name is your name?" required>
+              <input type="text" name="fullname" id="fullname" placeholder="Full name is your name?" required>
             </div>
             <div class="form-group">
               <label for="email">Email ID<span style="color:#e42e2e;">*</span></label>
-              <input type="email" id="email" placeholder="Tell us your Email ID" required>
+              <input type="email" name="email" id="email" placeholder="Tell us your Email ID" required>
               <span class="input-hint">We'll send relevant jobs and updates to this email</span>
             </div>
             <div class="form-group">
               <label for="password">Password<span style="color:#e42e2e;">*</span></label>
-              <input type="password" id="password" placeholder="(Minimum 6 characters)" required minlength="6">
+              <input type="password" name="password" id="password" placeholder="(Minimum 6 characters)" required
+                minlength="6">
               <span class="input-hint">This helps your account stay protected</span>
             </div>
             <div class="form-group">
               <label for="mobile">Mobile number<span style="color:#e42e2e;">*</span></label>
-              <input type="tel" id="mobile" placeholder="+91 Enter your mobile number" required pattern="[0-9]{10,}">
+              <input type="tel" name="mobile" id="mobile" placeholder="+91 Enter your mobile number" required
+                pattern="[0-9]{10,}">
               <span class="input-hint">Recruiters will contact you on this number</span>
             </div>
             <div class="form-group">
@@ -500,11 +559,13 @@
                   </div>
                 </div>
               </div>
-              <input type="hidden" id="workStatus" value="experienced">
+              <input type="hidden" name="workStatus" id="workStatus" value="experienced">
             </div>
             <div class="checkbox-row">
               <input type="checkbox" id="updates">
-              <label for="updates">Send me important updates & promotions via SMS, email, and <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:18px;vertical-align:middle;margin-left:2px;"> WhatsApp</label>
+              <label for="updates">Send me important updates & promotions via SMS, email, and <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                  style="width:18px;vertical-align:middle;margin-left:2px;"> WhatsApp</label>
             </div>
             <div class="terms-row">
               By clicking Register, you agree to the
@@ -513,18 +574,19 @@
             </div>
             <button type="submit" class="register-btn">Register now</button>
           </div>
-          
-          <!-- Fixed Google Section -->
-          <div class="google-section">
-            <div class="or-text">Or</div>
-            <div class="continue-text">Continue with</div>
-            <button type="button" class="google-btn">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google">
-              Google
-            </button>
-          </div>
         </div>
       </form>
+      <!-- Fixed Google Section -->
+      <center>
+        <div class="google-section">
+          <div class="or-text">Or</div>
+          <div class="continue-text">Continue with</div>
+          <button id="googleLogin" class="google-btn">
+            <img src="<?= base_url('assets/images/google.png'); ?>" alt="google">
+            Google
+          </button>
+        </div>
+      </center>
     </div>
   </div>
   <div class="footer" style="width:300px; margin:40px auto 0 auto;">
@@ -553,5 +615,56 @@
       document.getElementById('workStatus').value = status;
     }
   </script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-auth-compat.js"></script>
+  <script>
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC8OEcPJYb5iSV-ob1M7yUBvRzWknQ0Zlo",
+      authDomain: "nexthire-10b05.firebaseapp.com",
+      projectId: "nexthire-10b05",
+      storageBucket: "nexthire-10b05.firebasestorage.app",
+      messagingSenderId: "971803353604",
+      appId: "1:971803353604:web:2aeabd19b2cd7bfc584b51",
+      measurementId: "G-N35EDREBVQ"
+    };
+
+    // Init Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    document.getElementById('googleLogin').addEventListener('click', () => {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider)
+        .then((result) => {
+          result.user.getIdToken().then((idToken) => {
+            fetch("<?= base_url('auth/firebase_login') ?>", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({ token: idToken })
+            })
+              .then(res => res.json())
+              .then(data => {
+                if (data.status === "success") {
+                  window.location.href = "<?= base_url('dashboard') ?>";
+                } else {
+                  alert("Login failed!");
+                }
+              });
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("Google login failed!");
+        });
+    });
+  </script>
 </body>
+
+</html>
+</script>
+</body>
+
 </html>

@@ -529,8 +529,7 @@
             </div>
             <div class="login-divider">Or</div>
             <button class="login-google" onclick="window.location.href='<?= base_url('login/google'); ?>'">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
-                    style="height:17px; vertical-align:middle; margin-right:10px;"> Sign in with Google
+                <img style="height: 30px; width: 30px;" src="<?= base_url('assets/images/google.png'); ?>" alt="google"> Sign in with Google
             </button>
         </div>
     </div>

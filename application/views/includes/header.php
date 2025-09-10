@@ -56,11 +56,6 @@
           style="display:none; position:absolute; left:0; right:0; bottom:0; height:4px; background:#fc5a36; border-radius:2px;"></span>
         <div class="employer-menu"
           style="display:none; position:absolute; top:46px; left:50%; transform:translateX(-50%); min-width:160px; background:#fff; box-shadow:0 4px 16px rgba(0,0,0,0.08); border-radius:16px; padding:18px 0; z-index:100;">
-          <a href="#" style="display:block; padding:8px 24px; color:#27365c; text-decoration:none; font-size:16px;">Buy
-            online</a>
-          <a href="#"
-            style="display:block; padding:8px 24px; color:#27365c; text-decoration:none; font-size:16px;">Naukri Talent
-            Cloud</a>
           <a href="#"
             style="display:block; padding:8px 24px; color:#27365c; text-decoration:none; font-size:16px;">Employer
             Login</a>
