@@ -45,8 +45,9 @@
     }
 
     .logo img {
-      width: 40px;
-      height: 40px;
+      width: auto;
+      height: 45px;
+      display: block;
     }
 
     .logo span {
