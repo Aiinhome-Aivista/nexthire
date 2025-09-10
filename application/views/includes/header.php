@@ -10,30 +10,12 @@
     </div>
     <!-- Menu Section -->
     <nav style="display:flex; align-items:center; gap:24px;">
-      <div class="menu-item-underline" style="position:relative; display: flex; justify-content: center;">
-        <a href="<?= base_url('jobs'); ?>" class="menu-link"
-          style="color:#27365c; font-size:17px; text-decoration:none; display:inline-block; padding-bottom:4px;">
-          Jobs
-        </a>
-        <span class="menu-underline"
-          style="display:none; position:absolute; left:0; right:0; bottom:0; height:4px; background:#fc5a36; border-radius:2px;"></span>
-      </div>
-      <div class="menu-item-underline" style="position:relative; display: flex; justify-content: center;">
-        <a href="<?= base_url('companies'); ?>" class="menu-link"
-          style="color:#27365c; font-size:17px; text-decoration:none; display:inline-block; padding-bottom:4px;">
-          Companies
-        </a>
-        <span class="menu-underline"
-          style="display:none; position:absolute; left:0; right:0; bottom:0; height:4px; background:#fc5a36; border-radius:2px;"></span>
-      </div>
-      <div class="menu-item-underline" style="position:relative; display: flex; justify-content: center;">
-        <a href="<?= base_url('services'); ?>" class="menu-link"
-          style="color:#27365c; font-size:17px; text-decoration:none; display:inline-block; padding-bottom:4px;">
-          Services
-        </a>
-        <span class="menu-underline"
-          style="display:none; position:absolute; left:0; right:0; bottom:0; height:4px; background:#fc5a36; border-radius:2px;"></span>
-      </div>
+      <a href="#" class="menu-link" data-modal-target="jobsModal"
+        style="color:#27365c; font-size:17px; text-decoration:none; display:inline-block; padding-bottom:4px;">Jobs</a>
+      <a href="#" class="menu-link" data-modal-target="companiesModal"
+        style="color:#27365c; font-size:17px; text-decoration:none; display:inline-block; padding-bottom:4px;">Companies</a>
+      <a href="#" class="menu-link" data-modal-target="servicesModal"
+        style="color:#27365c; font-size:17px; text-decoration:none; display:inline-block; padding-bottom:4px;">Services</a>
     </nav>
     <!-- Action Buttons -->
     <div style="display:flex; align-items:center; gap:12px;">
@@ -54,12 +36,73 @@
         </a>
         <span class="employer-underline"></span>
         <div class="employer-menu">
-         <a href="<?= base_url('employer_register'); ?>">Employer Login</a>
+          <a href="<?= base_url('employer_register'); ?>">Employer Login</a>
         </div>
       </div>
 
     </div>
   </div>
+
+  <div id="jobsModal" class="menu-modal"
+    style="display:none; position:absolute; top:70px; left:50%; transform:translateX(-50%); background:#fff; padding:24px; box-shadow:0 4px 12px rgba(0,0,0,0.1); z-index:9; width: 700px; border-radius:12px;">
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+      <?php foreach ($menu['Jobs'] as $sub): ?>
+        <div>
+          <h4 style="margin:8px 0; font-size:15px; color:#333; font-weight:bold;"><?= $sub['sub_type'] ?></h4>
+          <ul style="list-style:none; margin:0; padding:0 0 12px 0;">
+            <?php foreach ($sub['children'] as $child): ?>
+              <li>
+                <a href="#" style="text-decoration:none; font-size:14px; color:#555; display:block; padding:4px 0;">
+                  <?= $child['name'] ?>
+                </a>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+
+  <div id="companiesModal" class="menu-modal"
+    style="display:none; position:absolute; top:70px; left:50%; transform:translateX(-50%); background:#fff; padding:24px; box-shadow:0 4px 12px rgba(0,0,0,0.1); z-index:9; width: 700px; border-radius:12px;">
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+      <?php foreach ($menu['Companies'] as $sub): ?>
+        <div>
+          <h4 style="margin:8px 0; font-size:15px; color:#333; font-weight:bold;"><?= $sub['sub_type'] ?></h4>
+          <ul style="list-style:none; margin:0; padding:0 0 12px 0;">
+            <?php foreach ($sub['children'] as $child): ?>
+              <li>
+                <a href="#" style="text-decoration:none; font-size:14px; color:#555; display:block; padding:4px 0;">
+                  <?= $child['name'] ?>
+                </a>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+
+  <div id="servicesModal" class="menu-modal"
+    style="display:none; position:absolute; top:70px; left:50%; transform:translateX(-50%); background:#fff; padding:24px; box-shadow:0 4px 12px rgba(0,0,0,0.1); z-index:9; width: 700px; border-radius:12px;">
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+      <?php foreach ($menu['Services'] as $sub): ?>
+        <div>
+          <h4 style="margin:8px 0; font-size:15px; color:#333; font-weight:bold;"><?= $sub['sub_type'] ?></h4>
+          <ul style="list-style:none; margin:0; padding:0 0 12px 0;">
+            <?php foreach ($sub['children'] as $child): ?>
+              <li>
+                <a href="#" style="text-decoration:none; font-size:14px; color:#555; display:block; padding:4px 0;">
+                  <?= $child['name'] ?>
+                </a>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+
   <style>
     .menu-item-underline:hover .menu-underline {
       display: block !important;
@@ -189,6 +232,39 @@
 </script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+    // Modal logic
+    const menuLinks = document.querySelectorAll('.menu-link');
+    const modals = document.querySelectorAll('.menu-modal');
+
+    menuLinks.forEach(link => {
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        const targetModalId = this.getAttribute('data-modal-target');
+        const targetModal = document.getElementById(targetModalId);
+
+        // Hide all other modals
+        modals.forEach(modal => {
+          if (modal.id !== targetModalId) {
+            modal.style.display = 'none';
+          }
+        });
+
+        // Toggle the target modal
+        const isVisible = targetModal.style.display === 'block';
+        targetModal.style.display = isVisible ? 'none' : 'block';
+      });
+    });
+
+    // Close modal when clicking outside
+    document.addEventListener('click', function (event) {
+      if (!event.target.closest('.menu-link') && !event.target.closest('.menu-modal')) {
+        modals.forEach(modal => {
+          modal.style.display = 'none';
+        });
+      }
+    });
+
+    // Login popup logic
     var loginBtn = document.getElementById('showLoginPopup');
     var popupBg = document.getElementById('loginPopupBg');
     var closeBtn = document.getElementById('closeLoginPopup');
