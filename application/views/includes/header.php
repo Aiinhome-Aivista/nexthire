@@ -11,11 +11,17 @@
     <!-- Menu Section -->
     <nav style="display:flex; align-items:center; gap:24px;">
       <a href="#" class="menu-link" data-modal-target="jobsModal"
-        style="color:#27365c; font-size:17px; text-decoration:none; display:inline-block; padding-bottom:4px;">Jobs</a>
+        style="color:#27365c; font-size:17px; text-decoration:none; display:inline-block; padding-bottom:4px;">Jobs
+        <span class="menu-underline"></span>
+      </a>
       <a href="#" class="menu-link" data-modal-target="companiesModal"
-        style="color:#27365c; font-size:17px; text-decoration:none; display:inline-block; padding-bottom:4px;">Companies</a>
+        style="color:#27365c; font-size:17px; text-decoration:none; display:inline-block; padding-bottom:4px;">Companies
+        <span class="menu-underline"></span>
+      </a>
       <a href="#" class="menu-link" data-modal-target="servicesModal"
-        style="color:#27365c; font-size:17px; text-decoration:none; display:inline-block; padding-bottom:4px;">Services</a>
+        style="color:#27365c; font-size:17px; text-decoration:none; display:inline-block; padding-bottom:4px;">Services
+        <span class="menu-underline"></span>
+      </a>
     </nav>
     <!-- Action Buttons -->
     <div style="display:flex; align-items:center; gap:12px;">
@@ -209,6 +215,25 @@
     .employer-dropdown.active .caret {
       transform: rotate(-135deg);
     }
+
+    .menu-underline {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 3px;
+      background: #fc5a36;
+      /* same orange color */
+      border-radius: 2px;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.3s ease;
+      pointer-events: none;
+    }
+
+    .menu-link:hover .menu-underline {
+      transform: scaleX(1);
+    }
   </style>
 </header>
 <script>
@@ -235,25 +260,62 @@
     // Modal logic
     const menuLinks = document.querySelectorAll('.menu-link');
     const modals = document.querySelectorAll('.menu-modal');
-
     menuLinks.forEach(link => {
-      link.addEventListener('click', function (event) {
-        event.preventDefault();
-        const targetModalId = this.getAttribute('data-modal-target');
-        const targetModal = document.getElementById(targetModalId);
+      const targetModalId = link.getAttribute('data-modal-target');
+      const targetModal = document.getElementById(targetModalId);
 
-        // Hide all other modals
+      // Remove or comment out this click handler:
+      // link.addEventListener('click', function (event) {
+      //   event.preventDefault();
+      //   ...
+      // });
+
+      // Add hover handlers instead:
+      link.addEventListener('mouseenter', function () {
         modals.forEach(modal => {
           if (modal.id !== targetModalId) {
             modal.style.display = 'none';
           }
         });
+        targetModal.style.display = 'block';
+      });
 
-        // Toggle the target modal
-        const isVisible = targetModal.style.display === 'block';
-        targetModal.style.display = isVisible ? 'none' : 'block';
+      link.addEventListener('mouseleave', function () {
+        setTimeout(() => {
+          if (!targetModal.matches(':hover') && !link.matches(':hover')) {
+            targetModal.style.display = 'none';
+          }
+        }, 200);
+      });
+
+      targetModal.addEventListener('mouseleave', function () {
+        setTimeout(() => {
+          if (!targetModal.matches(':hover') && !link.matches(':hover')) {
+            targetModal.style.display = 'none';
+          }
+        }, 200);
       });
     });
+
+    // menuLinks.forEach(link => {
+    //   link.addEventListener('click', function (event) {
+    //     event.preventDefault();
+    //     const targetModalId = this.getAttribute('data-modal-target');
+    //     const targetModal = document.getElementById(targetModalId);
+
+    //     // Hide all other modals
+    //     modals.forEach(modal => {
+    //       if (modal.id !== targetModalId) {
+    //         modal.style.display = 'none';
+    //       }
+    //     });
+
+    //     // Toggle the target modal
+    //     const isVisible = targetModal.style.display === 'block';
+    //     targetModal.style.display = isVisible ? 'none' : 'block';
+    //   });
+
+    // });
 
     // Close modal when clicking outside
     document.addEventListener('click', function (event) {
