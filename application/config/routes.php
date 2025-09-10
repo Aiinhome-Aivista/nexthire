@@ -54,6 +54,7 @@ $route['policy'] = 'Policy/index'; // This will map /policy to Policy/index
 $route['privacypolicy'] = 'Policy/index';
 $route['register'] = 'Register/index';
 $route['employer_register'] = 'Recruiter/index';
+$route['employer_login'] = 'Recruiter_login/index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 

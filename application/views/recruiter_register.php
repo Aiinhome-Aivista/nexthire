@@ -443,7 +443,7 @@
         <img src="<?= base_url('assets/images/indeed-logo.png'); ?>" alt="Naukri Recruiter">
       </div>
       <div class="login-link">
-        Already Registered? <a href="#">Login</a> here
+        Already Registered? <a href="<?= base_url('employer_login'); ?>">Login</a> here
       </div>
     </div>
   </div>
@@ -466,39 +466,39 @@
       <div class="form-title">Create your Recruiter account</div>
       <div class="form-subtitle">Hire from India's No.1 Job Site</div>
 
-      <form>
+      <form action="<?= base_url('recruiter/submit'); ?>" method="post">
         <div class="form-row">
           <div class="form-fields">
 
             <div class="form-group">
               <label for="fullname">Your Name<span style="color:#e42e2e;">*</span></label>
-              <input type="text" id="fullname" placeholder="Enter your full name" required>
+              <input type="text" name="fullname" id="fullname" placeholder="Enter your full name" required>
             </div>
 
             <div class="form-group">
               <label for="email">Official Email ID<span style="color:#e42e2e;">*</span></label>
-              <input type="email" id="email" placeholder="Enter your company email" required>
+              <input type="email" name="email" id="email" placeholder="Enter your company email" required>
               <span class="input-hint">Use your company domain email (e.g. hr@company.com)</span>
             </div>
 
             <div class="form-group">
               <label for="company">Company Name<span style="color:#e42e2e;">*</span></label>
-              <input type="text" id="company" placeholder="Enter company name" required>
+              <input type="text" name="company" id="company" placeholder="Enter company name" required>
             </div>
 
             <div class="form-group">
               <label for="designation">Designation<span style="color:#e42e2e;">*</span></label>
-              <input type="text" id="designation" placeholder="e.g. HR Manager, Recruiter" required>
+              <input type="text" name="designation" id="designation" placeholder="e.g. HR Manager, Recruiter" required>
             </div>
 
             <div class="form-group">
               <label for="password">Password<span style="color:#e42e2e;">*</span></label>
-              <input type="password" id="password" placeholder="Minimum 6 characters" required minlength="6">
+              <input type="password" name="password" id="password" placeholder="Minimum 6 characters" required minlength="6">
             </div>
 
             <div class="form-group">
               <label for="mobile">Mobile Number<span style="color:#e42e2e;">*</span></label>
-              <input type="tel" id="mobile" placeholder="+91 Enter your mobile number" required pattern="[0-9]{10,}">
+              <input type="tel" name="mobile" id="mobile" placeholder="+91 Enter your mobile number" required pattern="[0-9]{10,}">
               <span class="input-hint">We’ll contact you for verification</span>
             </div>
 

@@ -24,6 +24,7 @@ class Login extends CI_Controller {
             ]);
 
             echo "Login successful! Welcome, " . $user->full_name;
+            redirect('home');
         } else {
             echo "Invalid username or password!";
         }
