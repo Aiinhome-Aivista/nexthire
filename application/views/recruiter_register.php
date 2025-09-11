@@ -507,7 +507,7 @@
   <div class="header">
     <div class="header-content">
       <div class="logo">
-       <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnest">
+        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnest">
       </div>
       <div class="login-link">
         Already Registered? <a href="<?= base_url('employer_login'); ?>">Login</a> here
@@ -530,6 +530,19 @@
 
     <!-- Form Card -->
     <div class="form-card">
+      <?php if ($this->session->flashdata('success')): ?>
+        <div class="alert alert-success"
+          style="padding: 10px; background: #d4edda; color: #155724; border-radius: 4px; margin-bottom: 20px;">
+          <?= $this->session->flashdata('success') ?>
+        </div>
+      <?php endif; ?>
+
+      <?php if ($this->session->flashdata('error')): ?>
+        <div class="alert alert-danger"
+          style="padding: 10px; background: #f8d7da; color: #721c24; border-radius: 4px; margin-bottom: 20px;">
+          <?= $this->session->flashdata('error') ?>
+        </div>
+      <?php endif; ?>
       <div class="form-title">Create your Recruiter account</div>
       <div class="form-subtitle">Hire from India's No.1 Job Site</div>
 

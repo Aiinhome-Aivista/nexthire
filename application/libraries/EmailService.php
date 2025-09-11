@@ -1,49 +1,57 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 require_once FCPATH . 'vendor/autoload.php'; // Load Composer autoload
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-class EmailService {
+class EmailService
+{
     protected $mail;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->mail = new PHPMailer(true);
-        
+
         // Server settings (configure with your SMTP details)
         $this->mail->isSMTP();
-        $this->mail->Host       = 'smtp.gmail.com'; // Your SMTP server
-        $this->mail->SMTPAuth   = true;
-        $this->mail->Username   = 'sonia19khatun98@gmail.com'; // Your email
-        $this->mail->Password   = 'sxka gnfz jgiq zuje'; // Your app password (for Gmail)
+        $this->mail->Host = 'smtp.gmail.com'; // Your SMTP server
+        $this->mail->SMTPAuth = true;
+        $this->mail->Username = 'sonia19khatun98@gmail.com'; // Your email
+        $this->mail->Password = 'sxka gnfz jgiq zuje'; // Your app password (for Gmail)
         $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Use ENCRYPTION_SMTPS for port 465
-        $this->mail->Port       = 465; // Adjust port if needed
-        
+        $this->mail->Port = 465; // Adjust port if needed
+
         // Sender info
         $this->mail->setFrom('no-reply@jobnest.com', 'Jobnest');
         $this->mail->isHTML(true); // Set email format to HTML
     }
 
-    public function sendWelcomeEmail($toEmail, $toName, $password) {
+    public function sendWelcomeEmail($toEmail, $toName, $password)
+    {
         try {
             // Recipient
             $this->mail->addAddress($toEmail, $toName);
-            
+
             // Subject
             $this->mail->Subject = 'Welcome to Jobnest - Registration Successful';
-            
+
             // Load email content from view
             $ci =& get_instance();
-             $emailContent = $ci->load->view('emails/welcome_email', [
+            $emailContent = $ci->load->view('emails/recruiter_welcome_email', [
                 'name' => $toName,
                 'email' => $toEmail,
                 'password' => $password
             ], TRUE);
-            
+            $emailContent = $ci->load->view('emails/welcome_email', [
+                'name' => $toName,
+                'email' => $toEmail,
+                'password' => $password
+            ], TRUE);
+
             $this->mail->Body = $emailContent;
-            
+
             // Send email
             $this->mail->send();
             return true;
