@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -345,14 +343,17 @@
             <div class="search-input-field-top">
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-search"></i></span>
-                    <input type="text" id="job-search-input" class="form-control" placeholder="software developer">
+                    <input type="text" id="job-search-input" class="form-control" placeholder="software developer"
+                        value="<?= isset($_GET['job']) ? htmlspecialchars($_GET['job']) : '' ?>">
                 </div>
             </div>
             <div class="search-input-divider-top"></div>
             <div class="search-input-field-top" style="margin-right: 0;">
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                    <input type="text" id="location-search-input" class="form-control" placeholder="City, state, zip code, or &quot;remote&quot;">
+                    <input type="text" id="location-search-input" class="form-control"
+                        placeholder="City, state, zip code, or &quot;remote&quot;"
+                        value="<?= isset($_GET['location']) ? htmlspecialchars($_GET['location']) : '' ?>">
                 </div>
             </div>
             <button id="search-button" class="btn btn-primary">Search</button>
@@ -602,7 +603,7 @@
         function showJobDetails(jobId) {
             const job = jobData[jobId];
             if (!job) return;
-            
+
             const detailPanel = document.getElementById('job-detail-panel');
             detailPanel.innerHTML = `
                 <div class="detail-header">
@@ -678,11 +679,11 @@
                 const company = card.querySelector('.company-name').textContent.toLowerCase();
                 const location = card.querySelector('.job-location').textContent.toLowerCase();
                 const tags = Array.from(card.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase());
-                
-                const matchesSearch = title.includes(searchTerm) || company.includes(searchTerm) || 
-                                    tags.some(tag => tag.includes(searchTerm));
+
+                const matchesSearch = title.includes(searchTerm) || company.includes(searchTerm) ||
+                    tags.some(tag => tag.includes(searchTerm));
                 const matchesLocation = location.includes(locationTerm) || locationTerm === '';
-                
+
                 if (matchesSearch && matchesLocation) {
                     card.style.display = 'block';
                     visibleCount++;
@@ -714,20 +715,20 @@
         }
 
         // Initialize the page
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Show details for the first job by default
             showJobDetails(1);
-            
+
             // Add click event listeners to job cards
             const jobCards = document.querySelectorAll('.job-card');
             jobCards.forEach(card => {
-                card.addEventListener('click', function() {
+                card.addEventListener('click', function () {
                     // Remove active class from all cards
                     jobCards.forEach(c => c.classList.remove('active'));
-                    
+
                     // Add active class to clicked card
                     this.classList.add('active');
-                    
+
                     // Show job details
                     const jobId = this.getAttribute('data-job-id');
                     showJobDetails(jobId);
@@ -736,22 +737,26 @@
 
             // Add event listener to search button
             document.getElementById('search-button').addEventListener('click', filterJobs);
-            
+
             // Add event listeners to search inputs for Enter key
-            document.getElementById('job-search-input').addEventListener('keyup', function(event) {
+            document.getElementById('job-search-input').addEventListener('keyup', function (event) {
                 if (event.key === 'Enter') {
                     filterJobs();
                 }
             });
-            
-            document.getElementById('location-search-input').addEventListener('keyup', function(event) {
+
+            document.getElementById('location-search-input').addEventListener('keyup', function (event) {
                 if (event.key === 'Enter') {
                     filterJobs();
                 }
             });
+
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('job') || urlParams.has('location')) {
+                filterJobs();
+            }
         });
     </script>
 </body>
 
 </html>
-
