@@ -161,6 +161,25 @@
         .page-title h3 {
             margin-left: 75px;
         }
+
+        input[type="date"] {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            background-color: #fff;
+            color: #000;
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            filter: invert(0.5);
+        }
     </style>
 </head>
 
@@ -179,14 +198,13 @@
 
     <div class="container">
         <h2>Job Information</h2>
-         <!-- <form action="<?= base_url('recruiter_job_post/store'); ?>" method="post"> -->
-            <form>
+        <form action="<?= base_url('recruiter_job_post/store'); ?>" method="post">
             <div class="form-group">
                 <label for="title">Job Title</label>
                 <input type="text" id="title" name="title" placeholder="e.g., Software Engineer" required>
             </div>
 
-            <div class="row company">
+            <div class="row">
                 <div class="form-group">
                     <label for="company">Company Name</label>
                     <input type="text" id="company" name="company" placeholder="Company name" required>
@@ -197,15 +215,26 @@
                 </div>
             </div>
 
-            <div class="row job">
+            <div class="row">
+                <div class="form-group">
+                    <label for="last_date">Employees</label>
+                    <input type="text" id="employees" name="employees" placeholder="201-500" required>
+                </div>
+                <div class="form-group">
+                    <label for="last_date">Experience</label>
+                    <input type="text" id="experience" name="experience" placeholder="4-6 years" required>
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="form-group">
                     <label for="job-type">Job Type</label>
                     <select id="job-type" name="job-type">
-                        <option>Full-time</option>
-                        <option>Part-time</option>
-                        <option>Internship</option>
-                        <option>Contract</option>
-                        <option>Remote</option>
+                        <option value="Full-time">Full-time</option>
+                        <option value="Part-time">Part-time</option>
+                        <option value="Internship">Internship</option>
+                        <option value="Contract">Contract</option>
+                        <option value="Remote">Remote</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -213,6 +242,7 @@
                     <input type="text" id="salary" name="salary" placeholder="Rs.50,000 - Rs.70,000">
                 </div>
             </div>
+
 
             <div class="form-group">
                 <label for="description">Job Description</label>
@@ -222,8 +252,9 @@
 
             <div class="form-group">
                 <label for="last_date">Last Date to apply</label>
-                <input type="text" id="last_date" name="last_date" required>
+                <input type="date" id="last_date" name="last_date" required>
             </div>
+
 
             <div class="form-group">
                 <label for="email">Contact Email</label>

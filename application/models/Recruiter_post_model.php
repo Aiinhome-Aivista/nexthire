@@ -1,9 +1,8 @@
 <?php
-// class Recruiter_post_model extends CI_Model {
+class Recruiter_post_model extends CI_Model {
 
-//     public function insert_recruiter($data) {
-//         $this->db->insert('employer_register', $data);
-        
-//         return $this->db->insert_id();
-//     }
-// }
+     public function insert_job($data) {
+        $this->db->insert('posted_jobs', $data);
+         return $this->db->insert_id();
+    }
+}
