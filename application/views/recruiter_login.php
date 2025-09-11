@@ -11,13 +11,13 @@
   <script>
     // Your Firebase config
     const firebaseConfig = {
-      apiKey: "AIzaSyDckAqVekRfxHhmfrONpBrs037vmSEFT3Q",
-      authDomain: "indeedclone-ccd1c.firebaseapp.com",
-      projectId: "indeedclone-ccd1c",
-      storageBucket: "indeedclone-ccd1c.appspot.com",
-      messagingSenderId: "442348648327",
-      appId: "1:442348648327:web:00bf2269fe428c94cbc522",
-      measurementId: "G-8H6QB2D0GV"
+      apiKey: "AIzaSyArPK3Lb2xtZXeBXWXCq4_g4BopsjpNrN0",
+      authDomain: "jobnest-1353e.firebaseapp.com",
+      projectId: "jobnest-1353e",
+      storageBucket: "jobnest-1353e.firebasestorage.app",
+      messagingSenderId: "649093243578",
+      appId: "1:649093243578:web:8f9745abeacc310a229883",
+      measurementId: "G-SXWKWBFB8P"
     };
 
     // Initialize Firebase
@@ -354,8 +354,7 @@
   <div class="header">
     <div class="header-content">
       <div class="logo">
-        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="Jobnest"
-         >
+        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="Jobnest">
       </div>
       <div class="signup-link">
         New Recruiter? <a href="<?= base_url('employer_register'); ?>">Register</a> here
@@ -401,7 +400,7 @@
         <!-- Google Login -->
         <div class="google-section">
           <div class="or-text">Or</div>
-          <button type="button" class="google-btn" id="googleSignInBtn" >
+          <button type="button" class="google-btn" id="googleSignInBtn">
             <img src="<?= base_url('assets/images/google.png'); ?>" alt="google">
             Continue with Google
           </button>
