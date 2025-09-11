@@ -11,7 +11,6 @@
     <!-- Firebase SDK (compat version for v8 style) -->
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
-
     <script>
         // Your Firebase config
         const firebaseConfig = {
@@ -27,8 +26,6 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
     </script>
-
-
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -543,396 +540,6 @@
 
         }
     </style>
-</head>
-
-<body>
-
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <h1 class="fw-bold">Find your dream job now</h1>
-            <p>5 lakh+ jobs for you to explore</p>
-
-            <div class="search-bar-container">
-                <div class="search-input-field">
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="fas fa-search"></i></span>
-                        <input type="text" class="form-control" placeholder="Enter skills / designations / companies">
-                    </div>
-                </div>
-                <div class="search-input-field">
-                    <div class="input-group">
-                        <!-- <span class="input-group-text"><i class="fas fa-briefcase"></i></span> -->
-                        <select class="form-select form-control">
-                            <option selected>Select experience</option>
-                            <option value="1">0-1 years</option>
-                            <option value="2">1-3 years</option>
-                            <option value="3">3-5 years</option>
-                            <option value="4">5+ years</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="search-input-field" style="margin-right: 0;">
-                    <div class="input-group">
-                        <!-- <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span> -->
-                        <input type="text" class="form-control" placeholder="Enter location">
-                    </div>
-                </div>
-                <a href="<?= base_url('job_search') ?>" id="search-button" class="btn btn-primary">Search</a>
-            </div>
-
-            <!-- Tagline Image -->
-            <!-- <div class="tagline-image">
-                <img src="assets/images/home_tag_1.png"
-                    alt="Result stays private - Practice customized mock interview with AI!">
-            </div> -->
-
-            <!-- Job Categories from the image -->
-            <div class="job-categories">
-                <div class="category-card">
-                    <i class="fas fa-laptop-house"></i>
-                    <span>Remote</span>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-building"></i>
-                    <span>MNC</span>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-user-graduate"></i>
-                    <span>Internship</span>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-tasks"></i>
-                    <span>Project Mgmt</span>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-university"></i>
-                    <span>Banking & Finance</span>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-truck"></i>
-                    <span>Supply Chain</span>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-users"></i>
-                    <span>HR</span>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Sales</span>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-cogs"></i>
-                    <span>Engineering</span>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-crown"></i>
-                    <span>Fortune 500</span>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-user-friends"></i>
-                    <span>Fresher</span>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-            </div>
-
-            <!-- Top Companies Hiring Now -->
-            <div class="container my-5">
-                <h2 class="fw-bold text-center mb-4">Top companies hiring now</h2>
-                <div class="companies-wrapper flex-wrap">
-                    <div class="company-card">
-                        <h5>Edtech <i class="fas fa-chevron-right"></i></h5>
-                        <p>161 are actively hiring</p>
-                        <div class="d-flex gap-2 justify-content-center">
-                            <img src="assets/images/company1.gif" alt="">
-                            <img src="assets/images/company2.gif" alt="">
-                            <img src="assets/images/company3.gif" alt="">
-                            <!-- <img src="assets/images/company4.gif" alt=""> -->
-                        </div>
-                    </div>
-                    <div class="company-card">
-                        <h5>Healthcare <i class="fas fa-chevron-right"></i></h5>
-                        <p>599 are actively hiring</p>
-                        <div class="d-flex gap-2 justify-content-center">
-                            <img src="assets/images/company5.gif" alt="">
-                            <img src="assets/images/company6.gif" alt="">
-                            <img src="assets/images/company7.gif" alt="">
-                            <!-- <img src="assets/images/company8.gif" alt=""> -->
-                        </div>
-                    </div>
-                    <div class="company-card">
-                        <h5>Unicorns <i class="fas fa-chevron-right"></i></h5>
-                        <p>87 are actively hiring</p>
-                        <div class="d-flex gap-2 justify-content-center">
-                            <img src="assets/images/company9.gif" alt="">
-                            <img src="assets/images/company10.gif" alt="">
-                            <img src="assets/images/company11.gif" alt="">
-                            <!-- <img src="assets/images/company12.gif" alt=""> -->
-                        </div>
-                    </div>
-                    <div class="company-card">
-                        <h5>B2C <i class="fas fa-chevron-right"></i></h5>
-                        <p>2.3k+ are actively hiring</p>
-                        <div class="d-flex gap-2 justify-content-center">
-                            <img src="assets/images/company13.gif" alt="">
-                            <img src="assets/images/company14.gif" alt="">
-                            <img src="assets/images/company15.gif" alt="">
-                            <!-- <img src="assets/images/company16.gif" alt=""> -->
-                        </div>
-                    </div>
-                    <div class="company-card">
-                        <h5>Internet <i class="fas fa-chevron-right"></i></h5>
-                        <p>247 are actively hiring</p>
-                        <div class="d-flex gap-2 justify-content-center">
-                            <img src="assets/images/company17.gif" alt="">
-                            <img src="assets/images/company18.gif" alt="">
-                            <img src="assets/images/company19.gif" alt="">
-                            <!-- <img src="assets/images/company20.gif" alt=""> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Featured Companies Section -->
-            <div class="container featured-companies">
-                <h2 class="fw-bold text-center mb-4">Featured companies actively hiring</h2>
-                <div class="featured-wrapper">
-                    <div class="featured-card">
-                        <img src="assets/images/reliance.gif" alt="Reliance Industries (RIL)">
-                        <h5>Reliance Industries (RIL)</h5>
-                        <div class="featured-rating">⭐ 4.0 | 18.2K+ reviews</div>
-                        <p>Indian multinational conglomerate company.</p>
-                        <button class="btn btn-primary btn-sm">View jobs</button>
-                    </div>
-                    <div class="featured-card">
-                        <img src="assets/images/capgemini.gif" alt="Capgemini">
-                        <h5>Capgemini</h5>
-                        <div class="featured-rating">⭐ 3.7 | 48.1K+ reviews</div>
-                        <p>Global leader in technology services.</p>
-                        <button class="btn btn-primary btn-sm">View jobs</button>
-                    </div>
-                    <div class="featured-card">
-                        <img src="assets/images/infosys.gif" alt="Infosys BPM">
-                        <h5>Infosysy BPM</h5>
-                        <div class="featured-rating">⭐ 3.5 | 11K+ reviews</div>
-                        <p>Join us to navigate your next.</p>
-                        <button class="btn btn-primary btn-sm">View jobs</button>
-                    </div>
-                    <div class="featured-card">
-                        <img src="assets/images/amgen.gif" alt="Amgen Inc">
-                        <h5>Amzen Inc</h5>
-                        <div class="featured-rating">⭐ 3.1 | 35 reviews</div>
-                        <p>LIVE. WIN. THRIVE.</p>
-                        <button class="btn btn-primary btn-sm">View jobs</button>
-                    </div>
-                    <div class="featured-card">
-                        <img src="assets/images/amazon.gif" alt="Amazon">
-                        <h5>Amazon</h5>
-                        <div class="featured-rating">⭐ 4.0 | 28.4K+ reviews</div>
-                        <p>World's largest Internet company.</p>
-                        <button class="btn btn-primary btn-sm">View jobs</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-4">
-                <button class="btn btn-outline-primary view-all-btn">View all companies</button>
-            </div>
-
-            <!-- Siemens Style Banner Section -->
-            <div class="container mt-5">
-                <div class="siemens-banner">
-                    <div class="row g-0">
-                        <div class="col-md-5 banner-left">
-                            <div class="d-flex align-items-center mb-2">
-                                <img src="assets/images/siemens.gif" alt="Siemens" class="banner-logo">
-                                <span class="ms-2 fw-bold">Siemens</span>
-                                <span class="ms-2 text-warning">⭐ 4.0</span>
-                            </div>
-                            <h3 class="banner-title">Belong, Inspire, Transform Together</h3>
-                            <a href="#" class="banner-link">Learn more</a>
-                        </div>
-                        <div class="col-md-7 banner-right position-relative">
-                            <img src="assets/images/siemens-collage.jpg" alt="Siemens team" class="banner-image">
-                            <div class="play-button-overlay">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Young Turks Contest Banner -->
-            <div class="container mt-4">
-                <img src="assets/images/banner.jpg" alt="Young Turks Contest Banner"
-                    style="display:block;max-width:100%;height:auto;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1);margin:0 auto;">
-            </div>
-
-            <footer class="custom-footer">
-                <div class="footer-top">
-                    <div class="footer-logo-social">
-                        <a href="https://www.naukri.com" class="footer-logo">
-                            <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="JobNest">
-                        </a>
-                        <div class="footer-social">
-                            <div class="footer-social-label">Connect with us</div>
-                            <div class="footer-social-icons">
-                                <a href="https://www.facebook.com/Naukri" target="_blank" rel="noopener">
-                                    <img src="https://static.naukimg.com/s/0/0/i/new-homepage/facebook.svg"
-                                        alt="Facebook" />
-                                </a>
-                                <a href="https://instagram.com/naukridotcom/" target="_blank" rel="noopener">
-                                    <img src="https://static.naukimg.com/s/0/0/i/new-homepage/instagram.svg"
-                                        alt="Instagram" />
-                                </a>
-                                <a href="https://twitter.com/naukri" target="_blank" rel="noopener">
-                                    <img src="https://static.naukimg.com/s/0/0/i/new-homepage/twitter_v1.svg" alt="X" />
-                                </a>
-                                <a href="http://www.linkedin.com/company/naukri.com" target="_blank" rel="noopener">
-                                    <img src="https://static.naukimg.com/s/0/0/i/new-homepage/linkedin.svg"
-                                        alt="LinkedIn" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="footer-links">
-                        <ul>
-                            <li><a href="http://infoedge.in" target="_blank">About us</a></li>
-                            <li><a href="https://careers.infoedge.com/" target="_blank">Careers</a></li>
-                            <li><a href="https://www.naukri.com/recruit/login">Employer home</a></li>
-                            <li><a href="https://www.naukri.com/sitemap/sitemap.php">Sitemap</a></li>
-                            <li><a href="https://www.naukri.com/credits">Credits</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="https://www.naukri.com/faq/job-seeker?utm_source=footer">Help center</a></li>
-                            <li><a href="https://w5.naukri.com/summons-notices-form/">Summons/Notices</a></li>
-                            <li><a href="https://w5.naukri.com/grievances-form/">Grievances</a></li>
-                            <li><a href="https://w5.naukri.com/fdbck/main/feedback.php?app_id=15">Report issue</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="https://www.naukri.com/privacypolicy">Privacy policy</a></li>
-                            <li><a href="https://www.naukri.com/termsconditions">Terms & conditions</a></li>
-                            <li><a href="https://www.naukri.com/imposter/report-fake-job-recruiter">Fraud alert</a></li>
-                            <li><a href="https://www.naukri.com/jobsearch/trust-safety">Trust & safety</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-app-card">
-                        <div class="footer-app-title">Apply on the go</div>
-                        <div class="footer-app-desc">Get real-time job updates on our App</div>
-                        <div class="footer-app-buttons">
-                            <a href="https://play.google.com/store/apps/details?id=naukriApp.appModules.login&amp;hl=en&amp;utm_source=naukri&amp;utm_medium=footer"
-                                target="_blank" rel="noopener">
-                                <img src="https://static.naukimg.com/s/0/0/i/new-homepage/android-app_v1.png"
-                                    alt="Google Play" />
-                            </a>
-                            <a href="https://itunes.apple.com/in/app/naukri.com-job-search/id482877505?mt=8"
-                                target="_blank" rel="noopener">
-                                <img src="https://static.naukimg.com/s/0/0/i/new-homepage/ios-app_v1.png"
-                                    alt="App Store" />
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="footer-divider"></div>
-
-                <div class="footer-bottom">
-                    <div class="footer-infoedge">
-                        <img src="https://static.naukimg.com/s/0/0/i/new-homepage/infoedge-logo.svg"
-                            alt="Info Edge Logo" class="footer-infoedge-logo" />
-                        <div class="footer-infoedge-text">
-                            <div>All trademarks are the property of their respective owners</div>
-                            <div>All rights reserved © 2025 Info Edge (India) Ltd.</div>
-                        </div>
-                    </div>
-
-                    <div class="footer-business-scroller">
-                        <span class="business-label">Our businesses</span>
-                        <ul class="business-logos-scroller">
-                            <li><a href="https://www.99acres.com/" target="_blank"><img
-                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/nnacres.png"
-                                        alt="99acres" /></a></li>
-                            <li><a href="https://www.jeevansathi.com/" target="_blank"><img
-                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/jeevansathi.png"
-                                        alt="Jeevansathi.com" /></a></li>
-                            <li><a href="https://www.naukrigulf.com/" target="_blank"><img
-                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/ng_v1.png"
-                                        alt="Naukri Gulf" /></a></li>
-                            <li><a href="https://www.shiksha.com/" target="_blank"><img
-                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/shiksha.png"
-                                        alt="Shiksha.com" /></a></li>
-                            <li><a href="https://www.iimjobs.com/" target="_blank"><img
-                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/iimjobs.png"
-                                        alt="IIMJobs.com" /></a></li>
-                            <li><a href="https://www.hirist.tech/" target="_blank"><img
-                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/hirist_v1.png"
-                                        alt="hirist.tech" /></a></li>
-                            <li><a href="https://www.jobhai.com/" target="_blank"><img
-                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/jobhai.png"
-                                        alt="JobHai.com" /></a></li>
-                            <li><a href="https://doselect.com/" target="_blank"><img
-                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/doselect.png"
-                                        alt="Doselect.com" /></a></li>
-                            <li><a href="https://www.naukri.com/minis" target="_blank"><img
-                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/minis.png"
-                                        alt="Minis" /></a></li>
-                            <li><a href="https://www.codingninjas.com/?utm_source=naukri&amp;utm_medium=desktop-footer"
-                                    target="_blank"><img
-                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/coding_ninjas.png"
-                                        alt="Coding Ninjas" /></a></li>
-
-                            <!-- Repeat logos for smooth infinite scroll -->
-                            <li><a href="https://www.99acres.com/" target="_blank"><img
-                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/nnacres.png"
-                                        alt="99acres" /></a></li>
-                            <li><a href="https://www.jeevansathi.com/" target="_blank"><img
-                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/jeevansathi.png"
-                                        alt="Jeevansathi.com" /></a></li>
-                            <li><a href="https://www.naukrigulf.com/" target="_blank"><img
-                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/ng_v1.png"
-                                        alt="Naukri Gulf" /></a></li>
-                            <li><a href="https://www.shiksha.com/" target="_blank"><img
-                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/shiksha.png"
-                                        alt="Shiksha.com" /></a></li>
-                            <li><a href="https://www.iimjobs.com/" target="_blank"><img
-                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/iimjobs.png"
-                                        alt="IIMJobs.com" /></a></li>
-                            <li><a href="https://www.hirist.tech/" target="_blank"><img
-                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/hirist_v1.png"
-                                        alt="hirist.tech" /></a></li>
-                            <li><a href="https://www.jobhai.com/" target="_blank"><img
-                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/jobhai.png"
-                                        alt="JobHai.com" /></a></li>
-                            <li><a href="https://doselect.com/" target="_blank"><img
-                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/doselect.png"
-                                        alt="Doselect.com" /></a></li>
-                            <li><a href="https://www.naukri.com/minis" target="_blank"><img
-                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/minis.png"
-                                        alt="Minis" /></a></li>
-                            <li><a href="https://www.codingninjas.com/?utm_source=naukri&amp;utm_medium=desktop-footer"
-                                    target="_blank"><img
-                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/coding_ninjas.png"
-                                        alt="Coding Ninjas" /></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </footer>
-
-
-
-        </div>
-    </section>
     <style>
         .custom-footer {
             font-family: 'Montserrat', Arial, sans-serif;
@@ -1371,12 +978,403 @@
             color: #3078e7;
         }
     </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="fw-bold">Find your dream job now</h1>
+            <p>5 lakh+ jobs for you to explore</p>
+
+            <div class="search-bar-container">
+                <div class="search-input-field">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        <input type="text" class="form-control" placeholder="Enter skills / designations / companies">
+                    </div>
+                </div>
+                <div class="search-input-field">
+                    <div class="input-group">
+                        <!-- <span class="input-group-text"><i class="fas fa-briefcase"></i></span> -->
+                        <select class="form-select form-control">
+                            <option selected>Select experience</option>
+                            <option value="1">0-1 years</option>
+                            <option value="2">1-3 years</option>
+                            <option value="3">3-5 years</option>
+                            <option value="4">5+ years</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="search-input-field" style="margin-right: 0;">
+                    <div class="input-group">
+                        <!-- <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span> -->
+                        <input type="text" class="form-control" placeholder="Enter location">
+                    </div>
+                </div>
+                <a href="<?= base_url('job_search') ?>" id="search-button" class="btn btn-primary">Search</a>
+            </div>
+
+            <!-- Tagline Image -->
+            <!-- <div class="tagline-image">
+                <img src="assets/images/home_tag_1.png"
+                    alt="Result stays private - Practice customized mock interview with AI!">
+            </div> -->
+
+            <!-- Job Categories from the image -->
+            <div class="job-categories">
+                <div class="category-card">
+                    <i class="fas fa-laptop-house"></i>
+                    <span>Remote</span>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-building"></i>
+                    <span>MNC</span>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-user-graduate"></i>
+                    <span>Internship</span>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-tasks"></i>
+                    <span>Project Mgmt</span>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-university"></i>
+                    <span>Banking & Finance</span>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-truck"></i>
+                    <span>Supply Chain</span>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-users"></i>
+                    <span>HR</span>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Sales</span>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-cogs"></i>
+                    <span>Engineering</span>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-crown"></i>
+                    <span>Fortune 500</span>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-user-friends"></i>
+                    <span>Fresher</span>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+
+            <!-- Top Companies Hiring Now -->
+            <div class="container my-5">
+                <h2 class="fw-bold text-center mb-4">Top companies hiring now</h2>
+                <div class="companies-wrapper flex-wrap">
+                    <div class="company-card">
+                        <h5>Edtech <i class="fas fa-chevron-right"></i></h5>
+                        <p>161 are actively hiring</p>
+                        <div class="d-flex gap-2 justify-content-center">
+                            <img src="assets/images/company1.gif" alt="">
+                            <img src="assets/images/company2.gif" alt="">
+                            <img src="assets/images/company3.gif" alt="">
+                            <!-- <img src="assets/images/company4.gif" alt=""> -->
+                        </div>
+                    </div>
+                    <div class="company-card">
+                        <h5>Healthcare <i class="fas fa-chevron-right"></i></h5>
+                        <p>599 are actively hiring</p>
+                        <div class="d-flex gap-2 justify-content-center">
+                            <img src="assets/images/company5.gif" alt="">
+                            <img src="assets/images/company6.gif" alt="">
+                            <img src="assets/images/company7.gif" alt="">
+                            <!-- <img src="assets/images/company8.gif" alt=""> -->
+                        </div>
+                    </div>
+                    <div class="company-card">
+                        <h5>Unicorns <i class="fas fa-chevron-right"></i></h5>
+                        <p>87 are actively hiring</p>
+                        <div class="d-flex gap-2 justify-content-center">
+                            <img src="assets/images/company9.gif" alt="">
+                            <img src="assets/images/company10.gif" alt="">
+                            <img src="assets/images/company11.gif" alt="">
+                            <!-- <img src="assets/images/company12.gif" alt=""> -->
+                        </div>
+                    </div>
+                    <div class="company-card">
+                        <h5>B2C <i class="fas fa-chevron-right"></i></h5>
+                        <p>2.3k+ are actively hiring</p>
+                        <div class="d-flex gap-2 justify-content-center">
+                            <img src="assets/images/company13.gif" alt="">
+                            <img src="assets/images/company14.gif" alt="">
+                            <img src="assets/images/company15.gif" alt="">
+                            <!-- <img src="assets/images/company16.gif" alt=""> -->
+                        </div>
+                    </div>
+                    <div class="company-card">
+                        <h5>Internet <i class="fas fa-chevron-right"></i></h5>
+                        <p>247 are actively hiring</p>
+                        <div class="d-flex gap-2 justify-content-center">
+                            <img src="assets/images/company17.gif" alt="">
+                            <img src="assets/images/company18.gif" alt="">
+                            <img src="assets/images/company19.gif" alt="">
+                            <!-- <img src="assets/images/company20.gif" alt=""> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Companies Section -->
+            <div class="container featured-companies">
+                <h2 class="fw-bold text-center mb-4">Featured companies actively hiring</h2>
+                <div class="featured-wrapper">
+                    <div class="featured-card">
+                        <img src="assets/images/reliance.gif" alt="Reliance Industries (RIL)">
+                        <h5>Reliance Industries (RIL)</h5>
+                        <div class="featured-rating">⭐ 4.0 | 18.2K+ reviews</div>
+                        <p>Indian multinational conglomerate company.</p>
+                        <button class="btn btn-primary btn-sm">View jobs</button>
+                    </div>
+                    <div class="featured-card">
+                        <img src="assets/images/capgemini.gif" alt="Capgemini">
+                        <h5>Capgemini</h5>
+                        <div class="featured-rating">⭐ 3.7 | 48.1K+ reviews</div>
+                        <p>Global leader in technology services.</p>
+                        <button class="btn btn-primary btn-sm">View jobs</button>
+                    </div>
+                    <div class="featured-card">
+                        <img src="assets/images/infosys.gif" alt="Infosys BPM">
+                        <h5>Infosysy BPM</h5>
+                        <div class="featured-rating">⭐ 3.5 | 11K+ reviews</div>
+                        <p>Join us to navigate your next.</p>
+                        <button class="btn btn-primary btn-sm">View jobs</button>
+                    </div>
+                    <div class="featured-card">
+                        <img src="assets/images/amgen.gif" alt="Amgen Inc">
+                        <h5>Amzen Inc</h5>
+                        <div class="featured-rating">⭐ 3.1 | 35 reviews</div>
+                        <p>LIVE. WIN. THRIVE.</p>
+                        <button class="btn btn-primary btn-sm">View jobs</button>
+                    </div>
+                    <div class="featured-card">
+                        <img src="assets/images/amazon.gif" alt="Amazon">
+                        <h5>Amazon</h5>
+                        <div class="featured-rating">⭐ 4.0 | 28.4K+ reviews</div>
+                        <p>World's largest Internet company.</p>
+                        <button class="btn btn-primary btn-sm">View jobs</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button class="btn btn-outline-primary view-all-btn">View all companies</button>
+            </div>
+
+            <!-- Siemens Style Banner Section -->
+            <div class="container mt-5">
+                <div class="siemens-banner">
+                    <div class="row g-0">
+                        <div class="col-md-5 banner-left">
+                            <div class="d-flex align-items-center mb-2">
+                                <img src="assets/images/siemens.gif" alt="Siemens" class="banner-logo">
+                                <span class="ms-2 fw-bold">Siemens</span>
+                                <span class="ms-2 text-warning">⭐ 4.0</span>
+                            </div>
+                            <h3 class="banner-title">Belong, Inspire, Transform Together</h3>
+                            <a href="#" class="banner-link">Learn more</a>
+                        </div>
+                        <div class="col-md-7 banner-right position-relative">
+                            <img src="assets/images/siemens-collage.jpg" alt="Siemens team" class="banner-image">
+                            <div class="play-button-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Young Turks Contest Banner -->
+            <div class="container mt-4">
+                <img src="assets/images/banner.jpg" alt="Young Turks Contest Banner"
+                    style="display:block;max-width:100%;height:auto;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1);margin:0 auto;">
+            </div>
+
+            <footer class="custom-footer">
+                <div class="footer-top">
+                    <div class="footer-logo-social">
+                        <a href="https://www.naukri.com" class="footer-logo">
+                            <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="JobNest">
+                        </a>
+                        <div class="footer-social">
+                            <div class="footer-social-label">Connect with us</div>
+                            <div class="footer-social-icons">
+                                <a href="https://www.facebook.com/Naukri" target="_blank" rel="noopener">
+                                    <img src="https://static.naukimg.com/s/0/0/i/new-homepage/facebook.svg"
+                                        alt="Facebook" />
+                                </a>
+                                <a href="https://instagram.com/naukridotcom/" target="_blank" rel="noopener">
+                                    <img src="https://static.naukimg.com/s/0/0/i/new-homepage/instagram.svg"
+                                        alt="Instagram" />
+                                </a>
+                                <a href="https://twitter.com/naukri" target="_blank" rel="noopener">
+                                    <img src="https://static.naukimg.com/s/0/0/i/new-homepage/twitter_v1.svg" alt="X" />
+                                </a>
+                                <a href="http://www.linkedin.com/company/naukri.com" target="_blank" rel="noopener">
+                                    <img src="https://static.naukimg.com/s/0/0/i/new-homepage/linkedin.svg"
+                                        alt="LinkedIn" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer-links">
+                        <ul>
+                            <li><a href="http://infoedge.in" target="_blank">About us</a></li>
+                            <li><a href="https://careers.infoedge.com/" target="_blank">Careers</a></li>
+                            <li><a href="https://www.naukri.com/recruit/login">Employer home</a></li>
+                            <li><a href="https://www.naukri.com/sitemap/sitemap.php">Sitemap</a></li>
+                            <li><a href="https://www.naukri.com/credits">Credits</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="https://www.naukri.com/faq/job-seeker?utm_source=footer">Help center</a></li>
+                            <li><a href="https://w5.naukri.com/summons-notices-form/">Summons/Notices</a></li>
+                            <li><a href="https://w5.naukri.com/grievances-form/">Grievances</a></li>
+                            <li><a href="https://w5.naukri.com/fdbck/main/feedback.php?app_id=15">Report issue</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="https://www.naukri.com/privacypolicy">Privacy policy</a></li>
+                            <li><a href="https://www.naukri.com/termsconditions">Terms & conditions</a></li>
+                            <li><a href="https://www.naukri.com/imposter/report-fake-job-recruiter">Fraud alert</a></li>
+                            <li><a href="https://www.naukri.com/jobsearch/trust-safety">Trust & safety</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-app-card">
+                        <div class="footer-app-title">Apply on the go</div>
+                        <div class="footer-app-desc">Get real-time job updates on our App</div>
+                        <div class="footer-app-buttons">
+                            <a href="https://play.google.com/store/apps/details?id=naukriApp.appModules.login&amp;hl=en&amp;utm_source=naukri&amp;utm_medium=footer"
+                                target="_blank" rel="noopener">
+                                <img src="https://static.naukimg.com/s/0/0/i/new-homepage/android-app_v1.png"
+                                    alt="Google Play" />
+                            </a>
+                            <a href="https://itunes.apple.com/in/app/naukri.com-job-search/id482877505?mt=8"
+                                target="_blank" rel="noopener">
+                                <img src="https://static.naukimg.com/s/0/0/i/new-homepage/ios-app_v1.png"
+                                    alt="App Store" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-divider"></div>
+
+                <div class="footer-bottom">
+                    <div class="footer-infoedge">
+                        <img src="https://static.naukimg.com/s/0/0/i/new-homepage/infoedge-logo.svg"
+                            alt="Info Edge Logo" class="footer-infoedge-logo" />
+                        <div class="footer-infoedge-text">
+                            <div>All trademarks are the property of their respective owners</div>
+                            <div>All rights reserved © 2025 Info Edge (India) Ltd.</div>
+                        </div>
+                    </div>
+
+                    <div class="footer-business-scroller">
+                        <span class="business-label">Our businesses</span>
+                        <ul class="business-logos-scroller">
+                            <li><a href="https://www.99acres.com/" target="_blank"><img
+                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/nnacres.png"
+                                        alt="99acres" /></a></li>
+                            <li><a href="https://www.jeevansathi.com/" target="_blank"><img
+                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/jeevansathi.png"
+                                        alt="Jeevansathi.com" /></a></li>
+                            <li><a href="https://www.naukrigulf.com/" target="_blank"><img
+                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/ng_v1.png"
+                                        alt="Naukri Gulf" /></a></li>
+                            <li><a href="https://www.shiksha.com/" target="_blank"><img
+                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/shiksha.png"
+                                        alt="Shiksha.com" /></a></li>
+                            <li><a href="https://www.iimjobs.com/" target="_blank"><img
+                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/iimjobs.png"
+                                        alt="IIMJobs.com" /></a></li>
+                            <li><a href="https://www.hirist.tech/" target="_blank"><img
+                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/hirist_v1.png"
+                                        alt="hirist.tech" /></a></li>
+                            <li><a href="https://www.jobhai.com/" target="_blank"><img
+                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/jobhai.png"
+                                        alt="JobHai.com" /></a></li>
+                            <li><a href="https://doselect.com/" target="_blank"><img
+                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/doselect.png"
+                                        alt="Doselect.com" /></a></li>
+                            <li><a href="https://www.naukri.com/minis" target="_blank"><img
+                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/minis.png"
+                                        alt="Minis" /></a></li>
+                            <li><a href="https://www.codingninjas.com/?utm_source=naukri&amp;utm_medium=desktop-footer"
+                                    target="_blank"><img
+                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/coding_ninjas.png"
+                                        alt="Coding Ninjas" /></a></li>
+
+                            <!-- Repeat logos for smooth infinite scroll -->
+                            <li><a href="https://www.99acres.com/" target="_blank"><img
+                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/nnacres.png"
+                                        alt="99acres" /></a></li>
+                            <li><a href="https://www.jeevansathi.com/" target="_blank"><img
+                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/jeevansathi.png"
+                                        alt="Jeevansathi.com" /></a></li>
+                            <li><a href="https://www.naukrigulf.com/" target="_blank"><img
+                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/ng_v1.png"
+                                        alt="Naukri Gulf" /></a></li>
+                            <li><a href="https://www.shiksha.com/" target="_blank"><img
+                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/shiksha.png"
+                                        alt="Shiksha.com" /></a></li>
+                            <li><a href="https://www.iimjobs.com/" target="_blank"><img
+                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/iimjobs.png"
+                                        alt="IIMJobs.com" /></a></li>
+                            <li><a href="https://www.hirist.tech/" target="_blank"><img
+                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/hirist_v1.png"
+                                        alt="hirist.tech" /></a></li>
+                            <li><a href="https://www.jobhai.com/" target="_blank"><img
+                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/jobhai.png"
+                                        alt="JobHai.com" /></a></li>
+                            <li><a href="https://doselect.com/" target="_blank"><img
+                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/doselect.png"
+                                        alt="Doselect.com" /></a></li>
+                            <li><a href="https://www.naukri.com/minis" target="_blank"><img
+                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/minis.png"
+                                        alt="Minis" /></a></li>
+                            <li><a href="https://www.codingninjas.com/?utm_source=naukri&amp;utm_medium=desktop-footer"
+                                    target="_blank"><img
+                                        src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/coding_ninjas.png"
+                                        alt="Coding Ninjas" /></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </footer>
+
+
+
+        </div>
+    </section>
+
     <div class="login-popup-bg" id="loginPopupBg">
         <div class="login-popup">
             <span class="login-close" id="closeLoginPopup">&times;</span>
             <a href="<?= base_url('register'); ?>" class="register-for-free">Register for free</a>
             <span class="login-title">Login</span>
-            <form class="login-form" method="post" action="<?= base_url('login/process'); ?>"autocomplete="off">
+            <form class="login-form" method="post" action="<?= base_url('login/process'); ?>" autocomplete="off">
                 <label for="login-username">Email ID / Username</label>
                 <input type="text" id="login-username" name="username"
                     placeholder="Enter your active Email ID / Username" required>

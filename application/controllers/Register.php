@@ -46,4 +46,60 @@ class Register extends CI_Controller
             redirect('register');
         }
     }
+    public function google_callback()
+    {
+        $json = file_get_contents('php://input');
+        $userData = json_decode($json, true);
+
+        if (!$userData || !isset($userData['email'])) {
+            echo json_encode(['success' => false, 'message' => 'Invalid data']);
+            return;
+        }
+
+        // Check if user exists
+        $user = $this->Register_model->get_user_by_email($userData['email']);
+
+        // // If not, create user
+        // if (!$user) {
+        //     $user_id = $this->Register_model->insert_google_user([
+        //         'uid' => $userData['uid'],
+        //         'email' => $userData['email'],
+        //         'full_name' => $userData['name'],   // <----- field name must match table!
+        //         'picture' => $userData['picture'],
+        //         'provider' => $userData['provider'],
+        //         'password' => null,                 // google sign-in: password is NULL
+        //         'mobile_number' => null,            // can prompt user later!
+        //         'work_status' => null,              // can default to 'Experienced'/'Fresher' or NULL
+        //         'created_at' => date('Y-m-d H:i:s'),
+        //         'updated_at' => date('Y-m-d H:i:s')
+        //     ]);
+
+        //     $user = $this->Register_model->get_user_by_id($user_id);
+        // }
+        if (!$user) {
+            $user_id = $this->Register_model->insert_google_user([
+                'uid' => $userData['uid'],
+                'email' => $userData['email'],
+                'full_name' => $userData['name'],
+                'picture' => $userData['picture'],
+                'provider' => $userData['provider'],
+                'password' => null,
+                'mobile_number' => null,
+                // 'work_status' => null,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]);
+            $user = $this->Register_model->get_user_by_id($user_id);
+        }
+        // Set session
+        $this->session->set_userdata([
+            'user_id' => $user['id'],
+            'user_name' => $user['full_name'],
+            'user_email' => $user['email'],
+            'user_picture' => $user['picture'],
+            'logged_in' => TRUE
+        ]);
+
+        echo json_encode(['success' => true]);
+    }
 }

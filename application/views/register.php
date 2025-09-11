@@ -5,6 +5,24 @@
   <meta charset="UTF-8">
   <title>Naukri Registration</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Firebase SDK (compat version for v8 style) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script>
+    // Your Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyDckAqVekRfxHhmfrONpBrs037vmSEFT3Q",
+      authDomain: "indeedclone-ccd1c.firebaseapp.com",
+      projectId: "indeedclone-ccd1c",
+      storageBucket: "indeedclone-ccd1c.appspot.com",
+      messagingSenderId: "442348648327",
+      appId: "1:442348648327:web:00bf2269fe428c94cbc522",
+      measurementId: "G-8H6QB2D0GV"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
   <style>
     * {
       box-sizing: border-box;
@@ -596,7 +614,7 @@
         <div class="google-section">
           <div class="or-text">Or</div>
           <div class="continue-text">Continue with</div>
-          <button id="googleLogin" class="google-btn">
+          <button id="googleSignInBtn" class="google-btn">
             <img src="<?= base_url('assets/images/google.png'); ?>" alt="google">
             Google
           </button>
@@ -630,11 +648,43 @@
       document.getElementById('workStatus').value = status;
     }
   </script>
+  <script>
+    document.getElementById('googleSignInBtn').addEventListener('click', function () {
+      var provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth().signInWithPopup(provider)
+        .then(function (result) {
+          var user = result.user;
 
+          // Send user info to CodeIgniter backend
+          fetch('<?= base_url('register/google_callback') ?>', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              uid: user.uid,
+              name: user.displayName,
+              email: user.email,
+              picture: user.photoURL,
+              provider: 'google'
+            })
+          })
+            .then(response => response.json())
+            .then(data => {
+              if (data.success) {
+                window.location.href = '<?= base_url('profile') ?>';
+              } else {
+                alert('Registration failed: ' + data.message);
+              }
+            });
+        })
+        .catch(function (error) {
+          alert(error.message);
+        });
+    });
+
+  </script>
 </body>
 
 </html>
-</script>
 </body>
 
 </html>
