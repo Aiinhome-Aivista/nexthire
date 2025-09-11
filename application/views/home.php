@@ -1017,10 +1017,10 @@
             </div>
 
             <!-- Tagline Image -->
-            <!-- <div class="tagline-image">
-                <img src="assets/images/home_tag_1.png"
-                    alt="Result stays private - Practice customized mock interview with AI!">
-            </div> -->
+            <div class="tagline-image">
+                <img src="assets/images/job-recruitment.jpg"
+                    alt="Apply for job !!!!">
+            </div>
 
             <!-- Job Categories from the image -->
             <div class="job-categories">
