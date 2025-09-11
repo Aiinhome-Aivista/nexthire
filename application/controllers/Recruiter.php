@@ -18,6 +18,8 @@ class Recruiter extends CI_Controller
 
     public function submit()
     {
+        $plainPassword = $this->input->post('password');
+
         $data = [
             'full_name' => $this->input->post('fullname'),
             'email' => $this->input->post('email'),
@@ -29,10 +31,22 @@ class Recruiter extends CI_Controller
 
         $insert_id = $this->Recruiter_model->insert_recruiter($data);
 
+
         if ($insert_id) {
-            echo "Registration successful!";
+            // Load email service library
+            $this->load->library('emailservice');
+            $emailSent = $this->emailservice->sendWelcomeEmail($data['email'], $data['full_name'], $plainPassword, 'recruiter_welcome_email');
+
+            if ($emailSent) {
+                $this->session->set_flashdata('success', 'Registration successful! A welcome email has been sent to your email address.');
+            } else {
+                $this->session->set_flashdata('success', 'Registration successful! However, we could not send the welcome email.');
+            }
+
+            redirect('home');
         } else {
-            echo "Something went wrong!";
+            $this->session->set_flashdata('error', 'Something went wrong with your registration. Please try again.');
+            redirect('register');
         }
     }
 

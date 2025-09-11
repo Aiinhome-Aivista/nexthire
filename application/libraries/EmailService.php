@@ -28,36 +28,27 @@ class EmailService
         $this->mail->isHTML(true); // Set email format to HTML
     }
 
-    public function sendWelcomeEmail($toEmail, $toName, $password)
-    {
-        try {
-            // Recipient
-            $this->mail->addAddress($toEmail, $toName);
+  public function sendWelcomeEmail($toEmail, $toName, $password, $template = 'welcome_email')
+{
+    try {
+        $this->mail->addAddress($toEmail, $toName);
+        $this->mail->Subject = 'Welcome to Jobnest - Registration Successful';
 
-            // Subject
-            $this->mail->Subject = 'Welcome to Jobnest - Registration Successful';
+        $ci =& get_instance();
+        $emailContent = $ci->load->view("emails/{$template}", [
+            'name' => $toName,
+            'email' => $toEmail,
+            'password' => $password
+        ], TRUE);
 
-            // Load email content from view
-            $ci =& get_instance();
-            $emailContent = $ci->load->view('emails/recruiter_welcome_email', [
-                'name' => $toName,
-                'email' => $toEmail,
-                'password' => $password
-            ], TRUE);
-            $emailContent = $ci->load->view('emails/welcome_email', [
-                'name' => $toName,
-                'email' => $toEmail,
-                'password' => $password
-            ], TRUE);
+        $this->mail->Body = $emailContent;
 
-            $this->mail->Body = $emailContent;
-
-            // Send email
-            $this->mail->send();
-            return true;
-        } catch (Exception $e) {
-            log_message('error', 'Email could not be sent. Error: ' . $this->mail->ErrorInfo);
-            return false;
-        }
+        $this->mail->send();
+        return true;
+    } catch (Exception $e) {
+        log_message('error', 'Email could not be sent. Error: ' . $this->mail->ErrorInfo);
+        return false;
     }
+}
+
 }

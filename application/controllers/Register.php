@@ -32,7 +32,7 @@ class Register extends CI_Controller
         if ($insert_id) {
             // Load email service library
             $this->load->library('emailservice');
-            $emailSent = $this->emailservice->sendWelcomeEmail($data['email'], $data['full_name'], $plainPassword);
+            $emailSent = $this->emailservice->sendWelcomeEmail($data['email'], $data['full_name'], $plainPassword, 'welcome_email');
 
             if ($emailSent) {
                 $this->session->set_flashdata('success', 'Registration successful! A welcome email has been sent to your email address.');
