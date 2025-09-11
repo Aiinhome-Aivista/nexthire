@@ -3,22 +3,27 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Jobnest | Edit Contact</title>
+    <title>Edit Contact Information</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             background: #f9f9f9;
             font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .container {
             max-width: 700px;
-            margin-top: 40px;
+            margin-top: 20px;
             background: #fff;
             padding: 25px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            /* Added for better mobile responsiveness */
         }
 
         h2 {
@@ -35,24 +40,61 @@
             margin-bottom: 25px;
         }
 
+        .header {
+            width: 100%;
+            max-width: 700px;
+            /* Match container width */
+            display: flex;
+            justify-content: flex-start;
+            padding: 20px 0 0 20px;
+            /* Adjust padding to align with container */
+            box-sizing: border-box;
+        }
+
+        .header a.back-link {
+            color: #333;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .header a.back-link:hover {
+            background-color: #e0e0e0;
+        }
+
+        .header a.back-link i {
+            font-size: 1rem;
+        }
+
+
         .btn-save {
-            background: #2557a7;
+            background: #0a9d40ff;
             color: #fff;
             font-weight: bold;
         }
 
         .btn-save:hover {
-            background: #164181;
+            background: #07b90aff;
         }
     </style>
 </head>
 
 <body>
+    <div class="header">
+        <a href="<?= base_url('profile'); ?>" class="back-link" aria-label="Go back to profile"><i
+                class="fas fa-chevron-left"></i> Back to Profile</a>
+    </div>
+
     <div class="container">
         <form action="<?= base_url('profile/update_contact'); ?>" method="post">
-            
+
             <div class="form-section">
-                <a href="<?= base_url('profile'); ?>" aria-label="Go back to profile"><i class="fas fa-arrow-left"></i></a>
                 <h2>Contact Information</h2>
                 <div class="mb-3">
                     <label for="full_name" class="form-label">Full Name *</label>

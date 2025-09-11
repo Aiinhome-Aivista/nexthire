@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jobnest | Qualifications</title>
+    <title>Qualifications</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -70,15 +70,15 @@
             font-size: 18px;
             margin-bottom: 0;
             cursor: pointer;
-            background-color: #2557a7;
-            color: white;
+            background-color: #919396e3;
+            color: black;
             padding: 12px 15px;
             border-radius: 4px 4px 0 0;
         }
 
         .section-header .fas.fa-plus {
             font-size: 20px;
-            color: white;
+            color: black;
             margin-left: 10px;
         }
 
@@ -87,30 +87,31 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            f
             /* Space between icons */
         }
 
         .header-icons .fas {
             font-size: 18px;
-            color: white;
+            color: rgba(0, 0, 0, 0.98);
             cursor: pointer;
         }
 
         .header-icons .fa-check-square {
             /* Select All icon */
-            color: white;
+            color: black;
             /* Initial color, can change on selection */
         }
 
         .header-icons .fa-trash-alt {
             /* Delete All icon */
-            color: white;
+            color: black;
             /* Initial color, can change on selection */
         }
 
         .header-icons .fa-trash-alt.disabled {
             /* Disabled delete all icon */
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(0, 0, 0, 0.98);
             cursor: not-allowed;
         }
 
@@ -170,7 +171,7 @@
         }
 
         .table tbody td .delete-icon {
-            color: #e74c3c;
+            color: #090909ff;
         }
 
 
@@ -221,12 +222,12 @@
         }
 
         .save-btn {
-            background-color: #086417ff;
+            background-color: #e0d912ed;
             color: white;
         }
 
         .cancel-btn {
-            background-color: #cc2020ff;
+            background-color: #000000ff;
             color: white;
         }
 
@@ -236,7 +237,7 @@
 
         /* Styling for selectable rows */
         .table-selectable tbody tr.selected {
-            background-color: #d6eaff !important;
+            background-color: #070707ff !important;
             /* Highlight selected row */
         }
 
@@ -291,18 +292,9 @@
                 <div class="table-responsive">
                     <table class="table table-selectable" id="table-<?= $type; ?>">
                         <thead>
-                            <tr>
-                                <th class="text-center"><input type="checkbox" id="select-all-checkbox-<?= $type; ?>"></th>
-                                <?php
-                                if (is_array($meta['header'])) {
-                                    foreach ($meta['header'] as $colHeader) {
-                                        echo "<th>" . html_escape($colHeader) . "</th>";
-                                    }
-                                } else {
-                                    echo "<th>" . html_escape($meta['header']) . "</th>";
-                                }
-                                ?>
-                                <th class="text-center">Delete</th>
+                            <tr id="select-all-checkbox-<?= $type; ?>">
+
+
                             </tr>
                         </thead>
                         <tbody id="<?= $type; ?>-list">
@@ -440,9 +432,9 @@
                 newRowHtml += `
                     <td class="text-end">
                         <div class="action-icons-container save-cancel-buttons">
-    <button class="save-btn"><i class="fas fa-save"></i> Save</button>
-    <button class="cancel-btn"><i class="fas fa-times"></i> Cancel</button>
-</div>
+                            <button class="save-btn"><i class="fas fa-save"></i> Save</button>
+                            <button class="cancel-btn"><i class="fas fa-times"></i> Cancel</button>
+                        </div>
                     </td>
                 </tr>`;
 

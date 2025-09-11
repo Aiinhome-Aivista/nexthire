@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Jobnest | Profile</title>
+  <title>User Profile</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -160,6 +160,7 @@
       margin-bottom: 24px;
     }
 
+    /* Modified profile-avatar to include a position and hover effect */
     .profile-avatar {
       width: 80px;
       height: 80px;
@@ -172,6 +173,48 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      position: relative;
+      /* Added for the upload icon */
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .profile-avatar .profile-initials {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .profile-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    .profile-avatar .upload-icon-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 2;
+    }
+
+    .profile-avatar:hover .upload-icon-overlay {
+      opacity: 1;
     }
 
     .profile-info h1 {
@@ -349,17 +392,19 @@
       color: #1d4ed8;
     }
 
-    /* File Upload Form */
+    /* File Upload Form (Modified for drag-and-drop) */
     .file-upload-container {
       padding: 20px;
       border: 2px dashed #e8e8e8;
       border-radius: 12px;
       text-align: center;
       transition: border-color 0.2s;
+      cursor: pointer;
     }
 
-    .file-upload-container:hover {
+    .file-upload-container.dragover {
       border-color: #1d4ed8;
+      background-color: #f0f6ff;
     }
 
     .file-upload-container p {
@@ -385,6 +430,12 @@
 
     .file-input {
       display: none;
+    }
+
+    .upload-message {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #888;
     }
 
     /* Footer */
@@ -494,9 +545,8 @@
       style="display:flex; align-items:center; justify-content:space-between; padding:0 150px; height:70px; position:relative;">
       <div style="position:relative;">
         <a href="<?= base_url(); ?>">
-
-          <img src="<?= base_url('assets/images/jobnest.png'); ?>"
-            style="height:75px; width:auto; display:block; position:absolute; top:-45px; left:0;" alt="jobnest">
+          <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnest"
+            style="height:75px; width:auto; display:block; position:absolute; top:-45px; left:0;">
         </a>
       </div>
       <nav style="display:flex; align-items:center; gap:24px;">
@@ -535,11 +585,8 @@
           <div class="info-card">
             <div class="info-card-left"
               style="display:flex; align-items:center; gap:12px; padding:8px 12px; border:1px solid #e0e0e0; border-radius:8px; background:#f9f9f9; margin-bottom:8px;">
-              <!-- PDF Icon -->
               <img src="<?= base_url('assets/images/pdf.png'); ?>" alt="PDF icon" class="pdf-icon"
                 style="width:40px; height:40px; object-fit:contain;">
-
-              <!-- File Details -->
               <div class="info-details" style="display:flex; flex-direction:column;">
                 <h4 style="margin:0; font-size:16px; color:#222;">
                   <?= htmlspecialchars($resume['file_name']); ?>
@@ -549,7 +596,6 @@
                 </p>
               </div>
             </div>
-
             <div class="options-menu">
               <i class="fas fa-ellipsis-h options-menu-icon" onclick="showOptions(this)"></i>
               <div class="options-dropdown">
@@ -563,19 +609,19 @@
             </div>
           </div>
         <?php else: ?>
-          <div class="file-upload-container">
-            <p>No resume uploaded. Upload one to get noticed by recruiters! 🚀</p>
-            <form action="<?= base_url('profile/upload_resume'); ?>" method="post" enctype="multipart/form-data">
+          <div class="file-upload-container" id="fileUploadContainer">
+            <p>No resume uploaded. resume only support .pdf,.doc,.docx these format .</p>
+            <form id="resumeUploadForm" action="<?= base_url('profile/upload_resume'); ?>" method="post"
+              enctype="multipart/form-data">
               <label for="file-input" class="file-label">Upload Resume</label>
               <input type="file" name="resume_file" id="file-input" class="file-input" accept=".pdf,.doc,.docx">
-              <button type="submit" style="display: none;">Submit</button>
             </form>
+            <p class="upload-message">or drag and drop a file</p>
           </div>
         <?php endif; ?>
       </div>
       <div class="section">
         <h2>Improve your job matches</h2>
-
         <div class="info-card">
           <div class="info-details">
             <h4>Qualifications</h4>
@@ -583,7 +629,6 @@
           </div>
           <a href="<?= base_url('profile/qualifications'); ?>" class="arrow-link">›</a>
         </div>
-
         <div class="info-card">
           <div class="info-details">
             <h4>Job preferences</h4>
@@ -591,7 +636,6 @@
           </div>
           <a href="<?= base_url('JobPreferences'); ?>" class="arrow-link">›</a>
         </div>
-
         <div class="info-card">
           <div class="info-details">
             <h4>Ready to work</h4>
@@ -600,8 +644,6 @@
           <a href="<?= base_url('profile/readyToWork'); ?>" class="arrow-link">›</a>
         </div>
       </div>
-
-
     </div>
   </div>
 
@@ -631,10 +673,57 @@
         document.querySelectorAll('.options-dropdown').forEach(d => d.style.display = "none");
       }
     });
-    const fileInput = document.getElementById('file-input');
-    if (fileInput) fileInput.addEventListener('change', () => fileInput.form.submit());
-  </script>
 
+    // Auto-submit profile photo form
+    const profilePhotoInput = document.getElementById('profilePhotoInput');
+    if (profilePhotoInput) {
+      profilePhotoInput.addEventListener('change', function () {
+        document.getElementById('profilePhotoForm').submit();
+      });
+    }
+
+    // Resume drag and drop logic
+    const fileUploadContainer = document.getElementById('fileUploadContainer');
+    const resumeFileInput = document.getElementById('file-input');
+    const resumeUploadForm = document.getElementById('resumeUploadForm');
+
+    if (fileUploadContainer) {
+      fileUploadContainer.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        fileUploadContainer.classList.add('dragover');
+      });
+
+      fileUploadContainer.addEventListener('dragleave', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        fileUploadContainer.classList.remove('dragover');
+      });
+
+      fileUploadContainer.addEventListener('drop', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        fileUploadContainer.classList.remove('dragover');
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+          resumeFileInput.files = files;
+          resumeUploadForm.submit();
+        }
+      });
+
+      // Handle click on the label
+      fileUploadContainer.addEventListener('click', () => {
+        resumeFileInput.click();
+      });
+
+      // Handle file input change event
+      resumeFileInput.addEventListener('change', () => {
+        if (resumeFileInput.files.length > 0) {
+          resumeUploadForm.submit();
+        }
+      });
+    }
+  </script>
 </body>
 
 </html>
