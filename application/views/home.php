@@ -7,6 +7,28 @@
     <title>Job Search</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Firebase SDK (compat version for v8 style) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
+    <script>
+        // Your Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyDckAqVekRfxHhmfrONpBrs037vmSEFT3Q",
+            authDomain: "indeedclone-ccd1c.firebaseapp.com",
+            projectId: "indeedclone-ccd1c",
+            storageBucket: "indeedclone-ccd1c.appspot.com",
+            messagingSenderId: "442348648327",
+            appId: "1:442348648327:web:00bf2269fe428c94cbc522",
+            measurementId: "G-8H6QB2D0GV"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -1354,7 +1376,7 @@
             <span class="login-close" id="closeLoginPopup">&times;</span>
             <a href="<?= base_url('register'); ?>" class="register-for-free">Register for free</a>
             <span class="login-title">Login</span>
-            <form class="login-form" method="post" action="<?= base_url('login/process'); ?>">
+            <form class="login-form" method="post" action="<?= base_url('login/process'); ?>"autocomplete="off">
                 <label for="login-username">Email ID / Username</label>
                 <input type="text" id="login-username" name="username"
                     placeholder="Enter your active Email ID / Username" required>
@@ -1369,13 +1391,52 @@
                 <span style="color:#3078e7;">Use OTP to Login</span>
             </div>
             <div class="login-divider">Or</div>
-            <button class="login-google" onclick="window.location.href='<?= base_url('login/google'); ?>'">
+            <!-- <button class="login-google" onclick="window.location.href='<?= base_url('login/google'); ?>'">
                 <img style="height: 30px; width: 30px;" src="<?= base_url('assets/images/google.png'); ?>" alt="google">
                 Sign in with Google
+            </button> -->
+            <button id="googleSignInBtn" class="login-google">
+                <img style="height:30px; width:30px;" src="<?= base_url('assets/images/google.png'); ?>" alt="google" />
+                Sign in with Google
             </button>
+
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('googleSignInBtn').addEventListener('click', function () {
+            var provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithPopup(provider)
+                .then(function (result) {
+                    var user = result.user;
+
+                    // Send user info to CodeIgniter backend
+                    fetch('<?= base_url('login/google_callback') ?>', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            uid: user.uid,
+                            name: user.displayName,
+                            email: user.email,
+                            picture: user.photoURL,
+                            provider: 'google'
+                        })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                window.location.href = '<?= base_url('profile') ?>';
+                            } else {
+                                alert('Login failed: ' + data.message);
+                            }
+                        });
+                })
+                .catch(function (error) {
+                    alert(error.message);
+                });
+        });
+
+    </script>
 
 </body>
 
