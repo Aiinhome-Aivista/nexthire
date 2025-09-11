@@ -57,7 +57,9 @@ $route['employer_register'] = 'Recruiter/index';
 $route['employer_login'] = 'Recruiter_login/index';
 $route['employer_dashboard'] = 'Recruiter_dashboard/index';
 $route['employer_job_post'] = 'Recruiter_job_post/index';
+$route['login/google_callback'] = 'Login/google_callback';
 $route['job_search'] = 'Jobsearch/index';
+$route['profile'] = 'Profile/index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
