@@ -7,6 +7,7 @@
     <title>Jobnest | Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 
     <!-- Firebase SDK (compat version for v8 style) -->
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
@@ -14,13 +15,13 @@
     <script>
         // Your Firebase config
         const firebaseConfig = {
-            apiKey: "AIzaSyDckAqVekRfxHhmfrONpBrs037vmSEFT3Q",
-            authDomain: "indeedclone-ccd1c.firebaseapp.com",
-            projectId: "indeedclone-ccd1c",
-            storageBucket: "indeedclone-ccd1c.appspot.com",
-            messagingSenderId: "442348648327",
-            appId: "1:442348648327:web:00bf2269fe428c94cbc522",
-            measurementId: "G-8H6QB2D0GV"
+            apiKey: "AIzaSyArPK3Lb2xtZXeBXWXCq4_g4BopsjpNrN0",
+            authDomain: "jobnest-1353e.firebaseapp.com",
+            projectId: "jobnest-1353e",
+            storageBucket: "jobnest-1353e.firebasestorage.app",
+            messagingSenderId: "649093243578",
+            appId: "1:649093243578:web:8f9745abeacc310a229883",
+            measurementId: "G-SXWKWBFB8P"
         };
 
         // Initialize Firebase
@@ -28,8 +29,15 @@
     </script>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Nunito', Arial, sans-serif;
             background-color: #f8f9fa;
+        }
+
+        .search-bar-container .form-control,
+        .select-experience,
+        .search-bar-container .btn-primary,
+        .custom-footer {
+            font-family: 'Nunito', Arial, sans-serif !important;
         }
 
         .hero-section {
@@ -857,7 +865,7 @@
             margin-bottom: 25px;
             margin-left: 9rem;
             border: none;
-            width:1000px;
+            width: 1000px;
         }
 
         .search-bar-top .input-group-text {
