@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <title>Jobnest | Employer Login</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
   <!-- Firebase SDK (compat version for v8 style) -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
@@ -26,7 +28,7 @@
   <style>
     * {
       box-sizing: border-box;
-      font-family: 'Inter', Arial, sans-serif;
+      font-family: 'Nunito', Arial, sans-serif;
     }
 
     body {
