@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Recruiter Registration</title>
+  <title>Jobnest | Employer Registration</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <!-- Firebase SDK (compat version for v8 style) -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
@@ -610,7 +610,7 @@
             <div class="terms-row">
               By clicking Register, you agree to the
               <a href="#">Terms and Conditions</a> &
-              <a href="#">Privacy Policy</a> of Naukri.com
+              <a href="#">Privacy Policy</a> of Jobnest
             </div>
 
             <button type="submit" class="register-btn">Register as Recruiter</button>

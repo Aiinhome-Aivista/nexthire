@@ -2,11 +2,11 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
-    <link rel="canonical" href="https://www.naukri.com/privacypolicy">
+    <link rel="canonical" href="https://www.Jobnest.com/privacypolicy">
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-    <title>Privacy Policy - Naukri.com</title>
+    <title>Jobnest | Privacy Policy</title>
     <meta name="description"
-        content="The page offers information on Naukri.com privacy policy. Topics covered include third party services, information sharing &amp; disclosure, confidentiality &amp; security and many more">
+        content="The page offers information on Jobnest.com privacy policy. Topics covered include third party services, information sharing &amp; disclosure, confidentiality &amp; security and many more">
     <link rel="stylesheet" type="text/css" href="https://static.naukimg.com/s/0/0/c/jobSrcCss.min.css" media="all">
     <script type="text/javascript" async=""
         src="https://www.googletagmanager.com/gtag/js?id=G-K2YBNZVRLL&amp;cx=c&amp;gtm=4e5951"></script>
@@ -56,7 +56,7 @@
                         us. This Privacy Policy ("<b>Policy</b>") describes how IEIL
                         collects, uses, discloses and transfers personal information
                         of users through its websites and applications, including
-                        through www.naukri.com, mobile applications and online
+                        through www.Jobnest.com, mobile applications and online
                         services (collectively, the "Platform"). This policy applies
                         to those who visit the Platform, or whose information IEIL
                         otherwise receives in connection with its services (such as
@@ -362,7 +362,7 @@
                         required. <br><br> If your Personal Information is
                         transferred outside India, we take the necessary steps to
                         protect your Personal Information in accordance with
-                        applicable data protection laws. <br><br> Naukri’s use and
+                        applicable data protection laws. <br><br> Jobnest’s use and
                         transfer to any other app of information received from
                         Google APIs will adhere to <a
                             href="https://developers.google.com/terms/api-services-user-data-policy#additional_requirements_for_specific_api_scopes"
@@ -381,7 +381,7 @@
                         service that offers coding courses to help you with career
                         and skill enhancement. Code 360 is operated by [Sunrise
                         Mentors Private Limited] under the brand ‘Coding Ninjas.’ If
-                        you access Code 360 on the Naukri.com platform, your
+                        you access Code 360 on the Jobnest.com platform, your
                         personal data will also be governed by the privacy policy of
                         Coding Ninjas. <br><br> You may review the privacy policy of
                         Coding Ninjas services <a href="https://www.codingninjas.com/policy/privacy.pdf"
@@ -438,7 +438,7 @@
                         acknowledge that the above mentioned rights are not absolute
                         and are subject to limitations as per the applicable data
                         protection laws. <br><br> At any time, if you wish to delete
-                        your account on naukri.com, you may do so by using the
+                        your account on Jobnest.com, you may do so by using the
                         settings available in your account. <br><br> <b>11.
                             Confidentiality and Security</b>
                         <ul>
@@ -465,7 +465,7 @@
                                 prevalent in India to protect your
                                 Personal Information, details of which
                                 are available at the following link:
-                                trust.naukri.com. By accepting the terms
+                                trust.Jobnest.com. By accepting the terms
                                 of this Privacy Policy, you agree that
                                 the standards and practices being
                                 implemented by us, are reasonable and
@@ -527,13 +527,13 @@
                         open and clear about how we use your information. In the
                         spirit of transparency, this Policy provides detailed
                         information about how and when we use cookies on our
-                        Websites. This cookie policy applies to any Naukri.com
+                        Websites. This cookie policy applies to any Jobnest.com
                         product or service that links to this policy or incorporates
-                        it by reference. <br><br> <b>a. Does Naukri.com uses
-                            cookies?</b> <br><br> Naukri.com uses cookies,
+                        it by reference. <br><br> <b>a. Does Jobnest.com uses
+                            cookies?</b> <br><br> Jobnest.com uses cookies,
                         tags and other technologies when you use any of the
-                        Naukri.com websites, mobile sites or mobile apps, and any
-                        third party services you use through the Naukri.com Platform
+                        Jobnest.com websites, mobile sites or mobile apps, and any
+                        third party services you use through the Jobnest.com Platform
                         (for e.g. services offered through IEIL’s affiliates)
                         (collectively "the services"). Cookies are used to ensure
                         everyone has their best possible experience. Cookies also
@@ -550,7 +550,7 @@
                         browser and allows the Site or a third-party to recognize
                         you and make your next visit easier and the Site more useful
                         to you. Essentially, cookies are a user’s identification
-                        card for the Naukri.com servers. Cookies allow Naukri.com to
+                        card for the Jobnest.com servers. Cookies allow Jobnest.com to
                         serve you better and more efficiently, and to personalize
                         your experience on our site. Web beacons, tags and scripts
                         may be used in the Websites or in emails to help us to
@@ -561,9 +561,9 @@
                         individual and aggregated basis. <br><br> Cookies can be
                         "persistent" or "session" cookies. A persistent cookie helps
                         us recognize you as an existing user, so it’s easier to
-                        return to Naukri.com or interact with our services without
+                        return to Jobnest.com or interact with our services without
                         signing in again. After you sign in, a persistent cookie
-                        stays in your browser and will be read by Naukri.com when
+                        stays in your browser and will be read by Jobnest.com when
                         you return to one of our sites or a partner site that uses
                         our services. Session cookies only last for as long as the
                         session (usually the current visit to a website or a browser
@@ -576,7 +576,7 @@
                         understand visitor and user preferences, improve their
                         experience, and track and analyse usage, navigational and
                         other statistical information. Additionally, cookies allow
-                        us to bring you advertising both on and off the Naukri.com
+                        us to bring you advertising both on and off the Jobnest.com
                         site, and bring customized features to you. You can control
                         the use of cookies at the individual browser level. If you
                         elect not to activate the cookie or to later disable
@@ -623,7 +623,7 @@
                                     <td>These cookies track
                                         information about
                                         visits to the
-                                        Naukri.com and
+                                        Jobnest.com and
                                         partner (recruiter
                                         websites) websites
                                         so that we can make
@@ -673,7 +673,7 @@
                                         personalizing the
                                         Websites to optimize
                                         your use of
-                                        Naukri.com. These
+                                        Jobnest.com. These
                                         preferences are
                                         remembered, through
                                         the use of the
@@ -692,7 +692,7 @@
                                         advertising
                                         platforms or
                                         networks or
-                                        Naukri.com in order
+                                        Jobnest.com in order
                                         to, deliver ads and
                                         track ad
                                         performance, enable
@@ -713,7 +713,7 @@
                                         you with advertising
                                         that you may be
                                         interested in, on
-                                        Naukri.com websites
+                                        Jobnest.com websites
                                         or other websites.
                                         For example, these
                                         cookies remember
@@ -722,20 +722,20 @@
                                         websites.</td>
                                 </tr>
                             </tbody>
-                        </table> <br><br> <b>d. When does Naukri.com place
+                        </table> <br><br> <b>d. When does Jobnest.com place
                             cookies?</b><br><br> We use cookies on our
                         websites, mobile sites and mobile applications. Any browser
                         visiting these sites will receive cookies from us which
                         helps us identify you more quickly when you return. Cookies
                         help us to determine which pages or information you find
                         most useful or interesting on our own websites.<br><br>
-                        Naukri.com may also have some cookies for its own analytics
+                        Jobnest.com may also have some cookies for its own analytics
                         i.e. analytics not part of Google Analytics. Such cookies
                         help generate statistics and reports about visitors and
                         their activities on the website or app.<br><br> <b>e. How
                             cookies are used for online analytics
                             purposes?</b> <br><br> We may use web analytics
-                        services on Naukri.com, such as those of Google Analytics.
+                        services on Jobnest.com, such as those of Google Analytics.
                         These services help us analyse how users use the services,
                         including by noting the third-party website from which you
                         arrive. The information collected by the technology will be
@@ -751,29 +751,29 @@
                         for advertisers, understand and improve our service, and
                         know when content has been shown to you. We work with
                         website analytics and advertising partners, including Google
-                        Display Network, Facebook, etc. to deliver Naukri.com
+                        Display Network, Facebook, etc. to deliver Jobnest.com
                         advertisements on third party publisher websites - these
                         partners may set cookies on your computer's web browser.
                         These cookies allow our partners to recognize your computer
-                        so that the ad server can show you Naukri.com advertisements
+                        so that the ad server can show you Jobnest.com advertisements
                         elsewhere on the Internet, and so that our analytics
                         software can measure your engagement and interactions while
-                        using Naukri.com services. In this way, ad servers may
+                        using Jobnest.com services. In this way, ad servers may
                         compile anonymous, de-identified information about where
                         you, or others who are using your computer, saw our
                         advertisements, whether or not you interacted with our
                         advertisements, and actions performed on subsequent visits
-                        to Naukri.com websites and applications. This information
+                        to Jobnest.com websites and applications. This information
                         allows an ad network to deliver targeted advertisements that
                         they believe will be of most interest to you, and it allows
-                        Naukri.com to optimize the performance of our advertising
+                        Jobnest.com to optimize the performance of our advertising
                         campaigns and the usability of our website. In other words,
                         we use analytics data in concert with data about our online
                         ads that have been shown using the Google Display Network,
                         Facebook for Advertisers, or other online advertising
                         networks. By doing so, we can understand how anonymous users
                         interacted with our website after seeing our ads. <br><br>
-                        <b>g. What third-party cookies does Naukri.com use?</b>
+                        <b>g. What third-party cookies does Jobnest.com use?</b>
                         <br><br> Please note that the third parties (advertising
                         networks and providers of external services like web traffic
                         analysis services) may also use cookies on our Services.
@@ -814,16 +814,16 @@
                         <br><br> Google Double click: <a
                             href="https://support.google.com/dfp_premium/answer/2839090?hl=en"
                             target="_blank">https://support.google.com/dfp_premium/answer/2839090?hl=en</a>
-                        <br><br> <b>h. What are Web Beacons?</b> <br><br> Naukri.com
+                        <br><br> <b>h. What are Web Beacons?</b> <br><br> Jobnest.com
                         occasionally advertises on third party websites. As part of
                         our effort to track the success of our advertising
                         campaigns, we may at times use a visitor identification
                         technology such as "web beacons," or "action tags," which
                         count visitors who have come to our site after being exposed
-                        to a Naukri.com banner ad on a third party site. Our
+                        to a Jobnest.com banner ad on a third party site. Our
                         partners may also use web beacons to collect data in the
                         aggregate as provided by your browser while you are on our
-                        site or another site where Naukri.com is third party.
+                        site or another site where Jobnest.com is third party.
                         <br><br> By navigating on our site, you agree that we can
                         place cookie and web beacons on your computer or device. If
                         you prefer not to receive web beacons, then you should stop

@@ -4,7 +4,7 @@
     <!-- Logo Section -->
     <div style="position:relative;">
       <a href="<?= base_url(); ?>">
-        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="Indeed"
+        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="Jobnest"
           style="height:70px; width:auto; display:block; position:absolute; top:-38px; left:0;">
       </a>
     </div>

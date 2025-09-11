@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Recruiter Login</title>
+  <title>Jobnest | Employer Login</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <!-- Firebase SDK (compat version for v8 style) -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
@@ -354,7 +354,8 @@
   <div class="header">
     <div class="header-content">
       <div class="logo">
-        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="Indeed">
+        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="Jobnest"
+         >
       </div>
       <div class="signup-link">
         New Recruiter? <a href="<?= base_url('employer_register'); ?>">Register</a> here

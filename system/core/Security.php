@@ -912,7 +912,7 @@ class CI_Security {
 				}
 
 				if (
-					// Is it indeed an "evil" attribute?
+					// Is it jobnest an "evil" attribute?
 					preg_match($is_evil_pattern, $attribute['name'][0])
 					// Or does it have an equals sign, but no value and not quoted? Strip that too!
 					OR (trim($attribute['value'][0]) === '')
