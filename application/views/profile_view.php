@@ -506,29 +506,9 @@
           style="color:#27365c; font-size:17px; text-decoration:none;">Companies</a>
         <a href="#" class="menu-link" data-modal-target="servicesModal"
           style="color:#27365c; font-size:17px; text-decoration:none;">Services</a>
+          <a href="<?= base_url('job_search'); ?>" class="menu-link" data-modal-target="servicesModal"
+          style="color:#27365c; font-size:17px; text-decoration:none;">Job Search</a>
       </nav>
-      <div style="display:flex; align-items:center; gap:12px;">
-        <a href="<?= base_url('login'); ?>" class="login-button"
-          style="border:1px solid #3078e7; border-radius:24px; padding:8px 24px; color:#3078e7; font-size:16px; text-decoration:none; background:#fff;">
-          Login
-        </a>
-        <a href="<?= base_url('register'); ?>" class="register-button"
-          style="background:#fc5a36; color:#fff; border-radius:24px; padding:8px 24px; font-size:16px; text-decoration:none;">
-          Register
-        </a>
-        <div style="width:1px; height:24px; background:#ccc; margin: 0 12px;"></div>
-
-        <div class="employer-dropdown" id="employerDropdown">
-          <a href="#" class="employer-link" id="employerToggle">
-            For employers
-            <span class="caret"></span>
-          </a>
-          <span class="employer-underline"></span>
-          <div class="employer-menu">
-            <a href="<?= base_url('employer_register'); ?>">Employer Login</a>
-          </div>
-        </div>
-      </div>
     </div>
   </header>
 

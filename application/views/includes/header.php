@@ -264,11 +264,6 @@
       const targetModalId = link.getAttribute('data-modal-target');
       const targetModal = document.getElementById(targetModalId);
 
-      // Remove or comment out this click handler:
-      // link.addEventListener('click', function (event) {
-      //   event.preventDefault();
-      //   ...
-      // });
 
       // Add hover handlers instead:
       link.addEventListener('mouseenter', function () {
@@ -296,26 +291,6 @@
         }, 200);
       });
     });
-
-    // menuLinks.forEach(link => {
-    //   link.addEventListener('click', function (event) {
-    //     event.preventDefault();
-    //     const targetModalId = this.getAttribute('data-modal-target');
-    //     const targetModal = document.getElementById(targetModalId);
-
-    //     // Hide all other modals
-    //     modals.forEach(modal => {
-    //       if (modal.id !== targetModalId) {
-    //         modal.style.display = 'none';
-    //       }
-    //     });
-
-    //     // Toggle the target modal
-    //     const isVisible = targetModal.style.display === 'block';
-    //     targetModal.style.display = isVisible ? 'none' : 'block';
-    //   });
-
-    // });
 
     // Close modal when clicking outside
     document.addEventListener('click', function (event) {

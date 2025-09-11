@@ -21,7 +21,7 @@ class Profile extends CI_Controller
         $data['user'] = $this->Profile_model->get_user($user_id);
         $data['location'] = $this->Profile_model->get_contact($user_id);
         $data['resume'] = $this->Profile_model->get_resume($user_id);
-        
+
         $qualifications = $this->Profile_model->get_user_qualifications($user_id);
         $data = array_merge($data, $qualifications);
 
@@ -154,7 +154,7 @@ class Profile extends CI_Controller
         $this->load->view('qualifications_view', $data);
     }
 
-    public function submit_qualifications()
+    public function submit_qualification()
     {
         $user_id = $this->session->userdata('user_id');
         if (!$user_id) {
@@ -162,34 +162,16 @@ class Profile extends CI_Controller
             return;
         }
 
-        $data = json_decode($this->input->raw_input_stream, true);
+        $type = $this->input->post('type');
+        $item = $this->input->post();
+        unset($item['type']);
+        $item['user_id'] = $user_id;
 
-        if (!$data) {
-            echo json_encode(['success' => false, 'message' => 'No data received']);
-            return;
-        }
-
-        $this->db->trans_start();
-        $all_success = true;
-
-        foreach ($data as $type => $items) {
-            foreach ($items as $item) {
-                // Ensure user_id is always present
-                $item['user_id'] = $user_id;
-
-                if (!$this->Profile_model->save_qualification($type, $item)) {
-                    $all_success = false;
-                    break 2; // Exit both loops if one save fails
-                }
-            }
-        }
-
-        if ($all_success) {
-            $this->db->trans_commit();
-            echo json_encode(['success' => true]);
+        if ($this->Profile_model->save_qualification($type, $item)) {
+            $id = $this->db->insert_id();
+            echo json_encode(['success' => true, 'id' => $id]);
         } else {
-            $this->db->trans_rollback();
-            echo json_encode(['success' => false, 'message' => 'Failed to save one or more qualifications.']);
+            echo json_encode(['success' => false, 'message' => 'Failed to save qualification.']);
         }
     }
 
@@ -208,6 +190,95 @@ class Profile extends CI_Controller
             echo json_encode(['success' => true]);
         } else {
             echo json_encode(['success' => false, 'message' => 'Failed to delete qualification.']);
+        }
+    }
+
+    // NEW METHOD TO GET SINGLE QUALIFICATION DETAILS FOR EDIT MODAL
+    public function get_qualification_details()
+    {
+        $user_id = $this->session->userdata('user_id');
+        if (!$user_id) {
+            echo json_encode(['success' => false, 'message' => 'User not logged in.']);
+            return;
+        }
+
+        $id = $this->input->get('id');
+        $type = $this->input->get('type');
+
+        if (empty($id) || empty($type)) {
+            echo json_encode(['success' => false, 'message' => 'Missing ID or type.']);
+            return;
+        }
+
+        // It is CRITICAL to ensure the item belongs to the logged-in user
+        $item = $this->Profile_model->get_qualification_by_id($id, $type, $user_id);
+
+        if ($item) {
+            echo json_encode(['success' => true, 'item' => $item]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Item not found or does not belong to the user.']);
+        }
+    }
+
+    // NEW METHOD TO UPDATE QUALIFICATION FROM MODAL
+    public function update_qualification()
+    {
+        $user_id = $this->session->userdata('user_id');
+        if (!$user_id) {
+            echo json_encode(['success' => false, 'message' => 'User not logged in.']);
+            return;
+        }
+
+        $id = $this->input->post('id');
+        $type = $this->input->post('type');
+        $data = $this->input->post();
+        unset($data['id']);
+        unset($data['type']);
+
+        // Again, add a security check to ensure the item belongs to the user
+        $existing_item = $this->Profile_model->get_qualification_by_id($id, $type, $user_id);
+
+        if (!$existing_item) {
+            echo json_encode(['success' => false, 'message' => 'Item not found or unauthorized update attempt.']);
+            return;
+        }
+
+        if ($this->Profile_model->update_qualification($id, $type, $data)) {
+            $updated_item = $this->Profile_model->get_qualification_by_id($id, $type, $user_id);
+            echo json_encode(['success' => true, 'updated_item' => $updated_item]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Failed to update qualification.']);
+        }
+    }
+
+    // NEW METHOD TO DELETE MULTIPLE QUALIFICATIONS
+    public function delete_qualifications_batch()
+    {
+        $user_id = $this->session->userdata('user_id');
+        if (!$user_id) {
+            echo json_encode(['success' => false, 'message' => 'User not logged in.']);
+            return;
+        }
+
+        $items = $this->input->post('items');
+
+        if (empty($items) || !is_array($items)) {
+            echo json_encode(['success' => false, 'message' => 'No items provided for deletion.']);
+            return;
+        }
+
+        $success = true;
+        foreach ($items as $item) {
+            if (!$this->Profile_model->delete_qualification($item['type'], $item['id'], $user_id)) {
+                $success = false;
+                break; // Stop on first failure
+            }
+        }
+
+        if ($success) {
+            echo json_encode(['success' => true, 'message' => 'Selected items deleted successfully.']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'An error occurred during batch deletion.']);
         }
     }
 }
