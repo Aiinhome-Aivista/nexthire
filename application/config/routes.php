@@ -63,6 +63,8 @@ $route['recruiter/google_callback'] = 'Recruiter/google_callback';
 $route['recruiter_login/google_callback'] = 'Recruiter_login/google_callback';
 $route['job_search'] = 'Jobsearch/index';
 $route['profile'] = 'Profile/index';
+$route['jobpreferences'] = 'JobPreferences/index';
+$route['jobpreferences/(:any)'] = 'JobPreferences/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
