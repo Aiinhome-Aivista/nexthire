@@ -595,14 +595,14 @@
             </div>
             <div class="checkbox-row">
               <input type="checkbox" id="updates">
-              <label for="updates">Send me important updates & promotions via SMS, email, and <img
+              <label for="updates">Send me important updates & promotions via email, and <img
                   src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
                   style="width:18px;vertical-align:middle;margin-left:2px;"> WhatsApp</label>
             </div>
             <div class="terms-row">
               By clicking Register, you agree to the
               <a href="#">Terms and Conditions</a> &
-              <a href="#">Privacy Policy</a> of Jobnest.com
+              <a href="<?= base_url('privacypolicy'); ?>">Privacy Policy</a> of Jobnest.com
             </div>
             <button type="submit" class="register-btn">Register now</button>
           </div>

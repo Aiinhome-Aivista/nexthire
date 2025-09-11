@@ -156,7 +156,6 @@
         <a href="#">Manage Jobs</a>
         <a href="#">Candidates</a>
         <a href="#">Company Profile</a>
-        <a href="#">Account Settings</a>
     </div>
 
     <!-- Main Content -->

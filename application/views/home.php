@@ -50,65 +50,6 @@
             margin-bottom: 40px;
         }
 
-        .search-bar-container {
-            background: #fff;
-            border-radius: 999px;
-            padding: 13px 35px;
-            box-shadow: 0 8px 32px rgba(44, 62, 80, 0.08);
-            display: flex;
-            align-items: center;
-            max-width: 950px;
-            margin: 0 auto 50px auto;
-            border: none;
-        }
-
-        .search-bar-container .input-group-text {
-            background-color: transparent;
-            border: none;
-            color: #8893b3;
-            font-size: 1.6rem;
-            padding-right: 16px;
-            padding-left: 0;
-            display: flex;
-            align-items: center;
-        }
-
-        .search-input-field {
-            display: flex;
-            align-items: center;
-            flex-grow: 1;
-            margin-right: 0;
-            position: relative;
-        }
-
-        .search-bar-container .form-control {
-            background: transparent;
-            border: none;
-            box-shadow: none;
-            padding-left: 0;
-            padding-right: 24px;
-            font-size: 1.18rem;
-            color: #222;
-            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-            font-weight: 400;
-            transition: color 0.2s;
-        }
-
-        .search-bar-container .form-control::placeholder {
-            color: #8893b3;
-            opacity: 1;
-            font-weight: 400;
-        }
-
-        .search-bar-container .form-control:focus {
-            outline: none;
-            color: #222;
-        }
-
-        .search-bar-container .form-control:not(:placeholder-shown) {
-            color: #222;
-        }
-
         .select-experience {
             background: transparent;
             border: none;
@@ -126,34 +67,6 @@
         .select-experience:focus {
             outline: none;
             color: #222;
-        }
-
-        .search-bar-container .btn-primary {
-            background-color: #2563eb;
-            border: none;
-            padding: 14px 38px;
-            border-radius: 999px;
-            font-size: 1.09rem;
-            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-            font-weight: 700;
-            color: #fff;
-            margin-left: 18px;
-            box-shadow: none;
-            transition: background 0.2s;
-        }
-
-        .search-bar-container .btn-primary:hover {
-            background-color: #174bbd;
-        }
-
-        .search-input-divider {
-            content: '';
-            display: block;
-            width: 1px;
-            height: 60%;
-            background: #e3e7f0;
-            margin: 0 18px;
-            align-self: center;
         }
 
         .resume-section {
@@ -491,51 +404,6 @@
 
             .hero-section p {
                 font-size: 1rem;
-            }
-
-            .search-bar-container {
-                flex-direction: column;
-                padding: 15px;
-                border-radius: 24px;
-                box-shadow: 0 4px 18px rgba(44, 62, 80, 0.08);
-                max-width: 98vw;
-                margin-bottom: 30px;
-                align-items: stretch;
-            }
-
-            .search-input-field {
-                width: 100%;
-                margin-right: 0;
-                margin-bottom: 15px;
-                border-bottom: 1px solid #e0e0e0;
-                padding-bottom: 15px;
-                display: flex;
-                align-items: center;
-                position: relative;
-            }
-
-            .search-input-divider {
-                display: none !important;
-            }
-
-            .search-bar-container .input-group-text {
-                font-size: 1.35rem;
-                padding-right: 8px;
-            }
-
-            .search-bar-container .form-control,
-            .select-experience {
-                font-size: 1.1rem;
-                padding: 10px 0;
-            }
-
-            .search-bar-container .btn-primary {
-                width: 100%;
-                margin-left: 0;
-                margin-top: 8px;
-                padding: 14px 0;
-                font-size: 1.08rem;
-                border-radius: 999px;
             }
 
         }
@@ -977,6 +845,117 @@
         .login-close:hover {
             color: #3078e7;
         }
+
+        /* Search bar styles */
+        .search-bar-top {
+            background: #fff;
+            border-radius: 999px;
+            padding: 13px 25px;
+            box-shadow: 0 8px 32px rgba(44, 62, 80, 0.08);
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            margin-left: 9rem;
+            border: none;
+            width:1000px;
+        }
+
+        .search-bar-top .input-group-text {
+            background-color: transparent;
+            border: none;
+            color: #8893b3;
+            font-size: 1.3rem;
+            padding-right: 12px;
+            padding-left: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input-field-top {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            margin-right: 0;
+            position: relative;
+        }
+
+        .search-bar-top .form-control {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding-left: 0;
+            padding-right: 15px;
+            font-size: 1.1rem;
+            color: #222;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            font-weight: 400;
+            transition: color 0.2s;
+        }
+
+        .search-bar-top .form-control::placeholder {
+            color: #8893b3;
+            opacity: 1;
+            font-weight: 400;
+        }
+
+        .search-bar-top .form-control:focus {
+            outline: none;
+            color: #222;
+        }
+
+        .search-bar-top .btn-primary {
+            background-color: #2563eb;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 999px;
+            font-size: 1rem;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            font-weight: 700;
+            color: #fff;
+            margin-left: 15px;
+            box-shadow: none;
+            transition: background 0.2s;
+        }
+
+        .search-bar-top .btn-primary:hover {
+            background-color: #174bbd;
+        }
+
+        .search-input-divider-top {
+            content: '';
+            display: block;
+            width: 1px;
+            height: 60%;
+            background: #e3e7f0;
+            margin: 0 15px;
+            align-self: center;
+        }
+
+        @media (max-width: 992px) {
+            .search-bar-top {
+                flex-direction: column;
+                padding: 15px;
+                border-radius: 24px;
+            }
+
+            .search-input-field-top {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 15px;
+                border-bottom: 1px solid #e0e0e0;
+                padding-bottom: 15px;
+            }
+
+            .search-input-divider-top {
+                display: none !important;
+            }
+
+            .search-bar-top .btn-primary {
+                width: 100%;
+                margin-left: 0;
+                margin-top: 8px;
+            }
+        }
     </style>
 </head>
 
@@ -988,38 +967,29 @@
             <h1 class="fw-bold">Find your dream job now</h1>
             <p>5 lakh+ jobs for you to explore</p>
 
-            <div class="search-bar-container">
-                <div class="search-input-field">
+            <div class="search-bar-top">
+                <div class="search-input-field-top">
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-search"></i></span>
-                        <input type="text" class="form-control" placeholder="Enter skills / designations / companies">
+                        <input type="text" id="job-search-input" class="form-control" placeholder="Designation">
                     </div>
                 </div>
-                <div class="search-input-field">
+                <div class="search-input-divider-top"></div>
+                <div class="search-input-field-top" style="margin-right: 0;">
                     <div class="input-group">
-                        <!-- <span class="input-group-text"><i class="fas fa-briefcase"></i></span> -->
-                        <select class="form-select form-control">
-                            <option selected>Select experience</option>
-                            <option value="1">0-1 years</option>
-                            <option value="2">1-3 years</option>
-                            <option value="3">3-5 years</option>
-                            <option value="4">5+ years</option>
-                        </select>
+                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                        <input type="text" id="location-search-input" class="form-control"
+                            placeholder="City, state, zip code, or &quot;remote&quot;">
                     </div>
                 </div>
-                <div class="search-input-field" style="margin-right: 0;">
-                    <div class="input-group">
-                        <!-- <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span> -->
-                        <input type="text" class="form-control" placeholder="Enter location">
-                    </div>
-                </div>
-                <a href="<?= base_url('job_search') ?>" id="search-button" class="btn btn-primary">Search</a>
+                <button id="search-button" class="btn btn-primary">Search</button>
             </div>
+
+
 
             <!-- Tagline Image -->
             <div class="tagline-image">
-                <img src="assets/images/job-recruitment.jpg"
-                    alt="Apply for job !!!!">
+                <img src="assets/images/job-recruitment.jpg" alt="Apply for job !!!!">
             </div>
 
             <!-- Job Categories from the image -->
@@ -1432,6 +1402,15 @@
                 .catch(function (error) {
                     alert(error.message);
                 });
+        });
+
+    </script>
+
+    <script>
+        document.getElementById('search-button').addEventListener('click', function () {
+            const jobTerm = document.getElementById('job-search-input').value;
+            const locationTerm = document.getElementById('location-search-input').value;
+            window.location.href = "<?= base_url('job_search') ?>?job=" + encodeURIComponent(jobTerm) + "&location=" + encodeURIComponent(locationTerm);
         });
 
     </script>
