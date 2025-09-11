@@ -6,11 +6,16 @@ class Profile extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        // Load the necessary models, helpers, and libraries
         $this->load->model('Profile_model');
+        $this->load->model('User_model');
         $this->load->helper(['form', 'url', 'download']);
         $this->load->library('session');
     }
 
+    // ===============================
+    // PROFILE MAIN PAGE
+    // ===============================
     public function index()
     {
         $user_id = $this->session->userdata('user_id');
@@ -29,13 +34,52 @@ class Profile extends CI_Controller
     }
 
     // ===============================
+    // READY TO WORK FEATURE
+    // ===============================
+    public function readyToWork()
+    {
+        $user_id = $this->session->userdata('user_id');
+        if (!$user_id) {
+            redirect('login');
+        }
+
+        $data['user_availability'] = $this->User_model->getUserAvailability($user_id);
+
+        $this->load->view('ready_to_work_view', $data);
+    }
+
+    public function updateAvailability()
+    {
+        $user_id = $this->session->userdata('user_id');
+        if (!$user_id) {
+            echo json_encode(['success' => false, 'message' => 'User not logged in.']);
+            return;
+        }
+
+        if ($this->input->is_ajax_request() && $this->input->post()) {
+            $is_available = $this->input->post('is_available');
+            $update_data = ['is_available' => $is_available];
+            $result = $this->User_model->updateUserAvailability($user_id, $update_data);
+
+            if ($result) {
+                echo json_encode(['success' => true, 'message' => 'Availability updated successfully.']);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Failed to update availability.']);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Invalid request.']);
+        }
+    }
+
+    // ===============================
     // CONTACT INFO
     // ===============================
     public function edit_contact()
     {
         $user_id = $this->session->userdata('user_id');
-        if (!$user_id)
+        if (!$user_id) {
             redirect('login');
+        }
 
         $data['user'] = $this->Profile_model->get_user($user_id);
         $data['location'] = $this->Profile_model->get_contact($user_id);
@@ -46,8 +90,9 @@ class Profile extends CI_Controller
     public function update_contact()
     {
         $user_id = $this->session->userdata('user_id');
-        if (!$user_id)
+        if (!$user_id) {
             redirect('login');
+        }
 
         $updateUser = [
             'full_name' => $this->input->post('full_name'),
@@ -141,16 +186,13 @@ class Profile extends CI_Controller
     // ===============================
     // QUALIFICATIONS
     // ===============================
-
     public function qualifications()
     {
-        if (!$this->session->userdata('logged_in')) {
+        if (!$this->session->userdata('user_id')) {
             redirect('login');
         }
-
         $user_id = $this->session->userdata('user_id');
         $data = $this->Profile_model->get_user_qualifications($user_id);
-
         $this->load->view('qualifications_view', $data);
     }
 
@@ -193,7 +235,6 @@ class Profile extends CI_Controller
         }
     }
 
-    // NEW METHOD TO GET SINGLE QUALIFICATION DETAILS FOR EDIT MODAL
     public function get_qualification_details()
     {
         $user_id = $this->session->userdata('user_id');
@@ -210,7 +251,6 @@ class Profile extends CI_Controller
             return;
         }
 
-        // It is CRITICAL to ensure the item belongs to the logged-in user
         $item = $this->Profile_model->get_qualification_by_id($id, $type, $user_id);
 
         if ($item) {
@@ -220,7 +260,6 @@ class Profile extends CI_Controller
         }
     }
 
-    // NEW METHOD TO UPDATE QUALIFICATION FROM MODAL
     public function update_qualification()
     {
         $user_id = $this->session->userdata('user_id');
@@ -235,7 +274,6 @@ class Profile extends CI_Controller
         unset($data['id']);
         unset($data['type']);
 
-        // Again, add a security check to ensure the item belongs to the user
         $existing_item = $this->Profile_model->get_qualification_by_id($id, $type, $user_id);
 
         if (!$existing_item) {
@@ -251,7 +289,6 @@ class Profile extends CI_Controller
         }
     }
 
-    // NEW METHOD TO DELETE MULTIPLE QUALIFICATIONS
     public function delete_qualifications_batch()
     {
         $user_id = $this->session->userdata('user_id');
@@ -271,7 +308,7 @@ class Profile extends CI_Controller
         foreach ($items as $item) {
             if (!$this->Profile_model->delete_qualification($item['type'], $item['id'], $user_id)) {
                 $success = false;
-                break; // Stop on first failure
+                break;
             }
         }
 

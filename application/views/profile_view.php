@@ -506,7 +506,7 @@
           style="color:#27365c; font-size:17px; text-decoration:none;">Companies</a>
         <a href="#" class="menu-link" data-modal-target="servicesModal"
           style="color:#27365c; font-size:17px; text-decoration:none;">Services</a>
-          <a href="<?= base_url('job_search'); ?>" class="menu-link" data-modal-target="servicesModal"
+        <a href="<?= base_url('job_search'); ?>" class="menu-link" data-modal-target="servicesModal"
           style="color:#27365c; font-size:17px; text-decoration:none;">Job Search</a>
       </nav>
     </div>
@@ -589,15 +589,7 @@
             <h4>Job preferences</h4>
             <p>Save specific details like minimum desired pay and schedule.</p>
           </div>
-          <a href="<?= base_url('profile/job_preferences'); ?>" class="arrow-link">›</a>
-        </div>
-
-        <div class="info-card">
-          <div class="info-details">
-            <h4>Hide jobs with these details</h4>
-            <p>Manage the qualifications or preferences you used to hide jobs from your search.</p>
-          </div>
-          <a href="<?= base_url('profile/hide_jobs'); ?>" class="arrow-link">›</a>
+          <a href="<?= base_url('JobPreferences'); ?>" class="arrow-link">›</a>
         </div>
 
         <div class="info-card">
@@ -605,7 +597,7 @@
             <h4>Ready to work</h4>
             <p>Let employers know that you’re available to start working as soon as possible.</p>
           </div>
-          <a href="<?= base_url('profile/ready_to_work'); ?>" class="arrow-link">›</a>
+          <a href="<?= base_url('profile/readyToWork'); ?>" class="arrow-link">›</a>
         </div>
       </div>
 
