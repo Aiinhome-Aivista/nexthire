@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
     <link rel="canonical" href="https://www.naukri.com/privacypolicy">
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-    <title>Privacy Policy - Naukri.com</title>
+    <title>Jobnest | Privacy Policy</title>
     <meta name="description"
         content="The page offers information on Naukri.com privacy policy. Topics covered include third party services, information sharing &amp; disclosure, confidentiality &amp; security and many more">
     <link rel="stylesheet" type="text/css" href="https://static.naukimg.com/s/0/0/c/jobSrcCss.min.css" media="all">

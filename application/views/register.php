@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Naukri Registration</title>
+  <title>Jobnest | Registration</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <!-- Firebase SDK (compat version for v8 style) -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
