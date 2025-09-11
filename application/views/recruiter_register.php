@@ -592,7 +592,7 @@
             <div class="terms-row">
               By clicking Register, you agree to the
               <a href="#">Terms and Conditions</a> &
-              <a href="#">Privacy Policy</a> of Naukri.com
+              <a href="#">Privacy Policy</a> of Jobnest
             </div>
 
             <button type="submit" class="register-btn">Register as Recruiter</button>

@@ -516,7 +516,6 @@
     <div class="header-content">
       <div class="logo">
         <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnest">
-        <!-- <span>naukri</span> -->
       </div>
       <div class="login-link">
         Already Registered? <a href="<?= base_url('home'); ?>">Login</a> here
@@ -548,7 +547,7 @@
           <?= $this->session->flashdata('error') ?>
         </div>
       <?php endif; ?>
-      <div class="form-title">Create your Naukri profile</div>
+      <div class="form-title">Create your Jobnest profile</div>
       <div class="form-subtitle">Search & apply to jobs from India's No.1 Job Site</div>
       <form action="<?= base_url('register/submit'); ?>" method="post">
         <div class="form-row">
@@ -603,7 +602,7 @@
             <div class="terms-row">
               By clicking Register, you agree to the
               <a href="#">Terms and Conditions</a> &
-              <a href="#">Privacy Policy</a> of Naukri.com
+              <a href="#">Privacy Policy</a> of Jobnest.com
             </div>
             <button type="submit" class="register-btn">Register now</button>
           </div>

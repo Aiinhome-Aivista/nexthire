@@ -336,7 +336,7 @@
   <div class="header">
     <div class="header-content">
       <div class="logo">
-        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="Indeed"
+        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="Jobnest"
          >
       </div>
       <div class="signup-link">

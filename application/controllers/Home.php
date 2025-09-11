@@ -11,7 +11,7 @@ class Home extends CI_Controller {
 
     public function index()
     {
-        $data['page_title'] = 'Find Your Dream Job | Naukri Clone';
+        $data['page_title'] = 'Find Your Dream Job';
         $data['meta_description'] = 'Find the best jobs matching your skills and experience. Explore 5 lakh+ jobs from top companies.';
 
         $data['menu'] = $this->menu_model->get_menu();

@@ -247,7 +247,7 @@ class CI_Cache_file extends CI_Driver {
 	/**
 	 * Is supported
 	 *
-	 * In the file driver, check to see that the cache directory is indeed writable
+	 * In the file driver, check to see that the cache directory is jobnest writable
 	 *
 	 * @return	bool
 	 */
