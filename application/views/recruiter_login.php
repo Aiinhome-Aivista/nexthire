@@ -349,7 +349,7 @@
   <div class="container">
     <!-- Left Card -->
     <div class="left-card">
-      <img src="<?= base_url('assets/images/indeed-logo.png'); ?>" alt="indeed">
+      <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnest">
       <h3>Recruiter Benefits</h3>
       <ul>
         <li><span class="green-dot"></span>Hire from India's No.1 Job Site</li>

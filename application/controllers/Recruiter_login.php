@@ -30,11 +30,13 @@ class Recruiter_login extends CI_Controller {
                 'recruiter_email' => $recruiter->email,
                 'logged_in'       => TRUE
             ));
-            echo "Employer Login successful!";
-            // redirect('recruiter_dashboard'); // redirect to dashboard
+            // echo "Employer Login successful!";
+            redirect(base_url('employer_dashboard'));
+
         } else {
             $this->session->set_flashdata('error', 'Invalid Email or Password');
-            redirect('recruiter_login');
+            redirect(base_url('recruiter_login'));
+
         }
     }
 

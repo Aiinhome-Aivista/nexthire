@@ -560,10 +560,10 @@
             </div>
 
             <!-- Tagline Image -->
-            <div class="tagline-image">
+            <!-- <div class="tagline-image">
                 <img src="assets/images/home_tag_1.png"
                     alt="Result stays private - Practice customized mock interview with AI!">
-            </div>
+            </div> -->
 
             <!-- Job Categories from the image -->
             <div class="job-categories">
@@ -759,8 +759,7 @@
                 <div class="footer-top">
                     <div class="footer-logo-social">
                         <a href="https://www.naukri.com" class="footer-logo">
-                            <img src="https://static.naukimg.com/s/0/0/i/naukri-identity/naukri_gnb_logo.svg"
-                                alt="Naukri Logo" />
+                            <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="JobNest">
                         </a>
                         <div class="footer-social">
                             <div class="footer-social-label">Connect with us</div>

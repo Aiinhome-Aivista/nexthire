@@ -7,6 +7,7 @@ class Login extends CI_Controller {
         parent::__construct();
         $this->load->model('Login_model');
         $this->load->library('session');
+        $this->load->helper('url');
     }
 
     public function process() {
@@ -20,13 +21,13 @@ class Login extends CI_Controller {
                 'user_id' => $user->id,
                 'user_name' => $user->full_name,
                 'user_email' => $user->email,
+                'user_mobile' => $user->mobile_number, 
                 'logged_in' => TRUE
             ]);
 
-            echo "Login successful! Welcome, " . $user->full_name;
-            redirect('home');
+            redirect('profile'); 
         } else {
-            echo "Invalid username or password!";
+            echo "Invalid username or password!"; 
         }
     }
 

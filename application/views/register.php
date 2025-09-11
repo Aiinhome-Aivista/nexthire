@@ -497,7 +497,7 @@
   <div class="header">
     <div class="header-content">
       <div class="logo">
-        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="Indeed"
+        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnest"
           >
         <!-- <span>naukri</span> -->
       </div>
@@ -508,7 +508,7 @@
   </div>
   <div class="container">
     <div class="left-card" style="position:sticky; top:32px; z-index:2;">
-      <img src="<?= base_url('assets/images/reg-image.jpeg'); ?>" alt="Indeed">
+     <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnest">
       <h3>On registering, you can</h3>
       <ul>
         <li><span class="green-dot"></span>Build your profile and let recruiters find you</li>

@@ -507,7 +507,7 @@
   <div class="header">
     <div class="header-content">
       <div class="logo">
-        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="Indeed">
+       <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnest">
       </div>
       <div class="login-link">
         Already Registered? <a href="<?= base_url('employer_login'); ?>">Login</a> here
@@ -519,7 +519,7 @@
   <div class="container">
     <!-- Left Card -->
     <div class="left-card">
-      <img src="<?= base_url('assets/images/indeed-logo.png'); ?>" alt="indeed">
+      <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnest">
       <h3>As a recruiter, you can</h3>
       <ul>
         <li><span class="green-dot"></span>Post jobs and reach millions of job seekers</li>
