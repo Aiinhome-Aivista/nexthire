@@ -7,9 +7,11 @@
     <title>Jobnest | Job Search</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Nunito', Arial, sans-serif;
             background-color: #f8f9fa;
         }
 
@@ -141,7 +143,7 @@
             border: none;
             padding: 10px 25px;
             border-radius: 8px;
-            font-weight: 600;
+            font-weight: 560;
             transition: background 0.2s;
         }
 
@@ -244,7 +246,7 @@
             padding-right: 15px;
             font-size: 1.1rem;
             color: #222;
-            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            font-family: 'Nunito', Arial, sans-serif;
             font-weight: 400;
             transition: color 0.2s;
         }
@@ -263,11 +265,11 @@
         .search-bar-top .btn-primary {
             background-color: #2563eb;
             border: none;
-            padding: 12px 30px;
+            padding: 10px 30px;
             border-radius: 999px;
             font-size: 1rem;
-            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-            font-weight: 700;
+            font-family: 'Nunito', Arial, sans-serif;
+            font-weight: 560;
             color: #fff;
             margin-left: 15px;
             box-shadow: none;
@@ -356,7 +358,8 @@
                         value="<?= isset($_GET['location']) ? htmlspecialchars($_GET['location']) : '' ?>">
                 </div>
             </div>
-            <button id="search-button" class="btn btn-primary" style="background-color: #FFF44F; color: black;">Search</button>
+            <button id="search-button" class="btn btn-primary"
+                style="background-color: #FFF44F; color: black;">Search</button>
         </div>
 
         <div class="jobs-layout">
