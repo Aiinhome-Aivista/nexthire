@@ -311,8 +311,8 @@
             padding: 10px 28px;
             font-size: 16px;
             font-weight: 500;
-            color: #2563eb;
-            border: 1.8px solid #2563eb;
+            color: #050203;
+            border: 1.8px solid #FFF44F;
             background: #fff;
             transition: all 0.2s ease;
         }
@@ -716,7 +716,7 @@
             position: absolute;
             right: 38px;
             top: 38px;
-            color: #3078e7;
+            color: #ffc34f;
             font-weight: 600;
             font-size: 15px;
             text-decoration: none;
@@ -751,9 +751,9 @@
 
         .login-form input[type="submit"] {
             width: 100%;
-            padding: 14px;
-            background: #3078e7;
-            color: #fff;
+            padding: 10px;
+            background: #FFF44F;
+            color: #29374d;
             border: none;
             border-radius: 24px;
             font-size: 17px;
@@ -765,7 +765,7 @@
         }
 
         .login-form input[type="submit"]:hover {
-            background: #255fb5;
+            background: #d3c830ff;
         }
 
         .login-actions {
@@ -808,9 +808,9 @@
             width: 100%;
             text-align: center;
             background: #fff;
-            border: 1px solid #3078e7;
+            border: 1px solid #FFF44F;
             border-radius: 100px;
-            padding: 12px 0;
+            padding: 7px 0;
             color: #3078e7;
             font-weight: 700;
             margin-top: 12px;
@@ -821,7 +821,7 @@
 
         .login-google:hover {
             background: #f4faff;
-            border-color: #18418c;
+            border-color: #FFF44F;
             color: #18418c;
         }
 
@@ -851,7 +851,7 @@
         }
 
         .login-close:hover {
-            color: #3078e7;
+            color: #b6bed7;
         }
 
         /* Search bar styles */
@@ -912,21 +912,21 @@
         }
 
         .search-bar-top .btn-primary {
-            background-color: #2563eb;
+            background-color: #FFF44F;
             border: none;
-            padding: 12px 30px;
+            padding: 10px 30px;
             border-radius: 999px;
             font-size: 1rem;
             font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
             font-weight: 700;
-            color: #fff;
+            color: #29374d;
             margin-left: 15px;
             box-shadow: none;
             transition: background 0.2s;
         }
 
         .search-bar-top .btn-primary:hover {
-            background-color: #174bbd;
+            background-color: #d3c830ff;
         }
 
         .search-input-divider-top {
@@ -1125,41 +1125,41 @@
                         <h5>Reliance Industries (RIL)</h5>
                         <div class="featured-rating">⭐ 4.0 | 18.2K+ reviews</div>
                         <p>Indian multinational conglomerate company.</p>
-                        <button class="btn btn-primary btn-sm">View jobs</button>
+                        <button class="btn  btn-sm" style="background:#FFF44F; color:#29374d;">View jobs</button>
                     </div>
                     <div class="featured-card">
                         <img src="assets/images/capgemini.gif" alt="Capgemini">
                         <h5>Capgemini</h5>
                         <div class="featured-rating">⭐ 3.7 | 48.1K+ reviews</div>
                         <p>Global leader in technology services.</p>
-                        <button class="btn btn-primary btn-sm">View jobs</button>
+                        <button class="btn btn-sm" style="background:#FFF44F; color:#29374d;">View jobs</button>
                     </div>
                     <div class="featured-card">
                         <img src="assets/images/infosys.gif" alt="Infosys BPM">
                         <h5>Infosysy BPM</h5>
                         <div class="featured-rating">⭐ 3.5 | 11K+ reviews</div>
                         <p>Join us to navigate your next.</p>
-                        <button class="btn btn-primary btn-sm">View jobs</button>
+                        <button class="btn btn-sm" style="background:#FFF44F; color:#29374d;">View jobs</button>
                     </div>
                     <div class="featured-card">
                         <img src="assets/images/amgen.gif" alt="Amgen Inc">
                         <h5>Amzen Inc</h5>
                         <div class="featured-rating">⭐ 3.1 | 35 reviews</div>
                         <p>LIVE. WIN. THRIVE.</p>
-                        <button class="btn btn-primary btn-sm">View jobs</button>
+                        <button class="btn btn-sm" style="background:#FFF44F; color:#29374d;">View jobs</button>
                     </div>
                     <div class="featured-card">
                         <img src="assets/images/amazon.gif" alt="Amazon">
                         <h5>Amazon</h5>
                         <div class="featured-rating">⭐ 4.0 | 28.4K+ reviews</div>
                         <p>World's largest Internet company.</p>
-                        <button class="btn btn-primary btn-sm">View jobs</button>
+                        <button class="btn btn-sm" style="background:#FFF44F; color:#29374d;">View jobs</button>
                     </div>
                 </div>
             </div>
 
             <div class="text-center mt-4">
-                <button class="btn btn-outline-primary view-all-btn">View all companies</button>
+                <button class="btn view-all-btn">View all companies</button>
             </div>
 
             <!-- Siemens Style Banner Section -->
@@ -1351,7 +1351,7 @@
         <div class="login-popup">
             <span class="login-close" id="closeLoginPopup">&times;</span>
             <a href="<?= base_url('register'); ?>" class="register-for-free">Register for free</a>
-            <span class="login-title">Login</span>
+            <span class="login-title">Candidate Login</span>
             <form class="login-form" method="post" action="<?= base_url('login/process'); ?>" autocomplete="off">
                 <label for="login-username">Email ID / Username</label>
                 <input type="text" id="login-username" name="username"
@@ -1367,10 +1367,6 @@
                 <span style="color:#3078e7;">Use OTP to Login</span>
             </div>
             <div class="login-divider">Or</div>
-            <!-- <button class="login-google" onclick="window.location.href='<?= base_url('login/google'); ?>'">
-                <img style="height: 30px; width: 30px;" src="<?= base_url('assets/images/google.png'); ?>" alt="google">
-                Sign in with Google
-            </button> -->
             <button id="googleSignInBtn" class="login-google">
                 <img style="height:30px; width:30px;" src="<?= base_url('assets/images/google.png'); ?>" alt="google" />
                 Sign in with Google

@@ -9,6 +9,8 @@ class Profile extends CI_Controller
         // Load the necessary models, helpers, and libraries
         $this->load->model('Profile_model');
         $this->load->model('User_model');
+        $this->load->model('Menu_model');
+
         $this->load->helper(['form', 'url', 'download']);
         $this->load->library('session');
     }
@@ -26,10 +28,11 @@ class Profile extends CI_Controller
         $data['user'] = $this->Profile_model->get_user($user_id);
         $data['location'] = $this->Profile_model->get_contact($user_id);
         $data['resume'] = $this->Profile_model->get_resume($user_id);
+        $data['menu'] = $this->Menu_model->get_menu();
 
         $qualifications = $this->Profile_model->get_user_qualifications($user_id);
         $data = array_merge($data, $qualifications);
-
+        $this->load->view("includes/login_header", $data);
         $this->load->view('profile_view', $data);
     }
 

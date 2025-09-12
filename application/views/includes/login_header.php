@@ -1,13 +1,15 @@
 <header style="background:#fff; border-bottom:1px solid #f2f2f2; position:relative; z-index:10;">
   <div
     style="display:flex; align-items:center; justify-content:space-between; padding:0 150px; height:70px; position:relative;">
+
     <!-- Logo Section -->
-    <div style="position:relative;">
+    <div style="position:relative; display:flex; align-items:center;">
       <a href="<?= base_url(); ?>">
         <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="Jobnest"
           style="height:70px; width:auto; display:block; position:absolute; top:-38px; left:0;">
       </a>
     </div>
+
     <!-- Menu Section -->
     <nav style="display:flex; align-items:center; gap:24px;">
       <a href="#" class="menu-link" data-modal-target="jobsModal"
@@ -23,30 +25,18 @@
         <span class="menu-underline"></span>
       </a>
     </nav>
-    <!-- Action Buttons -->
-    <div style="display:flex; align-items:center; gap:12px;">
-      <a class="login-button" id="showLoginPopup"
-        style="border:2px solid #FFF44F; border-radius:24px; padding:8px 24px; color:#050203; font-size:16px; text-decoration:none; transition: all 0.3s ease;">
-        Login
-      </a>
-      <a href="<?= base_url('register'); ?>" class="register-button"
-        style="background:#FFF44F; color:#29374d; border-radius:24px; padding:8px 24px; font-size:16px; text-decoration:none; transition: all 0.3s ease;">
-        Register
-      </a>
-      <div style="width:1px; height:24px; background:#ccc; margin: 0 12px;"></div>
 
-      <div class="employer-dropdown" id="employerDropdown">
-        <a href="#" class="employer-link" id="employerToggle">
-          For employers
-          <span class="caret"></span>
-        </a>
-        <span class="employer-underline"></span>
-        <div class="employer-menu">
-          <a href="<?= base_url('employer_login'); ?>">Employer Login</a>
-        </div>
+    <!-- Profile & Logout Section -->
+    <div class="user-section" style="display:flex; align-items:center; gap:12px;">
+      <div class="profile-icon">
+        <i class="fas fa-user"></i>
       </div>
-
+      <button class="logout-btn" id="logoutBtn">
+        <i class="fas fa-sign-out-alt"></i>
+        Logout
+      </button>
     </div>
+
   </div>
 
   <div id="jobsModal" class="menu-modal"
@@ -126,9 +116,9 @@
     }
 
     .register-button:hover {
-      background-color: #d3c830ff !important;
+      background-color: #e64a19 !important;
       box-shadow: 0 2px 4px rgba(252, 90, 54, 0.3);
-      /* transform: translateY(-1px); */
+      transform: translateY(-1px);
     }
 
     .login-button {
@@ -167,7 +157,7 @@
       right: 0;
       bottom: 0;
       height: 3px;
-      background: #FFF44F;
+      background: #fc5a36;
       border-radius: 2px;
       transform: scaleX(0);
       transform-origin: center;
@@ -222,7 +212,7 @@
       right: 0;
       bottom: 0;
       height: 3px;
-      background: #FFF44F;
+      background: #fc5a36;
       /* same orange color */
       border-radius: 2px;
       transform: scaleX(0);
@@ -233,6 +223,44 @@
 
     .menu-link:hover .menu-underline {
       transform: scaleX(1);
+    }
+
+    .profile-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #ebf2ff;
+      border: 2px solid #FFF44F;
+      color: #050203;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .profile-icon:hover {
+      background: #ebf2ff;
+      transform: scale(1.05);
+    }
+
+    .logout-btn {
+      background: #FFF44F;
+      color: #29374d;
+      border: none;
+      border-radius: 24px;
+      padding: 8px 16px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logout-btn:hover {
+      background: #d3c830ff;
+      box-shadow: 0 2px 4px rgba(252, 90, 54, 0.3);
     }
   </style>
 </header>
@@ -301,20 +329,16 @@
       }
     });
 
-    // Login popup logic
-    var loginBtn = document.getElementById('showLoginPopup');
-    var popupBg = document.getElementById('loginPopupBg');
-    var closeBtn = document.getElementById('closeLoginPopup');
-    if (loginBtn && popupBg) {
-      loginBtn.onclick = function () {
-        popupBg.style.display = 'flex';
-      };
-      closeBtn.onclick = function () {
-        popupBg.style.display = 'none';
-      };
-      popupBg.onclick = function (e) {
-        if (e.target === popupBg) popupBg.style.display = 'none';
-      };
-    }
+    // Logout button logic
+    const logoutBtn = document.getElementById('logoutBtn');
+    logoutBtn.addEventListener('click', function () {
+      if (confirm('Are you sure you want to logout?')) {
+        // In a real application, this would redirect to your logout endpoint
+        // alert('Logging out...');
+        window.location.href = '<?= base_url("home"); ?>';
+      }
+    });
+
+
   });
 </script>

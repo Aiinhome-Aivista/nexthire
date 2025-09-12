@@ -16,7 +16,7 @@
             z-index: 9999;
         }
         .cookie-banner a {
-            color: #347afe;
+            color: #FFF44F;
             text-decoration: none;
             font-weight: 300;
             font-size: 0.95em; 
@@ -25,8 +25,8 @@
             text-decoration: underline;
         }
         .cookie-btn {
-            background: #347afe;
-            color: #fff;
+            background: #FFF44F;
+            color: #29374d;
             border: none;
             outline: none;
             padding: 7px 14px; 
@@ -38,7 +38,7 @@
             transition: background 0.2s;
         }
         .cookie-btn:hover {
-            background: #2056bb;
+            background: #d3c830ff;
         }
         .cookie-banner span {
             font-size: 1em; 

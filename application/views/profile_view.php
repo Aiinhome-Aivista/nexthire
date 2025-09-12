@@ -539,29 +539,6 @@
 </head>
 
 <body>
-
-  <header style="background:#fff; border-bottom:1px solid #f2f2f2; position:relative; z-index:10;">
-    <div
-      style="display:flex; align-items:center; justify-content:space-between; padding:0 150px; height:70px; position:relative;">
-      <div style="position:relative;">
-        <a href="<?= base_url(); ?>">
-          <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnest"
-            style="height:75px; width:auto; display:block; position:absolute; top:-45px; left:0;">
-        </a>
-      </div>
-      <nav style="display:flex; align-items:center; gap:24px;">
-        <a href="#" class="menu-link" data-modal-target="jobsModal"
-          style="color:#27365c; font-size:17px; text-decoration:none;">Jobs</a>
-        <a href="#" class="menu-link" data-modal-target="companiesModal"
-          style="color:#27365c; font-size:17px; text-decoration:none;">Companies</a>
-        <a href="#" class="menu-link" data-modal-target="servicesModal"
-          style="color:#27365c; font-size:17px; text-decoration:none;">Services</a>
-        <a href="<?= base_url('job_search'); ?>" class="menu-link" data-modal-target="servicesModal"
-          style="color:#27365c; font-size:17px; text-decoration:none;">Job Search</a>
-      </nav>
-    </div>
-  </header>
-
   <div class="container">
     <div class="profile-card">
       <div class="profile-header">

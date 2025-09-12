@@ -87,7 +87,7 @@
     }
 
     .signup-link a {
-      color: #1d4ed8;
+      color: #db9610;
       text-decoration: none;
       font-weight: 500;
     }
@@ -224,8 +224,8 @@
 
     .login-btn {
       margin-top: 16px;
-      background: #1d4ed8;
-      color: #fff;
+      background: #FFF44F;
+      color: #29374d;
       font-weight: 600;
       font-size: 17px;
       border-radius: 30px;
@@ -238,7 +238,7 @@
     }
 
     .login-btn:hover {
-      background: #1742b0;
+      background: #d3c830ff;
     }
 
     .forgot-row {
@@ -268,7 +268,7 @@
     }
 
     .google-btn {
-      border: 1px solid #D0D5DD;
+      border: 1px solid #FFF44F;
       border-radius: 8px;
       background: white;
       color: #344054;
