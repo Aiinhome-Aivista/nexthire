@@ -6,7 +6,6 @@ class Profile extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        // Load the necessary models, helpers, and libraries
         $this->load->model('Profile_model');
         $this->load->model('User_model');
         $this->load->helper(['form', 'url', 'download']);
@@ -23,9 +22,10 @@ class Profile extends CI_Controller
             redirect('login');
         }
 
-        $data['user'] = $this->Profile_model->get_user($user_id);
+        $data['user'] = $this->Profile_model->get_user_profile($user_id);
         $data['location'] = $this->Profile_model->get_contact($user_id);
         $data['resume'] = $this->Profile_model->get_resume($user_id);
+        $data['profile_photo'] = $this->Profile_model->get_profile_photo($user_id);
 
         $qualifications = $this->Profile_model->get_user_qualifications($user_id);
         $data = array_merge($data, $qualifications);
@@ -44,7 +44,6 @@ class Profile extends CI_Controller
         }
 
         $data['user_availability'] = $this->User_model->getUserAvailability($user_id);
-
         $this->load->view('ready_to_work_view', $data);
     }
 
@@ -81,9 +80,8 @@ class Profile extends CI_Controller
             redirect('login');
         }
 
-        $data['user'] = $this->Profile_model->get_user($user_id);
+        $data['user'] = $this->Profile_model->get_user_profile($user_id);
         $data['location'] = $this->Profile_model->get_contact($user_id);
-
         $this->load->view('edit_contact', $data);
     }
 
@@ -317,5 +315,45 @@ class Profile extends CI_Controller
         } else {
             echo json_encode(['success' => false, 'message' => 'An error occurred during batch deletion.']);
         }
+    }
+
+    public function upload_photo()
+    {
+        if (!$this->session->userdata('user_id')) {
+            redirect('login');
+        }
+
+        $user_id = $this->session->userdata('user_id');
+
+        $config['upload_path'] = FCPATH . 'assets/profile_photos/';
+        $config['allowed_types'] = 'jpg|jpeg|png';
+        $config['max_size'] = 1024; // 1MB
+        $config['encrypt_name'] = TRUE;
+
+        $this->load->library('upload', $config);
+        $this->load->model('Profile_model');
+
+        if (!$this->upload->do_upload('profile_photo')) {
+            $error = $this->upload->display_errors();
+            $this->session->set_flashdata('error', $error);
+        } else {
+            $upload_data = $this->upload->data();
+            $file_name = $upload_data['file_name'];
+            $file_path = 'assets/profile_photos/' . $file_name;
+
+            $existing_photo = $this->Profile_model->get_profile_photo($user_id);
+
+            if ($existing_photo) {
+                if (file_exists(FCPATH . $existing_photo)) {
+                    unlink(FCPATH . $existing_photo);
+                }
+                $this->Profile_model->update_profile_photo($user_id, $file_name);
+            } else {
+                $this->Profile_model->save_profile_photo($user_id, $file_name);
+            }
+
+            $this->session->set_flashdata('success', 'Profile photo uploaded successfully!');
+        }
+        redirect('profile');
     }
 }
