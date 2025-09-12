@@ -6,17 +6,19 @@
   <title>User Profile</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
   <style>
     /* Base Styles */
     * {
       box-sizing: border-box;
-      font-family: 'Inter', Arial, sans-serif;
+      font-family: 'Nunito', Arial, sans-serif;
     }
 
     body {
       margin: 0;
       padding: 0;
-      background: #e2e0e0ff;
+      background: #F7F8FA;
       color: #222;
     }
 
@@ -78,7 +80,7 @@
       right: 0;
       bottom: 0;
       height: 3px;
-      background: #fc5a36;
+      background: #FFF44F;
       border-radius: 2px;
       transform: scaleX(0);
       transform-origin: center;
@@ -530,13 +532,13 @@
     }
 
     .arrow-link {
-      font-size: 20px;
+      font-size: 30px;
       text-decoration: none;
       color: #333;
     }
 
     .arrow-link:hover {
-      color: #007bff;
+      color: #333;
     }
   </style>
 </head>
@@ -602,12 +604,13 @@
           </div>
         <?php else: ?>
           <div class="file-upload-container" id="fileUploadContainer">
-            <p>No resume uploaded. Resume only supports .pdf, .doc, .docx formats.</p>
+            <p>Please upload your resume in .pdf, .doc, or .docx format.</p>
             <form id="resumeUploadForm" action="<?= base_url('profile/upload_resume'); ?>" method="post"
               enctype="multipart/form-data" style="display: none;">
               <input type="file" name="resume_file" id="resumeFileInput" class="file-input" accept=".pdf,.doc,.docx">
             </form>
-            <label for="resumeFileInput" style="background-color: #FFF44F; color:black;" class="file-label"><i class="fas fa-file-upload icon"></i> Upload Resume</label>
+            <label for="resumeFileInput" style="background-color: #FFF44F; color:black;" class="file-label"><i
+                class="fas fa-file-upload icon"></i> Upload Resume</label>
             <p class="upload-message">or drag and drop a file</p>
           </div>
         <?php endif; ?>

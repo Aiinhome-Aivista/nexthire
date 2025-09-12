@@ -709,14 +709,14 @@
             font-size: 28px;
             font-weight: 700;
             margin-bottom: 30px;
-            color: #27365c;
+            color: #29374d;
         }
 
         .register-for-free {
             position: absolute;
-            right: 38px;
-            top: 38px;
-            color: #ffc34f;
+            right: 45px;
+            top: 45px;
+            color: #29374d;
             font-weight: 600;
             font-size: 15px;
             text-decoration: none;
@@ -725,7 +725,7 @@
         .login-form label {
             margin: 11px 0 6px 0;
             font-size: 15px;
-            color: #224190;
+            color: #1b212b;
             font-weight: 500;
             letter-spacing: 0.02em;
         }
@@ -734,19 +734,19 @@
         .login-form input[type="password"] {
             width: 100%;
             padding: 12px 15px;
-            border: 1px solid #dbe4fa;
+            border: 1px solid #808080;
             border-radius: 12px;
             font-size: 16px;
             margin-bottom: 18px;
             outline: none;
-            background: #f6faff;
+            background: #fff !important;
             color: #27365c;
             transition: border 0.22s;
         }
 
         .login-form input[type="text"]:focus,
         .login-form input[type="password"]:focus {
-            border-color: #3078e7;
+            border-color: #808080;
         }
 
         .login-form input[type="submit"] {
@@ -776,7 +776,7 @@
         }
 
         .login-link {
-            color: #3078e7;
+            color: #1b212b;
             font-size: 13px;
             text-decoration: none;
             font-weight: 500;
@@ -822,7 +822,7 @@
         .login-google:hover {
             background: #f4faff;
             border-color: #FFF44F;
-            color: #18418c;
+            color: #3078e7;
         }
 
         @media (max-width: 700px) {
@@ -840,10 +840,10 @@
 
         .login-close {
             position: absolute;
-            top: 27px;
-            right: 18px;
-            font-size: 22px;
-            color: #b6bed7;
+            top: 2px;
+            right: 22px;
+            font-size: 35px;
+            color: #575b67ff;
             cursor: pointer;
             line-height: 1;
             font-weight: 700;
@@ -917,8 +917,7 @@
             padding: 10px 30px;
             border-radius: 999px;
             font-size: 1rem;
-            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-            font-weight: 700;
+            font-weight: 560;
             color: #29374d;
             margin-left: 15px;
             box-shadow: none;
@@ -1364,7 +1363,7 @@
                 <input type="submit" value="Login">
             </form>
             <div style="text-align:center; margin:20px 0 8px;">
-                <span style="color:#3078e7;">Use OTP to Login</span>
+                <span style="color:#1b212b;">Use OTP to Login</span>
             </div>
             <div class="login-divider">Or</div>
             <button id="googleSignInBtn" class="login-google">

@@ -7,10 +7,12 @@
     <title>Qualifications</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
     <style>
         body {
-            background-color:  #cecbcbff;
-            font-family: 'Inter', sans-serif;
+            background-color: #F7F8FA;
+            font-family: 'Nunito', Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
@@ -18,7 +20,7 @@
         .container-fluid {
             max-width: 100%;
             margin: 0 auto;
-            background-color: #e2e0e0ff;
+            /* background-color: #e2e0e0ff; */
             padding: 32px;
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
         }
@@ -86,13 +88,14 @@
         .header-icons {
             display: flex;
             align-items: center;
-            gap: 15px;f
+            gap: 15px;
+            f
             /* Space between icons */
         }
 
         .header-icons .fas {
             font-size: 18px;
-            color:rgba(0, 0, 0, 0.98);
+            color: rgba(0, 0, 0, 0.98);
             cursor: pointer;
         }
 
@@ -257,17 +260,18 @@
 
 <body>
 
-            
+
     <div class="container-fluid">
-       
+
         <div class="header">
             <a href="<?= base_url('profile'); ?>" aria-label="Go back to profile"><i class="fas fa-arrow-left"></i></a>
-             <img src="<?= base_url('assets/images/jobnest.png'); ?>"  alt="jobnestLogo" class="img-fluid" style="height:50px; width:100px; display: block; margin: 0 auto; float: left; margin-left: 20px;">
+            <img src="<?= base_url('assets/images/jobnest2.png'); ?>" alt="jobnestLogo"
+                style="height:70px; width:150px; display: block; margin: 0 auto; float: left; margin-left: 20px;">
             <h2 style="margin-right:150px;">Qualifications</h2>
         </div>
 
-        <p class="description" style="text-align: center;">We use these details to show you jobs that match your unique skills and experience.</p>
-
+        <p class="description" style="text-align: center;">We use these details to show you jobs that match your unique
+            skills and experience.</p>
         <?php
         $sections = [
             'skills' => ['label' => 'Skills', 'fields' => ['skill_name'], 'header' => 'Skill Name'],
@@ -295,8 +299,8 @@
                     <table class="table table-selectable" id="table-<?= $type; ?>">
                         <thead>
                             <tr id="select-all-checkbox-<?= $type; ?>">
-                               
-                                
+
+
                             </tr>
                         </thead>
                         <tbody id="<?= $type; ?>-list">
