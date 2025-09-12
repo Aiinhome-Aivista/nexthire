@@ -64,6 +64,7 @@ $route['recruiter_login/google_callback'] = 'Recruiter_login/google_callback';
 $route['admin/login'] = 'Admin/login';
 $route['admin/dashboard'] = 'Admin/dashboard';
 $route['job_search'] = 'Jobsearch/index';
+$route['candidate_job_search'] = 'Candidate_jobsearch/index';
 $route['profile'] = 'Profile/index';
 $route['jobpreferences'] = 'JobPreferences/index';
 $route['jobpreferences/(:any)'] = 'JobPreferences/$1';

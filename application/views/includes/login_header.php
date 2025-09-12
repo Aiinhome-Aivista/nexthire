@@ -19,7 +19,10 @@
       <a href="#" class="menu-link" data-modal-target="servicesModal">Services
         <span class="menu-underline"></span>
       </a>
-      <a href="<?= base_url('job_search'); ?>" class="menu-link">Job Search</a>
+      <?php if ($this->uri->segment(1) == 'profile'): ?>
+        <a href="<?= base_url('candidate_job_search'); ?>" class="menu-link">Job Search</a>
+      <?php endif; ?>
+
     </nav>
 
     <!-- Profile & Logout Section -->
