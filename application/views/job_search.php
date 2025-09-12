@@ -101,7 +101,7 @@
 
         .job-salary {
             font-weight: 600;
-            color: #db9610;
+            color: #7b7a6e;
         }
 
         .job-tags {
@@ -364,23 +364,25 @@
 
         <div class="jobs-layout">
             <div class="jobs-list">
-                <?php 
+                <?php
                 // Fetch jobs from DB (CodeIgniter style)
-                $jobs = $this->db->get('posted_jobs')->result_array(); 
+                $jobs = $this->db->get('posted_jobs')->result_array();
                 ?>
                 <?php foreach ($jobs as $index => $job): ?>
                     <div class="job-card <?= $index === 0 ? 'active' : '' ?>" data-job-id="<?= $job['id'] ?>">
                         <div class="job-title"><?= htmlspecialchars($job['title']) ?></div>
                         <div class="company-name"><?= htmlspecialchars($job['company']) ?></div>
                         <div class="job-info">
-                            <span class="job-location"><i class="fas fa-map-marker-alt"></i> <?= htmlspecialchars($job['location']) ?></span>
-                            <span class="job-experience"><i class="fas fa-briefcase"></i> <?= htmlspecialchars($job['experience']) ?></span>
+                            <span class="job-location"><i class="fas fa-map-marker-alt"></i>
+                                <?= htmlspecialchars($job['location']) ?></span>
+                            <span class="job-experience"><i class="fas fa-briefcase"></i>
+                                <?= htmlspecialchars($job['experience']) ?></span>
                         </div>
                         <div class="job-salary"><?= htmlspecialchars($job['salary']) ?></div>
-                         <div class="job-tags">
-                                <span class="tag"><?= htmlspecialchars($job['job_type']) ?></span>
-                                <span class="tag">Posted</span>
-                            </div>
+                        <div class="job-tags">
+                            <span class="tag"><?= htmlspecialchars($job['job_type']) ?></span>
+                            <span class="tag">Posted</span>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -413,7 +415,8 @@
                         <h2 class="detail-title">${job.title}</h2>
                         <div class="detail-company">${job.company}</div>
                     </div>
-                    <button class="apply-btn" style="background-color: #FFF44F; color: black;">Apply Now</button>
+                    <button class="apply-btn" style="background-color: #FFF44F; color: black;" onclick="window.location.href='<?= base_url('register'); ?>'">
+                    Apply Now</button>
                 </div>
 
                 <div class="detail-info">

@@ -101,7 +101,7 @@
 
         .job-salary {
             font-weight: 600;
-            color: #db9610;
+            color: #7b7a6e;
         }
 
         .job-tags {
