@@ -71,3 +71,24 @@ $route['jobpreferences/(:any)'] = 'JobPreferences/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+
+
+// Routes for the main footer links
+$route['about-us'] = 'Static_pages/about_us';
+$route['careers'] = 'Static_pages/careers';
+$route['employer-home'] = 'Static_pages/employer_home';
+$route['sitemap'] = 'Static_pages/sitemap';
+$route['credits'] = 'Static_pages/credits';
+
+// Routes for the help and support links
+$route['help-center'] = 'Static_pages/help_center';
+$route['summons-notices'] = 'Static_pages/summons_notices';
+$route['grievances'] = 'Static_pages/grievances';
+$route['report-issue'] = 'Static_pages/report_issue';
+
+// Routes for the legal and safety links
+$route['privacy-policy'] = 'Static_pages/privacy_policy';
+$route['cookie-policy'] = 'Static_pages/cookie_policy';
+$route['terms-and-conditions'] = 'Static_pages/terms_and_conditions';
+$route['fraud-alert'] = 'Static_pages/fraud_alert';
+$route['trust-safety'] = 'Static_pages/trust_safety';
