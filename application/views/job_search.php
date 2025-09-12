@@ -69,7 +69,7 @@
         .job-card:hover,
         .job-card.active {
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-            border-left: 4px solid #2563eb;
+            border-left: 4px solid #FFF44F;
         }
 
         .job-card.active {
@@ -99,7 +99,7 @@
 
         .job-salary {
             font-weight: 600;
-            color: #28a745;
+            color: #db9610;
         }
 
         .job-tags {
@@ -195,7 +195,7 @@
         .back-to-search {
             display: inline-flex;
             align-items: center;
-            color: #2563eb;
+            color: #db9610;
             text-decoration: none;
             margin-bottom: 20px;
             font-weight: 500;
@@ -356,7 +356,7 @@
                         value="<?= isset($_GET['location']) ? htmlspecialchars($_GET['location']) : '' ?>">
                 </div>
             </div>
-            <button id="search-button" class="btn btn-primary">Search</button>
+            <button id="search-button" class="btn btn-primary" style="background-color: #FFF44F; color: black;">Search</button>
         </div>
 
         <div class="jobs-layout">
@@ -611,7 +611,7 @@
                         <h2 class="detail-title">${job.title}</h2>
                         <div class="detail-company">${job.company}</div>
                     </div>
-                    <button class="apply-btn">Apply Now</button>
+                    <button class="apply-btn" style="background-color: #FFF44F; color: black;">Apply Now</button>
                 </div>
 
                 <div class="detail-info">
@@ -662,7 +662,7 @@
                     </ul>
                 </div>
 
-                <button class="apply-btn" style="width: 100%;">Apply for this job</button>
+                <button class="apply-btn" style="background-color: #FFF44F; color: black; width: 100%;">Apply for this job</button>
             `;
         }
 

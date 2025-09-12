@@ -40,10 +40,10 @@ class Register extends CI_Controller
                 $this->session->set_flashdata('success', 'Registration successful! However, we could not send the welcome email.');
             }
 
-            redirect('home');
+            redirect(base_url('home'));
         } else {
             $this->session->set_flashdata('error', 'Something went wrong with your registration. Please try again.');
-            redirect('register');
+            redirect(base_url('register'));
         }
     }
     public function google_callback()
