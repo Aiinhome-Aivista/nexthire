@@ -28,7 +28,7 @@
         .header {
             display: flex;
             align-items: center;
-            margin-bottom: 24px;
+            margin-bottom: 5px;
         }
 
         .header h2 {
