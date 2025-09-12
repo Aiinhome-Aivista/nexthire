@@ -86,23 +86,24 @@ class Login extends CI_Controller
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
+            $this->Login_model->save_profile_photo($user_id, $file_name); // <--- Add this line
             $user = $this->Login_model->get_user_by_id($user_id);
-        }  else {
-        // Update profile photo if new one downloaded successfully
-        if ($file_name) {
-            // Get existing photo filename for cleanup
-            $existing_photo = $this->Login_model->get_profile_photo($user['id']);
+        } else {
+            // Update profile photo if new one downloaded successfully
+            if ($file_name) {
+                // Get existing photo filename for cleanup
+                $existing_photo = $this->Login_model->get_profile_photo($user['id']);
 
-            if ($existing_photo && file_exists($upload_path . $existing_photo)) {
-                unlink($upload_path . $existing_photo);
+                if ($existing_photo && file_exists($upload_path . $existing_photo)) {
+                    unlink($upload_path . $existing_photo);
+                }
+
+                $this->Login_model->update_profile_photo($user['id'], $file_name);
+
+                // Update user's picture field in user data for session
+                $user['picture'] = $file_name;
             }
-
-            $this->Login_model->update_profile_photo($user['id'], $file_name);
-
-            // Update user's picture field in user data for session
-            $user['picture'] = $file_name;
         }
-    }
 
 
         // Set session
