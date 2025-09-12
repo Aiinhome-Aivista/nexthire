@@ -25,7 +25,6 @@ class JobPreferences extends CI_Controller {
                 $user_profile_data = $this->JobPreferences_model->get_user_profile($user_id);
             } else {
                 // Handle error if profile creation fails
-                // You might want to show an error message to the user
                 log_message('error', 'Failed to create user profile for user ID: ' . $user_id);
                 $this->session->set_flashdata('error', 'Could not load your job preferences. Please try again.');
                 redirect('profile'); // Redirect to a safe page
