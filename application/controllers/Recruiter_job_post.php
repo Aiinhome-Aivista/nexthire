@@ -21,6 +21,7 @@ class Recruiter_job_post extends CI_Controller {
         $data = array(
             'employer_id' => $recruiter_id,
             'title'       => $this->input->post('title'),
+            'industry'       => $this->input->post('industry'),
             'company'     => $this->input->post('company'),
             'location'    => $this->input->post('location'),
             'employees'  => $this->input->post('employees'),
@@ -28,6 +29,8 @@ class Recruiter_job_post extends CI_Controller {
             'job_type'    => $this->input->post('job-type'),
             'salary'      => $this->input->post('salary'),
             'description' => $this->input->post('description'),
+            'requirements' => $this->input->post('requirements'),
+            'benefits' => $this->input->post('benefits'),
             'last_date'   => $this->input->post('last_date'),
             'email'       => $this->input->post('email')
         );

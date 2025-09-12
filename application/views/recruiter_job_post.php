@@ -199,9 +199,17 @@
     <div class="container">
         <h2>Job Information</h2>
         <form action="<?= base_url('recruiter_job_post/store'); ?>" method="post">
-            <div class="form-group">
-                <label for="title">Job Title</label>
-                <input type="text" id="title" name="title" placeholder="e.g., Software Engineer" required>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="title">Job Title</label>
+                    <input type="text" id="title" name="title" placeholder="e.g., Software Engineer" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="industry">Industry</label>
+                    <input type="text" id="industry" name="industry" placeholder="e.g., IT Service" required>
+                </div>
             </div>
 
             <div class="row">
@@ -246,8 +254,17 @@
 
             <div class="form-group">
                 <label for="description">Job Description</label>
-                <textarea id="description" name="description"
-                    placeholder="Describe the role, responsibilities, and requirements"></textarea>
+                <textarea id="description" name="description" placeholder="Enter Job Description"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="requirements">Requirements</label>
+                <textarea id="requirements" name="requirements" placeholder="Enter Job Requirements"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="benefits">Benefits</label>
+                <textarea id="benefits" name="benefits" placeholder="Enter benefits provided"></textarea>
             </div>
 
             <div class="form-group">

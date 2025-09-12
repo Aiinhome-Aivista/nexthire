@@ -134,7 +134,7 @@
       right: 0;
       bottom: 0;
       height: 3px;
-      background: #fc5a36;
+      background: #FFF44F;
       border-radius: 2px;
       transform: scaleX(0);
       transform-origin: center;
