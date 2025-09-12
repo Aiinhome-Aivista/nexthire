@@ -24,6 +24,9 @@
         style="color:#27365c; font-size:17px; text-decoration:none; display:inline-block; padding-bottom:4px;">Services
         <span class="menu-underline"></span>
       </a>
+      <a href="<?= base_url('job_search'); ?>" class="menu-link"
+        style="color:#27365c; font-size:17px; text-decoration:none; display:inline-block; padding-bottom:4px;">Job
+        Search</a>
     </nav>
 
     <!-- Profile & Logout Section -->
