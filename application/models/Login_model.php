@@ -1,30 +1,60 @@
 <?php
-class Login_model extends CI_Model {
+class Login_model extends CI_Model
+{
 
-    public function get_user($username) {
+    public function get_user($username)
+    {
         $this->db->where('email', $username);
         $query = $this->db->get('register');
         return $query->row();
     }
 
-    
+
     // For Google login: get user by email
     public function get_user_by_email($email)
     {
-        return $this->db->where('email', $email)->get('users')->row_array();
+        return $this->db->where('email', $email)->get('register')->row_array();
     }
 
     // For session fetch by ID
     public function get_user_by_id($id)
     {
-        return $this->db->where('id', $id)->get('users')->row_array();
+        return $this->db->where('id', $id)->get('register')->row_array();
     }
 
     // Insert Google user
     public function insert_google_user($data)
     {
-        $this->db->insert('users', $data);
+        $this->db->insert('register', $data);
         return $this->db->insert_id();
+    }
+
+
+    // Profile photo methods
+    public function get_profile_photo($user_id)
+    {
+        $result = $this->db->get_where('profile_photos', ['user_id' => $user_id])->row_array();
+        return $result ? 'assets/profile_photos/' . $result['file_name'] : null;
+    }
+
+    public function save_profile_photo($user_id, $file_name)
+    {
+        $data = [
+            'user_id' => $user_id,
+            'file_name' => $file_name,
+            'uploaded_at' => date('Y-m-d H:i:s')
+        ];
+        return $this->db->insert('profile_photos', $data);
+    }
+
+    public function update_profile_photo($user_id, $file_name)
+    {
+        $data = [
+            'file_name' => $file_name,
+            'updated_at' => date('Y-m-d H:i:s')
+        ];
+        $this->db->where('user_id', $user_id)->update('profile_photos', $data);
+        return $this->db->affected_rows() > 0;
     }
 
 }
