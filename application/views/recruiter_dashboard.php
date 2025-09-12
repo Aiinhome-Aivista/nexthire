@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jobnest | Employer Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
             margin: 0;
@@ -18,7 +19,7 @@
         /* Sidebar */
         .sidebar {
             width: 260px;
-            background: #2a5298;
+            background: #1e1e2c;
             color: #fff;
             display: flex;
             flex-direction: column;
@@ -32,7 +33,7 @@
         }
 
         .sidebar a {
-            color: #fff;
+            color: white;
             text-decoration: none;
             padding: 12px 15px;
             border-radius: 8px;
@@ -43,7 +44,7 @@
 
         .sidebar a:hover,
         .sidebar a.active {
-            background: #1e3c72;
+            background: #fca911d4;
         }
 
         /* Main Content */
@@ -55,7 +56,7 @@
 
         h1 {
             font-size: 24px;
-            color: #2a5298;
+            color: #fca911d4;
             margin-bottom: 20px;
         }
 
@@ -84,7 +85,7 @@
         .stat-box h3 {
             margin: 0;
             font-size: 22px;
-            color: #2a5298;
+            color: #fca911d4;
         }
 
         .stat-box p {
@@ -109,7 +110,7 @@
 
         th {
             background: #f0f4ff;
-            color: #2a5298;
+            color: #fca911d4;
         }
 
         .badge {
@@ -132,7 +133,7 @@
         }
 
         button {
-            background: #2a5298;
+            background: #fca911d4;
             color: #fff;
             border: none;
             padding: 8px 12px;
@@ -142,7 +143,85 @@
         }
 
         button:hover {
-            background: #1e3c72;
+            background: #ffc107;
+        }
+
+        .model-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .model-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .model-card-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .model-card-header h3 {
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+
+        .model-card-header i {
+            color: var(--gray);
+            font-size: 1.2rem;
+        }
+
+        .model-card-body {
+            padding: 20px;
+        }
+
+        .model-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .model-item:last-child {
+            border-bottom: none;
+        }
+
+        .model-item img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .model-info h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .model-info p {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .model-status {
+            margin-left: auto;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .model-cards {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -151,12 +230,12 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <img style="height:40px; width:90px;" src="<?= base_url('assets/images/jobnest.png'); ?>" alt="JobNest"><br>
-        <a href="#" class="active">Dashboard</a>
-        <a href="<?= base_url('employer_job_post'); ?>">Post Job</a>
-        <a href="#">Manage Jobs</a>
-        <a href="#">Candidates</a>
-        <a href="#">Company Profile</a>
-         <a href="#">Logout</a>
+        <a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="<?= base_url('employer_job_post'); ?>"> <i class="fas fa-file-alt"></i> Post Job</a>
+        <a href="#"><i class="fas fa-briefcase"></i> Manage Jobs</a>
+        <a href="#"><i class="fas fa-user-graduate"></i> Candidates</a>
+        <a href="#"><i class="fas fa-building"></i> Employer Profile</a>
+        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
 
     <!-- Main Content -->
@@ -184,74 +263,20 @@
             </div>
         </div>
 
-        <!-- Manage Jobs -->
-        <div class="card">
-            <h1>Manage Jobs</h1>
-            <table>
-                <tr>
-                    <th>Job Title</th>
-                    <th>Status</th>
-                    <th>Applications</th>
-                    <th>Actions</th>
-                </tr>
-                <tr>
-                    <td>Software Engineer</td>
-                    <td><span class="badge active">Active</span></td>
-                    <td>34</td>
-                    <td>
-                        <button>Edit</button>
-                        <button>Close</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>UI/UX Designer</td>
-                    <td><span class="badge draft">Draft</span></td>
-                    <td>0</td>
-                    <td>
-                        <button>Edit</button>
-                        <button>Publish</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Data Analyst</td>
-                    <td><span class="badge expired">Expired</span></td>
-                    <td>21</td>
-                    <td>
-                        <button>Duplicate</button>
-                    </td>
-                </tr>
-            </table>
+        <!-- Model Cards -->
+        <div class="model-cards">
+            <!-- Job Posts Card -->
+            <div class="model-card">
+                <div class="model-card-header">
+                    <h3>Recent Job Posts</h3>
+                    <i class="fas fa-ellipsis-v"></i>
+                </div>
+                <div class="model-card-body">
+                    <!-- Job posts will be displayed here -->
+                </div>
+            </div>
         </div>
-
-        <!-- Applications -->
-        <div class="card">
-            <h1>Applications</h1>
-            <table>
-                <tr>
-                    <th>Candidate Name</th>
-                    <th>Status</th>
-                    <th>Resume</th>
-                    <th>Actions</th>
-                </tr>
-                <tr>
-                    <td>Alice Johnson</td>
-                    <td>Applied</td>
-                    <td><button>View</button></td>
-                    <td>
-                        <button>Shortlist</button>
-                        <button>Reject</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Michael Smith</td>
-                    <td>Shortlisted</td>
-                    <td><button>View</button></td>
-                    <td>
-                        <button>Schedule Interview</button>
-                    </td>
-                </tr>
-            </table>
-        </div>
+    </div>
     </div>
 </body>
 

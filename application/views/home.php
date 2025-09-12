@@ -1219,23 +1219,23 @@
 
                     <div class="footer-links">
                         <ul>
-                            <li><a href="http://infoedge.in" target="_blank">About us</a></li>
-                            <li><a href="https://careers.infoedge.com/" target="_blank">Careers</a></li>
-                            <li><a href="https://www.naukri.com/recruit/login">Employer home</a></li>
-                            <li><a href="https://www.naukri.com/sitemap/sitemap.php">Sitemap</a></li>
-                            <li><a href="https://www.naukri.com/credits">Credits</a></li>
+                            <li><a href="<?= base_url('about-us'); ?>">About us</a></li>
+                            <li><a href="<?= base_url('careers'); ?>">Careers</a></li>
+                            <li><a href="<?= base_url('employer-home'); ?>">Employer home</a></li>
+                            <li><a href="<?= base_url('sitemap'); ?>">Sitemap</a></li>
+                            <li><a href="<?= base_url('credits'); ?>">Credits</a></li>
                         </ul>
                         <ul>
-                            <li><a href="https://www.naukri.com/faq/job-seeker?utm_source=footer">Help center</a></li>
-                            <li><a href="https://w5.naukri.com/summons-notices-form/">Summons/Notices</a></li>
-                            <li><a href="https://w5.naukri.com/grievances-form/">Grievances</a></li>
-                            <li><a href="https://w5.naukri.com/fdbck/main/feedback.php?app_id=15">Report issue</a></li>
+                            <li><a href="<?= base_url('help-center'); ?>">Help center</a></li>
+                            <li><a href="<?= base_url('summons-notices'); ?>">Summons/Notices</a></li>
+                            <li><a href="<?= base_url('grievances'); ?>">Grievances</a></li>
+                            <li><a href="<?= base_url('report-issue'); ?>">Report issue</a></li>
                         </ul>
                         <ul>
-                            <li><a href="https://www.naukri.com/privacypolicy">Privacy policy</a></li>
-                            <li><a href="https://www.naukri.com/termsconditions">Terms & conditions</a></li>
-                            <li><a href="https://www.naukri.com/imposter/report-fake-job-recruiter">Fraud alert</a></li>
-                            <li><a href="https://www.naukri.com/jobsearch/trust-safety">Trust & safety</a></li>
+                            <li><a href="<?= base_url('privacy-policy'); ?>">Privacy policy</a></li>
+                            <li><a href="<?= base_url('terms-and-conditions'); ?>">Terms & conditions</a></li>
+                            <li><a href="<?= base_url('fraud-alert'); ?>">Fraud alert</a></li>
+                            <li><a href="<?= base_url('trust-safety'); ?>">Trust & safety</a></li>
                         </ul>
                     </div>
 
