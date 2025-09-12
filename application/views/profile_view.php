@@ -16,7 +16,7 @@
     body {
       margin: 0;
       padding: 0;
-      background: #f7f8fa;
+      background: #e2e0e0ff;
       color: #222;
     }
 
@@ -131,10 +131,13 @@
     .container {
       display: flex;
       justify-content: center;
-      align-items: flex-start;
+      /* This centers the items horizontally */
+      align-items: center;
+      /* Change this to center the items vertically */
       padding: 40px 20px;
       min-height: calc(100vh - 150px);
-      /* Adjusted to account for header and footer */
+      flex-direction: column;
+      gap: 20px;
     }
 
     /* Profile Card */
@@ -143,7 +146,7 @@
       border-radius: 20px;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
       width: 100%;
-      max-width: 900px;
+      max-width: 1600px;
       padding: 40px;
     }
 
@@ -542,9 +545,21 @@
   <div class="container">
     <div class="profile-card">
       <div class="profile-header">
-        <div class="profile-avatar">
-          <?= isset($user['full_name']) ? substr($user['full_name'], 0, 1) : '?' ?>
-        </div>
+        <form id="profilePhotoForm" action="<?= base_url('profile/upload_photo'); ?>" method="post"
+          enctype="multipart/form-data">
+          <label for="profilePhotoInput" class="profile-avatar">
+            <?php if (!empty($profile_photo)): ?>
+              <img src="<?= base_url($profile_photo); ?>" alt="Profile Photo">
+              <div class="upload-icon-overlay"><i class="fas fa-camera"></i></div>
+            <?php else: ?>
+              <span
+                class="profile-initials"><?= isset($user['full_name']) ? substr($user['full_name'], 0, 1) : '?' ?></span>
+              <div class="upload-icon-overlay"><i class="fas fa-camera"></i></div>
+            <?php endif; ?>
+            <input type="file" name="profile_photo" id="profilePhotoInput" class="file-input" accept="image/*">
+          </label>
+        </form>
+
         <div class="profile-info">
           <h1><?= htmlspecialchars($user['full_name'] ?? 'User Name'); ?></h1>
           <div class="contact-details">
@@ -587,16 +602,18 @@
           </div>
         <?php else: ?>
           <div class="file-upload-container" id="fileUploadContainer">
-            <p>No resume uploaded. resume only support .pdf,.doc,.docx these format .</p>
+            <p>No resume uploaded. Resume only supports .pdf, .doc, .docx formats.</p>
             <form id="resumeUploadForm" action="<?= base_url('profile/upload_resume'); ?>" method="post"
-              enctype="multipart/form-data">
-              <label for="file-input" class="file-label">Upload Resume</label>
-              <input type="file" name="resume_file" id="file-input" class="file-input" accept=".pdf,.doc,.docx">
+              enctype="multipart/form-data" style="display: none;">
+              <input type="file" name="resume_file" id="resumeFileInput" class="file-input" accept=".pdf,.doc,.docx">
             </form>
+            <label for="resumeFileInput" style="background-color: #FFF44F; color:black;" class="file-label"><i class="fas fa-file-upload icon"></i> Upload Resume</label>
             <p class="upload-message">or drag and drop a file</p>
           </div>
         <?php endif; ?>
       </div>
+    </div>
+    <div class="profile-card">
       <div class="section">
         <h2>Improve your job matches</h2>
         <div class="info-card">
@@ -638,64 +655,77 @@
   </footer>
 
   <script>
+    // Function to toggle options dropdown
     function showOptions(element) {
       const dropdown = element.nextElementSibling;
+      // Close other open dropdowns
       document.querySelectorAll('.options-dropdown').forEach(d => {
         if (d !== dropdown) d.style.display = "none";
       });
+      // Toggle the clicked dropdown
       dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
     }
+
+    // Close dropdowns when clicking outside
     document.addEventListener('click', function (e) {
       if (!e.target.closest('.options-menu')) {
         document.querySelectorAll('.options-dropdown').forEach(d => d.style.display = "none");
       }
     });
 
-    // Auto-submit profile photo form
+    // Auto-submit profile photo form on file selection
     const profilePhotoInput = document.getElementById('profilePhotoInput');
     if (profilePhotoInput) {
       profilePhotoInput.addEventListener('change', function () {
-        document.getElementById('profilePhotoForm').submit();
+        // Check if a file is selected
+        if (this.files.length > 0) {
+          document.getElementById('profilePhotoForm').submit();
+        }
       });
     }
 
     // Resume drag and drop logic
     const fileUploadContainer = document.getElementById('fileUploadContainer');
-    const resumeFileInput = document.getElementById('file-input');
+    const resumeFileInput = document.getElementById('resumeFileInput');
     const resumeUploadForm = document.getElementById('resumeUploadForm');
 
     if (fileUploadContainer) {
+      // Drag over event
       fileUploadContainer.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        fileUploadContainer.classList.add('dragover');
+        e.preventDefault(); // Prevent default behavior
+        e.stopPropagation(); // Stop propagation
+        fileUploadContainer.classList.add('dragover'); // Add visual feedback
       });
 
+      // Drag leave event
       fileUploadContainer.addEventListener('dragleave', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        fileUploadContainer.classList.remove('dragover');
+        fileUploadContainer.classList.remove('dragover'); // Remove visual feedback
       });
 
+      // Drop event
       fileUploadContainer.addEventListener('drop', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        fileUploadContainer.classList.remove('dragover');
-        const files = e.dataTransfer.files;
+        fileUploadContainer.classList.remove('dragover'); // Remove visual feedback
+        const files = e.dataTransfer.files; // Get dropped files
         if (files.length > 0) {
+          // Assign dropped files to the hidden file input
           resumeFileInput.files = files;
+          // **Crucial Fix:** Submit the form directly after files are assigned
           resumeUploadForm.submit();
         }
       });
 
-      // Handle click on the label
-      fileUploadContainer.addEventListener('click', () => {
-        resumeFileInput.click();
-      });
+      // Handle click on the file upload container to trigger file input
+      // Removed the direct click on fileUploadContainer to avoid re-opening the dialog
+      // The label for "Upload Resume" now directly targets the input.
 
-      // Handle file input change event
+      // Handle file input change event (when user selects files via click)
       resumeFileInput.addEventListener('change', () => {
         if (resumeFileInput.files.length > 0) {
+          // **Crucial Fix:** Submit the form directly when a file is selected via input
           resumeUploadForm.submit();
         }
       });

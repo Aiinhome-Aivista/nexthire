@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f3f2f1;
+            background-color:  #cecbcbff;
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
@@ -18,7 +18,7 @@
         .container-fluid {
             max-width: 100%;
             margin: 0 auto;
-            background-color: #ffffff;
+            background-color: #e2e0e0ff;
             padding: 32px;
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
         }
@@ -86,14 +86,13 @@
         .header-icons {
             display: flex;
             align-items: center;
-            gap: 15px;
-            f
+            gap: 15px;f
             /* Space between icons */
         }
 
         .header-icons .fas {
             font-size: 18px;
-            color: rgba(0, 0, 0, 0.98);
+            color:rgba(0, 0, 0, 0.98);
             cursor: pointer;
         }
 
@@ -142,7 +141,7 @@
         .table tbody td {
             padding: 0.75rem;
             vertical-align: middle;
-            border-top: 1px solid #dee2e6;
+            border-top: 1px solid #f5fafffe;
             position: relative;
         }
 
@@ -223,7 +222,7 @@
 
         .save-btn {
             background-color: #e0d912ed;
-            color: white;
+            color: black;
         }
 
         .cancel-btn {
@@ -258,13 +257,16 @@
 
 <body>
 
+            
     <div class="container-fluid">
+       
         <div class="header">
             <a href="<?= base_url('profile'); ?>" aria-label="Go back to profile"><i class="fas fa-arrow-left"></i></a>
-            <h2>Qualifications</h2>
+             <img src="<?= base_url('assets/images/jobnest.png'); ?>"  alt="jobnestLogo" class="img-fluid" style="height:50px; width:100px; display: block; margin: 0 auto; float: left; margin-left: 20px;">
+            <h2 style="margin-right:150px;">Qualifications</h2>
         </div>
 
-        <p class="description">We use these details to show you jobs that match your unique skills and experience.</p>
+        <p class="description" style="text-align: center;">We use these details to show you jobs that match your unique skills and experience.</p>
 
         <?php
         $sections = [
@@ -293,8 +295,8 @@
                     <table class="table table-selectable" id="table-<?= $type; ?>">
                         <thead>
                             <tr id="select-all-checkbox-<?= $type; ?>">
-
-
+                               
+                                
                             </tr>
                         </thead>
                         <tbody id="<?= $type; ?>-list">
@@ -432,9 +434,9 @@
                 newRowHtml += `
                     <td class="text-end">
                         <div class="action-icons-container save-cancel-buttons">
-                            <button class="save-btn"><i class="fas fa-save"></i> Save</button>
-                            <button class="cancel-btn"><i class="fas fa-times"></i> Cancel</button>
-                        </div>
+    <button class="save-btn"><i class="fas fa-save"></i> Save</button>
+    <button class="cancel-btn"><i class="fas fa-times"></i> Cancel</button>
+</div>
                     </td>
                 </tr>`;
 

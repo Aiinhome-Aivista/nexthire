@@ -23,7 +23,6 @@
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             width: 90%;
-            /* Added for better mobile responsiveness */
         }
 
         h2 {
@@ -43,11 +42,9 @@
         .header {
             width: 100%;
             max-width: 700px;
-            /* Match container width */
             display: flex;
             justify-content: flex-start;
-            padding: 20px 0 0 20px;
-            /* Adjust padding to align with container */
+            padding: 20px 0 0 0;
             box-sizing: border-box;
         }
 
@@ -82,14 +79,36 @@
         .btn-save:hover {
             background: #07b90aff;
         }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background-color: #FFF44F;
+            color: black;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: gold;
+        }
     </style>
 </head>
 
 <body>
-    <div class="header">
-        <a href="<?= base_url('profile'); ?>" class="back-link" aria-label="Go back to profile"><i
-                class="fas fa-chevron-left"></i> Back to Profile</a>
+    <div class="header" style="display: flex; align-items: center; gap: 10px;">
+        <a href="<?= base_url('profile'); ?>" class="back-btn" aria-label="Go back to profile">
+            <i class="fas fa-chevron-left"></i> Back to Profile
+        </a>
+
+        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnestLogo" class="img-fluid"
+            style="height:50px; width:100px;">
     </div>
+
 
     <div class="container">
         <form action="<?= base_url('profile/update_contact'); ?>" method="post">

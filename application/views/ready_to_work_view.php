@@ -125,7 +125,7 @@
         </div>
         <div class="header">
             <a href="<?= base_url('profile'); ?>" class="back-link" aria-label="Go back to profile"><i class="fas fa-arrow-left"></i></a>
-            <h2>Ready to work</h2>
+            <h4>Ready to work</h4>
         </div>
         <p class="description">Let employers know that you can begin working straight away.</p>
         <?php
