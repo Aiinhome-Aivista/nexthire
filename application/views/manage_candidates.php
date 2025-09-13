@@ -3,9 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Jobnest | Employer Manage Candidates</title>
+    <title>SahajJobs | Employer Manage Candidates</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 
     <style>
         body {
@@ -118,7 +120,7 @@
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
-        <img style="height:40px; width:90px;" src="<?= base_url('assets/images/jobnest2.png'); ?>" alt="JobNest">
+        <img style="height:40px; width:90px;" src="<?= base_url('assets/images/sahajjobs1.png'); ?>" alt="JobNest">
         <a href="<?= base_url('employer_dashboard'); ?>"><i class="fas fa-home me-2"></i> Dashboard</a>
         <a href="<?= base_url('employer_job_post'); ?>"><i class="fas fa-file-alt me-2"></i> Post Job</a>
         <a href="<?= base_url('employer_manage_jobs'); ?>"><i class="fas fa-briefcase me-2"></i> Manage Jobs</a>
@@ -181,9 +183,14 @@
                                 <td><?= $candidate->work_status; ?></td>
                                 <td><?= date('d-M-Y', strtotime($candidate->created_at)); ?></td>
                                 <td class="text-center">
-                                    <button class="btn btn-table btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-table btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                                    <button class="btn btn-table btn-edit" title="Edit" data-id="<?= $candidate->id; ?>">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-table btn-delete" title="Delete" data-id="<?= $candidate->id; ?>">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
                                 </td>
+
                             </tr>
                         <?php }
                     } else { ?>
@@ -198,7 +205,8 @@
         <!-- Pagination -->
         <div class="d-flex justify-content-between align-items-center">
             <div>
-                Showing <?= $start + 1; ?> - <?= min($start + $per_page, $total_candidates); ?> of <?= $total_candidates; ?> candidates
+                Showing <?= $start + 1; ?> - <?= min($start + $per_page, $total_candidates); ?> of
+                <?= $total_candidates; ?> candidates
             </div>
             <nav>
                 <ul class="pagination mb-0">
@@ -224,11 +232,53 @@
         <footer>
             &copy; 2025 Jobnest Inc. All Rights Reserved.
         </footer>
+
+        <!-- Edit Candidate Modal -->
+        <div class="modal fade" id="editCandidateModal" tabindex="-1" aria-labelledby="editCandidateModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editCandidateModalLabel">Edit Candidate</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <form id="editCandidateForm">
+                        <div class="modal-body">
+                            <input type="hidden" name="id" id="candidate_id">
+
+                            <div class="mb-3">
+                                <label>Full Name</label>
+                                <input type="text" class="form-control" name="full_name" id="full_name">
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Email</label>
+                                <input type="email" class="form-control" name="email" id="email">
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Mobile</label>
+                                <input type="text" class="form-control" name="mobile_number" id="mobile_number">
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Work Status</label>
+                                <input type="text" class="form-control" name="work_status" id="work_status">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-warning">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- Search Script -->
     <script>
-        document.getElementById("candidateSearch").addEventListener("keyup", function() {
+        document.getElementById("candidateSearch").addEventListener("keyup", function () {
             let value = this.value.toLowerCase();
             let rows = document.querySelectorAll("#candidateTable tr");
             rows.forEach(row => {
@@ -239,11 +289,65 @@
 
     <script>
         const logoutBtn = document.getElementById('logoutBtn');
-        logoutBtn.addEventListener('click', function() {
+        logoutBtn.addEventListener('click', function () {
             if (confirm('Are you sure you want to logout?')) {
-                window.location.href = '<?= base_url("employer_login"); ?>';
+                window.location.href = '<?= base_url("Employer_controller/logout"); ?>';
             }
         });
+    </script>
+
+    <script>
+        // Open edit modal with candidate data
+        document.querySelectorAll('.btn-edit').forEach(btn => {
+            btn.addEventListener('click', function () {
+                let id = this.dataset.id;
+                fetch("<?= base_url('Employer_controller/get_candidate'); ?>/" + id)
+                    .then(res => res.json())
+                    .then(data => {
+                        document.getElementById("candidate_id").value = data.id;
+                        document.getElementById("full_name").value = data.full_name;
+                        document.getElementById("email").value = data.email;
+                        document.getElementById("mobile_number").value = data.mobile_number;
+                        document.getElementById("work_status").value = data.work_status;
+
+                        new bootstrap.Modal(document.getElementById("editCandidateModal")).show();
+                    });
+            });
+        });
+
+        // Submit Edit Form
+        document.getElementById("editCandidateForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+
+            fetch("<?= base_url('Employer_controller/update_candidate'); ?>", {
+                method: "POST",
+                body: formData
+            })
+                .then(res => res.json())
+                .then(response => {
+                    alert(response.message);
+                    location.reload();
+                });
+        });
+
+        // Delete Candidate
+        document.querySelectorAll('.btn-delete').forEach(btn => {
+            btn.addEventListener('click', function () {
+                if (confirm("Are you sure you want to delete this candidate?")) {
+                    let id = this.dataset.id;
+                    fetch("<?= base_url('Employer_controller/delete_candidate'); ?>/" + id, {
+                        method: "POST"
+                    })
+                        .then(res => res.json())
+                        .then(response => {
+                            alert(response.message);
+                            location.reload();
+                        });
+                }
+            });
+        });
+
     </script>
 </body>
 

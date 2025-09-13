@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Jobnest | Employer Manage Jobs</title>
+    <title>SahajJobs | Employer Manage Jobs</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
         body {
@@ -118,7 +119,7 @@
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
-        <img style="height:40px; width:90px;" src="<?= base_url('assets/images/jobnest2.png'); ?>" alt="JobNest">
+        <img style="height:40px; width:90px;" src="<?= base_url('assets/images/sahajjobs1.png'); ?>" alt="JobNest">
         <a href="<?= base_url('employer_dashboard'); ?>"><i class="fas fa-home me-2"></i> Dashboard</a>
         <a href="<?= base_url('employer_job_post'); ?>"><i class="fas fa-file-alt me-2"></i> Post Job</a>
         <a href="<?= base_url('employer_manage_jobs'); ?>" class="active"><i class="fas fa-briefcase me-2"></i> Manage
@@ -187,10 +188,16 @@
                                 <td><?= $job->salary; ?></td>
                                 <td><?= $job->last_date; ?></td>
                                 <td class="text-center">
-                                    <button class="btn btn-table btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-table btn-delete" title="Delete"><i
-                                            class="fas fa-trash"></i></button>
+                                    <button class="btn btn-table btn-edit" data-id="<?= $job->id; ?>"
+                                        data-employer="<?= $job->employer_id; ?>" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-table btn-delete" data-id="<?= $job->id; ?>"
+                                        data-employer="<?= $job->employer_id; ?>" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
                                 </td>
+
                             </tr>
                         <?php }
                     } else { ?>
@@ -205,7 +212,8 @@
         <!-- Pagination -->
         <div class="d-flex justify-content-between align-items-center">
             <div>
-                Showing <?= $start + 1; ?> - <?= min($start + $per_page, $total_jobs); ?> of <?= $total_jobs; ?> job posts
+                Showing <?= $start + 1; ?> - <?= min($start + $per_page, $total_jobs); ?> of <?= $total_jobs; ?> job
+                posts
             </div>
             <nav>
                 <ul class="pagination mb-0">
@@ -231,11 +239,58 @@
         <footer>
             &copy; 2025 Jobnest Inc. All Rights Reserved.
         </footer>
+
+        <!-- Edit Job Modal -->
+        <div class="modal fade" id="editJobModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <form id="editJobForm">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit Job</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" name="id" id="editJobId">
+                            <input type="hidden" name="employer_id" id="editEmployerId">
+
+                            <div class="mb-3">
+                                <label class="form-label">Job Title</label>
+                                <input type="text" class="form-control" name="title" id="editTitle">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Company</label>
+                                <input type="text" class="form-control" name="company" id="editCompany">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Location</label>
+                                <input type="text" class="form-control" name="location" id="editLocation">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Job Type</label>
+                                <input type="text" class="form-control" name="job_type" id="editJobType">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Salary</label>
+                                <input type="text" class="form-control" name="salary" id="editSalary">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Last Date</label>
+                                <input type="date" class="form-control" name="last_date" id="editLastDate">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-warning">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- Search Script -->
     <script>
-        document.getElementById("jobSearch").addEventListener("keyup", function() {
+        document.getElementById("jobSearch").addEventListener("keyup", function () {
             let value = this.value.toLowerCase();
             let rows = document.querySelectorAll("#jobTable tr");
             rows.forEach(row => {
@@ -246,11 +301,88 @@
 
     <script>
         const logoutBtn = document.getElementById('logoutBtn');
-        logoutBtn.addEventListener('click', function() {
+        logoutBtn.addEventListener('click', function () {
             if (confirm('Are you sure you want to logout?')) {
-                window.location.href = '<?= base_url("employer_login"); ?>';
+                window.location.href = '<?= base_url("Employer_controller/logout"); ?>';
             }
         });
+    </script>
+
+    <script>
+        document.querySelectorAll(".btn-edit").forEach(btn => {
+            btn.addEventListener("click", function () {
+                let jobId = this.getAttribute("data-id");
+                let employerId = this.getAttribute("data-employer");
+
+                fetch("<?= base_url('Employer_controller/get_job'); ?>/" + jobId + "/" + employerId)
+                    .then(res => res.json())
+                    .then(job => {
+                        if (job) {
+                            document.getElementById("editJobId").value = job.id;
+                            document.getElementById("editEmployerId").value = job.employer_id;
+                            document.getElementById("editTitle").value = job.title;
+                            document.getElementById("editCompany").value = job.company;
+                            document.getElementById("editLocation").value = job.location;
+                            document.getElementById("editJobType").value = job.job_type;
+                            document.getElementById("editSalary").value = job.salary;
+                            document.getElementById("editLastDate").value = job.last_date;
+
+                            new bootstrap.Modal(document.getElementById("editJobModal")).show();
+                        }
+                    });
+            });
+        });
+
+
+        document.getElementById("editJobForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            let formData = new FormData(this);
+
+            fetch("<?= base_url('Employer_controller/update_job'); ?>", {
+                method: "POST",
+                body: formData
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Job updated successfully!");
+                        location.reload();
+                    } else {
+                        alert("Error: " + data.message);
+                    }
+                });
+        });
+
+
+        document.querySelectorAll(".btn-delete").forEach(btn => {
+            btn.addEventListener("click", function () {
+                let jobId = this.getAttribute("data-id");
+                let employerId = this.getAttribute("data-employer");
+
+                if (confirm("Are you sure you want to delete this job?")) {
+                    fetch("<?= base_url('Employer_controller/delete_job'); ?>", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-Requested-With": "XMLHttpRequest"
+                        },
+                        body: JSON.stringify({ id: jobId, employer_id: employerId })
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert("Job deleted successfully!");
+                                location.reload();
+                            } else {
+                                alert("Error: " + data.message);
+                            }
+                        });
+                }
+            });
+        });
+
+
     </script>
 </body>
 

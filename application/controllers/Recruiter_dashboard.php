@@ -14,4 +14,9 @@ class Recruiter_dashboard extends CI_Controller {
         $data['recent_jobs'] = $this->Recruiter_dashboard_model->get_recent_jobs();
         $this->load->view('recruiter_dashboard', $data);
     }
+
+    public function logout() {
+        $this->session->sess_destroy();
+        redirect(base_url('employer_login'));
+    }
 }

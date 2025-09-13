@@ -26,7 +26,7 @@ class Recruiter_job_post extends CI_Controller {
             'location'    => $this->input->post('location'),
             'employees'  => $this->input->post('employees'),
             'experience'  => $this->input->post('experience'),
-            'job_type'    => $this->input->post('job-type'),
+            'job_type'    => $this->input->post('job_type'),
             'salary'      => $this->input->post('salary'),
             'description' => $this->input->post('description'),
             'requirements' => $this->input->post('requirements'),
@@ -42,5 +42,11 @@ class Recruiter_job_post extends CI_Controller {
             $this->session->set_flashdata('error', 'Failed to post job.');
             redirect(base_url('employer_job_post'));
         }
+    }
+
+
+     public function logout() {
+        $this->session->sess_destroy();
+        redirect(base_url('employer_login'));
     }
 }

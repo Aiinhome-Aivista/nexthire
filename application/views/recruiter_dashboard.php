@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jobnest | Employer Dashboard</title>
+    <title>SahajJobs | Employer Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
@@ -286,7 +286,7 @@
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
-        <img style="height:40px; width:90px;" src="<?= base_url('assets/images/jobnest2.png'); ?>" alt="JobNest"><br>
+        <img style="height:40px; width:90px;" src="<?= base_url('assets/images/sahajjobs1.png'); ?>" alt="JobNest"><br>
         <a href="<?= base_url('employer_dashboard'); ?>" class="active"><i class="fas fa-home"></i> Dashboard</a>
         <a href="<?= base_url('employer_job_post'); ?>"> <i class="fas fa-file-alt"></i> Post Job</a>
         <a href="<?= base_url('employer_manage_jobs'); ?>"><i class="fas fa-briefcase"></i> Manage Jobs</a>
@@ -387,7 +387,7 @@
         const logoutBtn = document.getElementById('logoutBtn');
         logoutBtn.addEventListener('click', function () {
             if (confirm('Are you sure you want to logout?')) {
-                window.location.href = '<?= base_url("employer_login"); ?>';
+                window.location.href = '<?= base_url("Recruiter_dashboard/logout"); ?>';
             }
         });
     </script>

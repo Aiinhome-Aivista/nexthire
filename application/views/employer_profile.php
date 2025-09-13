@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Jobnest | Employer Profile</title>
+    <title>SahajJobs | Employer Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
         body {
@@ -118,7 +119,7 @@
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
-        <img style="height:40px; width:90px;" src="<?= base_url('assets/images/jobnest2.png'); ?>" alt="JobNest">
+        <img style="height:40px; width:90px;" src="<?= base_url('assets/images/sahajjobs1.png'); ?>" alt="JobNest">
         <a href="<?= base_url('employer_dashboard'); ?>"><i class="fas fa-home me-2"></i> Dashboard</a>
         <a href="<?= base_url('employer_job_post'); ?>"><i class="fas fa-file-alt me-2"></i> Post Job</a>
         <a href="<?= base_url('employer_manage_jobs'); ?>"><i class="fas fa-briefcase me-2"></i> Manage Jobs</a>
@@ -181,11 +182,13 @@
 
 
                             <!-- Edit Profile Button -->
-                            <a href="<?= base_url('employer/edit-profile'); ?>"
-                                class="btn btn-primary mt-4 px-4 rounded-pill"
-                                style="background-color: #fca911d4; color: #000000; border-color: #fca911d4; ">
+                            <button type="button" class="btn btn-primary mt-4 px-4 rounded-pill"
+                                style="background-color: #fca911d4; color: #000000; border-color: #fca911d4;"
+                                data-bs-toggle="modal" data-bs-target="#editProfileModal"
+                                data-id="<?= $employer['id']; ?>">
                                 <i class="fas fa-edit me-2"></i> Edit Profile
-                            </a>
+                            </button>
+
 
                         </div>
                     </div>
@@ -196,16 +199,114 @@
         <footer>
             &copy; 2025 Jobnest Inc. All Rights Reserved.
         </footer>
+
+        <!-- Edit Profile Modal -->
+        <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editProfileLabel">Edit Employer Profile</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="editProfileForm">
+                        <div class="modal-body">
+                            <input type="hidden" name="id" id="employer_id">
+
+                            <div class="mb-3">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" name="full_name" id="full_name" class="form-control">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Designation</label>
+                                <input type="text" name="designation" id="designation" class="form-control">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Company</label>
+                                <input type="text" name="company" id="company" class="form-control">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" name="email" id="email" class="form-control">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Mobile Number</label>
+                                <input type="text" name="mobile_number" id="mobile_number" class="form-control">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script>
         const logoutBtn = document.getElementById('logoutBtn');
-        logoutBtn.addEventListener('click', function() {
+        logoutBtn.addEventListener('click', function () {
             if (confirm('Are you sure you want to logout?')) {
                 window.location.href = '<?= base_url("employer_login"); ?>';
             }
         });
     </script>
+
+    <script>
+        const logoutBtn = document.getElementById('logoutBtn');
+        logoutBtn.addEventListener('click', function () {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '<?= base_url("Employer_controller/logout"); ?>';
+            }
+        });
+    </script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll('[data-bs-target="#editProfileModal"]').forEach(button => {
+                button.addEventListener("click", function () {
+                    let employerId = this.getAttribute("data-id");
+
+                    fetch("<?= base_url('Employer_controller/getEmployerById'); ?>/" + employerId)
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById("employer_id").value = data.id;
+                            document.getElementById("full_name").value = data.full_name;
+                            document.getElementById("designation").value = data.designation;
+                            document.getElementById("company").value = data.company;
+                            document.getElementById("email").value = data.email;
+                            document.getElementById("mobile_number").value = data.mobile_number;
+                        })
+                        .catch(err => console.error("Error fetching data:", err));
+                });
+            });
+
+            // Handle form submission
+            document.getElementById("editProfileForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                let formData = new FormData(this);
+
+                fetch("<?= base_url('Employer_controller/updateEmployer'); ?>", {
+                    method: "POST",
+                    body: formData
+                })
+                    .then(response => response.text())
+                    .then(result => {
+                        alert("Profile updated successfully!");
+                        location.reload();
+                    })
+                    .catch(err => console.error("Error updating:", err));
+            });
+        });
+    </script>
+
 </body>
 
 </html>
