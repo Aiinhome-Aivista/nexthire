@@ -1,12 +1,14 @@
 <?php
-class Recruiter_login_model extends CI_Model {
+class Recruiter_login_model extends CI_Model
+{
 
-    public function get_by_email($email) {
+    public function get_by_email($email)
+    {
         $this->db->where('email', $email);
         $query = $this->db->get('employer_register');
         return $query->row();
     }
-     // For Google login: get user by email
+    // For Google login: get user by email
     public function get_user_by_email($email)
     {
         return $this->db->where('email', $email)->get('employer_register')->row_array();
@@ -34,5 +36,32 @@ class Recruiter_login_model extends CI_Model {
 
         $this->db->insert('employer_register', $data);
         return $this->db->insert_id();
+    }
+
+    // Profile photo methods
+    public function get_profile_photo($user_id)
+    {
+        $result = $this->db->get_where('profile_photos', ['user_id' => $user_id])->row_array();
+        return $result ? 'assets/profile_photos/' . $result['file_name'] : null;
+    }
+
+    public function save_profile_photo($user_id, $file_name)
+    {
+        $data = [
+            'user_id' => $user_id,
+            'file_name' => $file_name,
+            'uploaded_at' => date('Y-m-d H:i:s')
+        ];
+        return $this->db->insert('profile_photos', $data);
+    }
+
+    public function update_profile_photo($user_id, $file_name)
+    {
+        $data = [
+            'file_name' => $file_name,
+            'updated_at' => date('Y-m-d H:i:s')
+        ];
+        $this->db->where('user_id', $user_id)->update('profile_photos', $data);
+        return $this->db->affected_rows() > 0;
     }
 }

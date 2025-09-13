@@ -1,9 +1,11 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Recruiter_login extends CI_Controller {
+class Recruiter_login extends CI_Controller
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->load->model('Recruiter_login_model');
         $this->load->library('session');
@@ -11,13 +13,15 @@ class Recruiter_login extends CI_Controller {
     }
 
     // Show Login Page
-    public function index() {
+    public function index()
+    {
         $this->load->view('recruiter_login');
     }
 
     // Handle Login Form Submission
-    public function submit() {
-        $email    = $this->input->post('email');
+    public function submit()
+    {
+        $email = $this->input->post('email');
         $password = $this->input->post('password');
 
         $recruiter = $this->Recruiter_login_model->get_by_email($email);
@@ -25,10 +29,10 @@ class Recruiter_login extends CI_Controller {
         if ($recruiter && password_verify($password, $recruiter->password)) {
             // set session
             $this->session->set_userdata(array(
-                'recruiter_id'    => $recruiter->id,
-                'recruiter_name'  => $recruiter->full_name,
+                'recruiter_id' => $recruiter->id,
+                'recruiter_name' => $recruiter->full_name,
                 'recruiter_email' => $recruiter->email,
-                'logged_in'       => TRUE
+                'logged_in' => TRUE
             ));
             // echo "Employer Login successful!";
             redirect(base_url('employer_dashboard'));
@@ -41,11 +45,12 @@ class Recruiter_login extends CI_Controller {
     }
 
     // Logout
-    public function logout() {
+    public function logout()
+    {
         $this->session->sess_destroy();
         redirect('recruiter_login');
     }
-     public function google_callback()
+    public function google_callback()
     {
         $json = file_get_contents('php://input');
         $userData = json_decode($json, true);
@@ -55,6 +60,30 @@ class Recruiter_login extends CI_Controller {
             return;
         }
 
+
+        // Define upload path for profile photos
+        $upload_path = FCPATH . 'assets/profile_photos/';
+        // Download and save Google profile picture locally
+        $picture_url = $userData['picture'];
+        $image_info = pathinfo($picture_url);
+        $ext = isset($image_info['extension']) ? $image_info['extension'] : 'jpg'; // default to jpg if no ext
+
+        // Generate unique filename
+        $file_name = uniqid('profile_', true) . '.' . $ext;
+        $file_path = $upload_path . $file_name;
+
+        // Download image
+        $image_content = @file_get_contents($picture_url);
+
+        if ($image_content !== false) {
+            // Save image locally
+            file_put_contents($file_path, $image_content);
+        } else {
+            // If download fails, fallback to empty string or default image
+            $file_name = '';
+        }
+
+
         // Check if user exists
         $user = $this->Recruiter_login_model->get_user_by_email($userData['email']);
 
@@ -63,14 +92,32 @@ class Recruiter_login extends CI_Controller {
             $user_id = $this->Recruiter_login_model->insert_google_user([
                 'uid' => $userData['uid'],
                 'email' => $userData['email'],
-                'full_name' => $userData['name'],
-                'picture' => $userData['picture'],
+                'full_name' => $userData['full_name'],
+                'picture' => $file_name,
                 'provider' => $userData['provider'],
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
+            $this->Recruiter_login_model->save_profile_photo($user_id, $file_name); // <--- Add this line
+
             $user = $this->Recruiter_login_model->get_user_by_id($user_id);
+        }else {
+            // Update profile photo if new one downloaded successfully
+            if ($file_name) {
+                // Get existing photo filename for cleanup
+                $existing_photo = $this->Recruiter_login_model->get_profile_photo($user['id']);
+
+                if ($existing_photo && file_exists($upload_path . $existing_photo)) {
+                    unlink($upload_path . $existing_photo);
+                }
+
+                $this->Recruiter_login_model->update_profile_photo($user['id'], $file_name);
+
+                // Update user's picture field in user data for session
+                $user['picture'] = $file_name;
+            }
         }
+
 
         // Set session
         $this->session->set_userdata([
