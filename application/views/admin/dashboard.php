@@ -447,7 +447,8 @@
         <div class="dashboard-stats">
             <div class="stat-card candidates">
                 <div class="stat-info">
-                    <h3>0</h3>
+                    <!-- Replace the hardcoded 0 with the dynamic count -->
+                    <h3><?php echo $candidate_count; ?></h3>
                     <p>Candidates</p>
                 </div>
                 <div class="stat-icon">
@@ -457,7 +458,7 @@
 
             <div class="stat-card recruiters">
                 <div class="stat-info">
-                    <h3>0</h3>
+                    <h3><?php echo $employer_count; ?></h3>
                     <p>Employers</p>
                 </div>
                 <div class="stat-icon">
@@ -467,7 +468,7 @@
 
             <div class="stat-card jobs">
                 <div class="stat-info">
-                    <h3>0</h3>
+                    <h3><?php echo $job_count; ?></h3>
                     <p>Job Posts</p>
                 </div>
                 <div class="stat-icon">
@@ -560,8 +561,8 @@
         const logoutBtn = document.getElementById('logoutBtn');
         logoutBtn.addEventListener('click', function() {
             if (confirm('Are you sure you want to logout?')) {
-                
-                window.location.href = '<?= base_url("employer_login"); ?>';
+
+                window.location.href = '<?= base_url("home"); ?>';
             }
         });
     </script>

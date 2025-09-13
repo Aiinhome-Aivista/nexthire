@@ -268,6 +268,125 @@
             font-style: italic;
             color: #888;
         }
+
+        /* Enhanced Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 450px;
+            max-width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(-50px);
+            transition: transform 0.4s ease;
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            padding: 20px 25px 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 1.4rem;
+            color: #333;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #444;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(239, 218, 86, 0.2);
+        }
+
+        .modal-footer {
+            padding: 15px 25px 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .modal-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-btn-primary {
+            background-color: var(--primary);
+            color: #333;
+        }
+
+        .modal-btn-primary:hover {
+            background-color: #e6cf4d;
+        }
+
+        .modal-btn-secondary {
+            background-color: #f0f0f0;
+            color: #555;
+        }
+
+        .modal-btn-secondary:hover {
+            background-color: #e2e2e2;
+        }
     </style>
 </head>
 
@@ -309,7 +428,7 @@
                 <table class="table table-bordered table-striped">
                     <thead class="table-dark">
                         <tr>
-                            <th>ID</th>
+                            <th>S.No</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Mobile Number</th>
@@ -319,17 +438,17 @@
                     </thead>
                     <tbody id="candidateTableBody">
                         <?php if (!empty($candidates)): ?>
+                            <?php $ui_id = 1; ?>
                             <?php foreach ($candidates as $candidate): ?>
-                                <tr>
-                                    <td><?= htmlspecialchars($candidate->id) ?></td>
-                                    <td><?= htmlspecialchars($candidate->full_name) ?></td>
-                                    <td><?= htmlspecialchars($candidate->email) ?></td>
-                                    <td><?= htmlspecialchars($candidate->mobile_number) ?></td>
-                                    <td><?= htmlspecialchars($candidate->work_status) ?></td>
+                                <tr data-id="<?= $candidate->id ?>">
+                                    <td><?= $ui_id++; ?></td>
+                                    <td class="col-name"><?= $candidate->full_name ?></td>
+                                    <td class="col-email"><?= $candidate->email ?></td>
+                                    <td class="col-mobile"><?= $candidate->mobile_number ?></td>
+                                    <td class="col-work"><?= $candidate->work_status ?></td>
                                     <td>
                                         <button class="btn btn-table btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-table btn-delete" title="Delete"><i
-                                                class="fas fa-trash"></i></button>
+                                        <button class="btn btn-table btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -353,11 +472,55 @@
         </div>
     </div>
 
+
+    <!-- Edit Candidate Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Candidate</h3>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <input type="hidden" id="edit_id">
+                    
+                    <div class="form-group">
+                        <label for="edit_full_name">Full Name</label>
+                        <input type="text" id="edit_full_name" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit_email">Email</label>
+                        <input type="email" id="edit_email" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit_mobile_number">Mobile Number</label>
+                        <input type="text" id="edit_mobile_number" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit_work_status">Work Status</label>
+                        <input type="text" id="edit_work_status" class="form-control">
+                    </div>
+
+                    <!-- <div class="form-group">
+                        <label for="edit_password">Password <span style="font-weight:400;color:#888;">(leave blank to keep unchanged)</span></label>
+                        <input type="password" id="edit_password" class="form-control" autocomplete="new-password" placeholder="Enter new password">
+                    </div> -->
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="updateBtn" class="modal-btn modal-btn-primary">Update</button>
+                <button type="button" id="closeModal" class="modal-btn modal-btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         const logoutBtn = document.getElementById('logoutBtn');
         logoutBtn.addEventListener('click', function() {
             if (confirm('Are you sure you want to logout?')) {
-                window.location.href = '<?= base_url("employer_login"); ?>';
+                window.location.href = '<?= base_url("home"); ?>';
             }
         });
 
@@ -510,6 +673,101 @@
                 const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
                 goToPage(totalPages);
             });
+        });
+
+
+        // 🔹 Function to re-number the IDs in the first column
+        function renumberTable() {
+            const rows = document.querySelectorAll("#candidateTableBody tr");
+            rows.forEach((row, index) => {
+                row.querySelector("td").textContent = index + 1; // প্রথম কলামে S.No বসাবে
+            });
+        }
+
+
+        // 🔹 Delete functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.btn-delete')) {
+                const row = e.target.closest('tr');
+                const candidateId = row.getAttribute('data-id');
+
+                if (confirm('Are you sure you want to delete this candidate?')) {
+                    fetch('<?= base_url("admin/candidate_management/delete_candidate/") ?>' + candidateId)
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                // Remove row from UI
+                                row.remove();
+
+                                // Recalculate S.No
+                                renumberTable();
+
+                                alert('Candidate deleted successfully.');
+                            } else {
+                                alert('Error deleting candidate.');
+                            }
+                        })
+                        .catch(err => console.error(err));
+                }
+            }
+        });
+
+
+
+        // Open Modal with Candidate Data
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.btn-edit')) {
+                const row = e.target.closest('tr');
+                const candidateId = row.getAttribute('data-id');
+
+                // Fill modal with row data
+                document.getElementById('edit_id').value = candidateId;
+                document.getElementById('edit_full_name').value = row.querySelector('.col-name').textContent;
+                document.getElementById('edit_email').value = row.querySelector('.col-email').textContent;
+                document.getElementById('edit_mobile_number').value = row.querySelector('.col-mobile').textContent;
+                document.getElementById('edit_work_status').value = row.querySelector('.col-work').textContent;
+
+                // Show modal
+                document.getElementById('editModal').classList.add('show');
+            }
+        });
+
+        // Close Modal
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('editModal').classList.remove('show');
+        });
+
+        // Update Candidate
+        document.getElementById('updateBtn').addEventListener('click', function() {
+            const formData = new FormData();
+            formData.append('id', document.getElementById('edit_id').value);
+            formData.append('full_name', document.getElementById('edit_full_name').value);
+            formData.append('email', document.getElementById('edit_email').value);
+            formData.append('mobile_number', document.getElementById('edit_mobile_number').value);
+            formData.append('work_status', document.getElementById('edit_work_status').value);
+            // formData.append('password', document.getElementById('edit_password').value); // Add password
+
+            fetch('<?= base_url("admin/candidate_management/update_candidate") ?>', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        // Update row in UI
+                        const row = document.querySelector(`tr[data-id="${formData.get('id')}"]`);
+                        row.querySelector('.col-name').textContent = data.data.full_name;
+                        row.querySelector('.col-email').textContent = data.data.email;
+                        row.querySelector('.col-mobile').textContent = data.data.mobile_number;
+                        row.querySelector('.col-work').textContent = data.data.work_status;
+
+                        document.getElementById('editModal').classList.remove('show');
+                        alert('Candidate updated successfully.');
+                    } else {
+                        alert('Error updating candidate.');
+                    }
+                })
+                .catch(err => console.error(err));
         });
     </script>
 </body>

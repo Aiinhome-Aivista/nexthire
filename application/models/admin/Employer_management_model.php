@@ -8,4 +8,9 @@ class Employer_management_model extends CI_Model {
         $query = $this->db->get('employer_register');
         return $query->result();
     }
+
+    public function count_employers()
+    {
+        return $this->db->count_all('employer_register');
+    }
 }

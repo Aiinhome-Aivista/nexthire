@@ -1119,10 +1119,10 @@
         // Dynamic (live) password validation
         passwordInput.addEventListener('input', function () {
             const val = passwordInput.value.trim();
-            // if (val.length >= 6) {
+            if (val.length >= 6) {
                 passwordError.style.display = 'none';
                 passwordInput.classList.remove('input-error');
-            // }
+            }
             else {
                 passwordError.style.display = 'block';
                 passwordError.textContent = 'Password must be at least 6 characters';

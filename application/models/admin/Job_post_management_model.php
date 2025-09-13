@@ -8,4 +8,9 @@ class Job_post_management_model extends CI_Model {
         $query = $this->db->get('posted_jobs');
         return $query->result();
     }
+
+    public function count_jobs()
+    {
+        return $this->db->count_all('posted_jobs');
+    }
 }
