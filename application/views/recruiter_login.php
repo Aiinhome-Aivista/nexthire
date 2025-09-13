@@ -6,6 +6,7 @@
   <title>SahajJobs | Employer Login</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <!-- Firebase SDK (compat version for v8 style) -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
@@ -198,7 +199,11 @@
       flex-direction: column;
       gap: 6px;
       margin-bottom: 20px;
+      position: relative;
+
     }
+
+
 
     .form-group label {
       font-size: 15px;
@@ -401,7 +406,7 @@
         <div class="form-group">
           <label for="password">Password<span style="color:#e42e2e;">*</span></label>
           <input type="password" name="password" id="password" placeholder="Enter your password" required>
-          <span id="toggle-password" style="position:absolute; top:57px; right:15px; cursor:pointer;">
+          <span id="toggle-password" style="position:absolute; top:42px; right:15px; cursor:pointer;">
             <i class="far fa-eye"></i>
           </span>
         </div>
