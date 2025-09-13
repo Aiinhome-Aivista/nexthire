@@ -1,9 +1,21 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Recruiter_dashboard_model extends CI_Model {
+class Recruiter_dashboard_model extends CI_Model
+{
 
-    public function get_recent_jobs($limit = 5) {
+    public function count_candidates()
+    {
+        return $this->db->count_all('register');
+    }
+
+    public function count_job_posts()
+    {
+        return $this->db->count_all('posted_jobs');
+    }
+
+    public function get_recent_jobs($limit = 5)
+    {
         $this->db->order_by('created_at', 'DESC');
         $this->db->limit($limit);
         $query = $this->db->get('posted_jobs');

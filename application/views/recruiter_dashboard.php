@@ -65,7 +65,7 @@
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .stats {
@@ -160,7 +160,7 @@
         }
 
         .model-card-header {
-            padding: 15px 20px;
+            padding: 4px 20px;
             border-bottom: 1px solid #eee;
             display: flex;
             justify-content: space-between;
@@ -223,6 +223,63 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .header-title h1 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-title p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 576px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .header-title h1 {
+                justify-content: center;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #666;
+        }
     </style>
 </head>
 
@@ -243,25 +300,39 @@
 
     <!-- Main Content -->
     <div class="main">
+        <div class="header">
+            <div class="header-title">
+                <h1>
+                    Employer Dashboard
+                </h1>
+                <p>Welcome back, Employer! </p>
+            </div>
+            <div class="user-info">
+                <div class="notifications">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="user-name">Employer</div>
+            </div>
+        </div>
+
         <!-- Dashboard -->
         <div class="card">
-            <h1>Dashboard</h1>
             <div class="stats">
+                <div class="stat-box">
+                    <h3><?= $candidates_count ?></h3>
+                    <p>Candidates</p>
+                </div>
+                <div class="stat-box">
+                    <h3><?= $job_posts_count ?></h3>
+                    <p>Job Posts</p>
+                </div>
                 <div class="stat-box">
                     <h3>2</h3>
                     <p>Active Jobs</p>
                 </div>
                 <div class="stat-box">
-                    <h3>0</h3>
-                    <p>Expired Jobs</p>
-                </div>
-                <div class="stat-box">
                     <h3>10</h3>
                     <p>Total Applications</p>
-                </div>
-                <div class="stat-box">
-                    <h3>5</h3>
-                    <p>Shortlisted</p>
                 </div>
             </div>
         </div>
@@ -307,12 +378,14 @@
             </div>
         </div>
 
-    </div>
+        <footer>
+            &copy; 2025 Jobnest Inc. All Rights Reserved.
+        </footer>
     </div>
 
     <script>
         const logoutBtn = document.getElementById('logoutBtn');
-        logoutBtn.addEventListener('click', function() {
+        logoutBtn.addEventListener('click', function () {
             if (confirm('Are you sure you want to logout?')) {
                 window.location.href = '<?= base_url("employer_login"); ?>';
             }

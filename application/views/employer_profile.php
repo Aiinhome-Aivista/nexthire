@@ -119,14 +119,16 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <img style="height:40px; width:90px;" src="<?= base_url('assets/images/jobnest2.png'); ?>" alt="JobNest">
-        <a href="#"><i class="fas fa-home me-2"></i> Dashboard</a>
+        <a href="<?= base_url('employer_dashboard'); ?>"><i class="fas fa-home me-2"></i> Dashboard</a>
         <a href="<?= base_url('employer_job_post'); ?>"><i class="fas fa-file-alt me-2"></i> Post Job</a>
         <a href="<?= base_url('employer_manage_jobs'); ?>"><i class="fas fa-briefcase me-2"></i> Manage Jobs</a>
         <a href="<?= base_url('employer_manage_candidates'); ?>"><i class="fas fa-user-graduate me-2"></i>
             Candidates</a>
         <a href="<?= base_url('employer_profile'); ?>" class="active"><i class="fas fa-building"></i> Employer
             Profile</a>
-        <a href="#"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
+        <a href="#" id="logoutBtn">
+            <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+        </a>
     </div>
 
     <!-- Content -->
@@ -195,6 +197,15 @@
             &copy; 2025 Jobnest Inc. All Rights Reserved.
         </footer>
     </div>
+
+    <script>
+        const logoutBtn = document.getElementById('logoutBtn');
+        logoutBtn.addEventListener('click', function() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '<?= base_url("employer_login"); ?>';
+            }
+        });
+    </script>
 </body>
 
 </html>

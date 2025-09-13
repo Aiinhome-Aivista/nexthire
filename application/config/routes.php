@@ -53,6 +53,7 @@ $route['default_controller'] = 'home';
 $route['policy'] = 'Policy/index'; // This will map /policy to Policy/index
 $route['privacypolicy'] = 'Policy/index';
 $route['register'] = 'Register/index';
+
 $route['employer_register'] = 'Recruiter/index';
 $route['employer_login'] = 'Recruiter_login/index';
 $route['employer_dashboard'] = 'Recruiter_dashboard/index';
@@ -60,6 +61,7 @@ $route['employer_job_post'] = 'Recruiter_job_post/index';
 $route['employer_manage_jobs'] = 'Employer_controller/manage_jobs';
 $route['employer_manage_candidates'] = 'Employer_controller/manage_candidates';
 $route['employer_profile'] = 'Employer_controller/manage_profile';
+
 $route['login/google_callback'] = 'Login/google_callback';
 $route['register/google_callback'] = 'Register/google_callback';
 $route['recruiter/google_callback'] = 'Recruiter/google_callback';

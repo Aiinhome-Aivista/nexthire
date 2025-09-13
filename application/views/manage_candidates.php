@@ -110,7 +110,7 @@
             padding: 20px;
             font-size: 14px;
             color: #666;
-            margin-top: 300px;
+            margin-top: 240px;
         }
     </style>
 </head>
@@ -119,13 +119,15 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <img style="height:40px; width:90px;" src="<?= base_url('assets/images/jobnest2.png'); ?>" alt="JobNest">
-        <a href="#"><i class="fas fa-home me-2"></i> Dashboard</a>
+        <a href="<?= base_url('employer_dashboard'); ?>"><i class="fas fa-home me-2"></i> Dashboard</a>
         <a href="<?= base_url('employer_job_post'); ?>"><i class="fas fa-file-alt me-2"></i> Post Job</a>
         <a href="<?= base_url('employer_manage_jobs'); ?>"><i class="fas fa-briefcase me-2"></i> Manage Jobs</a>
         <a href="<?= base_url('employer_manage_candidates'); ?>" class="active"><i
                 class="fas fa-user-graduate me-2"></i> Candidates</a>
         <a href="<?= base_url('employer_profile'); ?>"><i class="fas fa-building"></i> Employer Profile</a>
-        <a href="#"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
+        <a href="#" id="logoutBtn">
+            <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+        </a>
     </div>
 
     <!-- Content -->
@@ -135,7 +137,7 @@
         </div>
 
         <?php
-        // Pagination setup (same style as Manage Jobs)
+        // Pagination setup
         $per_page = 5;
         $total_candidates = count($candidates);
         $total_pages = ceil($total_candidates / $per_page);
@@ -150,6 +152,11 @@
         ?>
 
         <div class="table-responsive">
+            <!-- Search Bar -->
+            <div class="mb-3 d-flex justify-content-between">
+                <input type="text" id="candidateSearch" class="form-control w-25" placeholder="Search candidates...">
+            </div>
+
             <table class="table table-hover table-bordered align-middle shadow-sm">
                 <thead class="text-center">
                     <tr>
@@ -162,7 +169,7 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="candidateTable">
                     <?php if (!empty($paged_candidates)) {
                         $i = $start + 1;
                         foreach ($paged_candidates as $candidate) { ?>
@@ -175,8 +182,7 @@
                                 <td><?= date('d-M-Y', strtotime($candidate->created_at)); ?></td>
                                 <td class="text-center">
                                     <button class="btn btn-table btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-table btn-delete" title="Delete"><i
-                                            class="fas fa-trash"></i></button>
+                                    <button class="btn btn-table btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>
                         <?php }
@@ -190,32 +196,55 @@
         </div>
 
         <!-- Pagination -->
-        <nav>
-            <ul class="pagination justify-content-center">
-                <?php if ($page > 1): ?>
-                    <li class="page-item">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                Showing <?= $start + 1; ?> - <?= min($start + $per_page, $total_candidates); ?> of <?= $total_candidates; ?> candidates
+            </div>
+            <nav>
+                <ul class="pagination mb-0">
+                    <li class="page-item <?= ($page <= 1) ? 'disabled' : ''; ?>">
+                        <a class="page-link" href="?page=1">First</a>
+                    </li>
+                    <li class="page-item <?= ($page <= 1) ? 'disabled' : ''; ?>">
                         <a class="page-link" href="?page=<?= $page - 1; ?>">Previous</a>
                     </li>
-                <?php endif; ?>
-
-                <?php for ($p = 1; $p <= $total_pages; $p++): ?>
-                    <li class="page-item <?= ($p == $page) ? 'active' : ''; ?>">
-                        <a class="page-link" href="?page=<?= $p; ?>"><?= $p; ?></a>
+                    <li class="page-item active">
+                        <span class="page-link"><?= $page; ?></span>
                     </li>
-                <?php endfor; ?>
-
-                <?php if ($page < $total_pages): ?>
-                    <li class="page-item">
+                    <li class="page-item <?= ($page >= $total_pages) ? 'disabled' : ''; ?>">
                         <a class="page-link" href="?page=<?= $page + 1; ?>">Next</a>
                     </li>
-                <?php endif; ?>
-            </ul>
-        </nav>
+                    <li class="page-item <?= ($page >= $total_pages) ? 'disabled' : ''; ?>">
+                        <a class="page-link" href="?page=<?= $total_pages; ?>">Last</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
 
         <footer>
             &copy; 2025 Jobnest Inc. All Rights Reserved.
         </footer>
     </div>
+
+    <!-- Search Script -->
+    <script>
+        document.getElementById("candidateSearch").addEventListener("keyup", function() {
+            let value = this.value.toLowerCase();
+            let rows = document.querySelectorAll("#candidateTable tr");
+            rows.forEach(row => {
+                row.style.display = row.innerText.toLowerCase().includes(value) ? "" : "none";
+            });
+        });
+    </script>
+
+    <script>
+        const logoutBtn = document.getElementById('logoutBtn');
+        logoutBtn.addEventListener('click', function() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '<?= base_url("employer_login"); ?>';
+            }
+        });
+    </script>
 </body>
 
 </html>
