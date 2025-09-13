@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Jobnest</title>
+    <title>Privacy Policy - SahajJobs</title>
     <style>
         body {
             font-family: 'Nunito', Arial, sans-serif;
@@ -38,7 +38,7 @@
 <body>
     <div class="container">
         <h1>Privacy Policy</h1>
-        <p>Your privacy is important to us. This Privacy Policy explains how Jobnest collects, uses, and protects your personal information. By using our platform, you agree to the terms of this policy.</p>
+        <p>Your privacy is important to us. This Privacy Policy explains how SahajJobs collects, uses, and protects your personal information. By using our platform, you agree to the terms of this policy.</p>
 
         <h2>Information We Collect</h2>
         <p>We collect information to provide and improve our services, including:</p>

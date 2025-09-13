@@ -4,7 +4,7 @@
     <!-- Logo Section -->
     <div class="logo-section">
       <a href="<?= base_url(); ?>">
-        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="Jobnest" class="logo">
+        <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2" class="logo">
       </a>
     </div>
 

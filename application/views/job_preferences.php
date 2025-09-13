@@ -7,10 +7,12 @@
     <title>Job Preferences</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
     <style>
         body {
-            background-color: #e2e0e0ff;
-            font-family: 'Inter', sans-serif;
+            background-color: #F7F8FA;
+            font-family: 'Nunito', Arial, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
@@ -141,7 +143,7 @@
             flex-grow: 1;
             margin-right: 10px;
         }
-        
+
         .add-icon {
             font-size: 18px;
             color: #007bff;
@@ -303,7 +305,8 @@
             <i class="fas fa-chevron-left"></i> Back to Profile
         </a>
 
-        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnestLogo" class="img-fluid" style="height:50px; width:100px;">
+        <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2" class="img-fluid"
+            style="height:50px; width:140px;">
     </div>
 
     <div class="container">
@@ -338,7 +341,8 @@
                 <div class="icons-container">
                     <?php if (!empty($job_types)): ?>
                         <i class="fas fa-edit edit-icon" data-bs-toggle="modal" data-bs-target="#preferenceModal"
-                            data-modal-type="job_types" data-current-values="<?= htmlspecialchars(json_encode($job_types)); ?>"></i>
+                            data-modal-type="job_types"
+                            data-current-values="<?= htmlspecialchars(json_encode($job_types)); ?>"></i>
                     <?php else: ?>
                         <i class="fas fa-plus add-icon" data-bs-toggle="modal" data-bs-target="#preferenceModal"
                             data-modal-type="job_types"></i>
@@ -384,7 +388,8 @@
                 <span>Relocation</span>
                 <div class="icons-container">
                     <i class="fas fa-edit edit-icon" data-bs-toggle="modal" data-bs-target="#preferenceModal"
-                        data-modal-type="relocation" data-current-willingness="<?= $is_willing_to_relocate ? 'true' : 'false'; ?>"></i>
+                        data-modal-type="relocation"
+                        data-current-willingness="<?= $is_willing_to_relocate ? 'true' : 'false'; ?>"></i>
                 </div>
             </div>
             <div class="qualification-item">
@@ -400,7 +405,8 @@
                 <div class="icons-container">
                     <?php if (!empty($work_setting)): ?>
                         <i class="fas fa-edit edit-icon" data-bs-toggle="modal" data-bs-target="#preferenceModal"
-                            data-modal-type="work_setting" data-current-setting="<?= htmlspecialchars($work_setting); ?>"></i>
+                            data-modal-type="work_setting"
+                            data-current-setting="<?= htmlspecialchars($work_setting); ?>"></i>
                     <?php else: ?>
                         <i class="fas fa-plus add-icon" data-bs-toggle="modal" data-bs-target="#preferenceModal"
                             data-modal-type="work_setting"></i>
@@ -415,7 +421,8 @@
         </div>
     </div>
 
-    <div class="modal fade" id="preferenceModal" tabindex="-1" aria-labelledby="preferenceModalLabel" aria-hidden="true">
+    <div class="modal fade" id="preferenceModal" tabindex="-1" aria-labelledby="preferenceModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -427,8 +434,10 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger rounded-lg me-auto" id="deleteButton">Delete</button>
                     <div>
-                        <button type="button" class="btn btn-secondary me-2 rounded-lg" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary rounded-lg" id="saveButton" form="dynamicForm">Save</button>
+                        <button type="button" class="btn btn-secondary me-2 rounded-lg"
+                            data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary rounded-lg" id="saveButton"
+                            form="dynamicForm">Save</button>
                     </div>
                 </div>
             </div>
@@ -764,4 +773,5 @@
         });
     </script>
 </body>
+
 </html>

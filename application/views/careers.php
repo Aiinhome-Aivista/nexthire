@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Careers - Jobnest</title>
+    <title>Careers - SahajJobs</title>
     <style>
         body {
             font-family: 'Nunito', Arial, sans-serif;
@@ -36,7 +36,7 @@
 <body>
     <div class="container">
         <h1>Career Resources</h1>
-        <p>Welcome to the Jobnest Career Resources page. We're here to help you navigate your professional journey, from writing the perfect resume to acing your next interview.</p>
+        <p>Welcome to the SahajJobs Career Resources page. We're here to help you navigate your professional journey, from writing the perfect resume to acing your next interview.</p>
         
         <h2>Resume & Cover Letter Tips</h2>
         <p>Your resume is your first impression. A well-crafted resume can open doors to new opportunities. Here are some of our top tips:</p>

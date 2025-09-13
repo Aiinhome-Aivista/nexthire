@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Report an Issue - Jobnest</title>
+    <title>Report an Issue - SahajJobs</title>
     <style>
         body {
             font-family: 'Nunito', Arial, sans-serif;
@@ -35,7 +35,7 @@
 <body>
     <div class="container">
         <h1>Report an Issue</h1>
-        <p>Found a bug? Facing a technical problem? Please help us improve Jobnest by reporting any issues you encounter.</p>
+        <p>Found a bug? Facing a technical problem? Please help us improve SahajJobs by reporting any issues you encounter.</p>
         <p>To ensure we can solve your problem quickly, please include the following information in your report:</p>
         
         <ul>

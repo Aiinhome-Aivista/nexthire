@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Jobnest | Employer Login</title>
+  <title>SahajJobs | Employer Login</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 
@@ -363,7 +363,7 @@
   <div class="header">
     <div class="header-content">
       <div class="logo">
-        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="Jobnest">
+        <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
       </div>
       <div class="signup-link">
         New Recruiter? <a href="<?= base_url('employer_register'); ?>">Register</a> here
@@ -375,7 +375,7 @@
   <div class="container">
     <!-- Left Card -->
     <div class="left-card">
-      <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnest">
+      <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
       <h3>Recruiter Benefits</h3>
       <ul>
         <li><span class="green-dot"></span>Hire from India's No.1 Job Site</li>

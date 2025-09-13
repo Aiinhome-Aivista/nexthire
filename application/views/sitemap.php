@@ -1,7 +1,7 @@
 <?php include('includes/header.php'); ?>
 
 <h1>Sitemap</h1>
-<p>This page provides a comprehensive list of all the main sections and pages on the Jobnest website to help you navigate our site with ease.</p>
+<p>This page provides a comprehensive list of all the main sections and pages on the SahajJobs website to help you navigate our site with ease.</p>
 
 <div class="sitemap-list">
     <h2>Main Sections</h2>

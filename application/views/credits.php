@@ -1,7 +1,7 @@
 <?php include('includes/header.php'); ?>
 
 <h1>Credits</h1>
-<p>We would like to acknowledge the contributions and inspiration from various sources that helped in the creation of Jobnest. The following are credited for their work:</p>
+<p>We would like to acknowledge the contributions and inspiration from various sources that helped in the creation of SahajJobs. The following are credited for their work:</p>
 
 <h2>Third-Party Libraries & Resources</h2>
 <ul>

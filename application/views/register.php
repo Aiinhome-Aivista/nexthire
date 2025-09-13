@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Jobnest | Registration</title>
+  <title>SahajJobs | Registration</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 
@@ -120,9 +120,9 @@
       width: 213px;
       height: 90px;
       margin-bottom: 16px;
-      border-radius: 50%;
-      object-fit: cover;
-      background: #f2f3f8;
+      /* border-radius: 50%; */
+      /* object-fit: cover;
+      background: #f2f3f8; */
     }
 
     .left-card h3 {
@@ -522,7 +522,7 @@
   <div class="header">
     <div class="header-content">
       <div class="logo">
-        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnest">
+        <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
       </div>
       <div class="login-link">
         Already Registered? <a href="<?= base_url('home'); ?>">Login</a> here
@@ -531,7 +531,7 @@
   </div>
   <div class="container">
     <div class="left-card" style="position:sticky; top:32px; z-index:2;">
-      <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnest">
+      <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
       <h3>On registering, you can</h3>
       <ul>
         <li><span class="green-dot"></span>Build your profile and let recruiters find you</li>
@@ -554,7 +554,7 @@
           <?= $this->session->flashdata('error') ?>
         </div>
       <?php endif; ?>
-      <div class="form-title">Create your Jobnest profile</div>
+      <div class="form-title">Create your Sahaj Job profile</div>
       <div class="form-subtitle">Search & apply to jobs from India's No.1 Job Site</div>
       <form id="registration-form" action="<?= base_url('register/submit'); ?>" method="post">
         <div class="form-row">
@@ -612,7 +612,7 @@
             <div class="terms-row">
               By clicking Register, you agree to the
               <a href="#">Terms and Conditions</a> &
-              <a href="<?= base_url('privacypolicy'); ?>">Privacy Policy</a> of Jobnest.com
+              <a href="<?= base_url('privacypolicy'); ?>">Privacy Policy</a> of SahajJob.com
             </div>
             <button type="submit" class="register-btn">Register now</button>
           </div>

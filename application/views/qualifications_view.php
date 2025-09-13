@@ -265,7 +265,7 @@
 
         <div class="header">
             <a href="<?= base_url('profile'); ?>" aria-label="Go back to profile"><i class="fas fa-arrow-left"></i></a>
-            <img src="<?= base_url('assets/images/jobnest2.png'); ?>" alt="jobnestLogo"
+            <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2"
                 style="height:70px; width:150px; display: block; margin: 0 auto; float: left; margin-left: 20px;">
             <h2 style="margin-right:150px;">Qualifications</h2>
         </div>

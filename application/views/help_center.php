@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Help Center - Jobnest</title>
+    <title>Help Center - SahajJobs</title>
     <style>
         body {
             font-family: 'Nunito', Arial, sans-serif;
@@ -35,7 +35,7 @@
 <body>
     <div class="container">
         <h1>Help Center</h1>
-        <p>Welcome to the Jobnest Help Center. We are here to assist you with any questions or issues you may have. Below are some common topics to get you started.</p>
+        <p>Welcome to the SahajJobs Help Center. We are here to assist you with any questions or issues you may have. Below are some common topics to get you started.</p>
 
         <h2>For Job Seekers</h2>
         <ul>

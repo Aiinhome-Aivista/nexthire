@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trust & Safety - Jobnest</title>
+    <title>Trust & Safety - SahajJobs</title>
     <style>
         body {
             font-family: 'Nunito', Arial, sans-serif;
@@ -38,7 +38,7 @@
 <body>
     <div class="container">
         <h1>Trust & Safety</h1>
-        <p>Jobnest is a platform built on trust and safety. We are dedicated to providing a secure environment for both job seekers and employers. Our commitment to you includes:</p>
+        <p>SahajJobs is a platform built on trust and safety. We are dedicated to providing a secure environment for both job seekers and employers. Our commitment to you includes:</p>
 
         <h2>Our Commitment</h2>
         <ul>

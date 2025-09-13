@@ -89,6 +89,7 @@
         .footer-logo img {
             width: 140px;
             margin-bottom: 28px;
+            height: 70px;
         }
 
         .footer-social-label {
@@ -322,7 +323,7 @@
         <div class="footer-top">
             <div class="footer-logo-social">
                 <a href="https://www.naukri.com" class="footer-logo">
-                    <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="JobNest">
+                    <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
                 </a>
                 <div class="footer-social">
                     <div class="footer-social-label">Connect with us</div>

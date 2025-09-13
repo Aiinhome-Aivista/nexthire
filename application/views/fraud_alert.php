@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fraud Alert - Jobnest</title>
+    <title>Fraud Alert - SahajJobs</title>
     <style>
         body {
             font-family: 'Nunito', Arial, sans-serif;
@@ -38,7 +38,7 @@
 <body>
     <div class="container">
         <h1>Fraud Alert</h1>
-        <p>Be aware of fraudulent job offers and scams. Jobnest is committed to creating a safe and secure environment, but it's important for you to be vigilant. Here are some red flags to watch for:</p>
+        <p>Be aware of fraudulent job offers and scams. SahajJobs is committed to creating a safe and secure environment, but it's important for you to be vigilant. Here are some red flags to watch for:</p>
 
         <h2>Common Fraud Indicators</h2>
         <ul>

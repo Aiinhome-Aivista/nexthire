@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summons & Notices - Jobnest</title>
+    <title>Summons & Notices - SahajJobs</title>
     <style>
         body {
             font-family: 'Nunito', Arial, sans-serif;
@@ -39,14 +39,14 @@
         
         <h2>Official Address</h2>
         <address>
-            <strong>Jobnest Technologies Pvt. Ltd.</strong><br>
+            <strong>SahajJobs Technologies Pvt. Ltd.</strong><br>
             Astra Towers, ASO429, Akankha More,<br>
              Action Area 2C/1, AA II,<br>
               Newtown, Kolkata,<br>
               West Bengal 700161
         </address>
 
-        <p>For any urgent legal matters, you can also contact our legal team at: <a href="mailto:legal@jobnest.com">legal@jobnest.com</a>.</p>
+        <p>For any urgent legal matters, you can also contact our legal team at: <a href="mailto:legal@SahajJobs.com">legal@SahajJobs.com</a>.</p>
     </div>
 </body>
 </html>

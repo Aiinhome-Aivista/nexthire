@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Jobnest | Employer Registration</title>
+  <title>SahajJobs | Employer Registration</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 
@@ -534,7 +534,7 @@
   <div class="header">
     <div class="header-content">
       <div class="logo">
-        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnest">
+        <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
       </div>
       <div class="login-link">
         Already Registered? <a href="<?= base_url('employer_login'); ?>">Login</a> here
@@ -546,7 +546,7 @@
   <div class="container">
     <!-- Left Card -->
     <div class="left-card">
-      <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnest">
+      <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
       <h3>As a recruiter, you can</h3>
       <ul>
         <li><span class="green-dot"></span>Post jobs and reach millions of job seekers</li>
@@ -624,7 +624,7 @@
             <div class="terms-row">
               By clicking Register, you agree to the
               <a href="#">Terms and Conditions</a> &
-              <a href="#">Privacy Policy</a> of Jobnest
+              <a href="#">Privacy Policy</a> of SahajJobs
             </div>
 
             <button type="submit" class="register-btn">Register as Recruiter</button>
