@@ -749,6 +749,14 @@
             border-color: #808080;
         }
 
+        .input-error {
+            border: 1px solid red !important;
+        }
+
+        .text-danger {
+            color: red;
+        }
+
         .login-form input[type="submit"] {
             width: 100%;
             padding: 10px;
@@ -1351,12 +1359,27 @@
             <span class="login-close" id="closeLoginPopup">&times;</span>
             <a href="<?= base_url('register'); ?>" class="register-for-free">Register for free</a>
             <span class="login-title">Candidate Login</span>
-            <form class="login-form" method="post" action="<?= base_url('login/process'); ?>" autocomplete="off">
+            <form class="login-form" method="post" action="<?= base_url('login/process'); ?>" autocomplete="off"
+                novalidate>
                 <label for="login-username">Email ID / Username</label>
                 <input type="text" id="login-username" name="username"
                     placeholder="Enter your active Email ID / Username" required>
-                <label for="login-password">Password</label>
-                <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+                <small id="email-error" class="text-danger" style="display:none; font-size: 0.85em;">Please enter a
+                    valid email (must include @ and .com)</small>
+
+                <!-- <input type="password" id="login-password" name="password" placeholder="Enter your password" required> -->
+                <div style="position:relative;">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" placeholder="Enter your password"
+                        required>
+                    <span id="toggle-password" style="position:absolute; top:57px; right:15px; cursor:pointer;">
+                        <i class="far fa-eye"></i>
+                    </span>
+                </div>
+                <small id="password-error" class="text-danger" style="display:none; font-size: 0.85em;">Please enter
+                    your password</small>
+
+
                 <div class="login-actions">
                     <a href="<?= base_url('login/forgot'); ?>" class="login-link">Forgot Password?</a>
                 </div>
@@ -1417,7 +1440,76 @@
         });
 
     </script>
+    <script>
+        const emailInput = document.getElementById('login-username');
+        const passwordInput = document.getElementById('login-password');
+        const emailError = document.getElementById('email-error');
+        const passwordError = document.getElementById('password-error');
 
+        document.querySelector('.login-form').addEventListener('submit', function (event) {
+            let isValid = true;
+
+            // Reset errors
+            emailError.style.display = 'none';
+            passwordError.style.display = 'none';
+            emailInput.classList.remove('input-error');
+            passwordInput.classList.remove('input-error');
+
+            const emailVal = emailInput.value.trim();
+            const pwdVal = passwordInput.value.trim();
+
+            // Email validation
+            if (!emailVal || emailVal.indexOf('@') === -1 || emailVal.indexOf('.com') === -1) {
+                emailError.style.display = 'block';
+                emailInput.classList.add('input-error');
+                isValid = false;
+            }
+
+            // Password validation
+            if (!pwdVal) {
+                passwordError.style.display = 'block';
+                passwordInput.classList.add('input-error');
+                isValid = false;
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+
+        // Clear error when user corrects input
+        emailInput.addEventListener('input', function () {
+            const val = emailInput.value.trim();
+            if (val && val.indexOf('@') !== -1 && val.indexOf('.com') !== -1) {
+                emailError.style.display = 'none';
+                emailInput.classList.remove('input-error');
+            }
+        });
+
+        passwordInput.addEventListener('input', function () {
+            if (passwordInput.value.trim()) {
+                passwordError.style.display = 'none';
+                passwordInput.classList.remove('input-error');
+            }
+        });
+
+        // Password toggle code remains same
+        document.getElementById('toggle-password').addEventListener('click', function () {
+            const pwd = passwordInput;
+            const icon = this.querySelector('i');
+            if (pwd.type === 'password') {
+                pwd.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                pwd.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+
+
+    </script>
 </body>
 
 </html>
