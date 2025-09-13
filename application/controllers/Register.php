@@ -83,13 +83,17 @@ class Register extends CI_Controller
 
 
         if (!$user) {
+            $first_name = explode(' ', trim($userData['full_name']))[0];
+            $plainPassword = $first_name . '@123';
+            $hashedPassword = password_hash($plainPassword, PASSWORD_BCRYPT);
+
             $user_id = $this->Register_model->insert_google_user([
                 'uid' => $userData['uid'],
                 'email' => $userData['email'],
                 'full_name' => $userData['full_name'],
                 'picture' => $file_name,
                 'provider' => $userData['provider'],
-                'password' => null,
+                'password' => $hashedPassword,
                 'mobile_number' => null,
                 // 'work_status' => null,
                 'created_at' => date('Y-m-d H:i:s'),
@@ -97,6 +101,15 @@ class Register extends CI_Controller
             ]);
             $this->Register_model->save_profile_photo($user_id, $file_name); // <--- Add this line
             $user = $this->Register_model->get_user_by_id($user_id);
+            // Load email service library and send welcome email with generated password
+            $this->load->library('emailservice');
+            $emailSent = $this->emailservice->sendWelcomeEmail($user['email'], $user['full_name'], $plainPassword, 'welcome_email');
+            if ($emailSent) {
+                $this->session->set_flashdata('success', 'Registration successful! A welcome email has been sent to your email address.');
+            } else {
+                $this->session->set_flashdata('success', 'Registration successful! However, we could not send the welcome email.');
+            }
+
         } else {
             // Update profile photo if new one downloaded successfully
             if ($file_name) {
