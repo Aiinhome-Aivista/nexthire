@@ -88,9 +88,9 @@
     }
 
     .login-link a {
-      color: #db9610;
+      color: #7b7a6e;
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 900;
     }
 
     .container {
@@ -226,15 +226,15 @@
     .form-group input {
       padding: 13px 18px;
       font-size: 16px;
-      border: 1.5px solid #e8e8e8;
+      border: 1.5px solid #808080;
       border-radius: 8px;
       outline: none;
-      background: #f6f8fb;
+      background: #fff;
       transition: border 0.2s;
     }
 
     .form-group input:focus {
-      border: 1.5px solid #1d4ed8;
+      border: 1.5px solid #808080;
       background: #fff;
     }
 
@@ -329,7 +329,7 @@
     }
 
     .terms-row a {
-      color: #db9610;
+      color: #1d4ed8;
       text-decoration: none;
       margin: 0 2px;
     }
@@ -393,7 +393,7 @@
       border: 1px solid #FFF44F;
       border-radius: 8px;
       background: white;
-      color: #344054;
+      color: #3078E7;
       font-weight: 500;
       font-size: 14px;
       padding: 10px 16px;
