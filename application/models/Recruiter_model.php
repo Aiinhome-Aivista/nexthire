@@ -25,7 +25,7 @@ class Recruiter_model extends CI_Model
     {
         $data = array_merge([
             'full_name' => '',
-            'password' => '',           // Use '' not null
+            'password' => null,           // Use '' not null
             'mobile_number' => null,
             'company' => null,          // since Google users won't supply
             'designation' => null,      // These can be updated later from profile

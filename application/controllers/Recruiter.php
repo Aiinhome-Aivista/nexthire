@@ -59,7 +59,7 @@ class Recruiter extends CI_Controller
             echo json_encode(['success' => false, 'message' => 'Invalid data']);
             return;
         }
-       
+
         // Define upload path for profile photos
         $upload_path = FCPATH . 'assets/profile_photos/';
         // Download and save Google profile picture locally
@@ -88,17 +88,29 @@ class Recruiter extends CI_Controller
 
         // If not, create user
         if (!$user) {
+            $first_name = explode(' ', trim($userData['full_name']))[0];
+            $plainPassword = $first_name . '@123';
+            $hashedPassword = password_hash($plainPassword, PASSWORD_BCRYPT);
             $user_id = $this->Recruiter_model->insert_google_user([
                 'uid' => $userData['uid'],
                 'email' => $userData['email'],
                 'full_name' => $userData['full_name'],
                 'picture' => $file_name,
                 'provider' => $userData['provider'],
+                'password' => $hashedPassword,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
             $this->Recruiter_model->save_profile_photo($user_id, $file_name); // <--- Add this line
             $user = $this->Recruiter_model->get_user_by_id($user_id);
+            // Load email service library and send welcome email with generated password
+            $this->load->library('emailservice');
+            $emailSent = $this->emailservice->sendWelcomeEmail($user['email'], $user['full_name'], $plainPassword, 'recruiter_welcome_email');
+            if ($emailSent) {
+                $this->session->set_flashdata('success', 'Registration successful! A welcome email has been sent to your email address.');
+            } else {
+                $this->session->set_flashdata('success', 'Registration successful! However, we could not send the welcome email.');
+            }
         } else {
             // Update profile photo if new one downloaded successfully
             if ($file_name) {
