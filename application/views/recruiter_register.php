@@ -365,6 +365,12 @@
       margin-left: 24px;
     }
 
+    .error-msg {
+      color: red;
+      font-size: 0.85em;
+      display: none;
+    }
+
     .google-section::before {
       content: '';
       position: absolute;
@@ -567,41 +573,46 @@
       <div class="form-title">Create your Recruiter account</div>
       <div class="form-subtitle">Hire from India's No.1 Job Site</div>
 
-      <form action="<?= base_url('recruiter/submit'); ?>" method="post">
+      <form id="emp_registration-form" action="<?= base_url('recruiter/submit'); ?>" method="post">
         <div class="form-row">
           <div class="form-fields">
 
             <div class="form-group">
               <label for="fullname">Your Name<span style="color:#e42e2e;">*</span></label>
-              <input type="text" name="fullname" id="fullname" placeholder="Enter your full name" required>
+              <input type="text" name="fullname" id="fullname" placeholder="Enter your full name">
+              <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
             </div>
 
             <div class="form-group">
               <label for="email">Official Email ID<span style="color:#e42e2e;">*</span></label>
-              <input type="email" name="email" id="email" placeholder="Enter your company email" required>
+              <input type="email" name="email" id="email" placeholder="Enter your company email">
+              <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
               <span class="input-hint">Use your company domain email (e.g. hr@company.com)</span>
             </div>
 
             <div class="form-group">
               <label for="company">Company Name<span style="color:#e42e2e;">*</span></label>
-              <input type="text" name="company" id="company" placeholder="Enter company name" required>
+              <input type="text" name="company" id="company" placeholder="Enter company name">
+              <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
             </div>
 
             <div class="form-group">
               <label for="designation">Designation<span style="color:#e42e2e;">*</span></label>
-              <input type="text" name="designation" id="designation" placeholder="e.g. HR Manager, Recruiter" required>
+              <input type="text" name="designation" id="designation" placeholder="e.g. HR Manager, Recruiter">
+              <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
             </div>
 
             <div class="form-group">
               <label for="password">Password<span style="color:#e42e2e;">*</span></label>
-              <input type="password" name="password" id="password" placeholder="Minimum 6 characters" required
-                minlength="6">
+              <input type="password" name="password" id="password" placeholder="Minimum 6 characters">
+              <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
+
             </div>
 
             <div class="form-group">
               <label for="mobile">Mobile Number<span style="color:#e42e2e;">*</span></label>
-              <input type="tel" name="mobile" id="mobile" placeholder="+91 Enter your mobile number" required
-                pattern="[0-9]{10,}">
+              <input type="tel" name="mobile" id="mobile" placeholder="+91 Enter your mobile number">
+              <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
               <span class="input-hint">We’ll contact you for verification</span>
             </div>
 
@@ -682,6 +693,96 @@
           alert(error.message);
         });
     });
+
+  </script>
+  <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('emp_registration-form');
+      const fields = [
+        { id: 'fullname', name: 'Full name' },
+        { id: 'email', name: 'email' },
+        { id: 'password', name: 'Password' },
+        { id: 'mobile', name: 'Mobile number' },
+        { id: 'company', name: 'Company name' },
+        { id: 'designation', name: 'Designation' }
+      ];
+
+      // Validation function (used for both submit and input)
+      function validateField(field, value) {
+        if (!value) {
+          return `${field.name} is required.`;
+        } else {
+          if (field.id === 'email') {
+            if (!(value.includes('.') && value.includes('com'))) {
+              // value.includes('@') && 
+              // return 'Email must contain @, . and com';
+              return 'Email must contain .com';
+
+            }
+          }
+          if (field.id === 'password') {
+            if (value.length < 6) {
+              return 'Password must be at least 6 characters.';
+            }
+          }
+          if (field.id === 'mobile') {
+            if (!/^[0-9]{10}$/.test(value)) {
+              return 'Mobile number must be exactly 10 digits.';
+            }
+          }
+        }
+        return '';
+      }
+
+      // Validate on submit
+      form.addEventListener('submit', function (e) {
+        let isValid = true;
+
+        fields.forEach(field => {
+          const input = document.getElementById(field.id);
+          const errorSpan = input.parentElement.querySelector('.error-msg');
+          const value = input.value.trim();
+          const message = validateField(field, value);
+
+          // Reset previous
+          input.style.borderColor = '#808080';
+          errorSpan.style.display = 'none';
+          errorSpan.textContent = '';
+
+          if (message) {
+            isValid = false;
+            input.style.borderColor = 'red';
+            errorSpan.style.display = 'block';
+            errorSpan.textContent = message;
+          }
+        });
+
+        if (!isValid) {
+          e.preventDefault();
+        }
+      });
+
+      // Real-time validation on input
+      fields.forEach(field => {
+        const input = document.getElementById(field.id);
+        const errorSpan = input.parentElement.querySelector('.error-msg');
+        input.addEventListener('input', function () {
+          const value = input.value.trim();
+          const message = validateField(field, value);
+          if (message) {
+            input.style.borderColor = 'red';
+            errorSpan.style.display = 'block';
+            errorSpan.textContent = message;
+          } else {
+            input.style.borderColor = '#808080';
+            errorSpan.style.display = 'none';
+            errorSpan.textContent = '';
+          }
+        });
+      });
+    });
+
 
   </script>
 </body>
