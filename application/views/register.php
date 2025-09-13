@@ -451,6 +451,12 @@
       letter-spacing: 0.01em;
     }
 
+    .error-msg {
+      color: red;
+      font-size: 0.85em;
+      display: none;
+    }
+
     @media (max-width: 1100px) {
       .container {
         flex-direction: column;
@@ -550,28 +556,30 @@
       <?php endif; ?>
       <div class="form-title">Create your Jobnest profile</div>
       <div class="form-subtitle">Search & apply to jobs from India's No.1 Job Site</div>
-      <form action="<?= base_url('register/submit'); ?>" method="post">
+      <form id="registration-form" action="<?= base_url('register/submit'); ?>" method="post">
         <div class="form-row">
           <div class="form-fields">
             <div class="form-group">
               <label for="fullname">Full name<span style="color:#e42e2e;">*</span></label>
-              <input type="text" name="fullname" id="fullname" placeholder="Full name is your name?" required>
+              <input type="text" name="fullname" id="fullname" placeholder="Full name is your name?">
+              <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
             </div>
             <div class="form-group">
               <label for="email">Email ID<span style="color:#e42e2e;">*</span></label>
-              <input type="email" name="email" id="email" placeholder="Tell us your Email ID" required>
+              <input type="email" name="email" id="email" placeholder="Tell us your Email ID">
+              <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
               <span class="input-hint">We'll send relevant jobs and updates to this email</span>
             </div>
             <div class="form-group">
               <label for="password">Password<span style="color:#e42e2e;">*</span></label>
-              <input type="password" name="password" id="password" placeholder="(Minimum 6 characters)" required
-                minlength="6">
+              <input type="password" name="password" id="password" placeholder="(Minimum 6 characters)">
+              <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
               <span class="input-hint">This helps your account stay protected</span>
             </div>
             <div class="form-group">
               <label for="mobile">Mobile number<span style="color:#e42e2e;">*</span></label>
-              <input type="tel" name="mobile" id="mobile" placeholder="+91 Enter your mobile number" required
-                pattern="[0-9]{10,}">
+              <input type="tel" name="mobile" id="mobile" placeholder="+91 Enter your mobile number">
+              <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
               <span class="input-hint">Recruiters will contact you on this number</span>
             </div>
             <div class="form-group">
@@ -583,6 +591,7 @@
                     <span class="title">I'm experienced</span>
                     <span class="desc">I have work experience <br>(excluding internships)</span>
                   </div>
+                  <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
                 </div>
                 <div class="work-status-card" id="fresher" onclick="selectStatus('fresher')">
                   <span class="icon">🎓</span>
@@ -680,6 +689,94 @@
           alert(error.message);
         });
     });
+
+  </script>
+  <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('registration-form');
+      const fields = [
+        { id: 'fullname', name: 'Full name' },
+        { id: 'email', name: 'Email ID' },
+        { id: 'password', name: 'Password' },
+        { id: 'mobile', name: 'Mobile number' },
+      ];
+
+      // Validation function (used for both submit and input)
+      function validateField(field, value) {
+        if (!value) {
+          return `${field.name} is required.`;
+        } else {
+          if (field.id === 'email') {
+            if (!(value.includes('.') && value.includes('com'))) {
+              // value.includes('@') && 
+              // return 'Email must contain @, . and com';
+              return 'Email must contain .com';
+
+            }
+          }
+          if (field.id === 'password') {
+            if (value.length < 6) {
+              return 'Password must be at least 6 characters.';
+            }
+          }
+          if (field.id === 'mobile') {
+            if (!/^[0-9]{10}$/.test(value)) {
+              return 'Mobile number must be exactly 10 digits.';
+            }
+          }
+        }
+        return '';
+      }
+
+      // Validate on submit
+      form.addEventListener('submit', function (e) {
+        let isValid = true;
+
+        fields.forEach(field => {
+          const input = document.getElementById(field.id);
+          const errorSpan = input.parentElement.querySelector('.error-msg');
+          const value = input.value.trim();
+          const message = validateField(field, value);
+
+          // Reset previous
+          input.style.borderColor = '#808080';
+          errorSpan.style.display = 'none';
+          errorSpan.textContent = '';
+
+          if (message) {
+            isValid = false;
+            input.style.borderColor = 'red';
+            errorSpan.style.display = 'block';
+            errorSpan.textContent = message;
+          }
+        });
+
+        if (!isValid) {
+          e.preventDefault();
+        }
+      });
+
+      // Real-time validation on input
+      fields.forEach(field => {
+        const input = document.getElementById(field.id);
+        const errorSpan = input.parentElement.querySelector('.error-msg');
+        input.addEventListener('input', function () {
+          const value = input.value.trim();
+          const message = validateField(field, value);
+          if (message) {
+            input.style.borderColor = 'red';
+            errorSpan.style.display = 'block';
+            errorSpan.textContent = message;
+          } else {
+            input.style.borderColor = '#808080';
+            errorSpan.style.display = 'none';
+            errorSpan.textContent = '';
+          }
+        });
+      });
+    });
+
 
   </script>
 </body>
