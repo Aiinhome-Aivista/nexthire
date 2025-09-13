@@ -3,7 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Recruiter_dashboard extends CI_Controller {
 
+    public function __construct() {
+        parent::__construct();
+        $this->load->model('Recruiter_dashboard_model');
+    }
+
     public function index() {
-        $this->load->view('recruiter_dashboard');
+        $data['recent_jobs'] = $this->Recruiter_dashboard_model->get_recent_jobs();
+        $this->load->view('recruiter_dashboard', $data);
     }
 }

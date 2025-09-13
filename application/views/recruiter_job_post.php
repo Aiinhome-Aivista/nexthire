@@ -4,44 +4,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jobnest | Post Job</title>
+    <title>Jobnest | Employer Post Job</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background: #f5f7fa;
+            background: #f8fafc;
             color: #333;
+            display: flex;
         }
 
-        header {
-            background: #2a5298;
+        /* Sidebar */
+        .sidebar {
+            width: 300px;
+            background: #c9c9c9;
             color: #fff;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .sidebar img {
+            margin-bottom: 30px;
+        }
+
+        .sidebar a {
+            color: #000000;
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 8px;
+            display: block;
+            margin-bottom: 8px;
+            transition: background 0.3s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #fca311;
+            color: #fff;
+        }
+
+        /* Main content */
+        .main-content {
+            flex: 1;
+            margin-left: 60px;
             padding: 20px 40px;
-            text-align: center;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 26px;
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
         }
 
+        .page-header h2 {
+            font-size: 24px;
+            color: #1e1e2c;
+        }
+
+        /* Container (form card) */
         .container {
-            max-width: 900px;
-            margin: 40px auto;
             background: #fff;
             padding: 30px 40px;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            font-size: 22px;
-            margin-bottom: 20px;
-            color: #2a5298;
-            border-left: 5px solid #2a5298;
-            padding-left: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
         form {
@@ -60,19 +91,21 @@
         input[type="email"],
         input[type="number"],
         select,
-        textarea {
+        textarea,
+        input[type="date"] {
             width: 100%;
             padding: 12px;
             border: 1px solid #ccc;
             border-radius: 8px;
             font-size: 15px;
             transition: border 0.3s ease;
+            background-color: #fff;
         }
 
         input:focus,
         select:focus,
         textarea:focus {
-            border-color: #2a5298;
+            border-color: #fca311;
             outline: none;
         }
 
@@ -88,7 +121,7 @@
 
         .row {
             display: flex;
-            gap: 40px;
+            gap: 30px;
         }
 
         .row .form-group {
@@ -96,7 +129,7 @@
         }
 
         button {
-            background: #2a5298;
+            background: #fca311;
             color: #fff;
             padding: 14px;
             border: none;
@@ -105,10 +138,11 @@
             font-weight: 600;
             cursor: pointer;
             transition: background 0.3s ease;
+            margin-top: 10px;
         }
 
         button:hover {
-            background: #1e3c72;
+            background: #e38b05;
         }
 
         footer {
@@ -118,173 +152,112 @@
             color: #666;
             margin-top: 40px;
         }
-
-        .header {
-            width: 100%;
-            background: #fff;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-            /* padding: 16px 0; */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        .header-content {
-            width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: left;
-            position: relative;
-        }
-
-        .logo {
-            display: flex;
-            align-items: right;
-            gap: 100px;
-        }
-
-        .logo img {
-            width: auto;
-            height: 70px;
-            display: block;
-        }
-
-        .logo span {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1d4ed8;
-            letter-spacing: -1px;
-        }
-
-        .page-title h3 {
-            margin-left: 75px;
-        }
-
-        input[type="date"] {
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-
-            width: 100%;
-            padding: 8px 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
-            background-color: #fff;
-            color: #000;
-        }
-
-        input[type="date"]::-webkit-calendar-picker-indicator {
-            cursor: pointer;
-            filter: invert(0.5);
-        }
     </style>
 </head>
 
 <body>
-    <div class="header">
-        <div class="header-content">
-            <div class="logo">
-                <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="JobNest">
-            </div>
-            <div class="page-title">
-                <h3>Post a Job</h3>
-            </div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <img style="height:40px; width:90px;" src="<?= base_url('assets/images/jobnest2.png'); ?>" alt="JobNest Logo">
+        <a href="#"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="<?= base_url('employer_job_post'); ?>" class="active"><i class="fas fa-file-alt"></i> Post Job</a>
+        <a href="<?= base_url('employer_manage_jobs'); ?>"><i class="fas fa-briefcase"></i> Manage Jobs</a>
+        <a href="#"><i class="fas fa-user-graduate"></i> Candidates</a>
+        <a href="#"><i class="fas fa-building"></i> Employer Profile</a>
+        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-header">
+            <h4 class="fw-bold" style="color: #fca911;">Post a Job</h4>
         </div>
+
+        <div class="container">
+            <form action="<?= base_url('recruiter_job_post/store'); ?>" method="post">
+                <div class="row">
+                    <div class="form-group">
+                        <label for="title">Job Title</label>
+                        <input type="text" id="title" name="title" placeholder="e.g., Software Engineer" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="industry">Industry</label>
+                        <input type="text" id="industry" name="industry" placeholder="e.g., IT Service" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="company">Company Name</label>
+                        <input type="text" id="company" name="company" placeholder="Company name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" name="location" placeholder="City, Country" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="employees">Employees</label>
+                        <input type="text" id="employees" name="employees" placeholder="201-500" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">Experience</label>
+                        <input type="text" id="experience" name="experience" placeholder="4-6 years" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="job_type">Job Type</label>
+                        <select id="job_type" name="job_type">
+                            <option value="Full-time">Full-time</option>
+                            <option value="Part-time">Part-time</option>
+                            <option value="Internship">Internship</option>
+                            <option value="Contract">Contract</option>
+                            <option value="Remote">Remote</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="salary">Salary Range</label>
+                        <input type="text" id="salary" name="salary" placeholder="Rs.50,000 - Rs.70,000">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Job Description</label>
+                    <textarea id="description" name="description" placeholder="Enter Job Description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="requirements">Requirements</label>
+                    <textarea id="requirements" name="requirements" placeholder="Enter Job Requirements"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="benefits">Benefits</label>
+                    <textarea id="benefits" name="benefits" placeholder="Enter benefits provided"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="last_date">Last Date to apply</label>
+                    <input type="date" id="last_date" name="last_date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Contact Email</label>
+                    <input type="email" id="email" name="email" placeholder="hr@company.com" required>
+                </div>
+
+                <button type="submit">Post Job</button>
+            </form>
+        </div>
+
+        <footer>
+            &copy; 2025 Jobnest Inc. All Rights Reserved.
+        </footer>
     </div>
-
-
-    <div class="container">
-        <h2>Job Information</h2>
-        <form action="<?= base_url('recruiter_job_post/store'); ?>" method="post">
-
-            <div class="row">
-                <div class="form-group">
-                    <label for="title">Job Title</label>
-                    <input type="text" id="title" name="title" placeholder="e.g., Software Engineer" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="industry">Industry</label>
-                    <input type="text" id="industry" name="industry" placeholder="e.g., IT Service" required>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group">
-                    <label for="company">Company Name</label>
-                    <input type="text" id="company" name="company" placeholder="Company name" required>
-                </div>
-                <div class="form-group">
-                    <label for="location">Location</label>
-                    <input type="text" id="location" name="location" placeholder="City, Country" required>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group">
-                    <label for="last_date">Employees</label>
-                    <input type="text" id="employees" name="employees" placeholder="201-500" required>
-                </div>
-                <div class="form-group">
-                    <label for="last_date">Experience</label>
-                    <input type="text" id="experience" name="experience" placeholder="4-6 years" required>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group">
-                    <label for="job-type">Job Type</label>
-                    <select id="job-type" name="job-type">
-                        <option value="Full-time">Full-time</option>
-                        <option value="Part-time">Part-time</option>
-                        <option value="Internship">Internship</option>
-                        <option value="Contract">Contract</option>
-                        <option value="Remote">Remote</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="salary">Salary Range</label>
-                    <input type="text" id="salary" name="salary" placeholder="Rs.50,000 - Rs.70,000">
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                <label for="description">Job Description</label>
-                <textarea id="description" name="description" placeholder="Enter Job Description"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="requirements">Requirements</label>
-                <textarea id="requirements" name="requirements" placeholder="Enter Job Requirements"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="benefits">Benefits</label>
-                <textarea id="benefits" name="benefits" placeholder="Enter benefits provided"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="last_date">Last Date to apply</label>
-                <input type="date" id="last_date" name="last_date" required>
-            </div>
-
-
-            <div class="form-group">
-                <label for="email">Contact Email</label>
-                <input type="email" id="email" name="email" placeholder="hr@company.com" required>
-            </div>
-
-            <button type="submit">Post Job</button>
-        </form>
-    </div>
-
-    <footer>
-        &copy; 2025 Jobnest Inc. All Rights Reserved.
-    </footer>
 </body>
 
 </html>
