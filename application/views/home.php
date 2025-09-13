@@ -1080,6 +1080,7 @@
             // Email validation
             if (!emailVal || emailVal.indexOf('@') === -1 || emailVal.indexOf('.com') === -1) {
                 emailError.style.display = 'block';
+                emailError.textContent = 'Please enter a valid email (must include @ and .com)';
                 emailInput.classList.add('input-error');
                 isValid = false;
             }
@@ -1087,6 +1088,12 @@
             // Password validation
             if (!pwdVal) {
                 passwordError.style.display = 'block';
+                passwordError.textContent = 'Please enter your password';
+                passwordInput.classList.add('input-error');
+                isValid = false;
+            } else if (pwdVal.length < 6) {
+                passwordError.style.display = 'block';
+                passwordError.textContent = 'Password must be at least 6 characters';
                 passwordInput.classList.add('input-error');
                 isValid = false;
             }
@@ -1096,24 +1103,34 @@
             }
         });
 
-        // Clear error when user corrects input
+        // Dynamic (live) email validation
         emailInput.addEventListener('input', function () {
             const val = emailInput.value.trim();
-            if (val.indexOf('.com') !== -1) {
-                // val && val.indexOf('@') !== -1 &&
+            if (val.includes('@') && val.includes('.com')) {
                 emailError.style.display = 'none';
                 emailInput.classList.remove('input-error');
+            } else {
+                emailError.style.display = 'block';
+                emailError.textContent = 'Please enter a valid email (must include @ and .com)';
+                emailInput.classList.add('input-error');
             }
         });
 
+        // Dynamic (live) password validation
         passwordInput.addEventListener('input', function () {
-            if (passwordInput.value.trim()) {
+            const val = passwordInput.value.trim();
+            if (val.length >= 6) {
                 passwordError.style.display = 'none';
                 passwordInput.classList.remove('input-error');
             }
+            else {
+                passwordError.style.display = 'block';
+                passwordError.textContent = 'Password must be at least 6 characters';
+                passwordInput.classList.add('input-error');
+            }
         });
 
-        // Password toggle code remains same
+        // Password toggle code remains the same
         document.getElementById('toggle-password').addEventListener('click', function () {
             const pwd = passwordInput;
             const icon = this.querySelector('i');
@@ -1127,7 +1144,6 @@
                 icon.classList.add('fa-eye');
             }
         });
-
 
     </script>
     <script>

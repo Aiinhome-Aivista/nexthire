@@ -117,7 +117,7 @@
     }
 
     .left-card img {
-       width: 213px;
+      width: 213px;
       height: 90px;
       margin-bottom: 16px;
       border-radius: 50%;
@@ -266,6 +266,14 @@
       font-weight: 500;
     }
 
+    .text-danger {
+      color: red;
+    }
+
+    .input-error {
+      border: 1px solid red !important;
+    }
+
     .google-btn {
       border: 1px solid #FFF44F;
       border-radius: 8px;
@@ -381,17 +389,24 @@
       <div class="form-title">Recruiter Login</div>
       <div class="form-subtitle">Access your dashboard and start hiring</div>
 
-      <form action="<?= base_url('recruiter_login/submit'); ?>" method="post">
+      <form class="emplogin-form" action="<?= base_url('recruiter_login/submit'); ?>" method="post" novalidate
+        autocomplete="off">
         <div class="form-group">
           <label for="email">Official Email ID<span style="color:#e42e2e;">*</span></label>
           <input type="email" name="email" id="email" placeholder="Enter your company email" required>
         </div>
+        <small id="email-error" class="text-danger" style="display:none; font-size: 0.85em;">Please enter a
+          valid email (must include .com)</small>
 
         <div class="form-group">
           <label for="password">Password<span style="color:#e42e2e;">*</span></label>
           <input type="password" name="password" id="password" placeholder="Enter your password" required>
+          <span id="toggle-password" style="position:absolute; top:57px; right:15px; cursor:pointer;">
+            <i class="far fa-eye"></i>
+          </span>
         </div>
-
+        <small id="password-error" class="text-danger" style="display:none; font-size: 0.85em;">Please enter
+          your password</small>
         <button type="submit" class="login-btn">Login</button>
 
         <div class="forgot-row">
@@ -458,6 +473,92 @@
         .catch(function (error) {
           alert(error.message);
         });
+    });
+
+  </script>
+  <script>
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const emailError = document.getElementById('email-error');
+    const passwordError = document.getElementById('password-error');
+
+    document.querySelector('.emplogin-form').addEventListener('submit', function (event) {
+      let isValid = true;
+
+      // Reset errors
+      emailError.style.display = 'none';
+      passwordError.style.display = 'none';
+      emailInput.classList.remove('input-error');
+      passwordInput.classList.remove('input-error');
+
+      const emailVal = emailInput.value.trim();
+      const pwdVal = passwordInput.value.trim();
+
+      // Email validation
+      if (!emailVal || emailVal.indexOf('.com') === -1) {
+        emailError.style.display = 'block';
+        emailError.textContent = 'Please enter a valid email (must include .com)';
+        emailInput.classList.add('input-error');
+        isValid = false;
+      }
+
+      // Password validation
+      if (!pwdVal) {
+        passwordError.style.display = 'block';
+        passwordError.textContent = 'Please enter your password';
+        passwordInput.classList.add('input-error');
+        isValid = false;
+      } else if (pwdVal.length < 6) {
+        passwordError.style.display = 'block';
+        passwordError.textContent = 'Password must be at least 6 characters';
+        passwordInput.classList.add('input-error');
+        isValid = false;
+      }
+
+      if (!isValid) {
+        event.preventDefault();
+      }
+    });
+
+    // Live email validation on input
+    emailInput.addEventListener('input', function () {
+      const val = emailInput.value.trim();
+      if (val.includes('.com')) {
+        emailError.style.display = 'none';
+        emailInput.classList.remove('input-error');
+      } else {
+        emailError.style.display = 'block';
+        emailError.textContent = 'Please enter a valid email (must include .com)';
+        emailInput.classList.add('input-error');
+      }
+    });
+
+    // Live password validation on input
+    passwordInput.addEventListener('input', function () {
+      const val = passwordInput.value.trim();
+      if (val.length >= 6) {
+        passwordError.style.display = 'none';
+        passwordInput.classList.remove('input-error');
+      } else {
+        passwordError.style.display = 'block';
+        passwordError.textContent = 'Password must be at least 6 characters';
+        passwordInput.classList.add('input-error');
+      }
+    });
+
+    // Password toggle code remains same
+    document.getElementById('toggle-password').addEventListener('click', function () {
+      const pwd = passwordInput;
+      const icon = this.querySelector('i');
+      if (pwd.type === 'password') {
+        pwd.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      } else {
+        pwd.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      }
     });
 
   </script>
