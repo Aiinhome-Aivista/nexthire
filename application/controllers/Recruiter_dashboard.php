@@ -9,6 +9,8 @@ class Recruiter_dashboard extends CI_Controller {
     }
 
     public function index() {
+         $data['candidates_count'] = $this->Recruiter_dashboard_model->count_candidates();
+        $data['job_posts_count']  = $this->Recruiter_dashboard_model->count_job_posts();
         $data['recent_jobs'] = $this->Recruiter_dashboard_model->get_recent_jobs();
         $this->load->view('recruiter_dashboard', $data);
     }
