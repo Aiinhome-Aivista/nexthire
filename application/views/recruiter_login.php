@@ -120,9 +120,9 @@
       width: 213px;
       height: 90px;
       margin-bottom: 16px;
-      border-radius: 50%;
+      /* border-radius: 50%;
       object-fit: cover;
-      background: #f2f3f8;
+      background: #f2f3f8; */
     }
 
     .left-card h3 {
