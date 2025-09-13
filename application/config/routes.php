@@ -64,8 +64,8 @@ $route['login/google_callback'] = 'Login/google_callback';
 $route['register/google_callback'] = 'Register/google_callback';
 $route['recruiter/google_callback'] = 'Recruiter/google_callback';
 $route['recruiter_login/google_callback'] = 'Recruiter_login/google_callback';
-$route['admin/login'] = 'Admin/login';
-$route['admin/dashboard'] = 'Admin/dashboard';
+$route['admin/login'] = 'Admin_Dashboard/login';
+$route['admin/dashboard'] = 'Admin_Dashboard/dashboard';
 $route['job_search'] = 'Jobsearch/index';
 $route['candidate_job_search'] = 'Candidate_jobsearch/index';
 $route['profile'] = 'Profile/index';
@@ -95,3 +95,10 @@ $route['cookie-policy'] = 'Static_pages/cookie_policy';
 $route['terms-and-conditions'] = 'Static_pages/terms_and_conditions';
 $route['fraud-alert'] = 'Static_pages/fraud_alert';
 $route['trust-safety'] = 'Static_pages/trust_safety';
+
+
+
+$route['admin/dashboard'] = 'Admin_Dashboard/dashboard';
+$route['admin/candidate_management'] = 'Admin_Dashboard/candidate_management';
+$route['admin/employer_management'] = 'Admin_Dashboard/employer_management';
+$route['admin/job_post_management'] = 'Admin_Dashboard/job_post_management';

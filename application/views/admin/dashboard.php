@@ -52,6 +52,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            justify-content: space-between;
         }
 
         .sidebar-header h2 {
@@ -402,25 +403,21 @@
         <div class="sidebar-header">
             <div style="display: flex; align-items: center; gap: 10px;">
                 <i class="fas fa-briefcase"></i>
-                <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnest" style="height: 40px; width: 100px" >
+                <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnest" style="height: 40px; width: 100px">
             </div>
-            <button class="close-sidebar" style="display: none;">
-                <i class="fas fa-times"></i>
-            </button>
         </div>
         <nav class="sidebar-menu">
             <ul>
-                <li><a href="#" class="active"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
-                <li><a href="#"><i class="fas fa-user-graduate"></i> <span>Candidates</span></a></li>
-                <li><a href="#"><i class="fas fa-users"></i> <span>Recruiters</span></a></li>
-                <li><a href="#"><i class="fas fa-file-alt"></i> <span>Job Posts</span></a></li>
-                <li><a href="#"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
+                <li><a href="<?= base_url('admin/dashboard') ?>" class="active"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+                <li><a href="<?= base_url('admin/candidate_management') ?>"><i class="fas fa-user-graduate"></i> <span>Candidates</span></a></li>
+                <li><a href="<?= base_url('admin/employer_management') ?>"><i class="fas fa-users"></i> <span>Employers</span></a></li>
+                <li><a href="<?= base_url('admin/job_post_management') ?>"><i class="fas fa-file-alt"></i> <span>Job Posts</span></a></li>
+                <!-- <li><a href="#"><i class="fas fa-cog"></i> <span>Settings</span></a></li> -->
                 <li>
-                    <a href="<?= base_url('admin/logout'); ?>">
+                    <a href="#" id="logoutBtn">
                         <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
                     </a>
                 </li>
-
             </ul>
         </nav>
     </div>
@@ -436,7 +433,7 @@
                     </button>
                     Admin Dashboard
                 </h1>
-                <p>Welcome back, Admin! Here's what's happening today.</p>
+                <p>Welcome back, Admin! </p>
             </div>
             <div class="user-info">
                 <div class="notifications">
@@ -461,7 +458,7 @@
             <div class="stat-card recruiters">
                 <div class="stat-info">
                     <h3>0</h3>
-                    <p>Recruiters</p>
+                    <p>Employers</p>
                 </div>
                 <div class="stat-icon">
                     <i class="fas fa-users"></i>
@@ -529,20 +526,21 @@
             }
         });
 
-        // Simple JavaScript for tab switching (though Dashboard remains active as requested)
+        // Only handle tab switching for links with href="#"
         document.querySelectorAll('.sidebar-menu a').forEach(item => {
             item.addEventListener('click', function(e) {
-                e.preventDefault();
+                // Only prevent default for anchor tags with href="#"
+                if (this.getAttribute('href') === '#') {
+                    e.preventDefault();
 
-                // Remove active class from all items
-                document.querySelectorAll('.sidebar-menu a').forEach(link => {
-                    link.classList.remove('active');
-                });
+                    // Remove active class from all items
+                    document.querySelectorAll('.sidebar-menu a').forEach(link => {
+                        link.classList.remove('active');
+                    });
 
-                // Add active class to clicked item
-                this.classList.add('active');
-
-                // In a real application, you would load content for the selected tab here
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                }
             });
         });
 
@@ -558,6 +556,14 @@
         // Initial check and event listener for window resize
         checkSidebarView();
         window.addEventListener('resize', checkSidebarView);
+
+        const logoutBtn = document.getElementById('logoutBtn');
+        logoutBtn.addEventListener('click', function() {
+            if (confirm('Are you sure you want to logout?')) {
+                
+                window.location.href = '<?= base_url("employer_login"); ?>';
+            }
+        });
     </script>
 </body>
 
