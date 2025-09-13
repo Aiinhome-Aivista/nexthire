@@ -59,6 +59,29 @@ class Recruiter extends CI_Controller
             echo json_encode(['success' => false, 'message' => 'Invalid data']);
             return;
         }
+       
+        // Define upload path for profile photos
+        $upload_path = FCPATH . 'assets/profile_photos/';
+        // Download and save Google profile picture locally
+        $picture_url = $userData['picture'];
+        $image_info = pathinfo($picture_url);
+        $ext = isset($image_info['extension']) ? $image_info['extension'] : 'jpg'; // default to jpg if no ext
+
+        // Generate unique filename
+        $file_name = uniqid('profile_', true) . '.' . $ext;
+        $file_path = $upload_path . $file_name;
+
+        // Download image
+        $image_content = @file_get_contents($picture_url);
+
+        if ($image_content !== false) {
+            // Save image locally
+            file_put_contents($file_path, $image_content);
+        } else {
+            // If download fails, fallback to empty string or default image
+            $file_name = '';
+        }
+
 
         // Check if user exists
         $user = $this->Recruiter_model->get_user_by_email($userData['email']);
@@ -68,13 +91,29 @@ class Recruiter extends CI_Controller
             $user_id = $this->Recruiter_model->insert_google_user([
                 'uid' => $userData['uid'],
                 'email' => $userData['email'],
-                'full_name' => $userData['name'],
-                'picture' => $userData['picture'],
+                'full_name' => $userData['full_name'],
+                'picture' => $file_name,
                 'provider' => $userData['provider'],
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
+            $this->Recruiter_model->save_profile_photo($user_id, $file_name); // <--- Add this line
             $user = $this->Recruiter_model->get_user_by_id($user_id);
+        } else {
+            // Update profile photo if new one downloaded successfully
+            if ($file_name) {
+                // Get existing photo filename for cleanup
+                $existing_photo = $this->Recruiter_model->get_profile_photo($user['id']);
+
+                if ($existing_photo && file_exists($upload_path . $existing_photo)) {
+                    unlink($upload_path . $existing_photo);
+                }
+
+                $this->Recruiter_model->update_profile_photo($user['id'], $file_name);
+
+                // Update user's picture field in user data for session
+                $user['picture'] = $file_name;
+            }
         }
 
         // Set session

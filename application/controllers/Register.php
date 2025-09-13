@@ -59,25 +59,6 @@ class Register extends CI_Controller
         // Check if user exists
         $user = $this->Register_model->get_user_by_email($userData['email']);
 
-        // // If not, create user
-        // if (!$user) {
-        //     $user_id = $this->Register_model->insert_google_user([
-        //         'uid' => $userData['uid'],
-        //         'email' => $userData['email'],
-        //         'full_name' => $userData['name'],   // <----- field name must match table!
-        //         'picture' => $userData['picture'],
-        //         'provider' => $userData['provider'],
-        //         'password' => null,                 // google sign-in: password is NULL
-        //         'mobile_number' => null,            // can prompt user later!
-        //         'work_status' => null,              // can default to 'Experienced'/'Fresher' or NULL
-        //         'created_at' => date('Y-m-d H:i:s'),
-        //         'updated_at' => date('Y-m-d H:i:s')
-        //     ]);
-
-        //     $user = $this->Register_model->get_user_by_id($user_id);
-        // }
-
-
         // Define upload path for profile photos
         $upload_path = FCPATH . 'assets/profile_photos/';
         // Download and save Google profile picture locally

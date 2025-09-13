@@ -663,7 +663,7 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               uid: user.uid,
-              name: user.displayName,
+              full_name: user.displayName,
               email: user.email,
               picture: user.photoURL,
               provider: 'google'
