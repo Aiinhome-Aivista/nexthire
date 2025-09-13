@@ -19,8 +19,8 @@
         /* Sidebar */
         .sidebar {
             width: 260px;
-            background: #1e1e2c;
-            color: #fff;
+            background: #c9c9c9;
+            color: black;
             display: flex;
             flex-direction: column;
             padding: 20px;
@@ -33,7 +33,7 @@
         }
 
         .sidebar a {
-            color: white;
+            color: #000000;
             text-decoration: none;
             padding: 12px 15px;
             border-radius: 8px;
@@ -229,13 +229,16 @@
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
-        <img style="height:40px; width:90px;" src="<?= base_url('assets/images/jobnest.png'); ?>" alt="JobNest"><br>
-        <a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a>
+        <img style="height:40px; width:90px;" src="<?= base_url('assets/images/jobnest2.png'); ?>" alt="JobNest"><br>
+        <a href="<?= base_url('employer_dashboard'); ?>" class="active"><i class="fas fa-home"></i> Dashboard</a>
         <a href="<?= base_url('employer_job_post'); ?>"> <i class="fas fa-file-alt"></i> Post Job</a>
-        <a href="#"><i class="fas fa-briefcase"></i> Manage Jobs</a>
-        <a href="#"><i class="fas fa-user-graduate"></i> Candidates</a>
-        <a href="#"><i class="fas fa-building"></i> Employer Profile</a>
-        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        <a href="<?= base_url('employer_manage_jobs'); ?>"><i class="fas fa-briefcase"></i> Manage Jobs</a>
+
+        <a href="<?= base_url('employer_manage_candidates'); ?>"><i class="fas fa-user-graduate"></i> Candidates</a>
+        <a href="<?= base_url('employer_profile'); ?>"><i class="fas fa-building"></i> Employer Profile</a>
+        <a href="#" id="logoutBtn">
+            <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+        </a>
     </div>
 
     <!-- Main Content -->
@@ -245,19 +248,19 @@
             <h1>Dashboard</h1>
             <div class="stats">
                 <div class="stat-box">
-                    <h3>12</h3>
+                    <h3>2</h3>
                     <p>Active Jobs</p>
                 </div>
                 <div class="stat-box">
-                    <h3>5</h3>
+                    <h3>0</h3>
                     <p>Expired Jobs</p>
                 </div>
                 <div class="stat-box">
-                    <h3>128</h3>
+                    <h3>10</h3>
                     <p>Total Applications</p>
                 </div>
                 <div class="stat-box">
-                    <h3>42</h3>
+                    <h3>5</h3>
                     <p>Shortlisted</p>
                 </div>
             </div>
@@ -272,12 +275,49 @@
                     <i class="fas fa-ellipsis-v"></i>
                 </div>
                 <div class="model-card-body">
-                    <!-- Job posts will be displayed here -->
+                    <?php if (!empty($recent_jobs)): ?>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Position</th>
+                                    <th>Experience</th>
+                                    <th>Company</th>
+                                    <th>Location</th>
+                                    <th>Job Type</th>
+                                    <th>Posted On</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($recent_jobs as $job): ?>
+                                    <tr>
+                                        <td><?= $job->title; ?></td>
+                                        <td><?= $job->experience; ?></td>
+                                        <td><?= $job->company; ?></td>
+                                        <td><?= $job->location; ?></td>
+                                        <td><?= $job->job_type; ?></td>
+                                        <td><?= date("d M Y", strtotime($job->created_at)); ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    <?php else: ?>
+                        <p>No job posts available.</p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
+
     </div>
     </div>
+
+    <script>
+        const logoutBtn = document.getElementById('logoutBtn');
+        logoutBtn.addEventListener('click', function() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '<?= base_url("employer_login"); ?>';
+            }
+        });
+    </script>
 </body>
 
 </html>
