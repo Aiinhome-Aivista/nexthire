@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recruiter Management</title>
+  <title>SahajJobs | Manage Employers</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
@@ -36,8 +36,8 @@
     /* Sidebar Styles */
     .sidebar {
       width: var(--sidebar-width);
-      background: var(--dark);
-      color: white;
+      background: #48434394;
+      color: black;
       height: 100vh;
       position: fixed;
       transition: all 0.3s ease;
@@ -47,7 +47,6 @@
 
     .sidebar-header {
       padding: 20px;
-      background: var(--primary);
       display: flex;
       align-items: center;
       gap: 10px;
@@ -72,7 +71,7 @@
     }
 
     .sidebar-menu a {
-      color: #fff;
+      color: #000000;
       text-decoration: none;
       display: flex;
       align-items: center;
@@ -180,11 +179,6 @@
       color: #b91c1c;
     }
 
-    img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-    }
 
     /* Search and Pagination Styles */
     .search-container {
@@ -311,6 +305,125 @@
         flex-wrap: wrap;
       }
     }
+
+    /* Enhanced Modal Styles */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .modal.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      width: 450px;
+      max-width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(-50px);
+      transition: transform 0.4s ease;
+    }
+
+    .modal.show .modal-content {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      padding: 20px 25px 15px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      font-size: 1.4rem;
+      color: #333;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .modal-body {
+      padding: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #444;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 15px;
+      transition: all 0.3s;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(239, 218, 86, 0.2);
+    }
+
+    .modal-footer {
+      padding: 15px 25px 20px;
+      border-top: 1px solid #eee;
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .modal-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .modal-btn-primary {
+      background-color: var(--primary);
+      color: #333;
+    }
+
+    .modal-btn-primary:hover {
+      background-color: #e6cf4d;
+    }
+
+    .modal-btn-secondary {
+      background-color: #f0f0f0;
+      color: #555;
+    }
+
+    .modal-btn-secondary:hover {
+      background-color: #e2e2e2;
+    }
   </style>
 </head>
 
@@ -319,16 +432,18 @@
   <div class="sidebar">
     <div class="sidebar-header">
       <div style="display: flex; align-items: center; gap: 10px;">
-        <i class="fas fa-briefcase"></i>
-        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnest" style="height: 40px; width: 100px">
+        <img src="<?= base_url('assets/images/sahajjobs1.png'); ?>" alt="SahajJOB" style="height:50px; width:135px;">
       </div>
     </div>
     <nav class="sidebar-menu">
       <ul>
         <li><a href="<?= base_url('admin/dashboard') ?>"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
-        <li><a href="<?= base_url('admin/candidate_management') ?>"><i class="fas fa-user-graduate"></i> <span>Candidates</span></a></li>
-        <li><a href="<?= base_url('admin/employer_management') ?>" class="active"><i class="fas fa-users"></i> <span>Employers</span></a></li>
-        <li><a href="<?= base_url('admin/job_post_management') ?>"><i class="fas fa-file-alt"></i> <span>Job Posts</span></a></li>
+        <li><a href="<?= base_url('admin/candidate_management') ?>"><i class="fas fa-user-graduate"></i>
+            <span>Candidates</span></a></li>
+        <li><a href="<?= base_url('admin/employer_management') ?>" class="active"><i class="fas fa-users"></i>
+            <span>Employers</span></a></li>
+        <li><a href="<?= base_url('admin/job_post_management') ?>"><i class="fas fa-file-alt"></i> <span>Job
+              Posts</span></a></li>
         <!-- <li><a href="#"><i class="fas fa-cog"></i> <span>Settings</span></a></li> -->
         <li>
           <a href="#" id="logoutBtn">
@@ -366,24 +481,24 @@
         </thead>
         <tbody id="recruiterTableBody">
           <?php if (!empty($employers)): ?>
+            <?php $i = 1; ?>
             <?php foreach ($employers as $employer): ?>
-              <tr>
-                <td><?= htmlspecialchars($employer->id) ?></td>
-                <td><?= htmlspecialchars($employer->full_name) ?></td>
-                <td><?= htmlspecialchars($employer->email) ?></td>
-                <td><?= htmlspecialchars($employer->company) ?></td>
-                <td><?= htmlspecialchars($employer->designation) ?></td>
-                <td><?= htmlspecialchars($employer->mobile_number) ?></td>
+              <tr data-id="<?= $employer->id ?>">
+                <td><?= $i++; ?></td>
+                <td class="col-name"><?= $employer->full_name ?></td>
+                <td class="col-email"><?= $employer->email ?></td>
+                <td class="col-company"><?= $employer->company ?></td>
+                <td class="col-designation"><?= $employer->designation ?></td>
+                <td class="col-mobile"><?= $employer->mobile_number ?></td>
                 <td>
                   <button class="btn btn-table btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
-                  <button class="btn btn-table btn-delete" title="Delete"><i
-                      class="fas fa-trash"></i></button>
+                  <button class="btn btn-table btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
                 </td>
               </tr>
             <?php endforeach; ?>
           <?php else: ?>
-            <tr class="table-no-recruiters">
-              <td colspan="6">No Employers found</td>
+            <tr class="table-no-employers">
+              <td colspan="7">No employers found</td>
             </tr>
           <?php endif; ?>
         </tbody>
@@ -399,18 +514,58 @@
         <span class="page-info" id="pageInfo"></span>
       </div>
     </div>
+    <footer style="text-align:center; padding-top: 170px;">
+      &copy; 2025 SahajJobs Inc. All Rights Reserved.
+    </footer>
+  </div>
+
+  <!-- Edit Employer Modal -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">Edit Employer</div>
+      <div class="modal-body">
+        <form id="editForm">
+          <input type="hidden" id="edit_id">
+
+          <div class="form-group">
+            <label for="edit_full_name">Full Name</label>
+            <input type="text" id="edit_full_name" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="edit_email">Email</label>
+            <input type="email" id="edit_email" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="edit_company">Company</label>
+            <input type="text" id="edit_company" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="edit_designation">Designation</label>
+            <input type="text" id="edit_designation" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="edit_mobile_number">Mobile</label>
+            <input type="text" id="edit_mobile_number" class="form-control">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="updateBtn" class="modal-btn modal-btn-primary">Update</button>
+        <button type="button" id="closeModal" class="modal-btn modal-btn-secondary">Cancel</button>
+      </div>
+    </div>
   </div>
 
   <script>
     const logoutBtn = document.getElementById('logoutBtn');
-    logoutBtn.addEventListener('click', function() {
+    logoutBtn.addEventListener('click', function () {
       if (confirm('Are you sure you want to logout?')) {
-        window.location.href = '<?= base_url("employer_login"); ?>';
+        window.location.href = '<?= base_url("admin/employer_management/logout"); ?>';
       }
     });
 
-    // Search and Pagination functionality
-    document.addEventListener('DOMContentLoaded', function() {
+    // Search and Pagination functionality (Recruiter Management)
+    document.addEventListener('DOMContentLoaded', function () {
       const searchInput = document.getElementById('searchInput');
       const tableBody = document.getElementById('recruiterTableBody');
       const firstPageBtn = document.getElementById('firstPage');
@@ -427,8 +582,8 @@
       const rowsPerPage = 10;
 
       // Use MutationObserver to detect when table content is loaded
-      const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
+      const observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
           if (mutation.addedNodes.length) {
             initializeTable();
           }
@@ -444,8 +599,7 @@
       setTimeout(initializeTable, 500);
 
       function initializeTable() {
-        // Get all existing rows from the table (if any)
-        const rows = Array.from(tableBody.querySelectorAll('tr'));
+        const rows = Array.from(tableBody.querySelectorAll('tr:not(.table-no-recruiters)'));
 
         // Only reinitialize if we have rows and they haven't been processed yet
         if (rows.length > 0 && allRows.length === 0) {
@@ -455,17 +609,14 @@
           // Show pagination controls
           paginationControls.style.display = 'flex';
           updatePagination();
-        } else if (rows.length === 0) {
-          // If no rows, display a message
-          const noDataRow = document.createElement('tr');
-          noDataRow.innerHTML = `<td colspan="7" style="text-align: center;">No recruiter data available</td>`;
-          tableBody.appendChild(noDataRow);
+        } else if (tableBody.querySelector('.table-no-recruiters')) {
+          // If no data row is present, hide pagination
           paginationControls.style.display = 'none';
         }
       }
 
       // Search functionality
-      searchInput.addEventListener('input', function() {
+      searchInput.addEventListener('input', function () {
         const searchText = this.value.toLowerCase();
 
         if (searchText === '') {
@@ -488,13 +639,16 @@
 
       // Pagination functionality
       function updatePagination() {
-        // If no rows, hide pagination and return
+        const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+
         if (filteredRows.length === 0) {
           paginationControls.style.display = 'none';
+          tableBody.innerHTML = '<tr class="table-no-recruiters"><td colspan="7">No recruiters found</td></tr>';
           return;
         }
 
-        const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+        // Show pagination controls
+        paginationControls.style.display = 'flex';
 
         // Update button states
         firstPageBtn.disabled = currentPage === 1;
@@ -533,8 +687,8 @@
       }
 
       function displayCurrentPage() {
-        // Hide all rows first
-        allRows.forEach(row => row.style.display = 'none');
+        // Clear existing table content
+        tableBody.innerHTML = '';
 
         // Show rows for current page
         const startIndex = (currentPage - 1) * rowsPerPage;
@@ -542,11 +696,8 @@
 
         const pageRows = filteredRows.slice(startIndex, endIndex);
         pageRows.forEach(row => {
-          row.style.display = '';
+          tableBody.appendChild(row);
         });
-
-        // Show pagination controls if we have rows
-        paginationControls.style.display = pageRows.length > 0 ? 'flex' : 'none';
       }
 
       function goToPage(page) {
@@ -562,6 +713,92 @@
         const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
         goToPage(totalPages);
       });
+    });
+
+
+    // Re-number table
+    function renumberTable() {
+      const rows = document.querySelectorAll("#recruiterTableBody tr");
+      rows.forEach((row, index) => {
+        row.querySelector("td").textContent = index + 1;
+      });
+    }
+
+    // Delete employer
+    document.addEventListener('click', e => {
+      if (e.target.closest('.btn-delete')) {
+        const row = e.target.closest('tr');
+        const employerId = row.getAttribute('data-id');
+
+        if (confirm('Are you sure you want to delete this employer?')) {
+          fetch('<?= base_url("admin/employer_management/delete_employer/") ?>' + employerId)
+            .then(res => res.json())
+            .then(data => {
+              if (data.status === 'success') {
+                row.remove();
+                renumberTable();
+                alert('Employer deleted successfully.');
+              } else {
+                alert('Error deleting employer.');
+              }
+            })
+            .catch(err => console.error(err));
+        }
+      }
+    });
+
+    // Open edit modal
+    document.addEventListener('click', e => {
+      if (e.target.closest('.btn-edit')) {
+        const row = e.target.closest('tr');
+        const id = row.getAttribute('data-id');
+        document.getElementById('edit_id').value = id;
+        document.getElementById('edit_full_name').value = row.querySelector('.col-name').textContent;
+        document.getElementById('edit_email').value = row.querySelector('.col-email').textContent;
+        document.getElementById('edit_company').value = row.querySelector('.col-company').textContent;
+        document.getElementById('edit_designation').value = row.querySelector('.col-designation').textContent;
+        document.getElementById('edit_mobile_number').value = row.querySelector('.col-mobile').textContent;
+
+        document.getElementById('editModal').classList.add('show');
+      }
+    });
+
+    // Close modal
+    document.getElementById('closeModal').addEventListener('click', () => {
+      document.getElementById('editModal').classList.remove('show');
+    });
+
+    // Update employer
+    document.getElementById('updateBtn').addEventListener('click', () => {
+      const formData = new FormData();
+      formData.append('id', document.getElementById('edit_id').value);
+      formData.append('full_name', document.getElementById('edit_full_name').value);
+      formData.append('email', document.getElementById('edit_email').value);
+      formData.append('company', document.getElementById('edit_company').value);
+      formData.append('designation', document.getElementById('edit_designation').value);
+      formData.append('mobile_number', document.getElementById('edit_mobile_number').value);
+
+      fetch('<?= base_url("admin/employer_management/update_employer") ?>', {
+        method: 'POST',
+        body: formData
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.status === 'success') {
+            const row = document.querySelector(`tr[data-id="${formData.get('id')}"]`);
+            row.querySelector('.col-name').textContent = data.data.full_name;
+            row.querySelector('.col-email').textContent = data.data.email;
+            row.querySelector('.col-company').textContent = data.data.company;
+            row.querySelector('.col-designation').textContent = data.data.designation;
+            row.querySelector('.col-mobile').textContent = data.data.mobile_number;
+
+            document.getElementById('editModal').classList.remove('show');
+            alert('Employer updated successfully.');
+          } else {
+            alert('Error updating employer.');
+          }
+        })
+        .catch(err => console.error(err));
     });
   </script>
 </body>

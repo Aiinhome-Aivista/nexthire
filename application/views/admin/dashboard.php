@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>SahajJobs | Admin Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -37,8 +37,8 @@
         /* Sidebar Styles */
         .sidebar {
             width: var(--sidebar-width);
-            background: var(--dark);
-            color: white;
+            background: #48434394;
+            color: black;
             height: 100vh;
             position: fixed;
             transition: all 0.3s ease;
@@ -48,7 +48,6 @@
 
         .sidebar-header {
             padding: 20px;
-            background: var(--primary);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -73,7 +72,7 @@
         }
 
         .sidebar-menu a {
-            color: #fff;
+            color: #000000;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -181,7 +180,7 @@
         }
 
         .candidates .stat-icon {
-            background: rgba(67, 97, 238, 0.2);
+            background: rgb(67 97 238 / 9%);
             color: var(--primary);
         }
 
@@ -200,79 +199,68 @@
             color: var(--danger);
         }
 
-        /* Model Cards */
+        /* Model Cards - Recent Job Posts */
         .model-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr;
             gap: 20px;
+            margin-bottom: 30px;
         }
 
         .model-card {
             background: white;
             border-radius: 8px;
-            overflow: hidden;
+            padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         .model-card-header {
-            padding: 15px 20px;
-            border-bottom: 1px solid #eee;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
         }
 
         .model-card-header h3 {
             font-size: 1.2rem;
+            font-weight: 600;
             color: var(--dark);
         }
 
-        .model-card-header i {
-            color: var(--gray);
-            font-size: 1.2rem;
-        }
-
         .model-card-body {
-            padding: 20px;
+            overflow-x: auto;
         }
 
-        .model-item {
-            display: flex;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #f0f0f0;
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
         }
 
-        .model-item:last-child {
-            border-bottom: none;
+        .table thead {
+            background: var(--light);
         }
 
-        .model-item img {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            object-fit: cover;
-            margin-right: 15px;
+        .table th,
+        .table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            white-space: nowrap;
         }
 
-        .model-info h4 {
-            font-size: 1rem;
-            margin-bottom: 5px;
+        .table th {
+            font-weight: 600;
+            color: var(--dark);
         }
 
-        .model-info p {
-            font-size: 0.8rem;
-            color: var(--gray);
+        .table tbody tr:hover {
+            background: rgba(0, 0, 0, 0.03);
         }
 
-        .model-status {
-            margin-left: auto;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
+        /* Status Badges */
         .status-active {
             background: rgba(76, 201, 240, 0.2);
             color: var(--success);
@@ -395,6 +383,7 @@
             }
         }
     </style>
+
 </head>
 
 <body>
@@ -402,17 +391,20 @@
     <div class="sidebar">
         <div class="sidebar-header">
             <div style="display: flex; align-items: center; gap: 10px;">
-                <i class="fas fa-briefcase"></i>
-                <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnest" style="height: 40px; width: 100px">
+                <img src="<?= base_url('assets/images/sahajjobs1.png'); ?>" alt="SahajJOB"
+                    style="height:50px; width:135px;">
             </div>
         </div>
         <nav class="sidebar-menu">
             <ul>
-                <li><a href="<?= base_url('admin/dashboard') ?>" class="active"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
-                <li><a href="<?= base_url('admin/candidate_management') ?>"><i class="fas fa-user-graduate"></i> <span>Candidates</span></a></li>
-                <li><a href="<?= base_url('admin/employer_management') ?>"><i class="fas fa-users"></i> <span>Employers</span></a></li>
-                <li><a href="<?= base_url('admin/job_post_management') ?>"><i class="fas fa-file-alt"></i> <span>Job Posts</span></a></li>
-                <!-- <li><a href="#"><i class="fas fa-cog"></i> <span>Settings</span></a></li> -->
+                <li><a href="<?= base_url('admin/dashboard') ?>" class="active"><i class="fas fa-home"></i>
+                        <span>Dashboard</span></a></li>
+                <li><a href="<?= base_url('admin/candidate_management') ?>"><i class="fas fa-user-graduate"></i>
+                        <span>Candidates</span></a></li>
+                <li><a href="<?= base_url('admin/employer_management') ?>"><i class="fas fa-users"></i>
+                        <span>Employers</span></a></li>
+                <li><a href="<?= base_url('admin/job_post_management') ?>"><i class="fas fa-file-alt"></i> <span>Job
+                            Posts</span></a></li>
                 <li>
                     <a href="#" id="logoutBtn">
                         <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
@@ -478,7 +470,7 @@
 
             <div class="stat-card applications">
                 <div class="stat-info">
-                    <h3>0</h3>
+                    <h3>10</h3>
                     <p>Applications</p>
                 </div>
                 <div class="stat-icon">
@@ -488,6 +480,7 @@
         </div>
 
         <!-- Model Cards -->
+        <!-- Model Cards -->
         <div class="model-cards">
             <!-- Job Posts Card -->
             <div class="model-card">
@@ -496,10 +489,41 @@
                     <i class="fas fa-ellipsis-v"></i>
                 </div>
                 <div class="model-card-body">
-                    <!-- Job posts will be displayed here -->
+                    <?php if (!empty($recent_jobs)): ?>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Position</th>
+                                    <th>Experience</th>
+                                    <th>Company</th>
+                                    <th>Location</th>
+                                    <th>Job Type</th>
+                                    <th>Posted On</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($recent_jobs as $job): ?>
+                                    <tr>
+                                        <td><?= $job->title; ?></td>
+                                        <td><?= $job->experience; ?></td>
+                                        <td><?= $job->company; ?></td>
+                                        <td><?= $job->location; ?></td>
+                                        <td><?= $job->job_type; ?></td>
+                                        <td><?= date("d M Y", strtotime($job->created_at)); ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    <?php else: ?>
+                        <p>No job posts available.</p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
+
+        <footer style="text-align:center; padding: 50px;">
+            &copy; 2025 SahajJobs Inc. All Rights Reserved.
+        </footer>
     </div>
 
     <script>
@@ -529,7 +553,7 @@
 
         // Only handle tab switching for links with href="#"
         document.querySelectorAll('.sidebar-menu a').forEach(item => {
-            item.addEventListener('click', function(e) {
+            item.addEventListener('click', function (e) {
                 // Only prevent default for anchor tags with href="#"
                 if (this.getAttribute('href') === '#') {
                     e.preventDefault();
@@ -557,12 +581,13 @@
         // Initial check and event listener for window resize
         checkSidebarView();
         window.addEventListener('resize', checkSidebarView);
+    </script>
 
+    <script>
         const logoutBtn = document.getElementById('logoutBtn');
-        logoutBtn.addEventListener('click', function() {
+        logoutBtn.addEventListener('click', function () {
             if (confirm('Are you sure you want to logout?')) {
-
-                window.location.href = '<?= base_url("home"); ?>';
+                window.location.href = '<?= base_url("Admin_Dashboard/logout"); ?>';
             }
         });
     </script>

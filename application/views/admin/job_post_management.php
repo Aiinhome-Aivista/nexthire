@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Job Post Management</title>
+  <title>SahajJobs | Manage Job Posts</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
@@ -36,8 +36,8 @@
     /* Sidebar Styles */
     .sidebar {
       width: var(--sidebar-width);
-      background: var(--dark);
-      color: white;
+      background: #48434394;
+      color: black;
       height: 100vh;
       position: fixed;
       transition: all 0.3s ease;
@@ -47,7 +47,6 @@
 
     .sidebar-header {
       padding: 20px;
-      background: var(--primary);
       display: flex;
       align-items: center;
       gap: 10px;
@@ -72,7 +71,7 @@
     }
 
     .sidebar-menu a {
-      color: #fff;
+      color: #000000;
       text-decoration: none;
       display: flex;
       align-items: center;
@@ -180,11 +179,6 @@
       color: #b91c1c;
     }
 
-    img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-    }
 
     /* Search and Pagination Styles */
     .search-container {
@@ -311,6 +305,87 @@
         flex-wrap: wrap;
       }
     }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .modal.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      width: 600px;
+      max-width: 95%;
+      padding: 20px;
+    }
+
+    .modal-header {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .form-group label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+
+    .modal-footer {
+      margin-top: 15px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .modal-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .modal-btn-primary {
+      background: var(--primary);
+    }
+
+    .modal-btn-secondary {
+      background: #f0f0f0;
+    }
+
+    .modal-body.scrollable {
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
   </style>
 </head>
 
@@ -319,17 +394,18 @@
   <div class="sidebar">
     <div class="sidebar-header">
       <div style="display: flex; align-items: center; gap: 10px;">
-        <i class="fas fa-briefcase"></i>
-        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnest" style="height: 40px; width: 100px">
+        <img src="<?= base_url('assets/images/sahajjobs1.png'); ?>" alt="SahajJOB" style="height:50px; width:135px;">
       </div>
     </div>
     <nav class="sidebar-menu">
       <ul>
         <li><a href="<?= base_url('admin/dashboard') ?>"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
-        <li><a href="<?= base_url('admin/candidate_management') ?>"><i class="fas fa-user-graduate"></i> <span>Candidates</span></a></li>
-        <li><a href="<?= base_url('admin/employer_management') ?>"><i class="fas fa-users"></i> <span>Employers</span></a></li>
-        <li><a href="<?= base_url('admin/job_post_management') ?>" class="active"><i class="fas fa-file-alt"></i> <span>Job Posts</span></a></li>
-        <!-- <li><a href="#"><i class="fas fa-cog"></i> <span>Settings</span></a></li> -->
+        <li><a href="<?= base_url('admin/candidate_management') ?>"><i class="fas fa-user-graduate"></i>
+            <span>Candidates</span></a></li>
+        <li><a href="<?= base_url('admin/employer_management') ?>"><i class="fas fa-users"></i>
+            <span>Employers</span></a></li>
+        <li><a href="<?= base_url('admin/job_post_management') ?>" class="active"><i class="fas fa-file-alt"></i>
+            <span>Job Posts</span></a></li>
         <li>
           <a href="#" id="logoutBtn">
             <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
@@ -356,7 +432,6 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>Employer ID</th>
             <th>Job Title</th>
             <th>Company</th>
             <th>Industry</th>
@@ -365,37 +440,27 @@
             <th>Experience</th>
             <th>Job Type</th>
             <th>Salary</th>
-            <!-- <th>Description</th> -->
-            <!-- <th>Requirements</th> -->
-            <!-- <th>Benefits</th> -->
             <th>Last Date</th>
-            <th>Email</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody id="jobPostTableBody">
           <?php if (!empty($job_post)): ?>
             <?php foreach ($job_post as $job_post): ?>
-              <tr>
-                <td><?= htmlspecialchars($job_post->id) ?></td>
-                <td><?= htmlspecialchars($job_post->employer_id) ?></td>
-                <td><?= htmlspecialchars($job_post->title) ?></td>
-                <td><?= htmlspecialchars($job_post->company) ?></td>
-                <td><?= htmlspecialchars($job_post->industry) ?></td>
-                <td><?= htmlspecialchars($job_post->location) ?></td>
-                <td><?= htmlspecialchars($job_post->employees) ?></td>
-                <td><?= htmlspecialchars($job_post->experience) ?></td>
-                <td><?= htmlspecialchars($job_post->job_type) ?></td>
-                <td><?= htmlspecialchars($job_post->salary) ?></td>
-                <!-- <td><?= htmlspecialchars($job_post->description) ?></td>
-                <td><?= htmlspecialchars($job_post->requirements) ?></td>
-                <td><?= htmlspecialchars($job_post->benefits) ?></td> -->
-                <td><?= htmlspecialchars($job_post->last_date) ?></td>
-                <td><?= htmlspecialchars($job_post->email) ?></td>
+              <tr data-id="<?= $job_post->id ?>">
+                <td class="col-id"><?= htmlspecialchars($job_post->id) ?></td>
+                <td class="col-title"><?= htmlspecialchars($job_post->title) ?></td>
+                <td class="col-company"><?= htmlspecialchars($job_post->company) ?></td>
+                <td class="col-industry"><?= htmlspecialchars($job_post->industry) ?></td>
+                <td class="col-location"><?= htmlspecialchars($job_post->location) ?></td>
+                <td class="col-employees"><?= htmlspecialchars($job_post->employees) ?></td>
+                <td class="col-experience"><?= htmlspecialchars($job_post->experience) ?></td>
+                <td class="col-job_type"><?= htmlspecialchars($job_post->job_type) ?></td>
+                <td class="col-salary"><?= htmlspecialchars($job_post->salary) ?></td>
+                <td class="col-last_date"><?= htmlspecialchars($job_post->last_date) ?></td>
                 <td>
                   <button class="btn btn-table btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
-                  <button class="btn btn-table btn-delete" title="Delete"><i
-                      class="fas fa-trash"></i></button>
+                  <button class="btn btn-table btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
                 </td>
               </tr>
             <?php endforeach; ?>
@@ -417,18 +482,55 @@
         <span class="page-info" id="pageInfo"></span>
       </div>
     </div>
+    <footer style="text-align:center; padding-top: 170px;">
+      &copy; 2025 SahajJobs Inc. All Rights Reserved.
+    </footer>
   </div>
+
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">Edit Job Post</div>
+
+      <!-- Scrollable body -->
+      <div class="modal-body scrollable">
+        <form id="editForm">
+          <input type="hidden" id="edit_id">
+          <div class="form-group"><label>Job Title</label><input type="text" id="edit_title" class="form-control"></div>
+          <div class="form-group"><label>Company</label><input type="text" id="edit_company" class="form-control"></div>
+          <div class="form-group"><label>Industry</label><input type="text" id="edit_industry" class="form-control">
+          </div>
+          <div class="form-group"><label>Location</label><input type="text" id="edit_location" class="form-control">
+          </div>
+          <div class="form-group"><label>Employees</label><input type="text" id="edit_employees" class="form-control">
+          </div>
+          <div class="form-group"><label>Experience</label><input type="text" id="edit_experience" class="form-control">
+          </div>
+          <div class="form-group"><label>Job Type</label><input type="text" id="edit_job_type" class="form-control">
+          </div>
+          <div class="form-group"><label>Salary</label><input type="text" id="edit_salary" class="form-control"></div>
+          <div class="form-group"><label>Last Date</label><input type="date" id="edit_last_date" class="form-control">
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" id="updateBtn" class="modal-btn modal-btn-primary">Update</button>
+        <button type="button" id="closeModal" class="modal-btn modal-btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+
 
   <script>
     const logoutBtn = document.getElementById('logoutBtn');
-    logoutBtn.addEventListener('click', function() {
+    logoutBtn.addEventListener('click', function () {
       if (confirm('Are you sure you want to logout?')) {
-        window.location.href = '<?= base_url("home"); ?>';
+        window.location.href = '<?= base_url("admin/job_post_management/logout"); ?>';
       }
     });
 
     // Search and Pagination functionality
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const searchInput = document.getElementById('searchInput');
       const tableBody = document.getElementById('jobPostTableBody');
       const firstPageBtn = document.getElementById('firstPage');
@@ -445,8 +547,8 @@
       const rowsPerPage = 10;
 
       // Use MutationObserver to detect when table content is loaded
-      const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
+      const observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
           if (mutation.addedNodes.length) {
             initializeTable();
           }
@@ -462,8 +564,7 @@
       setTimeout(initializeTable, 500);
 
       function initializeTable() {
-        // Get all existing rows from the table (if any)
-        const rows = Array.from(tableBody.querySelectorAll('tr'));
+        const rows = Array.from(tableBody.querySelectorAll('tr:not(.table-no-jobposts)'));
 
         // Only reinitialize if we have rows and they haven't been processed yet
         if (rows.length > 0 && allRows.length === 0) {
@@ -473,17 +574,18 @@
           // Show pagination controls
           paginationControls.style.display = 'flex';
           updatePagination();
+        } else if (tableBody.querySelector('.table-no-jobposts')) {
+          // If no data row is present, hide pagination
+          paginationControls.style.display = 'none';
         } else if (rows.length === 0) {
-          // If no rows, display a message
-          const noDataRow = document.createElement('tr');
-          noDataRow.innerHTML = `<td colspan="12" style="text-align: center;">No job post data available</td>`;
-          tableBody.appendChild(noDataRow);
+          // If no rows at all, show "no data" row
+          tableBody.innerHTML = '<tr class="table-no-jobposts"><td colspan="12" style="text-align: center;">No job posts found</td></tr>';
           paginationControls.style.display = 'none';
         }
       }
 
       // Search functionality
-      searchInput.addEventListener('input', function() {
+      searchInput.addEventListener('input', function () {
         const searchText = this.value.toLowerCase();
 
         if (searchText === '') {
@@ -506,13 +608,16 @@
 
       // Pagination functionality
       function updatePagination() {
-        // If no rows, hide pagination and return
+        const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+
         if (filteredRows.length === 0) {
           paginationControls.style.display = 'none';
+          tableBody.innerHTML = '<tr class="table-no-jobposts"><td colspan="12" style="text-align: center;">No job posts found</td></tr>';
           return;
         }
 
-        const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+        // Show pagination controls
+        paginationControls.style.display = 'flex';
 
         // Update button states
         firstPageBtn.disabled = currentPage === 1;
@@ -551,8 +656,8 @@
       }
 
       function displayCurrentPage() {
-        // Hide all rows first
-        allRows.forEach(row => row.style.display = 'none');
+        // Clear existing table content
+        tableBody.innerHTML = '';
 
         // Show rows for current page
         const startIndex = (currentPage - 1) * rowsPerPage;
@@ -560,11 +665,8 @@
 
         const pageRows = filteredRows.slice(startIndex, endIndex);
         pageRows.forEach(row => {
-          row.style.display = '';
+          tableBody.appendChild(row);
         });
-
-        // Show pagination controls if we have rows
-        paginationControls.style.display = pageRows.length > 0 ? 'flex' : 'none';
       }
 
       function goToPage(page) {
@@ -581,6 +683,103 @@
         goToPage(totalPages);
       });
     });
+
+
+    // Re-number table
+    function renumberTable() {
+      const rows = document.querySelectorAll("#jobPostTableBody tr");
+      rows.forEach((row, index) => {
+        row.querySelector("td").textContent = index + 1;
+      });
+    }
+
+    // delete job post
+    document.addEventListener('click', e => {
+      if (e.target.closest('.btn-delete')) {
+        const row = e.target.closest('tr');
+        const jobId = row.getAttribute('data-id');
+
+        if (confirm('Are you sure you want to delete this job post?')) {
+          fetch('<?= base_url("admin/job_post_management/delete_job_post/") ?>' + jobId)
+            .then(res => res.json())
+            .then(data => {
+              if (data.status === 'success') {
+                row.remove();
+                alert('Job post deleted successfully.');
+              } else {
+                alert('Error deleting job post.');
+              }
+            })
+            .catch(err => console.error(err));
+        }
+      }
+    });
+
+    // open edit modal
+    document.addEventListener('click', e => {
+      if (e.target.closest('.btn-edit')) {
+        const row = e.target.closest('tr');
+        document.getElementById('edit_id').value = row.getAttribute('data-id');
+        document.getElementById('edit_title').value = row.querySelector('.col-title').textContent;
+        document.getElementById('edit_company').value = row.querySelector('.col-company').textContent;
+        document.getElementById('edit_industry').value = row.querySelector('.col-industry').textContent;
+        document.getElementById('edit_location').value = row.querySelector('.col-location').textContent;
+        document.getElementById('edit_employees').value = row.querySelector('.col-employees').textContent;
+        document.getElementById('edit_experience').value = row.querySelector('.col-experience').textContent;
+        document.getElementById('edit_job_type').value = row.querySelector('.col-job_type').textContent;
+        document.getElementById('edit_salary').value = row.querySelector('.col-salary').textContent;
+        document.getElementById('edit_last_date').value = row.querySelector('.col-last_date').textContent;
+
+        document.getElementById('editModal').classList.add('show');
+      }
+    });
+
+    // close modal
+    document.getElementById('closeModal').addEventListener('click', () => {
+      document.getElementById('editModal').classList.remove('show');
+    });
+
+    // update job post
+    document.getElementById('updateBtn').addEventListener('click', () => {
+      const formData = new FormData();
+      formData.append('id', document.getElementById('edit_id').value);
+      formData.append('title', document.getElementById('edit_title').value);
+      formData.append('company', document.getElementById('edit_company').value);
+      formData.append('industry', document.getElementById('edit_industry').value);
+      formData.append('location', document.getElementById('edit_location').value);
+      formData.append('employees', document.getElementById('edit_employees').value);
+      formData.append('experience', document.getElementById('edit_experience').value);
+      formData.append('job_type', document.getElementById('edit_job_type').value);
+      formData.append('salary', document.getElementById('edit_salary').value);
+      formData.append('last_date', document.getElementById('edit_last_date').value);
+
+      fetch('<?= base_url("admin/job_post_management/update_job_post") ?>', {
+        method: 'POST',
+        body: formData
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.status === 'success') {
+            const row = document.querySelector(`tr[data-id="${formData.get('id')}"]`);
+            row.querySelector('.col-title').textContent = data.data.title;
+            row.querySelector('.col-company').textContent = data.data.company;
+            row.querySelector('.col-industry').textContent = data.data.industry;
+            row.querySelector('.col-location').textContent = data.data.location;
+            row.querySelector('.col-employees').textContent = data.data.employees;
+            row.querySelector('.col-experience').textContent = data.data.experience;
+            row.querySelector('.col-job_type').textContent = data.data.job_type;
+            row.querySelector('.col-salary').textContent = data.data.salary;
+            row.querySelector('.col-last_date').textContent = data.data.last_date;
+
+            document.getElementById('editModal').classList.remove('show');
+            alert('Job post updated successfully.');
+          } else {
+            alert('Error updating job post.');
+          }
+        })
+        .catch(err => console.error(err));
+    });
+
   </script>
 </body>
 

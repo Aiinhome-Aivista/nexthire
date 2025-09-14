@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Candidate Management</title>
+    <title>SahajJobs | Manage Candidates</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -36,8 +36,8 @@
         /* Sidebar Styles */
         .sidebar {
             width: var(--sidebar-width);
-            background: var(--dark);
-            color: white;
+            background: #48434394;
+            color: black;
             height: 100vh;
             position: fixed;
             transition: all 0.3s ease;
@@ -47,7 +47,6 @@
 
         .sidebar-header {
             padding: 20px;
-            background: var(--primary);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -72,7 +71,7 @@
         }
 
         .sidebar-menu a {
-            color: #fff;
+            color: #000000;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -178,12 +177,6 @@
 
         .btn-delete {
             color: #b91c1c;
-        }
-
-        img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
         }
 
         /* Search and Pagination Styles */
@@ -394,16 +387,20 @@
     <div class="sidebar">
         <div class="sidebar-header">
             <div style="display: flex; align-items: center; gap: 10px;">
-                <i class="fas fa-briefcase"></i>
-                <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnest" style="height: 40px; width: 100px">
+                <img src="<?= base_url('assets/images/sahajjobs1.png'); ?>" alt="SahajJOB"
+                    style="height:50px; width:135px;">
             </div>
         </div>
         <nav class="sidebar-menu">
             <ul>
-                <li><a href="<?= base_url('admin/dashboard') ?>"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
-                <li><a href="<?= base_url('admin/candidate_management') ?>" class="active"><i class="fas fa-user-graduate"></i> <span>Candidates</span></a></li>
-                <li><a href="<?= base_url('admin/employer_management') ?>"><i class="fas fa-users"></i> <span>Employers</span></a></li>
-                <li><a href="<?= base_url('admin/job_post_management') ?>"><i class="fas fa-file-alt"></i> <span>Job Posts</span></a></li>
+                <li><a href="<?= base_url('admin/dashboard') ?>"><i class="fas fa-home"></i> <span>Dashboard</span></a>
+                </li>
+                <li><a href="<?= base_url('admin/candidate_management') ?>" class="active"><i
+                            class="fas fa-user-graduate"></i> <span>Candidates</span></a></li>
+                <li><a href="<?= base_url('admin/employer_management') ?>"><i class="fas fa-users"></i>
+                        <span>Employers</span></a></li>
+                <li><a href="<?= base_url('admin/job_post_management') ?>"><i class="fas fa-file-alt"></i> <span>Job
+                            Posts</span></a></li>
                 <li>
                     <a href="#" id="logoutBtn">
                         <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
@@ -448,7 +445,8 @@
                                     <td class="col-work"><?= $candidate->work_status ?></td>
                                     <td>
                                         <button class="btn btn-table btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-table btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                                        <button class="btn btn-table btn-delete" title="Delete"><i
+                                                class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -470,6 +468,11 @@
                 <span class="page-info" id="pageInfo"></span>
             </div>
         </div>
+
+        <!-- Footer added here -->
+        <footer style="text-align:center; padding-top: 170px;">
+            &copy; 2025 SahajJobs Inc. All Rights Reserved.
+        </footer>
     </div>
 
 
@@ -482,31 +485,26 @@
             <div class="modal-body">
                 <form id="editForm">
                     <input type="hidden" id="edit_id">
-                    
+
                     <div class="form-group">
                         <label for="edit_full_name">Full Name</label>
                         <input type="text" id="edit_full_name" class="form-control">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="edit_email">Email</label>
                         <input type="email" id="edit_email" class="form-control">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="edit_mobile_number">Mobile Number</label>
                         <input type="text" id="edit_mobile_number" class="form-control">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="edit_work_status">Work Status</label>
                         <input type="text" id="edit_work_status" class="form-control">
                     </div>
-
-                    <!-- <div class="form-group">
-                        <label for="edit_password">Password <span style="font-weight:400;color:#888;">(leave blank to keep unchanged)</span></label>
-                        <input type="password" id="edit_password" class="form-control" autocomplete="new-password" placeholder="Enter new password">
-                    </div> -->
                 </form>
             </div>
             <div class="modal-footer">
@@ -518,14 +516,14 @@
 
     <script>
         const logoutBtn = document.getElementById('logoutBtn');
-        logoutBtn.addEventListener('click', function() {
+        logoutBtn.addEventListener('click', function () {
             if (confirm('Are you sure you want to logout?')) {
-                window.location.href = '<?= base_url("home"); ?>';
+                window.location.href = '<?= base_url("admin/candidate_management/logout"); ?>';
             }
         });
 
         // Search and Pagination functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const searchInput = document.getElementById('searchInput');
             const tableBody = document.getElementById('candidateTableBody');
             const firstPageBtn = document.getElementById('firstPage');
@@ -542,8 +540,8 @@
             const rowsPerPage = 10;
 
             // Use MutationObserver to detect when table content is loaded
-            const observer = new MutationObserver(function(mutations) {
-                mutations.forEach(function(mutation) {
+            const observer = new MutationObserver(function (mutations) {
+                mutations.forEach(function (mutation) {
                     if (mutation.addedNodes.length) {
                         initializeTable();
                     }
@@ -576,7 +574,7 @@
             }
 
             // Search functionality
-            searchInput.addEventListener('input', function() {
+            searchInput.addEventListener('input', function () {
                 const searchText = this.value.toLowerCase();
 
                 if (searchText === '') {
@@ -686,7 +684,7 @@
 
 
         // 🔹 Delete functionality
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (e.target.closest('.btn-delete')) {
                 const row = e.target.closest('tr');
                 const candidateId = row.getAttribute('data-id');
@@ -715,7 +713,7 @@
 
 
         // Open Modal with Candidate Data
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (e.target.closest('.btn-edit')) {
                 const row = e.target.closest('tr');
                 const candidateId = row.getAttribute('data-id');
@@ -733,12 +731,12 @@
         });
 
         // Close Modal
-        document.getElementById('closeModal').addEventListener('click', function() {
+        document.getElementById('closeModal').addEventListener('click', function () {
             document.getElementById('editModal').classList.remove('show');
         });
 
         // Update Candidate
-        document.getElementById('updateBtn').addEventListener('click', function() {
+        document.getElementById('updateBtn').addEventListener('click', function () {
             const formData = new FormData();
             formData.append('id', document.getElementById('edit_id').value);
             formData.append('full_name', document.getElementById('edit_full_name').value);
@@ -748,9 +746,9 @@
             // formData.append('password', document.getElementById('edit_password').value); // Add password
 
             fetch('<?= base_url("admin/candidate_management/update_candidate") ?>', {
-                    method: 'POST',
-                    body: formData
-                })
+                method: 'POST',
+                body: formData
+            })
                 .then(res => res.json())
                 .then(data => {
                     if (data.status === 'success') {

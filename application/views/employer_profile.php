@@ -197,7 +197,7 @@
             </div>
         </div>
         <footer>
-            &copy; 2025 Jobnest Inc. All Rights Reserved.
+            &copy; 2025 SahajJobs Inc. All Rights Reserved.
         </footer>
 
         <!-- Edit Profile Modal -->

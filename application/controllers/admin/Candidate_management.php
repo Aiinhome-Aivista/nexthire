@@ -37,10 +37,10 @@ class Candidate_management extends CI_Controller
     {
         $id = $this->input->post('id');
         $data = [
-            'full_name'     => $this->input->post('full_name'),
-            'email'         => $this->input->post('email'),
+            'full_name' => $this->input->post('full_name'),
+            'email' => $this->input->post('email'),
             'mobile_number' => $this->input->post('mobile_number'),
-            'work_status'   => $this->input->post('work_status'),
+            'work_status' => $this->input->post('work_status'),
         ];
 
         // $password = $this->input->post('password');
@@ -55,5 +55,12 @@ class Candidate_management extends CI_Controller
         } else {
             echo json_encode(['status' => 'error']);
         }
+    }
+
+
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect(base_url('admin/login'));
     }
 }

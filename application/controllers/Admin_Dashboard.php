@@ -10,6 +10,7 @@ class Admin_Dashboard extends CI_Controller
         $this->load->model('admin/Candidate_management_model');
         $this->load->model('admin/Employer_management_model');
         $this->load->model('admin/Job_post_management_model');
+        $this->load->model('Recruiter_dashboard_model');
     }
 
     public function login()
@@ -20,6 +21,7 @@ class Admin_Dashboard extends CI_Controller
     public function dashboard()
     {
         // Get candidate count
+        $data['recent_jobs'] = $this->Recruiter_dashboard_model->get_recent_jobs();
         $data['candidate_count'] = $this->Candidate_management_model->count_candidates();
         $data['employer_count'] = $this->Employer_management_model->count_employers();
         $data['job_count'] = $this->Job_post_management_model->count_jobs();
@@ -42,5 +44,10 @@ class Admin_Dashboard extends CI_Controller
     {
         $data['job_post'] = $this->Job_post_management_model->get_all_job_posts();
         $this->load->view('admin/job_post_management', $data);
+    }
+
+    public function logout() {
+        $this->session->sess_destroy();
+        redirect(base_url('admin/login'));
     }
 }
