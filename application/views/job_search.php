@@ -340,27 +340,20 @@
             <i class="fas fa-arrow-left"></i> Back to search
         </a>
 
+
         <!-- New search bar at the top -->
         <div class="search-bar-top">
-            <div class="search-input-field-top">
-                <div class="input-group">
-                    <span class="input-group-text"><i class="fas fa-search"></i></span>
-                    <input type="text" id="job-search-input" class="form-control" placeholder="software developer"
-                        value="<?= isset($_GET['job']) ? htmlspecialchars($_GET['job']) : '' ?>">
-                </div>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                <input type="text" id="job-search-input" class="form-control"
+                    placeholder="Jobs / Designation / Location"
+                    value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q']) : '' ?>">
+                <button id="search-button" class="btn btn-primary" style="background-color: #FFF44F; color: black;">
+                    Search
+                </button>
             </div>
-            <div class="search-input-divider-top"></div>
-            <div class="search-input-field-top" style="margin-right: 0;">
-                <div class="input-group">
-                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                    <input type="text" id="location-search-input" class="form-control"
-                        placeholder="City, state, zip code, or &quot;remote&quot;"
-                        value="<?= isset($_GET['location']) ? htmlspecialchars($_GET['location']) : '' ?>">
-                </div>
-            </div>
-            <button id="search-button" class="btn btn-primary"
-                style="background-color: #FFF44F; color: black;">Search</button>
         </div>
+
 
         <div class="jobs-layout">
             <div class="jobs-list">
@@ -396,6 +389,7 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+
     <script>
         // Pass PHP jobs to JS
         const jobData = <?= json_encode($jobs, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) ?>;
@@ -410,53 +404,52 @@
 
             const detailPanel = document.getElementById('job-detail-panel');
             detailPanel.innerHTML = `
-                <div class="detail-header">
-                    <div>
-                        <h2 class="detail-title">${job.title}</h2>
-                        <div class="detail-company">${job.company}</div>
-                    </div>
-                    <button class="apply-btn" style="background-color: #FFF44F; color: black;" onclick="window.location.href='<?= base_url('register'); ?>'">
-                    Apply Now</button>
-                </div>
+        <div class="detail-header">
+            <div>
+                <h2 class="detail-title">${job.title}</h2>
+                <div class="detail-company">${job.company}</div>
+            </div>
+            <button class="apply-btn" style="background-color: #FFF44F; color: black;" onclick="window.location.href='<?= base_url('register'); ?>'">
+                Apply Now
+            </button>
+        </div>
 
-                <div class="detail-info">
-                    <div class="info-item"><i class="fas fa-map-marker-alt"></i><span>${job.location}</span></div>
-                    <div class="info-item"><i class="fas fa-briefcase"></i><span>${job.experience}</span></div>
-                    <div class="info-item"><i class="fas fa-money-bill-wave"></i><span>${job.salary}</span></div>
-                    <div class="info-item"><i class="fas fa-clock"></i><span>${job.job_type}</span></div>
-                    <div class="info-item"><i class="fas fa-building"></i><span>${job.industry}</span></div>
-                    <div class="info-item"><i class="fas fa-users"></i><span>${job.employees}</span></div>
-                </div>
+        <div class="detail-info">
+            <div class="info-item"><i class="fas fa-map-marker-alt"></i><span>${job.location}</span></div>
+            <div class="info-item"><i class="fas fa-briefcase"></i><span>${job.experience}</span></div>
+            <div class="info-item"><i class="fas fa-money-bill-wave"></i><span>${job.salary}</span></div>
+            <div class="info-item"><i class="fas fa-clock"></i><span>${job.job_type}</span></div>
+            <div class="info-item"><i class="fas fa-building"></i><span>${job.industry}</span></div>
+            <div class="info-item"><i class="fas fa-users"></i><span>${job.employees}</span></div>
+        </div>
 
-                <div class="detail-section">
-                    <h3 class="section-title">Job Description</h3>
-                    <div class="job-description">${job.description}</div>
-                </div>
+        <div class="detail-section">
+            <h3 class="section-title">Job Description</h3>
+            <div class="job-description">${job.description}</div>
+        </div>
 
-                <div class="detail-section">
-                    <h3 class="section-title">Requirements</h3>
-                    <ul class="requirements-list">
-                        ${requirements.map(req => `<li>${req}</li>`).join('')}
-                    </ul>
-                </div>
+        <div class="detail-section">
+            <h3 class="section-title">Requirements</h3>
+            <ul class="requirements-list">
+                ${requirements.map(req => `<li>${req}</li>`).join('')}
+            </ul>
+        </div>
 
-                <div class="detail-section">
-                    <h3 class="section-title">Benefits</h3>
-                    <ul class="requirements-list">
-                        ${benefits.map(b => `<li>${b}</li>`).join('')}
-                    </ul>
-                </div>
+        <div class="detail-section">
+            <h3 class="section-title">Benefits</h3>
+            <ul class="requirements-list">
+                ${benefits.map(b => `<li>${b}</li>`).join('')}
+            </ul>
+        </div>
 
-                <button class="apply-btn" style="background-color: #FFF44F; color: black; width: 100%;">Apply for this job</button>
-            `;
+        <button class="apply-btn" style="background-color: #FFF44F; color: black; width: 100%;">Apply for this job</button>
+    `;
         }
 
-        // Function to filter jobs on client side
+        // Function to filter jobs on client side (single input version)
         function filterJobs() {
             const searchTerm = document.getElementById('job-search-input').value.toLowerCase();
-            const locationTerm = document.getElementById('location-search-input').value.toLowerCase();
             const jobCards = document.querySelectorAll('.job-card');
-            let visibleCount = 0;
             let firstVisibleCard = null;
 
             jobCards.forEach(card => {
@@ -465,13 +458,14 @@
                 const location = card.querySelector('.job-location').textContent.toLowerCase();
                 const tags = Array.from(card.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase());
 
-                const matchesSearch = title.includes(searchTerm) || company.includes(searchTerm) ||
+                const matchesSearch =
+                    title.includes(searchTerm) ||
+                    company.includes(searchTerm) ||
+                    location.includes(searchTerm) ||
                     tags.some(tag => tag.includes(searchTerm));
-                const matchesLocation = location.includes(locationTerm) || locationTerm === '';
 
-                if (matchesSearch && matchesLocation) {
+                if (matchesSearch) {
                     card.style.display = 'block';
-                    visibleCount++;
                     if (!firstVisibleCard) firstVisibleCard = card;
                 } else {
                     card.style.display = 'none';
@@ -484,12 +478,23 @@
                 showJobDetails(firstVisibleCard.getAttribute('data-job-id'));
             } else {
                 document.getElementById('job-detail-panel').innerHTML = `
-                    <div class="no-results">
-                        <h3>No jobs found</h3>
-                        <p>Try adjusting your search criteria</p>
-                    </div>
-                `;
+                <div class="no-results">
+                    <h3>No jobs found</h3>
+                    <p>Try adjusting your search criteria</p>
+                </div>
+            `;
             }
+
+            // ✅ Rebind clicks after filtering
+            document.querySelectorAll('.job-card').forEach(card => {
+                if (card.style.display !== "none") {
+                    card.onclick = function () {
+                        document.querySelectorAll('.job-card').forEach(c => c.classList.remove('active'));
+                        this.classList.add('active');
+                        showJobDetails(this.getAttribute('data-job-id'));
+                    };
+                }
+            });
         }
 
         // Initialize
@@ -498,26 +503,30 @@
                 showJobDetails(jobData[0].id);
             }
 
-            const jobCards = document.querySelectorAll('.job-card');
-            jobCards.forEach(card => {
+            // Attach initial click listeners
+            document.querySelectorAll('.job-card').forEach(card => {
                 card.addEventListener('click', function () {
-                    jobCards.forEach(c => c.classList.remove('active'));
+                    document.querySelectorAll('.job-card').forEach(c => c.classList.remove('active'));
                     this.classList.add('active');
                     showJobDetails(this.getAttribute('data-job-id'));
                 });
             });
 
+            // Search button + enter key
             document.getElementById('search-button').addEventListener('click', filterJobs);
-
-            document.getElementById('job-search-input').addEventListener('keyup', function (event) {
-                if (event.key === 'Enter') filterJobs();
+            document.getElementById('job-search-input').addEventListener('keyup', e => {
+                if (e.key === 'Enter') filterJobs();
             });
 
-            document.getElementById('location-search-input').addEventListener('keyup', function (event) {
-                if (event.key === 'Enter') filterJobs();
-            });
+            // Auto-filter if URL has a single query param
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get("q")) {
+                filterJobs();
+            }
         });
     </script>
+
+
 </body>
 
 </html>
