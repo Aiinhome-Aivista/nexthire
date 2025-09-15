@@ -396,6 +396,12 @@
             }
 
         }
+
+        .error-outline {
+            border: 1px solid #d32f2f;
+            border-radius: 50px;
+
+        }
     </style>
 
  
@@ -408,31 +414,21 @@
         <div class="container">
             <h1 class="fw-bold">Find your dream job now</h1>
             <p>5 lakh+ jobs for you to explore</p>
-            <form id="search-form">
-                <div class="search-bar-top" id="custom-search-bar">
-                    <div class="search-input-field-top">
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-search"></i></span>
-                            <input type="text" id="job-search-input" class="form-control" placeholder="Designation">
-                        </div>
-                    </div>
-                    <div class="search-input-divider-top"></div>
-                    <div class="search-input-field-top" style="margin-right: 0;">
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                            <input type="text" id="location-search-input" class="form-control"
-                                placeholder="City, state, zip code, or &quot;remote&quot;">
-                        </div>
-                    </div>
-                    <button id="search-button" class="btn btn-primary" type="submit">Search</button>
-
+            
+            <div class="search-bar-top" id="search-container">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    <input type="text" id="job-search-input" class="form-control"
+                        placeholder="Jobs / Designation / Location">
+                    <button id="search-button" class="btn btn-primary" style="background-color: #FFF44F; color: black;">
+                        Search </button>
                 </div>
-            </form>
-            <div id="search-error-message"
-                style="display:none; color:#d32f2f; margin-top:-25px; font-size:0.95em; font-weight:500;margin-right:625px;padding: 5px;">
-                Please enter keywords to search relevant jobs
             </div>
 
+            <div id="search-error-message"
+                style="display:none; color:#d32f2f; margin-top:-25px; font-size:0.95em; font-weight:500; margin-right:625px; padding:5px;">
+                Please enter keywords to search relevant jobs
+            </div>
 
             <!-- Tagline Image -->
             <div class="tagline-image">
@@ -640,54 +636,39 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
 
-    <!-- <script>
-        document.getElementById('search-button').addEventListener('click', function () {
-            const jobTerm = document.getElementById('job-search-input').value;
-            const locationTerm = document.getElementById('location-search-input').value;
-            window.location.href = "<?= base_url('job_search') ?>?job=" + encodeURIComponent(jobTerm) + "&location=" + encodeURIComponent(locationTerm);
-        });
+   <script>
+        document.getElementById("search-button").addEventListener("click", function (e) {
+            const input = document.getElementById("job-search-input");
+            const search = input.value.trim();
+            const errorMsg = document.getElementById("search-error-message");
+            const container = document.getElementById("search-container");
 
-    </script> -->
-   
-    <script>
-        const form = document.querySelector('#search-form');
-        const jobInput = document.getElementById('job-search-input');
-        const locationInput = document.getElementById('location-input') || document.getElementById('location-search-input');
-        const searchBar = document.getElementById('custom-search-bar');
-        const errorDiv = document.getElementById('search-error-message');
-
-        form.addEventListener('submit', function (event) {
-            const jobVal = jobInput.value.trim();
-            const locationVal = locationInput ? locationInput.value.trim() : '';
-
-            if (!jobVal) {
-                event.preventDefault(); // Stop submission if job input is empty
-                searchBar.classList.add('search-box-error');
-                errorDiv.style.display = 'block';
+            if (!search) {
+                // Block redirection if empty
+                e.preventDefault();
+                errorMsg.style.display = "block";
+                container.classList.add("error-outline");
             } else {
-                event.preventDefault(); // Prevent normal submission to handle redirect manually
-                searchBar.classList.remove('search-box-error');
-                errorDiv.style.display = 'none';
+                // Hide error + remove outline
+                errorMsg.style.display = "none";
+                container.classList.remove("error-outline");
 
-                // Build search URL with parameters
-                const searchUrl = `<?= base_url('job_search') ?>?job=${encodeURIComponent(jobVal)}&location=${encodeURIComponent(locationVal)}`;
-                window.location.href = searchUrl;
+                // ✅ Build query param and redirect
+                const query = new URLSearchParams();
+                query.append("q", search);
+
+                window.location.href = "<?= base_url('jobsearch'); ?>?" + query.toString();
             }
         });
 
-        jobInput.addEventListener('input', function () {
-            if (this.value.trim()) {
-                searchBar.classList.remove('search-box-error');
-                errorDiv.style.display = 'none';
+        // Support pressing Enter
+        document.getElementById("job-search-input").addEventListener("keyup", function (event) {
+            if (event.key === "Enter") {
+                document.getElementById("search-button").click();
             }
         });
-
-        if (locationInput) {
-            locationInput.addEventListener('input', function () {
-                // Optional: remove any location-related error if implemented
-            });
-        }
     </script>
+
 </body>
 
 </html>
