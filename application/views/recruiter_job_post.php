@@ -184,7 +184,11 @@
                     </div>
                     <div class="form-group">
                         <label for="industry">Industry</label>
-                        <input type="text" id="industry" name="industry" placeholder="e.g., IT Service" required>
+                        <select id="industry" name="industry" required>
+                            <option value="IT-services">IT services</option>
+                            <option value="BPO">BPO</option>
+                            <option value="Finance">Finance</option>
+                        </select>
                     </div>
                 </div>
 
@@ -205,25 +209,50 @@
                         <input type="text" id="employees" name="employees" placeholder="201-500" required>
                     </div>
                     <div class="form-group">
-                        <label for="experience">Experience</label>
-                        <input type="text" id="experience" name="experience" placeholder="4-6 years" required>
+                        <label for="experience_min">Experience (Years)</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="number" id="experience_min" name="experience_min" placeholder="Min (e.g., 2)"
+                                required>
+                            <input type="number" id="experience_max" name="experience_max" placeholder="Max (e.g., 5)"
+                                required>
+                        </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group">
-                        <label for="job_type">Job Type</label>
-                        <select id="job_type" name="job_type">
+                        <label for="job_type">Employment Type</label>
+                        <select id="job_type" name="job_type" required>
                             <option value="Full-time">Full-time</option>
                             <option value="Part-time">Part-time</option>
-                            <option value="Internship">Internship</option>
                             <option value="Contract">Contract</option>
-                            <option value="Remote">Remote</option>
+                            <option value="Internship">Internship</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="salary">Salary Range</label>
-                        <input type="text" id="salary" name="salary" placeholder="Rs.50,000 - Rs.70,000">
+                        <label for="salary_min">Salary Range (Annual in ₹)</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="number" id="salary_min" name="salary_min" placeholder="Min (e.g., 200000)"
+                                required>
+                            <input type="number" id="salary_max" name="salary_max" placeholder="Max (e.g., 600000)"
+                                required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="work_mode">Work Mode</label>
+                        <select id="work_mode" name="work_mode" required>
+                            <option value="On-site">On-site</option>
+                            <option value="Remote">Remote</option>
+                            <option value="Hybrid">Hybrid</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="last_date">Last Date to apply</label>
+                        <input type="date" id="last_date" name="last_date" required>
                     </div>
                 </div>
 
@@ -242,10 +271,6 @@
                     <textarea id="benefits" name="benefits" placeholder="Enter benefits provided"></textarea>
                 </div>
 
-                <div class="form-group">
-                    <label for="last_date">Last Date to apply</label>
-                    <input type="date" id="last_date" name="last_date" required>
-                </div>
 
                 <div class="form-group">
                     <label for="email">Contact Email</label>

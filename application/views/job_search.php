@@ -17,8 +17,7 @@
 
         .search-results-container {
             max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 15px;
+            margin: 30px 155px;
         }
 
         .search-header {
@@ -197,7 +196,7 @@
         .back-to-search {
             display: inline-flex;
             align-items: center;
-            color: #db9610;
+            color: #343a40;
             text-decoration: none;
             margin-bottom: 20px;
             font-weight: 500;
@@ -330,6 +329,65 @@
             padding: 40px;
             color: #6c757d;
         }
+
+        .jobs-layout {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .featured-companies {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            height: auto;
+            align-self: start;
+        }
+
+        .featured-companies p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #212529;
+        }
+
+        .featured-companies img {
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 6px;
+            background: #fff;
+            width: 100%;
+        }
+
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .filter-btn {
+            background: #f1f3f4;
+            border: none;
+            border-radius: 24px;
+            padding: 8px 18px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            box-shadow: none;
+        }
+
+        .filter-btn:hover,
+        .filter-btn:focus {
+            background: #e2e6ea;
+            color: #111;
+        }
+
+        .dropdown-menu {
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 
@@ -354,6 +412,98 @@
             </div>
         </div>
 
+        <!-- Dropdown filters row -->
+        <div class="filter-bar">
+            <!-- Pay -->
+            <div class="dropdown">
+                <button class="btn filter-btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    data-filter="pay">Pay</button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" data-min="" data-max="">Any</a></li>
+                    <li><a class="dropdown-item" href="#" data-min="200000" data-max="">₹2,00,000+</a></li>
+                    <li><a class="dropdown-item" href="#" data-min="300000" data-max="">₹3,00,000+</a></li>
+                    <li><a class="dropdown-item" href="#" data-min="600000" data-max="">₹6,00,000+</a></li>
+                </ul>
+            </div>
+
+            <!-- Work mode -->
+            <div class="dropdown">
+                <button class="btn filter-btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    data-filter="workMode">Work mode</button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" data-value="">Any</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="On-site">On-site</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Remote">Remote</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Hybrid">Hybrid</a></li>
+                </ul>
+            </div>
+
+            <!-- Company -->
+            <div class="dropdown">
+                <button class="btn filter-btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    data-filter="company">Company</button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" data-value="">Any</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="GS Infotech">GS Infotech</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Tech Mahindra">Tech Mahindra</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Capgemini">Capgemini</a></li>
+                </ul>
+            </div>
+
+            <!-- Job type -->
+            <div class="dropdown">
+                <button class="btn filter-btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    data-filter="jobType">Job type</button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" data-value="">Any</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Full-time">Full-time</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Part-time">Part-time</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Contract">Contract</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Internship">Internship</a></li>
+                </ul>
+            </div>
+
+            <!-- Location -->
+            <div class="dropdown">
+                <button class="btn filter-btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    data-filter="location">Location</button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" data-value="">Any</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="West Bengal">West Bengal</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Delhi">Delhi</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Bangalore">Bangalore</a></li>
+                </ul>
+            </div>
+
+            <!-- Industry -->
+            <div class="dropdown">
+                <button class="btn filter-btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    data-filter="industry">Industry</button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" data-value="">Any</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="IT-services">IT services</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Finance">Finance</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="BPO">BPO</a></li>
+                </ul>
+            </div>
+
+            <!-- Experience -->
+            <div class="dropdown">
+                <button class="btn filter-btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    data-filter="experience">Experience</button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" data-min="" data-max="">Any</a></li>
+                    <li><a class="dropdown-item" href="#" data-min="0" data-max="0">Fresher</a></li>
+                    <li><a class="dropdown-item" href="#" data-min="1" data-max="2">1-2 years</a></li>
+                    <li><a class="dropdown-item" href="#" data-min="2" data-max="3">2-3 years</a></li>
+                    <li><a class="dropdown-item" href="#" data-min="4" data-max="6">4-6 years</a></li>
+                    <li><a class="dropdown-item" href="#" data-min="7" data-max="10">7-10 years</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+
 
         <div class="jobs-layout">
             <div class="jobs-list">
@@ -374,7 +524,7 @@
                         <div class="job-salary"><?= htmlspecialchars($job['salary']) ?></div>
                         <div class="job-tags">
                             <span class="tag"><?= htmlspecialchars($job['job_type']) ?></span>
-                            <span class="tag">Posted</span>
+                            <span class="tag"><?= htmlspecialchars($job['work_mode']) ?></span>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -382,6 +532,25 @@
 
             <div class="job-detail" id="job-detail-panel">
                 <!-- Job details will be dynamically loaded here -->
+            </div>
+
+
+            <div class="job-detail featured-companies">
+                <p><strong>See Jobs in Featured Companies</strong></p>
+                <div class="company-logos">
+                    <div class="row g-2">
+                        <div class="col-6"><img src="assets/images/reliance.gif" alt="Reliance Industries (RIL)"
+                                class="img-fluid"></div>
+                        <div class="col-6"><img src="assets/images/capgemini.gif" alt="Capgemini" class="img-fluid">
+                        </div>
+                        <div class="col-6"><img src="assets/images/infosys.gif" alt="Infosys BPM" class="img-fluid">
+                        </div>
+                        <div class="col-6"> <img src="assets/images/amgen.gif" alt="Amgen Inc" class="img-fluid">
+                        </div>
+                        <div class="col-6"><img src="assets/images/amazon.gif" alt="Amazon" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -391,10 +560,119 @@
 
 
     <script>
-        // Pass PHP jobs to JS
+        /* ---------- jobData from PHP (keep as-is) ---------- */
         const jobData = <?= json_encode($jobs, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) ?>;
 
-        // Function to show job details
+        /* ---------- filter state ---------- */
+        const filters = {
+            payMin: null,    // rupees (e.g. 200000)
+            payMax: null,    // optional
+            workMode: '',    // "On-site" | "Remote" | "Hybrid"
+            company: '',     // string
+            jobType: '',     // string
+            location: '',    // substring match
+            industry: '',    // string
+            expMin: null,    // numeric years
+            expMax: null     // numeric years
+        };
+
+        /* ---------- helper: parse salary string into rupee numbers ---------- */
+        function parseSalaryString(s) {
+            if (!s && s !== 0) return { min: null, max: null };
+            const str = String(s).trim();
+            if (!str) return { min: null, max: null };
+
+            const low = str.toLowerCase();
+
+            // detect if values are in L (lakh), LPA or K
+            const isLakh = /lakh|lacs?|lpa|\bl\W|\bl\b/i.test(low);
+            const isK = /\bk\b/i.test(low);
+
+            // get numeric tokens (handles "50,000", "2", "3.5", "2-3", "2 LPA", "₹2,00,000+")
+            const nums = str.match(/(\d+(?:[,\.\d]*\d)*)/g);
+            if (!nums || nums.length === 0) {
+                return { min: null, max: null };
+            }
+
+            const convert = token => {
+                // remove commas/spaces
+                const raw = token.replace(/[, ]+/g, '').replace(/^\./, '0.');
+                let val = parseFloat(raw);
+                if (isNaN(val)) return null;
+                if (isLakh) return Math.round(val * 100000); // LPA -> rupees
+                if (isK) return Math.round(val * 1000);
+                // detect explicit units like "k" or "l" near token
+                // (if no unit and token small but string contains words like 'lakh', above handled)
+                return Math.round(val);
+            };
+
+            if (nums.length >= 2) {
+                const a = convert(nums[0]);
+                const b = convert(nums[1]);
+                return { min: a, max: b };
+            } else {
+                const only = convert(nums[0]);
+                // if string includes '+' or 'above', treat as min only
+                if (/[+]|plus|above|or more/i.test(str)) {
+                    return { min: only, max: null };
+                }
+                // otherwise treat as exact value for both min & max
+                return { min: only, max: only };
+            }
+        }
+
+        /* ---------- helper: parse experience string ---------- */
+        function parseExperienceString(s) {
+            if (!s && s !== 0) return { min: null, max: null };
+            const str = String(s).trim();
+            if (!str) return { min: null, max: null };
+            const low = str.toLowerCase();
+
+            if (/fresher|no experience/i.test(low)) return { min: 0, max: 0 };
+
+            const nums = str.match(/\d+(?:\.\d+)?/g);
+            if (!nums) return { min: null, max: null };
+
+            if (nums.length >= 2) {
+                const a = Math.floor(parseFloat(nums[0]));
+                const b = Math.ceil(parseFloat(nums[1]));
+                return { min: a, max: b };
+            } else {
+                const n = Math.floor(parseFloat(nums[0]));
+                if (/[+]|or more|and above/i.test(low)) return { min: n, max: 1000 };
+                return { min: n, max: n };
+            }
+        }
+
+        /* ---------- helpers to read job numeric values (prefer explicit DB columns if present) ---------- */
+        function jobSalaryMin(job) {
+            // prefer numeric fields if you later add them (salary_min)
+            if (job.salary_min !== undefined && job.salary_min !== null && job.salary_min !== '') {
+                return Number(job.salary_min);
+            }
+            // fallback parse salary text
+            return parseSalaryString(job.salary).min;
+        }
+        function jobSalaryMax(job) {
+            if (job.salary_max !== undefined && job.salary_max !== null && job.salary_max !== '') {
+                return Number(job.salary_max);
+            }
+            return parseSalaryString(job.salary).max;
+        }
+        function jobExperienceMin(job) {
+            if (job.experience_min !== undefined && job.experience_min !== null && job.experience_min !== '') {
+                return Number(job.experience_min);
+            }
+            return parseExperienceString(job.experience).min;
+        }
+        function jobExperienceMax(job) {
+            if (job.experience_max !== undefined && job.experience_max !== null && job.experience_max !== '') {
+                return Number(job.experience_max);
+            }
+            return parseExperienceString(job.experience).max;
+        }
+
+        /* ---------- showJobDetails (keeps your markup; kept same as original) ---------- */
         function showJobDetails(jobId) {
             const job = jobData.find(j => j.id == jobId);
             if (!job) return;
@@ -404,72 +682,142 @@
 
             const detailPanel = document.getElementById('job-detail-panel');
             detailPanel.innerHTML = `
-        <div class="detail-header">
-            <div>
-                <h2 class="detail-title">${job.title}</h2>
-                <div class="detail-company">${job.company}</div>
-            </div>
-            <button class="apply-btn" style="background-color: #FFF44F; color: black;" onclick="window.location.href='<?= base_url('register'); ?>'">
-                Apply Now
-            </button>
+    <div class="detail-header">
+        <div>
+            <h2 class="detail-title">${job.title}</h2>
+            <div class="detail-company">${job.company}</div>
         </div>
+        <button class="apply-btn" style="background-color: #FFF44F; color: black;" onclick="window.location.href='<?= base_url('register'); ?>'">
+            Apply Now
+        </button>
+    </div>
 
-        <div class="detail-info">
-            <div class="info-item"><i class="fas fa-map-marker-alt"></i><span>${job.location}</span></div>
-            <div class="info-item"><i class="fas fa-briefcase"></i><span>${job.experience}</span></div>
-            <div class="info-item"><i class="fas fa-money-bill-wave"></i><span>${job.salary}</span></div>
-            <div class="info-item"><i class="fas fa-clock"></i><span>${job.job_type}</span></div>
-            <div class="info-item"><i class="fas fa-building"></i><span>${job.industry}</span></div>
-            <div class="info-item"><i class="fas fa-users"></i><span>${job.employees}</span></div>
-        </div>
+    <div class="detail-info">
+        <div class="info-item"><i class="fas fa-map-marker-alt"></i><span>${job.location || ''}</span></div>
+        <div class="info-item"><i class="fas fa-briefcase"></i><span>${job.experience || ''}</span></div>
+        <div class="info-item"><i class="fas fa-money-bill-wave"></i><span>${job.salary || ''}</span></div>
+        <div class="info-item"><i class="fas fa-clock"></i><span>${job.job_type || ''}</span></div>
+        <div class="info-item"><i class="fas fa-building"></i><span>${job.industry || ''}</span></div>
+        <div class="info-item"><i class="fas fa-users"></i><span>${job.employees || ''}</span></div>
+    </div>
 
-        <div class="detail-section">
-            <h3 class="section-title">Job Description</h3>
-            <div class="job-description">${job.description}</div>
-        </div>
+    <div class="detail-section">
+        <h3 class="section-title">Job Description</h3>
+        <div class="job-description">${job.description || ''}</div>
+    </div>
 
-        <div class="detail-section">
-            <h3 class="section-title">Requirements</h3>
-            <ul class="requirements-list">
-                ${requirements.map(req => `<li>${req}</li>`).join('')}
-            </ul>
-        </div>
+    <div class="detail-section">
+        <h3 class="section-title">Requirements</h3>
+        <ul class="requirements-list">
+            ${requirements.map(req => `<li>${req}</li>`).join('')}
+        </ul>
+    </div>
 
-        <div class="detail-section">
-            <h3 class="section-title">Benefits</h3>
-            <ul class="requirements-list">
-                ${benefits.map(b => `<li>${b}</li>`).join('')}
-            </ul>
-        </div>
+    <div class="detail-section">
+        <h3 class="section-title">Benefits</h3>
+        <ul class="requirements-list">
+            ${benefits.map(b => `<li>${b}</li>`).join('')}
+        </ul>
+    </div>
 
-        <button class="apply-btn" style="background-color: #FFF44F; color: black; width: 100%;">Apply for this job</button>
-    `;
+    <button class="apply-btn" style="background-color: #FFF44F; color: black; width: 100%;">Apply for this job</button>
+  `;
         }
 
-        // Function to filter jobs on client side (single input version)
+        /* ---------- main filter function (search text + dropdowns) ---------- */
         function filterJobs() {
             const searchTerm = document.getElementById('job-search-input').value.toLowerCase();
             const jobCards = document.querySelectorAll('.job-card');
             let firstVisibleCard = null;
 
             jobCards.forEach(card => {
-                const title = card.querySelector('.job-title').textContent.toLowerCase();
-                const company = card.querySelector('.company-name').textContent.toLowerCase();
-                const location = card.querySelector('.job-location').textContent.toLowerCase();
+                const jobId = card.getAttribute('data-job-id');
+                const job = jobData.find(j => j.id == jobId);
+                if (!job) { card.style.display = 'none'; return; }
+
+                // search matching (title/company/location/tags)
+                const title = (job.title || '').toLowerCase();
+                const company = (job.company || '').toLowerCase();
+                const location = (job.location || '').toLowerCase();
                 const tags = Array.from(card.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase());
 
                 const matchesSearch =
                     title.includes(searchTerm) ||
                     company.includes(searchTerm) ||
                     location.includes(searchTerm) ||
-                    tags.some(tag => tag.includes(searchTerm));
+                    tags.some(t => t.includes(searchTerm));
 
-                if (matchesSearch) {
-                    card.style.display = 'block';
-                    if (!firstVisibleCard) firstVisibleCard = card;
-                } else {
-                    card.style.display = 'none';
+                // dropdown filters
+
+                // Pay
+                let matchesPay = true;
+                if (filters.payMin !== null && filters.payMin !== '') {
+                    const jMax = jobSalaryMax(job);
+                    const jMin = jobSalaryMin(job);
+                    // if we can estimate salary, check overlap with filter min
+                    if (jMin == null && jMax == null) {
+                        matchesPay = true; // unknown -> allow
+                    } else {
+                        // if job has max, use that; else use min. Accept if job's max >= filter.min
+                        const use = (jMax !== null) ? jMax : jMin;
+                        matchesPay = (use !== null) ? (use >= Number(filters.payMin)) : true;
+                    }
                 }
+
+                // Work mode
+                let matchesWorkMode = true;
+                if (filters.workMode) {
+                    const jm = (job.work_mode || job.workMode || '').toString().toLowerCase();
+                    matchesWorkMode = jm === filters.workMode.toLowerCase();
+                }
+
+                // Company
+                let matchesCompany = true;
+                if (filters.company) {
+                    matchesCompany = (job.company || '').toString().toLowerCase() === filters.company.toLowerCase();
+                }
+
+                // Job type
+                let matchesJobType = true;
+                if (filters.jobType) {
+                    matchesJobType = (job.job_type || '').toString().toLowerCase() === filters.jobType.toLowerCase();
+                }
+
+                // Location (substring match)
+                let matchesLocation = true;
+                if (filters.location) {
+                    matchesLocation = (job.location || '').toString().toLowerCase().includes(filters.location.toLowerCase());
+                }
+
+                // Industry
+                let matchesIndustry = true;
+                if (filters.industry) {
+                    matchesIndustry = (job.industry || '').toString().toLowerCase() === filters.industry.toLowerCase();
+                }
+
+                // Experience (range overlap)
+                let matchesExperience = true;
+                if (filters.expMin !== null && filters.expMin !== '') {
+                    const jMin = jobExperienceMin(job);
+                    const jMax = jobExperienceMax(job);
+                    // if unknown, allow
+                    if (jMin == null && jMax == null) {
+                        matchesExperience = true;
+                    } else {
+                        const jobMin = (jMin !== null) ? jMin : 0;
+                        const jobMax = (jMax !== null) ? jMax : jobMin;
+                        // check overlap: jobMax >= filterMin && jobMin <= filterMax
+                        const fMin = Number(filters.expMin);
+                        const fMax = (filters.expMax !== null && filters.expMax !== '') ? Number(filters.expMax) : fMin;
+                        matchesExperience = (jobMax >= fMin) && (jobMin <= fMax);
+                    }
+                }
+
+                const visible = matchesSearch && matchesPay && matchesWorkMode && matchesCompany &&
+                    matchesJobType && matchesLocation && matchesIndustry && matchesExperience;
+
+                card.style.display = visible ? 'block' : 'none';
+                if (visible && !firstVisibleCard) firstVisibleCard = card;
             });
 
             if (firstVisibleCard) {
@@ -478,14 +826,14 @@
                 showJobDetails(firstVisibleCard.getAttribute('data-job-id'));
             } else {
                 document.getElementById('job-detail-panel').innerHTML = `
-                <div class="no-results">
-                    <h3>No jobs found</h3>
-                    <p>Try adjusting your search criteria</p>
-                </div>
-            `;
+      <div class="no-results">
+        <h3>No jobs found</h3>
+        <p>Try adjusting your search criteria</p>
+      </div>
+    `;
             }
 
-            // ✅ Rebind clicks after filtering
+            // Rebind clicks only for visible cards
             document.querySelectorAll('.job-card').forEach(card => {
                 if (card.style.display !== "none") {
                     card.onclick = function () {
@@ -497,13 +845,12 @@
             });
         }
 
-        // Initialize
+        /* ---------- wire up dropdown clicks to update filters ---------- */
         document.addEventListener('DOMContentLoaded', function () {
-            if (jobData.length > 0) {
-                showJobDetails(jobData[0].id);
-            }
+            // initial detail panel
+            if (jobData.length > 0) showJobDetails(jobData[0].id);
 
-            // Attach initial click listeners
+            // original card click behaviour
             document.querySelectorAll('.job-card').forEach(card => {
                 card.addEventListener('click', function () {
                     document.querySelectorAll('.job-card').forEach(c => c.classList.remove('active'));
@@ -512,17 +859,48 @@
                 });
             });
 
-            // Search button + enter key
+            // attach listener to every dropdown item
+            document.querySelectorAll('.filter-bar .dropdown-menu .dropdown-item').forEach(item => {
+                item.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const parent = this.closest('.dropdown');
+                    const btn = parent.querySelector('.filter-btn');
+                    const filterKey = btn.getAttribute('data-filter');
+
+                    // set button text to selection
+                    btn.textContent = this.textContent.trim();
+
+                    if (filterKey === 'pay') {
+                        const min = this.dataset.min ? Number(this.dataset.min) : null;
+                        const max = this.dataset.max ? Number(this.dataset.max) : null;
+                        filters.payMin = (min !== null && !isNaN(min)) ? min : null;
+                        filters.payMax = (max !== null && !isNaN(max)) ? max : null;
+                    } else if (filterKey === 'experience') {
+                        const emin = this.dataset.min ? Number(this.dataset.min) : null;
+                        const emax = this.dataset.max ? Number(this.dataset.max) : null;
+                        filters.expMin = (emin !== null && !isNaN(emin)) ? emin : null;
+                        filters.expMax = (emax !== null && !isNaN(emax)) ? emax : null;
+                    } else {
+                        // simple string filters (workMode, company, jobType, location, industry)
+                        const val = this.dataset.value !== undefined ? this.dataset.value : '';
+                        // normalize filter keys: workMode -> workMode, jobType->jobType etc
+                        filters[filterKey] = val || '';
+                    }
+
+                    // apply filters
+                    filterJobs();
+                });
+            });
+
+            // search button + enter
             document.getElementById('search-button').addEventListener('click', filterJobs);
             document.getElementById('job-search-input').addEventListener('keyup', e => {
                 if (e.key === 'Enter') filterJobs();
             });
 
-            // Auto-filter if URL has a single query param
+            // initial auto-filter if q param present
             const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get("q")) {
-                filterJobs();
-            }
+            if (urlParams.get("q")) filterJobs();
         });
     </script>
 

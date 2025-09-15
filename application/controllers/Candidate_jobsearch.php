@@ -8,20 +8,28 @@ class Candidate_jobsearch extends CI_Controller {
         $this->load->model('Candidate_jobsearch_model');
         $this->load->model('Menu_model');
     }
-    
-    public function index() {
-        
+
+     public function index()
+    {
         $data['menu'] = $this->Menu_model->get_menu();
 
+        // Collect all possible filters from GET params
         $filters = [
-            'job'      => $this->input->get('job'),
-            'location' => $this->input->get('location')
+            'job' => $this->input->get('job'),
+            'location' => $this->input->get('location'),
+            'company' => $this->input->get('company'),
+            'industry' => $this->input->get('industry'),
+            'job_type' => $this->input->get('job_type'),
+            'work_mode' => $this->input->get('work_mode'),
+            'experience' => $this->input->get('experience'),
+            'salary' => $this->input->get('salary')
         ];
 
+        // Pass filters to model
         $data['jobs'] = $this->Candidate_jobsearch_model->get_jobs($filters);
 
-         $this->load->view('includes/login_header', $data);
-          $this->load->view('candidate_job_search', $data);  
+        $this->load->view('includes/login_header', $data);
+        $this->load->view('job_search', $data);
         $this->load->view('includes/footer');
     }
 
