@@ -17,7 +17,7 @@
             padding: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             min-height: 100vh;
             box-sizing: border-box;
         }
@@ -25,32 +25,44 @@
         .container {
             max-width: 650px;
             width: 100%;
-            margin: 40px 20px;
+            margin: 20px;
             background-color: #ffffff;
             border-radius: 12px;
-            padding: 32px;
+            padding: 24px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
             box-sizing: border-box;
         }
 
-        .header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 24px;
+        .indeed-logo {
+            display: block;
+            margin: 0 auto 20px;
+            text-align: center;
         }
 
-        .header h2 {
-            font-size: 28px;
+        .indeed-logo img {
+            max-width: 120px;
+            height: auto;
+        }
+
+        .header {
+            display: ruby;
+            align-items: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .header h4 {
+            font-size: 22px;
             font-weight: 700;
             margin: 0;
-            flex-grow: 1;
             color: #333;
         }
 
         .header a.back-link {
             color: #333;
-            font-size: 1.6rem;
-            margin-right: 16px;
+            font-size: 1.4rem;
+            margin-right: 8px;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -64,24 +76,25 @@
             color: #555;
             font-size: 15px;
             line-height: 1.6;
-            margin-bottom: 30px;
+            margin-bottom: 24px;
         }
 
         .form-check.form-switch {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .form-check-label {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #333;
         }
 
         .form-check-input {
             width: 2.5rem;
             height: 1.5rem;
-            margin-left: 1rem;
             cursor: pointer;
         }
 
@@ -93,6 +106,7 @@
         .button-group {
             display: flex;
             justify-content: flex-end;
+            flex-wrap: wrap;
             gap: 10px;
             margin-top: 2rem;
         }
@@ -101,7 +115,7 @@
             font-weight: 500;
             padding: 10px 20px;
             border-radius: 6px;
-            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
         }
 
         .btn-primary {
@@ -125,12 +139,6 @@
             border-color: #5a6268;
         }
 
-        .indeed-logo {
-            display: block;
-            margin: 0 auto 30px;
-            max-width: 120px;
-        }
-
         .save-btn {
             background-color: #e0d912ed;
             color: black;
@@ -151,9 +159,38 @@
 
         .copyright-text {
             text-align: center;
-            margin-top: 3rem;
+            margin-top: 2rem;
             font-size: 0.8rem;
             color: #888;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 576px) {
+            .container {
+                padding: 16px;
+            }
+
+            .header {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .header h4 {
+                font-size: 18px;
+            }
+
+            .form-check-label {
+                font-size: 0.95rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .button-group .btn {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -161,18 +198,20 @@
 <body>
     <div class="container">
         <div class="indeed-logo">
-            <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2" class="img-fluid"
-                style="height:70px;">
+            <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2" class="img-fluid">
         </div>
+
         <div class="header">
-            <a href="<?= base_url('profile'); ?>" class="back-link" aria-label="Go back to profile"><i
-                    class="fas fa-arrow-left"></i></a>
+            <a href="<?= base_url('profile'); ?>" class="back-link" aria-label="Go back to profile">
+                <i class="fas fa-arrow-left"></i>
+            </a>
             <h4>Ready to work</h4>
         </div>
+
         <p class="description">Let employers know that you can begin working straight away.</p>
-        <?php
-        $is_available = $user_availability;
-        ?>
+
+        <?php $is_available = $user_availability; ?>
+
         <form id="readyToWorkForm">
             <div class="form-check form-switch">
                 <label class="form-check-label" for="readyToWorkSwitch">
@@ -187,10 +226,12 @@
                 <button type="submit" class="btn save-btn">Save</button>
             </div>
         </form>
+
         <p class="copyright-text">
             ©2025 Indeed – Cookies, Privacy and Terms
         </p>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>

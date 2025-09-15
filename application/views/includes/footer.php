@@ -322,7 +322,7 @@
     <footer class="custom-footer">
         <div class="footer-top">
             <div class="footer-logo-social">
-                <a href="https://www.naukri.com" class="footer-logo">
+                <a href="<?= base_url(); ?>" class="footer-logo">
                     <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
                 </a>
                 <div class="footer-social">
@@ -366,7 +366,7 @@
                 </ul>
             </div>
 
-            <div class="footer-app-card">
+            <!-- <div class="footer-app-card">
                 <div class="footer-app-title">Apply on the go</div>
                 <div class="footer-app-desc">Get real-time job updates on our App</div>
                 <div class="footer-app-buttons">
@@ -380,7 +380,7 @@
                         <img src="https://static.naukimg.com/s/0/0/i/new-homepage/ios-app_v1.png" alt="App Store" />
                     </a>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <div class="footer-divider"></div>

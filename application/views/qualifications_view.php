@@ -20,8 +20,7 @@
         .container-fluid {
             max-width: 100%;
             margin: 0 auto;
-            /* background-color: #e2e0e0ff; */
-            padding: 32px;
+            padding: 20px;
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
         }
 
@@ -29,6 +28,7 @@
             display: flex;
             align-items: center;
             margin-bottom: 5px;
+            flex-wrap: wrap;
         }
 
         .header h2 {
@@ -89,8 +89,6 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            f
-            /* Space between icons */
         }
 
         .header-icons .fas {
@@ -100,19 +98,14 @@
         }
 
         .header-icons .fa-check-square {
-            /* Select All icon */
             color: black;
-            /* Initial color, can change on selection */
         }
 
         .header-icons .fa-trash-alt {
-            /* Delete All icon */
             color: black;
-            /* Initial color, can change on selection */
         }
 
         .header-icons .fa-trash-alt.disabled {
-            /* Disabled delete all icon */
             color: rgba(0, 0, 0, 0.98);
             cursor: not-allowed;
         }
@@ -122,7 +115,7 @@
             border: 1px solid #dee2e6;
             border-top: none;
             border-radius: 0 0 4px 4px;
-            overflow: hidden;
+            overflow-x: auto;
         }
 
         .table {
@@ -130,6 +123,7 @@
             margin-bottom: 0;
             color: #212529;
             border-collapse: collapse;
+            min-width: 600px;
         }
 
         .table thead th {
@@ -158,7 +152,7 @@
             justify-content: flex-end;
             padding: 0;
             height: 100%;
-            align-items: center;
+            /* align-items: center; */
         }
 
         .table thead th.text-center {
@@ -175,8 +169,6 @@
         .table tbody td .delete-icon {
             color: #090909ff;
         }
-
-
 
         .no-items-message {
             font-style: italic;
@@ -221,6 +213,7 @@
             border-radius: 0.25rem;
             cursor: pointer;
             border: none;
+            white-space: nowrap;
         }
 
         .save-btn {
@@ -240,29 +233,104 @@
         /* Styling for selectable rows */
         .table-selectable tbody tr.selected {
             background-color: #070707ff !important;
-            /* Highlight selected row */
         }
 
         .table-selectable tbody tr td:first-child {
-            /* Checkbox column */
             width: 30px;
-            /* Adjust width for checkbox */
             padding: 0.75rem 0.5rem;
         }
 
         .table-selectable tbody tr td input[type="checkbox"] {
             margin: 0;
             transform: scale(1.2);
-            /* Make checkbox slightly larger */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container-fluid {
+                padding: 15px;
+            }
+            
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header h2 {
+                margin: 10px 0;
+                order: 2;
+                width: 100%;
+            }
+            
+            .header a {
+                align-self: flex-start;
+                order: 1;
+                margin-bottom: 10px;
+            }
+            
+            .header img {
+                /* order: 3; */
+                /* margin: 10px auto !important; */
+                float: none !important;
+            }
+            
+            .section-header {
+                font-size: 16px;
+                padding: 10px;
+            }
+            
+            .table tbody td, 
+            .table thead th {
+                padding: 0.5rem;
+            }
+            
+            .save-btn, 
+            .cancel-btn {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.8rem;
+            }
+            
+            .action-icons-container {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container-fluid {
+                padding: 10px;
+            }
+            
+            .header h2 {
+                font-size: 20px;
+            }
+            
+            .description {
+                font-size: 13px;
+                margin-bottom: 20px;
+            }
+            
+            .section-header {
+                font-size: 15px;
+            }
+            
+            .header-icons .fas {
+                font-size: 16px;
+            }
+            
+            .table {
+                min-width: 100%;
+            }
+            
+            .save-cancel-buttons {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 
 <body>
-
-
     <div class="container-fluid">
-
         <div class="header">
             <a href="<?= base_url('profile'); ?>" aria-label="Go back to profile"><i class="fas fa-arrow-left"></i></a>
             <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2"
@@ -299,8 +367,7 @@
                     <table class="table table-selectable" id="table-<?= $type; ?>">
                         <thead>
                             <tr id="select-all-checkbox-<?= $type; ?>">
-
-
+                                <!-- Table headers will be added dynamically -->
                             </tr>
                         </thead>
                         <tbody id="<?= $type; ?>-list">

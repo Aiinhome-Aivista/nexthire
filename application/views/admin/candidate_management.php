@@ -24,6 +24,7 @@
             --danger: #e63946;
             --warning: #fca311;
             --sidebar-width: 250px;
+            --sidebar-collapsed-width: 70px;
         }
 
         body {
@@ -31,6 +32,7 @@
             color: #333;
             display: flex;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         /* Sidebar Styles */
@@ -45,17 +47,53 @@
             left: 0;
         }
 
+        .sidebar.collapsed {
+            width: var(--sidebar-collapsed-width);
+        }
+
+        .sidebar.collapsed .sidebar-header h2,
+        .sidebar.collapsed .sidebar-menu span {
+            display: none;
+        }
+
+        .sidebar.collapsed .sidebar-menu a {
+            justify-content: center;
+            padding: 15px 0;
+        }
+
+        .sidebar.collapsed .sidebar-menu i {
+            margin-right: 0;
+            font-size: 1.4rem;
+        }
+
         .sidebar-header {
             padding: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
             justify-content: space-between;
+            position: relative;
         }
 
         .sidebar-header h2 {
             font-size: 1.5rem;
             font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .sidebar-toggle {
+            display: none;
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary);
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         .sidebar-menu {
@@ -91,6 +129,8 @@
         .sidebar-menu i {
             margin-right: 10px;
             font-size: 1.2rem;
+            min-width: 24px;
+            text-align: center;
         }
 
         /* Main Content */
@@ -101,6 +141,10 @@
             transition: margin-left 0.3s ease;
         }
 
+        .sidebar.collapsed~.main-content {
+            margin-left: var(--sidebar-collapsed-width);
+        }
+
         /* --- Student Management Table CSS --- */
         .container {
             background: #fff;
@@ -108,6 +152,17 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding-top: 10px;
+            padding-left: 60px;
+        }
+
+        .container h2 {
+            margin-left: 50px;
+            /* Push it a bit right */
+            position: relative;
+            z-index: 1;
+            /* Keep it above toggle bar */
         }
 
         h2 {
@@ -161,6 +216,7 @@
             border: none;
             padding: 6px 10px;
             font-size: 0.85rem;
+            cursor: pointer;
         }
 
         .btn-table i {
@@ -218,6 +274,7 @@
             align-items: center;
             margin-top: 20px;
             gap: 8px;
+            flex-wrap: wrap;
         }
 
         .pagination button {
@@ -380,11 +437,232 @@
         .modal-btn-secondary:hover {
             background-color: #e2e2e2;
         }
+
+        /* Mobile menu toggle */
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background: var(--primary);
+            border: none;
+            border-radius: 4px;
+            width: 40px;
+            height: 40px;
+            z-index: 1100;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive styles */
+        @media screen and (max-width: 1024px) {
+            .sidebar {
+                width: var(--sidebar-collapsed-width);
+            }
+
+            .sidebar .sidebar-header h2,
+            .sidebar .sidebar-menu span {
+                display: none;
+            }
+
+            .sidebar .sidebar-menu a {
+                justify-content: center;
+                padding: 15px 0;
+            }
+
+            .sidebar .sidebar-menu i {
+                margin-right: 0;
+                font-size: 1.4rem;
+            }
+
+            .main-content {
+                margin-left: var(--sidebar-collapsed-width);
+            }
+
+            .sidebar-toggle {
+                display: block;
+            }
+
+            .sidebar.collapsed {
+                width: 0;
+            }
+
+            .sidebar.collapsed~.main-content {
+                margin-left: 0;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .main-content {
+                padding: 15px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .search-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box {
+                max-width: 100%;
+            }
+
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+            }
+
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            tr {
+                border: 1px solid #ccc;
+                margin-bottom: 10px;
+                border-radius: 5px;
+            }
+
+            td {
+                border: none;
+                border-bottom: 1px solid #eee;
+                position: relative;
+                padding-left: 50%;
+                text-align: right;
+            }
+
+            td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align: left;
+                font-weight: bold;
+            }
+
+            /* Modified pagination for mobile */
+            .pagination {
+                flex-direction: row;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                justify-content: center;
+                align-items: center;
+                padding-bottom: 5px;
+            }
+
+            .pagination button {
+                flex-shrink: 0;
+                padding: 6px 10px;
+                font-size: 13px;
+            }
+
+            .page-info {
+                margin: 0;
+                flex-shrink: 0;
+                font-size: 13px;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+                width: var(--sidebar-width);
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+
+            .sidebar.show .sidebar-header h2,
+            .sidebar.show .sidebar-menu span {
+                display: block;
+            }
+
+            .sidebar.show .sidebar-menu a {
+                justify-content: flex-start;
+                padding: 15px 20px;
+            }
+
+            .sidebar.show .sidebar-menu i {
+                margin-right: 10px;
+            }
+
+            .main-content {
+                margin-left: 0 !important;
+            }
+
+            .sidebar.collapsed {
+                width: 0;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .modal-content {
+                width: 95%;
+            }
+
+            .modal-body {
+                padding: 15px;
+            }
+
+            .modal-footer {
+                padding: 15px;
+                flex-direction: column;
+            }
+
+            .modal-btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            td {
+                padding-left: 40%;
+            }
+
+            td:before {
+                width: 35%;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            /* Further adjustments for pagination on very small screens */
+            .pagination {
+                gap: 4px;
+            }
+
+            .pagination button {
+                padding: 5px 8px;
+                font-size: 12px;
+            }
+
+            .pagination span {
+                padding: 5px 8px;
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <div class="sidebar">
+    <button class="mobile-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <div style="display: flex; align-items: center; gap: 10px;">
                 <img src="<?= base_url('assets/images/sahajjobs1.png'); ?>" alt="SahajJOB"
@@ -438,12 +716,12 @@
                             <?php $ui_id = 1; ?>
                             <?php foreach ($candidates as $candidate): ?>
                                 <tr data-id="<?= $candidate->id ?>">
-                                    <td><?= $ui_id++; ?></td>
-                                    <td class="col-name"><?= $candidate->full_name ?></td>
-                                    <td class="col-email"><?= $candidate->email ?></td>
-                                    <td class="col-mobile"><?= $candidate->mobile_number ?></td>
-                                    <td class="col-work"><?= $candidate->work_status ?></td>
-                                    <td>
+                                    <td data-label="S.No"><?= $ui_id++; ?></td>
+                                    <td data-label="Name" class="col-name"><?= $candidate->full_name ?></td>
+                                    <td data-label="Email" class="col-email"><?= $candidate->email ?></td>
+                                    <td data-label="Mobile" class="col-mobile"><?= $candidate->mobile_number ?></td>
+                                    <td data-label="Work Status" class="col-work"><?= $candidate->work_status ?></td>
+                                    <td data-label="Action">
                                         <button class="btn btn-table btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
                                         <button class="btn btn-table btn-delete" title="Delete"><i
                                                 class="fas fa-trash"></i></button>
@@ -470,7 +748,7 @@
         </div>
 
         <!-- Footer added here -->
-        <footer style="text-align:center; padding-top: 170px;">
+        <footer style="text-align:center; padding-top: 20px;">
             &copy; 2025 SahajJobs Inc. All Rights Reserved.
         </footer>
     </div>
@@ -515,15 +793,152 @@
     </div>
 
     <script>
+        // Sidebar toggle functionality (fixed)
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.querySelector('.sidebar-toggle');
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const mainContent = document.querySelector('.main-content');
+
+        // Helper to read CSS variable values
+        function cssVar(name, fallback = '') {
+            try {
+                return getComputedStyle(document.documentElement).getPropertyValue(name) || fallback;
+            } catch (e) {
+                return fallback;
+            }
+        }
+
+        // Desktop sidebar toggle (guarded)
+        if (sidebarToggle && sidebar) {
+            sidebarToggle.addEventListener('click', function(e) {
+                // toggle collapsed state
+                sidebar.classList.toggle('collapsed');
+
+                // toggle chevron icon safely
+                const icon = sidebarToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-chevron-left');
+                    icon.classList.toggle('fa-chevron-right');
+                }
+
+                // adjust main content margin so layout stays consistent
+                // This is defensive — CSS should handle it, but ensures immediate visual update.
+                const collapsedWidth = cssVar('--sidebar-collapsed-width', '70px').trim();
+                const fullWidth = cssVar('--sidebar-width', '250px').trim();
+                if (sidebar.classList.contains('collapsed')) {
+                    if (mainContent) mainContent.style.marginLeft = collapsedWidth;
+                } else {
+                    if (mainContent) mainContent.style.marginLeft = fullWidth;
+                }
+            });
+        }
+
+        // Mobile sidebar toggle (guarded + stopPropagation to avoid immediate close)
+        if (mobileToggle && sidebar) {
+            mobileToggle.addEventListener('click', function(e) {
+                // prevent the document click handler from immediately closing the sidebar
+                e.stopPropagation();
+
+                sidebar.classList.toggle('show');
+
+                // Prevent body scrolling when sidebar is open on mobile
+                if (sidebar.classList.contains('show')) {
+                    document.body.style.overflow = 'hidden';
+                    // ensure it's fully visible on mobile
+                    sidebar.style.transform = 'translateX(0)';
+                } else {
+                    document.body.style.overflow = 'auto';
+                    // hide it off-canvas
+                    sidebar.style.transform = 'translateX(-100%)';
+                }
+            });
+
+            // If sidebar receives clicks, do not let them bubble up to document click
+            sidebar.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
+
+        // Close sidebar when clicking outside on mobile (guarded)
+        document.addEventListener('click', function(event) {
+            if (!sidebar) return;
+            // only for mobile/smaller screens
+            if (window.innerWidth <= 768 &&
+                !sidebar.contains(event.target) &&
+                (!mobileToggle || !mobileToggle.contains(event.target)) &&
+                sidebar.classList.contains('show')) {
+                sidebar.classList.remove('show');
+                document.body.style.overflow = 'auto';
+                // hide off-canvas for good measure
+                sidebar.style.transform = 'translateX(-100%)';
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (!sidebar) return;
+
+            if (window.innerWidth > 768) {
+                // Reset styles for desktop view
+                sidebar.classList.remove('show');
+                document.body.style.overflow = 'auto';
+                sidebar.style.transform = 'translateX(0)';
+
+                // Ensure collapsed class keeps width consistent
+                if (!sidebar.classList.contains('collapsed')) {
+                    sidebar.style.width = cssVar('--sidebar-width', '250px').trim();
+                } else {
+                    sidebar.style.width = cssVar('--sidebar-collapsed-width', '70px').trim();
+                }
+
+                // adjust main content margin
+                if (mainContent) {
+                    mainContent.style.marginLeft = sidebar.classList.contains('collapsed') ?
+                        cssVar('--sidebar-collapsed-width', '70px').trim() :
+                        cssVar('--sidebar-width', '250px').trim();
+                }
+            } else {
+                // Mobile view - hide sidebar by default (unless explicitly shown)
+                if (!sidebar.classList.contains('show')) {
+                    sidebar.style.transform = 'translateX(-100%)';
+                }
+                // Remove collapsed on mobile (avoid layout issues)
+                sidebar.classList.remove('collapsed');
+                if (mainContent) mainContent.style.marginLeft = '0';
+            }
+        });
+
+        // Initialize sidebar state based on screen size
+        function initSidebar() {
+            if (!sidebar) return;
+
+            if (window.innerWidth <= 768) {
+                sidebar.style.transform = 'translateX(-100%)';
+                sidebar.classList.remove('collapsed');
+                if (mainContent) mainContent.style.marginLeft = '0';
+            } else {
+                sidebar.style.transform = 'translateX(0)';
+                // set main-content margin according to collapsed state
+                if (mainContent) {
+                    mainContent.style.marginLeft = sidebar.classList.contains('collapsed') ?
+                        cssVar('--sidebar-collapsed-width', '70px').trim() :
+                        cssVar('--sidebar-width', '250px').trim();
+                }
+            }
+        }
+
+        // Call initialization function
+        initSidebar();
+
         const logoutBtn = document.getElementById('logoutBtn');
-        logoutBtn.addEventListener('click', function () {
+        logoutBtn.addEventListener('click', function() {
             if (confirm('Are you sure you want to logout?')) {
                 window.location.href = '<?= base_url("admin/candidate_management/logout"); ?>';
             }
         });
 
         // Search and Pagination functionality
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const searchInput = document.getElementById('searchInput');
             const tableBody = document.getElementById('candidateTableBody');
             const firstPageBtn = document.getElementById('firstPage');
@@ -540,8 +955,8 @@
             const rowsPerPage = 10;
 
             // Use MutationObserver to detect when table content is loaded
-            const observer = new MutationObserver(function (mutations) {
-                mutations.forEach(function (mutation) {
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
                     if (mutation.addedNodes.length) {
                         initializeTable();
                     }
@@ -574,7 +989,7 @@
             }
 
             // Search functionality
-            searchInput.addEventListener('input', function () {
+            searchInput.addEventListener('input', function() {
                 const searchText = this.value.toLowerCase();
 
                 if (searchText === '') {
@@ -684,7 +1099,7 @@
 
 
         // 🔹 Delete functionality
-        document.addEventListener('click', function (e) {
+        document.addEventListener('click', function(e) {
             if (e.target.closest('.btn-delete')) {
                 const row = e.target.closest('tr');
                 const candidateId = row.getAttribute('data-id');
@@ -713,7 +1128,7 @@
 
 
         // Open Modal with Candidate Data
-        document.addEventListener('click', function (e) {
+        document.addEventListener('click', function(e) {
             if (e.target.closest('.btn-edit')) {
                 const row = e.target.closest('tr');
                 const candidateId = row.getAttribute('data-id');
@@ -731,12 +1146,12 @@
         });
 
         // Close Modal
-        document.getElementById('closeModal').addEventListener('click', function () {
+        document.getElementById('closeModal').addEventListener('click', function() {
             document.getElementById('editModal').classList.remove('show');
         });
 
         // Update Candidate
-        document.getElementById('updateBtn').addEventListener('click', function () {
+        document.getElementById('updateBtn').addEventListener('click', function() {
             const formData = new FormData();
             formData.append('id', document.getElementById('edit_id').value);
             formData.append('full_name', document.getElementById('edit_full_name').value);
@@ -746,9 +1161,9 @@
             // formData.append('password', document.getElementById('edit_password').value); // Add password
 
             fetch('<?= base_url("admin/candidate_management/update_candidate") ?>', {
-                method: 'POST',
-                body: formData
-            })
+                    method: 'POST',
+                    body: formData
+                })
                 .then(res => res.json())
                 .then(data => {
                     if (data.status === 'success') {

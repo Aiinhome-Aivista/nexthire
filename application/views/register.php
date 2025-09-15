@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SahajJobs | Registration</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
@@ -42,48 +43,30 @@
       width: 100%;
       background: #fff;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-      /* padding: 16px 0; */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
+      padding: 10px 0;
     }
 
     .header-content {
-      width: 1200px;
+      width: 100%;
+      max-width: 1200px;
       margin: 0 auto;
       display: flex;
       align-items: center;
-      justify-content: left;
+      justify-content: space-between;
+      padding: 0 20px;
       position: relative;
-    }
-
-    .logo {
-      display: flex;
-      align-items: right;
-      gap: 100px;
     }
 
     .logo img {
       width: auto;
-      height: 70px;
+      height: 60px;
       display: block;
     }
 
-    .logo span {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #1d4ed8;
-      letter-spacing: -1px;
-    }
-
     .login-link {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 15px;
+      font-size: 14px;
       color: #666;
+      white-space: nowrap;
     }
 
     .login-link a {
@@ -94,35 +77,31 @@
 
     .container {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       align-items: flex-start;
-      margin-top: 40px;
-      min-height: 80vh;
-      gap: 40px;
+      margin: 30px auto;
+      padding: 0 20px;
+      gap: 30px;
+      max-width: 1300px;
     }
 
     .left-card {
       background: #fff;
       border-radius: 14px;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-      padding: 40px 30px 30px 30px;
-      width: 320px;
+      padding: 30px 25px;
+      width: 100%;
+      max-width: 320px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 420px;
-      position: sticky;
-      top: 32px;
-      z-index: 2;
     }
 
     .left-card img {
-      width: 213px;
-      height: 90px;
+      width: 180px;
+      height: auto;
       margin-bottom: 16px;
-      /* border-radius: 50%; */
-      /* object-fit: cover;
-      background: #f2f3f8; */
     }
 
     .left-card h3 {
@@ -144,12 +123,14 @@
       font-size: 16px;
       margin-bottom: 14px;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 8px;
       color: #222;
+      line-height: 1.4;
     }
 
     .left-card ul li .green-dot {
+      min-width: 16px;
       width: 16px;
       height: 16px;
       border-radius: 50%;
@@ -157,6 +138,8 @@
       display: inline-block;
       margin-right: 4px;
       position: relative;
+      flex-shrink: 0;
+      margin-top: 3px;
     }
 
     .left-card ul li .green-dot::before {
@@ -173,13 +156,12 @@
       background: #fff;
       border-radius: 16px;
       box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-      width: 900px;
-      min-width: 320px;
-      padding: 36px 48px 36px 48px;
+      width: 100%;
+      max-width: 900px;
+      padding: 30px;
       position: relative;
       display: flex;
       flex-direction: column;
-      min-height: 680px;
     }
 
     .form-title {
@@ -252,18 +234,19 @@
       display: flex;
       gap: 18px;
       margin-top: 4px;
+      flex-wrap: wrap;
     }
 
     .work-status-card {
       border: 1.5px solid #d7dbe3;
       border-radius: 12px;
-      padding: 18px 24px;
+      padding: 18px 20px;
       background: #f7f8fa;
       cursor: pointer;
       flex: 1;
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 12px;
       transition: border 0.2s, box-shadow 0.2s;
       font-size: 15px;
       position: relative;
@@ -286,6 +269,7 @@
       justify-content: center;
       font-size: 20px;
       border: 1.5px solid #e1e6ef;
+      flex-shrink: 0;
     }
 
     .work-status-card .info {
@@ -308,7 +292,7 @@
     .checkbox-row {
       margin-top: 16px;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 4px;
     }
 
@@ -318,12 +302,14 @@
       font-weight: 400;
       margin-left: 3px;
       cursor: pointer;
+      line-height: 1.4;
     }
 
     .terms-row {
       font-size: 13px;
       color: #8a95ad;
       margin-top: 20px;
+      line-height: 1.5;
     }
 
     .terms-row a {
@@ -362,7 +348,6 @@
       padding-left: 24px;
       margin-left: 24px;
     }
-
 
     .or-text {
       font-size: 14px;
@@ -406,17 +391,20 @@
 
     /* Footer Styles */
     .footer {
-      margin-top: 50px;
+      margin: 50px auto 0;
       text-align: center;
-      padding: 24px 0 8px 0;
+      padding: 24px 20px 8px;
       font-family: 'Nunito', Arial, sans-serif;
       background: transparent;
+      max-width: 1200px;
     }
 
     .footer-links {
-      display: inline-flex;
+      display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      gap: 26px;
+      justify-content: center;
+      gap: 10px;
       font-size: 12px;
       margin-bottom: 8px;
       color: #1d4ed8;
@@ -427,6 +415,7 @@
       text-decoration: none;
       transition: color 0.15s;
       font-weight: 400;
+      white-space: nowrap;
     }
 
     .footer-links a:hover {
@@ -438,7 +427,7 @@
       width: 1px;
       height: 16px;
       background: #dbe7ff;
-      margin: 0 8px;
+      margin: 0 2px;
       display: inline-block;
       vertical-align: middle;
     }
@@ -457,20 +446,21 @@
       display: none;
     }
 
+    /* Responsive styles */
     @media (max-width: 1100px) {
       .container {
         flex-direction: column;
         align-items: center;
       }
 
-      .form-card {
-        width: 90vw;
-        min-width: 320px;
-        padding: 32px 12vw;
+      .left-card {
+        max-width: 100%;
+        position: static;
+        margin-bottom: 20px;
       }
 
-      .left-card {
-        margin-bottom: 32px;
+      .form-card {
+        max-width: 100%;
       }
 
       .google-section {
@@ -482,37 +472,116 @@
         border-top: 1px solid #e8e8e8;
         border-left: none;
       }
+    }
 
-      .google-section::before {
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+
+      .logo {
+        justify-content: center;
+      }
+
+      .form-card {
+        padding: 20px;
+      }
+
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .work-status-group {
+        flex-direction: column;
+      }
+
+      .work-status-card {
+        width: 100%;
+      }
+
+      .google-section {
+        margin-top: 20px;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .footer-links .divider {
         display: none;
       }
 
-      .footer-links {
-        font-size: 15px;
-        gap: 18px;
-      }
-
-      .footer-copyright {
-        font-size: 14px;
+      .register-btn {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
       }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 480px) {
+      .header {
+        padding: 8px 0;
+      }
+
+      .logo img {
+        height: 50px;
+      }
+
+      .login-link {
+        font-size: 13px;
+      }
+
+      .container {
+        margin-top: 20px;
+        padding: 0 15px;
+        gap: 20px;
+      }
+
+      .left-card {
+        padding: 20px;
+      }
+
+      .left-card h3 {
+        font-size: 18px;
+      }
+
+      .left-card ul li {
+        font-size: 14px;
+      }
+
       .form-card {
-        padding: 22px 4vw;
+        padding: 15px;
       }
 
-      .header-content {
-        width: 94vw;
+      .form-title {
+        font-size: 20px;
       }
 
-      .footer-links {
-        font-size: 12px;
-        gap: 6px;
+      .form-group input {
+        padding: 10px 15px;
+        font-size: 15px;
       }
 
-      .footer-copyright {
-        font-size: 12px;
+      .work-status-card {
+        padding: 15px;
+      }
+
+      .register-btn {
+        width: 100%;
+        max-width: 200px;
+      }
+
+      .footer {
+        margin-top: 30px;
+        padding: 15px;
+      }
+
+      .footer-links a {
+        font-size: 11px;
       }
     }
   </style>
@@ -530,7 +599,7 @@
     </div>
   </div>
   <div class="container">
-    <div class="left-card" style="position:sticky; top:32px; z-index:2;">
+    <div class="left-card">
       <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
       <h3>On registering, you can</h3>
       <ul>
@@ -631,24 +700,7 @@
       </center>
     </div>
   </div>
-  <div class="footer" style="width:300px; margin:40px auto 0 auto;">
-    <div class="footer-links">
-      <a href="#">About Us</a>
-      <span class="divider"></span>
-      <a href="#">Contact Us</a>
-      <span class="divider"></span>
-      <a href="#">FAQs</a>
-      <span class="divider"></span>
-      <a href="#">Terms and Conditions</a>
-      <span class="divider"></span>
-      <a href="#">Report a Problem</a>
-      <span class="divider"></span>
-      <a href="#">Privacy Policy</a>
-    </div>
-    <div class="footer-copyright">
-      All rights reserved © 2025 Info Edge India Ltd.
-    </div>
-  </div>
+  <?php $this->load->view('includes/footer'); ?>
   <script>
     function selectStatus(status) {
       document.getElementById('experienced').classList.remove('selected');
@@ -667,7 +719,9 @@
           // Send user info to CodeIgniter backend
           fetch('<?= base_url('register/google_callback') ?>', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+              'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
               uid: user.uid,
               full_name: user.displayName,
@@ -689,17 +743,26 @@
           alert(error.message);
         });
     });
-
   </script>
   <script>
-
     document.addEventListener('DOMContentLoaded', function () {
       const form = document.getElementById('registration-form');
-      const fields = [
-        { id: 'fullname', name: 'Full name' },
-        { id: 'email', name: 'Email ID' },
-        { id: 'password', name: 'Password' },
-        { id: 'mobile', name: 'Mobile number' },
+      const fields = [{
+        id: 'fullname',
+        name: 'Full name'
+      },
+      {
+        id: 'email',
+        name: 'Email ID'
+      },
+      {
+        id: 'password',
+        name: 'Password'
+      },
+      {
+        id: 'mobile',
+        name: 'Mobile number'
+      },
       ];
 
       // Validation function (used for both submit and input)
@@ -709,10 +772,7 @@
         } else {
           if (field.id === 'email') {
             if (!(value.includes('.') && value.includes('com'))) {
-              // value.includes('@') && 
-              // return 'Email must contain @, . and com';
               return 'Email must contain .com';
-
             }
           }
           if (field.id === 'password') {
@@ -776,12 +836,7 @@
         });
       });
     });
-
-
   </script>
-</body>
-
-</html>
 </body>
 
 </html>
