@@ -198,18 +198,20 @@
 
         .footer-bottom {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
+            /* justify-content: space-between; */
+            align-items: "center";
             max-width: 1280px;
             margin: 0 auto;
-            padding: 18px 50px 32px 50px;
-            flex-wrap: wrap;
+            padding: 18px 0px 32px 50px;
+            /* flex-wrap: wrap; */
+            gap: 2%;
         }
 
         .footer-infoedge {
             display: flex;
             align-items: center;
             gap: 22px;
+
         }
 
         .footer-infoedge-logo {
@@ -217,10 +219,23 @@
             height: auto;
         }
 
-        .footer-infoedge-text div {
+        .footer-infoedge-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             color: #859ac3;
-            font-size: 16px;
-            line-height: 1.65;
+            font-size: 0.7rem;
+            line-height: 1;
+            gap: 0;
+            min-height: 100%;
+        }
+
+        .footer-business {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            font-size: 0.7rem;
+            color: #859ac3;
         }
 
         .footer-business-scroller {
@@ -322,7 +337,7 @@
     <footer class="custom-footer">
         <div class="footer-top">
             <div class="footer-logo-social">
-                <a href="https://www.naukri.com" class="footer-logo">
+                <a href="<?= base_url(); ?>" class="footer-logo">
                     <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
                 </a>
                 <div class="footer-social">
@@ -366,7 +381,7 @@
                 </ul>
             </div>
 
-            <div class="footer-app-card">
+            <!-- <div class="footer-app-card">
                 <div class="footer-app-title">Apply on the go</div>
                 <div class="footer-app-desc">Get real-time job updates on our App</div>
                 <div class="footer-app-buttons">
@@ -380,7 +395,7 @@
                         <img src="https://static.naukimg.com/s/0/0/i/new-homepage/ios-app_v1.png" alt="App Store" />
                     </a>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <div class="footer-divider"></div>
@@ -389,81 +404,85 @@
             <div class="footer-infoedge">
                 <img src="https://static.naukimg.com/s/0/0/i/new-homepage/infoedge-logo.svg" alt="Info Edge Logo"
                     class="footer-infoedge-logo" />
-                <div class="footer-infoedge-text">
-                    <div>All trademarks are the property of their respective owners</div>
-                    <div>All rights reserved © 2025 Info Edge (India) Ltd.</div>
+            </div>
+            <div class="footer-infoedge-text">
+                <div>All trademarks are the property of their respective owners</div>
+                <div>All rights reserved © 2025 Info Edge (India) Ltd.</div>
+            </div>
+            <div class="footer-business">
+                <div class="footer-business-text">
+                    Our businesses
+                </div>
+                <div class="footer-business-scroller">
+                    <ul class="business-logos-scroller">
+                        <li><a href="https://www.99acres.com/" target="_blank"><img
+                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/nnacres.png"
+                                    alt="99acres" /></a></li>
+                        <li><a href="https://www.jeevansathi.com/" target="_blank"><img
+                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/jeevansathi.png"
+                                    alt="Jeevansathi.com" /></a></li>
+                        <li><a href="https://www.naukrigulf.com/" target="_blank"><img
+                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/ng_v1.png"
+                                    alt="Naukri Gulf" /></a></li>
+                        <li><a href="https://www.shiksha.com/" target="_blank"><img
+                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/shiksha.png"
+                                    alt="Shiksha.com" /></a></li>
+                        <li><a href="https://www.iimjobs.com/" target="_blank"><img
+                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/iimjobs.png"
+                                    alt="IIMJobs.com" /></a></li>
+                        <li><a href="https://www.hirist.tech/" target="_blank"><img
+                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/hirist_v1.png"
+                                    alt="hirist.tech" /></a></li>
+                        <li><a href="https://www.jobhai.com/" target="_blank"><img
+                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/jobhai.png"
+                                    alt="JobHai.com" /></a></li>
+                        <li><a href="https://doselect.com/" target="_blank"><img
+                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/doselect.png"
+                                    alt="Doselect.com" /></a></li>
+                        <li><a href="https://www.naukri.com/minis" target="_blank"><img
+                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/minis.png"
+                                    alt="Minis" /></a></li>
+                        <li><a href="https://www.codingninjas.com/?utm_source=naukri&amp;utm_medium=desktop-footer"
+                                target="_blank"><img
+                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/coding_ninjas.png"
+                                    alt="Coding Ninjas" /></a></li>
+
+                        <!-- Repeat logos for smooth infinite scroll -->
+                        <li><a href="https://www.99acres.com/" target="_blank"><img
+                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/nnacres.png"
+                                    alt="99acres" /></a></li>
+                        <li><a href="https://www.jeevansathi.com/" target="_blank"><img
+                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/jeevansathi.png"
+                                    alt="Jeevansathi.com" /></a></li>
+                        <li><a href="https://www.naukrigulf.com/" target="_blank"><img
+                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/ng_v1.png"
+                                    alt="Naukri Gulf" /></a></li>
+                        <li><a href="https://www.shiksha.com/" target="_blank"><img
+                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/shiksha.png"
+                                    alt="Shiksha.com" /></a></li>
+                        <li><a href="https://www.iimjobs.com/" target="_blank"><img
+                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/iimjobs.png"
+                                    alt="IIMJobs.com" /></a></li>
+                        <li><a href="https://www.hirist.tech/" target="_blank"><img
+                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/hirist_v1.png"
+                                    alt="hirist.tech" /></a></li>
+                        <li><a href="https://www.jobhai.com/" target="_blank"><img
+                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/jobhai.png"
+                                    alt="JobHai.com" /></a></li>
+                        <li><a href="https://doselect.com/" target="_blank"><img
+                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/doselect.png"
+                                    alt="Doselect.com" /></a></li>
+                        <li><a href="https://www.naukri.com/minis" target="_blank"><img
+                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/minis.png"
+                                    alt="Minis" /></a></li>
+                        <li><a href="https://www.codingninjas.com/?utm_source=naukri&amp;utm_medium=desktop-footer"
+                                target="_blank"><img
+                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/coding_ninjas.png"
+                                    alt="Coding Ninjas" /></a></li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="footer-business-scroller">
-                <span class="business-label">Our businesses</span>
-                <ul class="business-logos-scroller">
-                    <li><a href="https://www.99acres.com/" target="_blank"><img
-                                src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/nnacres.png"
-                                alt="99acres" /></a></li>
-                    <li><a href="https://www.jeevansathi.com/" target="_blank"><img
-                                src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/jeevansathi.png"
-                                alt="Jeevansathi.com" /></a></li>
-                    <li><a href="https://www.naukrigulf.com/" target="_blank"><img
-                                src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/ng_v1.png"
-                                alt="Naukri Gulf" /></a></li>
-                    <li><a href="https://www.shiksha.com/" target="_blank"><img
-                                src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/shiksha.png"
-                                alt="Shiksha.com" /></a></li>
-                    <li><a href="https://www.iimjobs.com/" target="_blank"><img
-                                src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/iimjobs.png"
-                                alt="IIMJobs.com" /></a></li>
-                    <li><a href="https://www.hirist.tech/" target="_blank"><img
-                                src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/hirist_v1.png"
-                                alt="hirist.tech" /></a></li>
-                    <li><a href="https://www.jobhai.com/" target="_blank"><img
-                                src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/jobhai.png"
-                                alt="JobHai.com" /></a></li>
-                    <li><a href="https://doselect.com/" target="_blank"><img
-                                src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/doselect.png"
-                                alt="Doselect.com" /></a></li>
-                    <li><a href="https://www.naukri.com/minis" target="_blank"><img
-                                src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/minis.png"
-                                alt="Minis" /></a></li>
-                    <li><a href="https://www.codingninjas.com/?utm_source=naukri&amp;utm_medium=desktop-footer"
-                            target="_blank"><img
-                                src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/coding_ninjas.png"
-                                alt="Coding Ninjas" /></a></li>
-
-                    <!-- Repeat logos for smooth infinite scroll -->
-                    <li><a href="https://www.99acres.com/" target="_blank"><img
-                                src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/nnacres.png"
-                                alt="99acres" /></a></li>
-                    <li><a href="https://www.jeevansathi.com/" target="_blank"><img
-                                src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/jeevansathi.png"
-                                alt="Jeevansathi.com" /></a></li>
-                    <li><a href="https://www.naukrigulf.com/" target="_blank"><img
-                                src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/ng_v1.png"
-                                alt="Naukri Gulf" /></a></li>
-                    <li><a href="https://www.shiksha.com/" target="_blank"><img
-                                src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/shiksha.png"
-                                alt="Shiksha.com" /></a></li>
-                    <li><a href="https://www.iimjobs.com/" target="_blank"><img
-                                src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/iimjobs.png"
-                                alt="IIMJobs.com" /></a></li>
-                    <li><a href="https://www.hirist.tech/" target="_blank"><img
-                                src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/hirist_v1.png"
-                                alt="hirist.tech" /></a></li>
-                    <li><a href="https://www.jobhai.com/" target="_blank"><img
-                                src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/jobhai.png"
-                                alt="JobHai.com" /></a></li>
-                    <li><a href="https://doselect.com/" target="_blank"><img
-                                src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/doselect.png"
-                                alt="Doselect.com" /></a></li>
-                    <li><a href="https://www.naukri.com/minis" target="_blank"><img
-                                src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/minis.png"
-                                alt="Minis" /></a></li>
-                    <li><a href="https://www.codingninjas.com/?utm_source=naukri&amp;utm_medium=desktop-footer"
-                            target="_blank"><img
-                                src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/coding_ninjas.png"
-                                alt="Coding Ninjas" /></a></li>
-                </ul>
-            </div>
         </div>
     </footer>
 

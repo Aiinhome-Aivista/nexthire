@@ -311,7 +311,7 @@
             box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
             max-width: 900px;
             margin: 40px auto;
-            height: 280px;
+            height: 430px;
             /* Fixed height to match image */
             display: flex;
         }
@@ -404,7 +404,7 @@
         }
     </style>
 
- 
+
 </head>
 
 <body>
@@ -414,7 +414,7 @@
         <div class="container">
             <h1 class="fw-bold">Find your dream job now</h1>
             <p>5 lakh+ jobs for you to explore</p>
-            
+
             <div class="search-bar-top" id="search-container">
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-search"></i></span>
@@ -432,9 +432,15 @@
 
             <!-- Tagline Image -->
             <div class="tagline-image">
-                <img src="assets/images/job-recruitment.jpg" alt="Apply for job !!!!">
+                <img src="assets/images/SahajJobs.png" alt="Apply for job !!!!">
             </div>
-
+            <!-- <div class="tagline-image">
+                <video autoplay muted loop playsinline
+                    style="border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); width:100%; max-width:900px; height:auto; display:block;">
+                    <source src="assets/videos/sahajvideo.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div> -->
             <!-- Job Categories from the image -->
             <div class="job-categories">
                 <div class="category-card">
@@ -598,7 +604,7 @@
             </div>
 
             <!-- Siemens Style Banner Section -->
-            <div class="container mt-5">
+            <!-- <div class="container mt-5">
                 <div class="siemens-banner">
                     <div class="row g-0">
                         <div class="col-md-5 banner-left">
@@ -618,7 +624,22 @@
                         </div>
                     </div>
                 </div>
+            </div> -->
+
+
+            <div class="container mt-5">
+                <div class="siemens-banner">
+                    <div class="col-md-7 banner-right position-relative">
+                        <video autoplay muted loop playsinline class="banner-image"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                            <source src="assets/videos/image_video.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
             </div>
+
+
             <!-- Young Turks Contest Banner -->
             <div class="container mt-4">
                 <img src="assets/images/job-fair-banner.jpg" alt="Job Fair Banner"
@@ -634,9 +655,9 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
 
-   <script>
+
+    <script>
         document.getElementById("search-button").addEventListener("click", function (e) {
             const input = document.getElementById("job-search-input");
             const search = input.value.trim();

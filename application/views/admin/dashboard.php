@@ -32,6 +32,7 @@
             color: #333;
             display: flex;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         /* Sidebar Styles */
@@ -44,6 +45,7 @@
             transition: all 0.3s ease;
             z-index: 1000;
             left: 0;
+            overflow-y: auto;
         }
 
         .sidebar-header {
@@ -52,11 +54,24 @@
             align-items: center;
             gap: 10px;
             justify-content: space-between;
+            position: relative;
         }
 
         .sidebar-header h2 {
             font-size: 1.5rem;
             font-weight: 600;
+        }
+
+        .close-sidebar {
+            display: none;
+            background: none;
+            border: none;
+            color: #000;
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 15px;
         }
 
         .sidebar-menu {
@@ -92,6 +107,8 @@
         .sidebar-menu i {
             margin-right: 10px;
             font-size: 1.2rem;
+            min-width: 24px;
+            text-align: center;
         }
 
         /* Main Content */
@@ -100,31 +117,46 @@
             margin-left: var(--sidebar-width);
             padding: 20px;
             transition: margin-left 0.3s ease;
+            width: calc(100% - var(--sidebar-width));
         }
 
         .header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             padding: 15px 20px;
             background: white;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             margin-bottom: 25px;
             position: relative;
+            flex-wrap: wrap;
+        }
+
+        .header-title {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .title-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 5px;
+            flex-wrap: wrap;
         }
 
         .header-title h1 {
             font-size: 1.8rem;
             color: var(--dark);
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            margin: 0;
         }
 
-        .header-title p {
+        .welcome-text {
             color: var(--gray);
             font-size: 0.9rem;
+            margin-left: 45px; /* Align with the title text */
+            margin-top: -5px;
         }
 
         .user-info {
@@ -143,15 +175,15 @@
         /* Dashboard Stats */
         .dashboard-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
             margin-bottom: 30px;
         }
 
         .stat-card {
             background: white;
             border-radius: 8px;
-            padding: 20px;
+            padding: 15px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             display: flex;
             align-items: center;
@@ -159,24 +191,24 @@
         }
 
         .stat-info h3 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             margin-bottom: 5px;
             color: var(--dark);
         }
 
         .stat-info p {
             color: var(--gray);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .stat-icon {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
 
         .candidates .stat-icon {
@@ -210,8 +242,9 @@
         .model-card {
             background: white;
             border-radius: 8px;
-            padding: 20px;
+            padding: 15px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
         }
 
         .model-card-header {
@@ -221,6 +254,7 @@
             margin-bottom: 15px;
             border-bottom: 1px solid #eee;
             padding-bottom: 10px;
+            flex-wrap: wrap;
         }
 
         .model-card-header h3 {
@@ -237,6 +271,7 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 0.9rem;
+            min-width: 600px;
         }
 
         .table thead {
@@ -245,10 +280,9 @@
 
         .table th,
         .table td {
-            padding: 12px 15px;
+            padding: 10px 12px;
             text-align: left;
             border-bottom: 1px solid #eee;
-            white-space: nowrap;
         }
 
         .table th {
@@ -287,103 +321,228 @@
         }
 
         /* Responsive */
+        @media (max-width: 1200px) {
+            .dashboard-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 992px) {
             .sidebar {
-                width: 70px;
+                transform: translateX(-100%);
+                width: var(--sidebar-width);
             }
-
-            .sidebar-header h2,
-            .sidebar-menu span {
-                display: none;
+            
+            .sidebar.show {
+                transform: translateX(0);
+                box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
             }
-
-            .sidebar-menu i {
-                margin-right: 0;
-                font-size: 1.5rem;
+            
+            .close-sidebar {
+                display: block;
             }
-
-            .sidebar-menu a {
-                justify-content: center;
-                padding: 15px;
-            }
-
+            
             .main-content {
-                margin-left: 70px;
+                margin-left: 0;
+                width: 100%;
+            }
+            
+            .sidebar-toggle {
+                display: block;
+            }
+            
+            .header-title h1 {
+                font-size: 1.5rem;
             }
         }
 
         @media (max-width: 768px) {
             .dashboard-stats {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .model-cards {
                 grid-template-columns: 1fr;
             }
-
-            .sidebar-toggle {
-                display: block;
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
             }
-
-            .sidebar {
-                transform: translateX(-100%);
-                width: var(--sidebar-width);
+            
+            .user-info {
+                align-self: flex-end;
             }
-
-            .sidebar.show {
-                transform: translateX(0);
-            }
-
-            .sidebar.show .sidebar-header h2,
-            .sidebar.show .sidebar-menu span {
-                display: block;
-            }
-
-            .sidebar.show .sidebar-menu i {
-                margin-right: 10px;
-            }
-
-            .sidebar.show .sidebar-menu a {
-                justify-content: flex-start;
-                padding: 15px 20px;
-            }
-
-            .main-content {
-                margin-left: 0;
+            
+            .header-title, .user-info {
                 width: 100%;
             }
-
-            .sidebar-header {
+            
+            .title-container {
                 justify-content: space-between;
             }
-
-            .close-sidebar {
+            
+            .welcome-text {
+                margin-left: 0;
+                margin-top: 5px;
+            }
+            
+            .stat-card {
+                padding: 12px;
+            }
+            
+            .stat-info h3 {
+                font-size: 1.4rem;
+            }
+            
+            /* Mobile table styles - NEW CODE */
+            .model-card-body {
+                overflow-x: visible;
+            }
+            
+            .table {
+                min-width: 100%;
                 display: block;
-                background: none;
-                border: none;
-                color: white;
-                font-size: 1.5rem;
-                cursor: pointer;
+                font-size: 0.8rem;
+            }
+            
+            .table thead {
+                display: none;
+            }
+            
+            .table tbody, .table tr, .table td {
+                display: block;
+                width: 100%;
+            }
+            
+            .table tr {
+                margin-bottom: 15px;
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 10px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            }
+            
+            .table td {
+                padding: 8px 10px;
+                text-align: right;
+                position: relative;
+                padding-left: 50%;
+                border-bottom: 1px solid #f0f0f0;
+            }
+            
+            .table td:last-child {
+                border-bottom: none;
+            }
+            
+            .table td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                width: 45%;
+                padding-right: 15px;
+                text-align: left;
+                font-weight: 600;
+                color: var(--dark);
             }
         }
 
         @media (max-width: 576px) {
-            .dashboard-stats {
-                grid-template-columns: 1fr;
+            .main-content {
+                padding: 15px;
             }
-
+            
             .header {
-                flex-direction: column;
-                text-align: center;
-                gap: 15px;
+                padding: 12px 15px;
             }
-
+            
             .header-title h1 {
-                justify-content: center;
+                font-size: 1.3rem;
+            }
+            
+            .user-info {
+                justify-content: space-between;
+            }
+            
+            .stat-info h3 {
+                font-size: 1.3rem;
+            }
+            
+            .stat-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+            
+            .model-card {
+                padding: 12px;
+            }
+            
+            .table {
+                font-size: 0.8rem;
+            }
+            
+            .table td {
+                padding: 8px 10px;
+                padding-left: 50%;
+            }
+            
+            .welcome-text {
+                font-size: 0.85rem;
             }
         }
-    </style>
 
+        @media (max-width: 400px) {
+            .sidebar {
+                width: 100%;
+            }
+            
+            .header-title h1 {
+                font-size: 1.2rem;
+            }
+            
+            .stat-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .stat-icon {
+                align-self: flex-end;
+            }
+            
+            .title-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .welcome-text {
+                margin-left: 0;
+            }
+            
+            /* Additional mobile adjustments for very small screens */
+            .table td {
+                padding-left: 45%;
+            }
+            
+            .table td::before {
+                width: 40%;
+            }
+        }
+
+        /* No data message styling */
+        .model-card-body > p {
+            text-align: center;
+            padding: 20px;
+            color: var(--gray);
+            font-style: italic;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -394,6 +553,9 @@
                 <img src="<?= base_url('assets/images/sahajjobs1.png'); ?>" alt="SahajJOB"
                     style="height:50px; width:135px;">
             </div>
+            <button class="close-sidebar">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
         <nav class="sidebar-menu">
             <ul>
@@ -419,13 +581,13 @@
         <!-- Header -->
         <div class="header">
             <div class="header-title">
-                <h1>
+                <div class="title-container">
                     <button class="sidebar-toggle">
                         <i class="fas fa-bars"></i>
                     </button>
-                    Admin Dashboard
-                </h1>
-                <p>Welcome back, Admin! </p>
+                    <h1>Admin Dashboard</h1>
+                </div>
+                <p class="welcome-text">Welcome back, Admin!</p>
             </div>
             <div class="user-info">
                 <div class="notifications">
@@ -439,7 +601,6 @@
         <div class="dashboard-stats">
             <div class="stat-card candidates">
                 <div class="stat-info">
-                    <!-- Replace the hardcoded 0 with the dynamic count -->
                     <h3><?php echo $candidate_count; ?></h3>
                     <p>Candidates</p>
                 </div>
@@ -480,9 +641,7 @@
         </div>
 
         <!-- Model Cards -->
-        <!-- Model Cards -->
         <div class="model-cards">
-            <!-- Job Posts Card -->
             <div class="model-card">
                 <div class="model-card-header">
                     <h3>Recent Job Posts</h3>
@@ -504,12 +663,12 @@
                             <tbody>
                                 <?php foreach ($recent_jobs as $job): ?>
                                     <tr>
-                                        <td><?= $job->title; ?></td>
-                                        <td><?= $job->experience; ?></td>
-                                        <td><?= $job->company; ?></td>
-                                        <td><?= $job->location; ?></td>
-                                        <td><?= $job->job_type; ?></td>
-                                        <td><?= date("d M Y", strtotime($job->created_at)); ?></td>
+                                        <td data-label="Position"><?= $job->title; ?></td>
+                                        <td data-label="Experience"><?= $job->experience; ?></td>
+                                        <td data-label="Company"><?= $job->company; ?></td>
+                                        <td data-label="Location"><?= $job->location; ?></td>
+                                        <td data-label="Job Type"><?= $job->job_type; ?></td>
+                                        <td data-label="Posted On"><?= date("d M Y", strtotime($job->created_at)); ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
@@ -521,7 +680,7 @@
             </div>
         </div>
 
-        <footer style="text-align:center; padding: 50px;">
+        <footer>
             &copy; 2025 SahajJobs Inc. All Rights Reserved.
         </footer>
     </div>
@@ -543,7 +702,7 @@
 
         // Close sidebar when clicking outside of it
         document.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768 &&
+            if (window.innerWidth <= 992 &&
                 !sidebar.contains(e.target) &&
                 !sidebarToggle.contains(e.target) &&
                 sidebar.classList.contains('show')) {
@@ -566,29 +725,30 @@
                     // Add active class to clicked item
                     this.classList.add('active');
                 }
+                
+                // Close sidebar on mobile after clicking a link
+                if (window.innerWidth <= 992) {
+                    sidebar.classList.remove('show');
+                }
             });
         });
 
-        // Show close button only when sidebar is visible on mobile
-        function checkSidebarView() {
-            if (window.innerWidth <= 768) {
-                document.querySelector('.close-sidebar').style.display = 'block';
-            } else {
-                document.querySelector('.close-sidebar').style.display = 'none';
-            }
-        }
-
-        // Initial check and event listener for window resize
-        checkSidebarView();
-        window.addEventListener('resize', checkSidebarView);
-    </script>
-
-    <script>
+        // Logout functionality
         const logoutBtn = document.getElementById('logoutBtn');
-        logoutBtn.addEventListener('click', function () {
+        logoutBtn.addEventListener('click', function (e) {
+            e.preventDefault();
             if (confirm('Are you sure you want to logout?')) {
                 window.location.href = '<?= base_url("Admin_Dashboard/logout"); ?>';
             }
+        });
+
+        // Adjust table responsiveness on resize
+        window.addEventListener('resize', function() {
+            // This ensures proper rendering on orientation changes
+            document.body.classList.toggle('resizing', true);
+            setTimeout(() => {
+                document.body.classList.toggle('resizing', false);
+            }, 100);
         });
     </script>
 </body>

@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SahajJobs | Employer Registration</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
@@ -29,7 +30,6 @@
     * {
       box-sizing: border-box;
       font-family: 'Nunito', Arial, sans-serif;
-
     }
 
     body {
@@ -37,54 +37,41 @@
       padding: 0;
       background: #f7f8fa;
       color: #222;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     .header {
       width: 100%;
       background: #fff;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-      /* padding: 16px 0; */
+      padding: 10px 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative;
     }
 
     .header-content {
-      width: 1200px;
-      margin: 0 auto;
+      width: 100%;
+      max-width: 1200px;
+      padding: 0 20px;
       display: flex;
       align-items: center;
-      justify-content: left;
+      justify-content: space-between;
       position: relative;
-    }
-
-    .logo {
-      display: flex;
-      align-items: right;
-      gap: 100px;
     }
 
     .logo img {
       width: auto;
-      height: 70px;
+      height: 60px;
       display: block;
     }
 
-    .logo span {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #1d4ed8;
-      letter-spacing: -1px;
-    }
-
     .login-link {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
       font-size: 15px;
       color: #666;
+      text-align: right;
     }
 
     .login-link a {
@@ -95,41 +82,41 @@
 
     .container {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       align-items: flex-start;
-      margin-top: 40px;
-      min-height: 80vh;
-      gap: 40px;
+      margin: 30px auto;
+      padding: 0 20px;
+      gap: 30px;
+      flex: 1;
     }
 
     .left-card {
       background: #fff;
       border-radius: 14px;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-      padding: 40px 30px 30px 30px;
-      width: 320px;
+      padding: 30px 25px;
+      width: 100%;
+      max-width: 320px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 420px;
-      position: sticky;
-      top: 32px;
-      z-index: 2;
+      order: 1;
     }
 
     .left-card img {
-      width: 240px;
-      height: 60px;
+      width: 200px;
+      height: 50px;
       margin-bottom: 16px;
       object-fit: cover;
     }
 
     .left-card h3 {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 600;
       text-align: left;
       width: 100%;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .left-card ul {
@@ -140,22 +127,24 @@
     }
 
     .left-card ul li {
-      font-size: 16px;
-      margin-bottom: 14px;
+      font-size: 14px;
+      margin-bottom: 12px;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 8px;
       color: #222;
+      line-height: 1.4;
     }
 
     .left-card ul li .green-dot {
+      flex-shrink: 0;
       width: 16px;
       height: 16px;
       border-radius: 50%;
       background: #38b200;
       display: inline-block;
-      margin-right: 4px;
       position: relative;
+      margin-top: 2px;
     }
 
     .left-card ul li .green-dot::before {
@@ -172,17 +161,17 @@
       background: #fff;
       border-radius: 16px;
       box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-      width: 900px;
-      min-width: 320px;
-      padding: 36px 48px 36px 48px;
+      width: 100%;
+      max-width: 900px;
+      padding: 30px;
       position: relative;
       display: flex;
       flex-direction: column;
-      min-height: 680px;
+      order: 2;
     }
 
     .form-title {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 600;
       margin-bottom: 6px;
     }
@@ -190,21 +179,20 @@
     .form-subtitle {
       font-size: 14px;
       color: #666;
-      margin-bottom: 28px;
+      margin-bottom: 25px;
     }
 
     .form-row {
       display: flex;
-      gap: 24px;
-      align-items: flex-start;
-      position: relative;
+      flex-direction: column;
+      gap: 20px;
     }
 
     .form-fields {
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 22px;
+      gap: 20px;
     }
 
     .form-group {
@@ -214,20 +202,21 @@
     }
 
     .form-group label {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 500;
       color: #0c0c0c;
       margin-bottom: 1px;
     }
 
     .form-group input {
-      padding: 13px 18px;
-      font-size: 16px;
+      padding: 12px 15px;
+      font-size: 15px;
       border: 1.5px solid #808080;
       border-radius: 8px;
       outline: none;
       background: #fff;
       transition: border 0.2s;
+      width: 100%;
     }
 
     .form-group input:focus {
@@ -236,7 +225,7 @@
     }
 
     .form-group .input-hint {
-      font-size: 13px;
+      font-size: 12px;
       color: #8a95ad;
       margin-top: 2px;
     }
@@ -247,63 +236,6 @@
       margin-right: 6px;
     }
 
-    .work-status-group {
-      display: flex;
-      gap: 18px;
-      margin-top: 4px;
-    }
-
-    .work-status-card {
-      border: 1.5px solid #d7dbe3;
-      border-radius: 12px;
-      padding: 18px 24px;
-      background: #f7f8fa;
-      cursor: pointer;
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      transition: border 0.2s, box-shadow 0.2s;
-      font-size: 15px;
-      position: relative;
-      min-width: 180px;
-    }
-
-    .work-status-card.selected {
-      border: 2px solid #1d4ed8;
-      background: #eef4ff;
-      box-shadow: 0 2px 8px rgba(29, 78, 216, 0.08);
-    }
-
-    .work-status-card .icon {
-      width: 28px;
-      height: 28px;
-      background: #fff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      border: 1.5px solid #e1e6ef;
-    }
-
-    .work-status-card .info {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .work-status-card .info .title {
-      font-weight: 600;
-      color: #222;
-      font-size: 15px;
-    }
-
-    .work-status-card .info .desc {
-      font-size: 13px;
-      color: #8a95ad;
-    }
-
     .checkbox-row {
       margin-top: 16px;
       display: flex;
@@ -312,7 +244,7 @@
     }
 
     .checkbox-row label {
-      font-size: 15px;
+      font-size: 14px;
       color: #222;
       font-weight: 400;
       margin-left: 3px;
@@ -320,9 +252,10 @@
     }
 
     .terms-row {
-      font-size: 13px;
+      font-size: 12px;
       color: #8a95ad;
       margin-top: 20px;
+      line-height: 1.5;
     }
 
     .terms-row a {
@@ -336,11 +269,12 @@
       background: #FFF44F;
       color: #29374d;
       font-weight: 600;
-      font-size: 17px;
+      font-size: 16px;
       border-radius: 30px;
       border: none;
-      padding: 13px 0;
-      width: 200px;
+      padding: 12px 0;
+      width: 100%;
+      max-width: 200px;
       cursor: pointer;
       box-shadow: 0 2px 8px rgba(29, 78, 216, 0.04);
       transition: background 0.2s;
@@ -350,32 +284,23 @@
       background: #d3c830ff;
     }
 
-    /* Fixed Google section styles */
+    /* Google section styles */
     .google-section {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      width: 200px;
+      width: 100%;
       position: relative;
-      padding-left: 24px;
-      margin-left: 24px;
+      padding-top: 25px;
+      margin-top: 25px;
+      border-top: 1px solid #e8e8e8;
     }
 
     .error-msg {
       color: red;
       font-size: 0.85em;
       display: none;
-    }
-
-    .google-section::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 1px;
-      background-color: #e8e8e8;
     }
 
     .or-text {
@@ -406,6 +331,7 @@
       cursor: pointer;
       transition: background 0.2s;
       width: 100%;
+      max-width: 200px;
       justify-content: center;
     }
 
@@ -420,17 +346,27 @@
 
     /* Footer Styles */
     .footer {
-      margin-top: 50px;
+      margin-top: 40px;
       text-align: center;
-      padding: 24px 0 8px 0;
+      padding: 20px 0;
       font-family: 'Nunito', Arial, sans-serif;
       background: transparent;
+      width: 100%;
+    }
+
+    .footer-content {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
 
     .footer-links {
-      display: inline-flex;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       align-items: center;
-      gap: 26px;
+      gap: 10px;
       font-size: 12px;
       margin-bottom: 8px;
       color: #1d4ed8;
@@ -441,6 +377,7 @@
       text-decoration: none;
       transition: color 0.15s;
       font-weight: 400;
+      white-space: nowrap;
     }
 
     .footer-links a:hover {
@@ -450,9 +387,8 @@
 
     .footer-links .divider {
       width: 1px;
-      height: 16px;
+      height: 12px;
       background: #dbe7ff;
-      margin: 0 8px;
       display: inline-block;
       vertical-align: middle;
     }
@@ -465,62 +401,107 @@
       letter-spacing: 0.01em;
     }
 
-    @media (max-width: 1100px) {
+    /* Alert styles */
+    .alert {
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .alert-success {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .alert-danger {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (min-width: 768px) {
+      .header-content {
+        padding: 0 30px;
+      }
+
       .container {
-        flex-direction: column;
-        align-items: center;
+        padding: 0 30px;
+        gap: 40px;
       }
 
       .form-card {
-        width: 90vw;
-        min-width: 320px;
-        padding: 32px 12vw;
+        padding: 36px 48px;
       }
 
-      .left-card {
-        margin-bottom: 32px;
+      .form-row {
+        flex-direction: row;
       }
 
       .google-section {
-        width: 100%;
-        margin-left: 0;
-        padding-left: 0;
-        margin-top: 24px;
-        padding-top: 24px;
-        border-top: 1px solid #e8e8e8;
-        border-left: none;
+        width: 200px;
+        padding-left: 24px;
+        margin-left: 24px;
+        padding-top: 0;
+        margin-top: 0;
+        border-top: none;
+        border-left: 1px solid #e8e8e8;
       }
 
-      .google-section::before {
-        display: none;
+
+    }
+
+    @media (min-width: 992px) {
+      .left-card {
+        position: sticky;
+        top: 32px;
+        order: 1;
       }
 
-      .footer-links {
-        font-size: 15px;
-        gap: 18px;
+      .form-card {
+        order: 2;
+        flex: 1;
+        min-width: 60%;
       }
 
-      .footer-copyright {
-        font-size: 14px;
+      .container {
+        flex-wrap: nowrap;
+        align-items: flex-start;
       }
     }
 
-    @media (max-width: 600px) {
-      .form-card {
-        padding: 22px 4vw;
+    @media (max-width: 480px) {
+      .header-content {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
       }
 
-      .header-content {
-        width: 94vw;
+      .login-link {
+        position: static;
+        transform: none;
+      }
+
+      .left-card,
+      .form-card {
+        border-radius: 10px;
+      }
+
+      .form-title {
+        font-size: 20px;
       }
 
       .footer-links {
-        font-size: 12px;
-        gap: 6px;
+        flex-direction: column;
+        gap: 5px;
       }
 
-      .footer-copyright {
-        font-size: 12px;
+      .footer-links .divider {
+        display: none;
+      }
+
+      .register-btn {
+        align-self: center;
       }
     }
   </style>
@@ -555,15 +536,13 @@
     <!-- Form Card -->
     <div class="form-card">
       <?php if ($this->session->flashdata('success')): ?>
-        <div class="alert alert-success"
-          style="padding: 10px; background: #d4edda; color: #155724; border-radius: 4px; margin-bottom: 20px;">
+        <div class="alert alert-success">
           <?= $this->session->flashdata('success') ?>
         </div>
       <?php endif; ?>
 
       <?php if ($this->session->flashdata('error')): ?>
-        <div class="alert alert-danger"
-          style="padding: 10px; background: #f8d7da; color: #721c24; border-radius: 4px; margin-bottom: 20px;">
+        <div class="alert alert-danger">
           <?= $this->session->flashdata('error') ?>
         </div>
       <?php endif; ?>
@@ -610,7 +589,7 @@
               <label for="mobile">Mobile Number<span style="color:#e42e2e;">*</span></label>
               <input type="tel" name="mobile" id="mobile" placeholder="+91 Enter your mobile number">
               <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
-              <span class="input-hint">We’ll contact you for verification</span>
+              <span class="input-hint">We'll contact you for verification</span>
             </div>
 
             <div class="checkbox-row">
@@ -642,22 +621,7 @@
   </div>
 
   <!-- Footer -->
-  <div class="footer" style="width:300px; margin:40px auto 0 auto;">
-    <div class="footer-links">
-      <a href="#">About Us</a>
-      <span class="divider"></span>
-      <a href="#">Contact Us</a>
-      <span class="divider"></span>
-      <a href="#">FAQs</a>
-      <span class="divider"></span>
-      <a href="#">Terms and Conditions</a>
-      <span class="divider"></span>
-      <a href="#">Privacy Policy</a>
-    </div>
-    <div class="footer-copyright">
-      All rights reserved © 2025 Info Edge India Ltd.
-    </div>
-  </div>
+  <?php $this->load->view('includes/footer'); ?>
   <script>
     document.getElementById('googleSignInBtn').addEventListener('click', function () {
       var provider = new firebase.auth.GoogleAuthProvider();

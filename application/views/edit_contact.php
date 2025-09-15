@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Contact Information</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -13,16 +14,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 15px;
         }
 
-        .container {
+        .form-container {
             max-width: 700px;
+            width: 100%;
             margin-top: 20px;
             background: #fff;
             padding: 25px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            width: 90%;
         }
 
         h2 {
@@ -43,9 +45,12 @@
             width: 100%;
             max-width: 700px;
             display: flex;
-            justify-content: flex-start;
-            padding: 20px 0 0 0;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
             box-sizing: border-box;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .header a.back-link {
@@ -69,11 +74,11 @@
             font-size: 1rem;
         }
 
-
         .btn-save {
             background: #0a9d40ff;
             color: #fff;
             font-weight: bold;
+            width: 100%;
         }
 
         .btn-save:hover {
@@ -96,21 +101,50 @@
         .back-btn:hover {
             background-color: gold;
         }
+        
+        .logo-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        @media (max-width: 576px) {
+            .form-container {
+                padding: 15px;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .logo-container {
+                justify-content: flex-start;
+                width: 100%;
+                padding-top: 10px;
+                border-top: 1px solid #eee;
+                margin-top: 10px;
+            }
+            
+            h2 {
+                font-size: 18px;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <div class="header" style="display: flex; align-items: center; gap: 10px;">
+    <div class="header">
         <a href="<?= base_url('profile'); ?>" class="back-btn" aria-label="Go back to profile">
             <i class="fas fa-chevron-left"></i> Back to Profile
         </a>
 
-        <img src="<?= base_url('assets/images/jobnest.png'); ?>" alt="jobnestLogo" class="img-fluid"
-            style="height:50px; width:100px;">
+        <div class="logo-container">
+            <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="jobnestLogo" class="img-fluid"
+                style="height:50px; width:100px;">
+        </div>
     </div>
 
-
-    <div class="container">
+    <div class="form-container">
         <form action="<?= base_url('profile/update_contact'); ?>" method="post">
 
             <div class="form-section">
@@ -134,10 +168,17 @@
 
             <div class="form-section">
                 <h2>Location</h2>
-                <div class="mb-3">
-                    <label for="country" class="form-label">Country *</label>
-                    <input type="text" name="country" class="form-control" id="country"
-                        value="<?= set_value('country', $location['country'] ?? 'India'); ?>" required>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="country" class="form-label">Country *</label>
+                        <input type="text" name="country" class="form-control" id="country"
+                            value="<?= set_value('country', $location['country'] ?? 'India'); ?>" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="pincode" class="form-label">Pincode *</label>
+                        <input type="text" name="pincode" class="form-control" id="pincode"
+                            value="<?= set_value('pincode', $location['pincode'] ?? ''); ?>" required>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="street" class="form-label">Street address</label>
@@ -154,12 +195,7 @@
                     <input type="text" name="area" class="form-control" id="area"
                         value="<?= set_value('area', $location['area'] ?? ''); ?>">
                 </div>
-                <div class="mb-3">
-                    <label for="pincode" class="form-label">Pincode *</label>
-                    <input type="text" name="pincode" class="form-control" id="pincode"
-                        value="<?= set_value('pincode', $location['pincode'] ?? ''); ?>" required>
-                </div>
-                <div class="form-check">
+                <div class="form-check mb-3">
                     <input class="form-check-input" type="checkbox" name="relocation" id="relocation" value="1"
                         <?= !empty($location['relocation']) ? 'checked' : ''; ?>>
                     <label class="form-check-label" for="relocation">
@@ -171,6 +207,8 @@
             <button type="submit" class="btn btn-save">Save</button>
         </form>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

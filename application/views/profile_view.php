@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Profile</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -132,14 +133,12 @@
     /* Main Container */
     .container {
       display: flex;
-      justify-content: center;
-      /* This centers the items horizontally */
-      align-items: center;
-      /* Change this to center the items vertically */
-      padding: 40px 20px;
-      min-height: calc(100vh - 150px);
       flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      min-height: calc(100vh - 150px);
       gap: 20px;
+      width: 100%;
     }
 
     /* Profile Card */
@@ -149,12 +148,20 @@
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
       width: 100%;
       max-width: 1600px;
-      padding: 40px;
+      padding: 30px;
     }
 
     @media (max-width: 768px) {
       .profile-card {
-        padding: 24px;
+        padding: 20px;
+        border-radius: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .profile-card {
+        padding: 16px;
+        border-radius: 12px;
       }
     }
 
@@ -163,6 +170,22 @@
       align-items: center;
       gap: 30px;
       margin-bottom: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .profile-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+      }
+      
+      .profile-info {
+        width: 100%;
+      }
+      
+      .profile-info p {
+        justify-content: center;
+      }
     }
 
     /* Modified profile-avatar to include a position and hover effect */
@@ -182,6 +205,14 @@
       /* Added for the upload icon */
       cursor: pointer;
       overflow: hidden;
+    }
+
+    @media (max-width: 480px) {
+      .profile-avatar {
+        width: 70px;
+        height: 70px;
+        font-size: 30px;
+      }
     }
 
     .profile-avatar .profile-initials {
@@ -229,6 +260,18 @@
       color: #1a1a1a;
     }
 
+    @media (max-width: 768px) {
+      .profile-info h1 {
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .profile-info h1 {
+        font-size: 22px;
+      }
+    }
+
     .profile-info .contact-details {
       margin-top: 15px;
     }
@@ -240,6 +283,14 @@
       display: flex;
       align-items: center;
       gap: 10px;
+    }
+
+    @media (max-width: 480px) {
+      .profile-info p {
+        font-size: 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
     }
 
     .profile-info .icon {
@@ -279,6 +330,18 @@
       color: #1a1a1a;
     }
 
+    @media (max-width: 768px) {
+      .section h2 {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .section h2 {
+        font-size: 18px;
+      }
+    }
+
     .visibility-bar {
       background: #eef4ff;
       color: #1d4ed8;
@@ -290,6 +353,15 @@
       margin-top: 24px;
       cursor: pointer;
       transition: background 0.2s;
+    }
+
+    @media (max-width: 480px) {
+      .visibility-bar {
+        padding: 12px 16px;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
     }
 
     .visibility-bar:hover {
@@ -312,10 +384,35 @@
       background: #f9f9f9;
     }
 
+    @media (max-width: 768px) {
+      .info-card {
+        padding: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .info-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+      
+      .info-card .arrow-link {
+        align-self: flex-end;
+      }
+    }
+
     .info-card-left {
       display: flex;
       align-items: center;
       gap: 20px;
+    }
+
+    @media (max-width: 480px) {
+      .info-card-left {
+        gap: 12px;
+        width: 100%;
+      }
     }
 
     .info-details {
@@ -330,6 +427,12 @@
       color: #1a1a1a;
     }
 
+    @media (max-width: 480px) {
+      .info-details h4 {
+        font-size: 16px;
+      }
+    }
+
     .info-details p {
       font-size: 13px;
       color: #888;
@@ -342,8 +445,21 @@
       flex-shrink: 0;
     }
 
+    @media (max-width: 480px) {
+      .pdf-icon {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
     .options-menu {
       position: relative;
+    }
+
+    @media (max-width: 480px) {
+      .options-menu {
+        align-self: flex-end;
+      }
     }
 
     .options-menu-icon {
@@ -370,6 +486,13 @@
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
       min-width: 220px;
       z-index: 10;
+    }
+
+    @media (max-width: 480px) {
+      .options-dropdown {
+        right: -10px;
+        min-width: 200px;
+      }
     }
 
     .options-dropdown a {
@@ -450,6 +573,7 @@
       padding: 24px 20px 8px;
       background: transparent;
       border-top: 1px solid #e0e0e0;
+      width: 100%;
     }
 
     .footer-links {
@@ -460,6 +584,19 @@
       gap: 20px;
       font-size: 13px;
       margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .footer-links {
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer-links {
+        flex-direction: column;
+        gap: 10px;
+      }
     }
 
     .footer-links a {
@@ -499,6 +636,13 @@
       /* Centers the modal */
     }
 
+    @media (max-width: 768px) {
+      .menu-modal {
+        width: 90%;
+        padding: 16px;
+      }
+    }
+
     .section {
       margin-top: 20px;
     }
@@ -506,7 +650,7 @@
     .info-card {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      /* align-items: center; */
       background: #fff;
       border: 1px solid #ddd;
       padding: 15px;
@@ -636,7 +780,7 @@
         <div class="info-card">
           <div class="info-details">
             <h4>Ready to work</h4>
-            <p>Let employers know that you’re available to start working as soon as possible.</p>
+            <p>Let employers know that you're available to start working as soon as possible.</p>
           </div>
           <a href="<?= base_url('profile/readyToWork'); ?>" class="arrow-link">›</a>
         </div>
