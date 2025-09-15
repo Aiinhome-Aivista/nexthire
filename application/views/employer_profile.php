@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SahajJobs | Employer Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -11,6 +12,7 @@
     <style>
         body {
             display: flex;
+            flex-direction: column;
             min-height: 100vh;
             background: #f5f7fa;
         }
@@ -25,6 +27,8 @@
             padding: 20px;
             position: fixed;
             height: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
 
         .sidebar img {
@@ -47,11 +51,25 @@
             background: #fca911d4;
         }
 
+        /* Sidebar Toggle Button */
+        .sidebar-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1100;
+            background: #fca911d4;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+        }
+
         /* Content */
         .content {
             margin-left: 280px;
             padding: 30px;
             flex: 1;
+            transition: all 0.3s ease;
         }
 
         /* Table Styling */
@@ -113,12 +131,74 @@
             color: #666;
             margin-top: 20px;
         }
+
+        /* Profile Avatar Responsive */
+        .profile-avatar {
+            width: 130px;
+            height: 130px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1199.98px) {
+            .sidebar {
+                width: 250px;
+            }
+            .content {
+                margin-left: 230px;
+            }
+        }
+
+        @media (max-width: 991.98px) {
+            .sidebar {
+                width: 220px;
+            }
+            .content {
+                margin-left: 200px;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 280px;
+            }
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            .content {
+                margin-left: 0;
+                padding: 20px 15px;
+            }
+            .sidebar-toggle {
+                display: block;
+            }
+            .profile-avatar {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .card-body {
+                padding: 1.5rem !important;
+            }
+            .profile-avatar {
+                width: 80px;
+                height: 80px;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <!-- Sidebar Toggle Button for Mobile -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
         <img style="height:40px; width:90px;" src="<?= base_url('assets/images/sahajjobs1.png'); ?>" alt="JobNest">
         <a href="<?= base_url('employer_dashboard'); ?>"><i class="fas fa-home me-2"></i> Dashboard</a>
         <a href="<?= base_url('employer_job_post'); ?>"><i class="fas fa-file-alt me-2"></i> Post Job</a>
@@ -133,7 +213,7 @@
     </div>
 
     <!-- Content -->
-    <div class="content">
+    <div class="content" id="content">
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -145,12 +225,11 @@
                             <?php if (!empty($employer['picture'])): ?>
                                 <!-- If picture exists -->
                                 <img src="<?= base_url('uploads/employers/' . $employer['picture']); ?>"
-                                    alt="Profile Picture" class="rounded-circle mb-3 border border-3 border-primary"
-                                    width="130" height="130">
+                                    alt="Profile Picture" class="rounded-circle mb-3 border border-3 border-primary profile-avatar">
                             <?php else: ?>
                                 <!-- If no picture, show first letter avatar -->
-                                <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3 border border-3"
-                                    style="width: 80px; height: 80px; background: #fca911d4; color: #fff; font-size: 28px; font-weight: bold;">
+                                <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3 border border-3 profile-avatar"
+                                    style="background: #fca911d4; color: #fff; font-size: 28px; font-weight: bold;">
                                     <?= strtoupper(substr($employer['full_name'], 0, 1)); ?>
                                 </div>
                             <?php endif; ?>
@@ -249,25 +328,35 @@
     </div>
 
     <script>
-        const logoutBtn = document.getElementById('logoutBtn');
-        logoutBtn.addEventListener('click', function () {
-            if (confirm('Are you sure you want to logout?')) {
-                window.location.href = '<?= base_url("employer_login"); ?>';
+        // Sidebar toggle functionality
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('sidebar');
+        const content = document.getElementById('content');
+        
+        sidebarToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+        });
+        
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const isClickInsideSidebar = sidebar.contains(event.target);
+            const isClickInsideToggle = sidebarToggle.contains(event.target);
+            
+            if (window.innerWidth < 768 && !isClickInsideSidebar && !isClickInsideToggle && sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
             }
         });
-    </script>
 
-    <script>
+        // Logout functionality
         const logoutBtn = document.getElementById('logoutBtn');
-        logoutBtn.addEventListener('click', function () {
+        logoutBtn.addEventListener('click', function (e) {
+            e.preventDefault();
             if (confirm('Are you sure you want to logout?')) {
                 window.location.href = '<?= base_url("Employer_controller/logout"); ?>';
             }
         });
-    </script>
 
-
-    <script>
+        // Profile edit modal functionality
         document.addEventListener("DOMContentLoaded", function () {
             document.querySelectorAll('[data-bs-target="#editProfileModal"]').forEach(button => {
                 button.addEventListener("click", function () {

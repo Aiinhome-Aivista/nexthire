@@ -394,7 +394,7 @@
 <body>
     <div class="search-results-container">
         <!-- Back button -->
-        <a href="<?php echo base_url('home'); ?>" class="back-to-search">
+        <a href="<?php echo base_url(); ?>" class="back-to-search">
             <i class="fas fa-arrow-left"></i> Back to search
         </a>
 
