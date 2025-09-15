@@ -118,13 +118,10 @@
     }
 
     .left-card img {
-      width: 120px;
-      height: 120px;
+      width: 240px;
+      height: 60px;
       margin-bottom: 16px;
-      border-radius: 50%;
       object-fit: cover;
-      background: #f2f3f8;
-      border: 2px solid #eee;
     }
 
     .left-card h3 {
