@@ -512,6 +512,14 @@
                 font-size: 12px;
             }
         }
+
+         footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #666;
+            margin-top: 140px;
+        }
     </style>
 </head>
 
@@ -524,16 +532,22 @@
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <div style="display: flex; align-items: center; gap: 10px;">
-                <img style="height:40px; width:90px;" src="<?= base_url('assets/images/sahajjobs1.png'); ?>" alt="SahajJobs">
+                <img style="height:50px; width:135px;" src="<?= base_url('assets/images/sahajjobs1.png'); ?>"
+                    alt="SahajJobs">
             </div>
         </div>
         <nav class="sidebar-menu">
             <ul>
-                <li><a href="<?= base_url('employer_dashboard'); ?>"><i class="fas fa-home me-2"></i> <span>Dashboard</span></a></li>
-                <li><a href="<?= base_url('employer_job_post'); ?>"><i class="fas fa-file-alt me-2"></i> <span>Post Job</span></a></li>
-                <li><a href="<?= base_url('employer_manage_jobs'); ?>" class="active"><i class="fas fa-briefcase me-2"></i> <span>Manage Jobs</span></a></li>
-                <li><a href="<?= base_url('employer_manage_candidates'); ?>"><i class="fas fa-user-graduate me-2"></i> <span>Candidates</span></a></li>
-                <li><a href="<?= base_url('employer_profile'); ?>"><i class="fas fa-building"></i> <span>Employer Profile</span></a></li>
+                <li><a href="<?= base_url('employer_dashboard'); ?>"><i class="fas fa-home me-2"></i>
+                        <span>Dashboard</span></a></li>
+                <li><a href="<?= base_url('employer_job_post'); ?>"><i class="fas fa-file-alt me-2"></i> <span>Post
+                            Job</span></a></li>
+                <li><a href="<?= base_url('employer_manage_jobs'); ?>" class="active"><i
+                            class="fas fa-briefcase me-2"></i> <span>Manage Jobs</span></a></li>
+                <li><a href="<?= base_url('employer_manage_candidates'); ?>"><i class="fas fa-user-graduate me-2"></i>
+                        <span>Candidates</span></a></li>
+                <li><a href="<?= base_url('employer_profile'); ?>"><i class="fas fa-building"></i> <span>Employer
+                            Profile</span></a></li>
                 <li>
                     <a href="#" id="logoutBtn">
                         <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
@@ -546,8 +560,6 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="container">
-            <h2>Manage Jobs</h2>
-
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h4 class="fw-bold" style="color: #fca911;">Manage Jobs</h4>
                 <a href="<?= base_url('employer_job_post'); ?>" class="btn btn-warning text-dark">
@@ -589,10 +601,12 @@
                                     <td data-label="Salary"><?= htmlspecialchars($job->salary) ?></td>
                                     <td data-label="Last Date"><?= htmlspecialchars($job->last_date) ?></td>
                                     <td data-label="Actions">
-                                        <button class="btn btn-table btn-edit" data-id="<?= $job->id; ?>" data-employer="<?= $job->employer_id; ?>" title="Edit">
+                                        <button class="btn btn-table btn-edit" data-id="<?= $job->id; ?>"
+                                            data-employer="<?= $job->employer_id; ?>" title="Edit">
                                             <i class="fas fa-edit"></i>
                                         </button>
-                                        <button class="btn btn-table btn-delete" data-id="<?= $job->id; ?>" data-employer="<?= $job->employer_id; ?>" title="Delete">
+                                        <button class="btn btn-table btn-delete" data-id="<?= $job->id; ?>"
+                                            data-employer="<?= $job->employer_id; ?>" title="Delete">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </td>
@@ -616,11 +630,10 @@
                 <button id="lastPage">Last</button>
                 <span class="page-info" id="pageInfo"></span>
             </div>
-
-            <footer style="text-align:center; padding-top: 20px;">
-                &copy; 2025 SahajJobs Inc. All Rights Reserved.
-            </footer>
         </div>
+        <footer style="text-align:center; padding-top: 20px;">
+            &copy; 2025 SahajJobs Inc. All Rights Reserved.
+        </footer>
     </div>
 
     <!-- Edit Job Modal -->
@@ -687,7 +700,7 @@
 
         // Desktop sidebar toggle
         if (sidebarToggle && sidebar) {
-            sidebarToggle.addEventListener('click', function(e) {
+            sidebarToggle.addEventListener('click', function (e) {
                 // toggle collapsed state
                 sidebar.classList.toggle('collapsed');
 
@@ -711,7 +724,7 @@
 
         // Mobile sidebar toggle
         if (mobileToggle && sidebar) {
-            mobileToggle.addEventListener('click', function(e) {
+            mobileToggle.addEventListener('click', function (e) {
                 // prevent the document click handler from immediately closing the sidebar
                 e.stopPropagation();
 
@@ -730,13 +743,13 @@
             });
 
             // If sidebar receives clicks, do not let them bubble up to document click
-            sidebar.addEventListener('click', function(e) {
+            sidebar.addEventListener('click', function (e) {
                 e.stopPropagation();
             });
         }
 
         // Close sidebar when clicking outside on mobile
-        document.addEventListener('click', function(event) {
+        document.addEventListener('click', function (event) {
             if (!sidebar) return;
             // only for mobile/smaller screens
             if (window.innerWidth <= 768 &&
@@ -751,7 +764,7 @@
         });
 
         // Handle window resize
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             if (!sidebar) return;
 
             if (window.innerWidth > 768) {
@@ -807,7 +820,7 @@
         initSidebar();
 
         // Search and Pagination functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const searchInput = document.getElementById('searchInput');
             const tableBody = document.getElementById('jobTableBody');
             const firstPageBtn = document.getElementById('firstPage');
@@ -849,7 +862,7 @@
             initializeTable();
 
             // Search functionality
-            searchInput.addEventListener('input', function() {
+            searchInput.addEventListener('input', function () {
                 const searchText = this.value.toLowerCase();
 
                 if (searchText === '') {
@@ -950,7 +963,7 @@
 
         // Logout functionality
         const logoutBtn = document.getElementById('logoutBtn');
-        logoutBtn.addEventListener('click', function() {
+        logoutBtn.addEventListener('click', function () {
             if (confirm('Are you sure you want to logout?')) {
                 window.location.href = '<?= base_url("Employer_controller/logout"); ?>';
             }
@@ -958,7 +971,7 @@
 
         // Edit and Delete functionality
         document.querySelectorAll(".btn-edit").forEach(btn => {
-            btn.addEventListener("click", function() {
+            btn.addEventListener("click", function () {
                 let jobId = this.getAttribute("data-id");
                 let employerId = this.getAttribute("data-employer");
 
@@ -981,15 +994,15 @@
             });
         });
 
-        document.getElementById("editJobForm").addEventListener("submit", function(e) {
+        document.getElementById("editJobForm").addEventListener("submit", function (e) {
             e.preventDefault();
 
             let formData = new FormData(this);
 
             fetch("<?= base_url('Employer_controller/update_job'); ?>", {
-                    method: "POST",
-                    body: formData
-                })
+                method: "POST",
+                body: formData
+            })
                 .then(res => res.json())
                 .then(data => {
                     if (data.success) {
@@ -1002,22 +1015,22 @@
         });
 
         document.querySelectorAll(".btn-delete").forEach(btn => {
-            btn.addEventListener("click", function() {
+            btn.addEventListener("click", function () {
                 let jobId = this.getAttribute("data-id");
                 let employerId = this.getAttribute("data-employer");
 
                 if (confirm("Are you sure you want to delete this job?")) {
                     fetch("<?= base_url('Employer_controller/delete_job'); ?>", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                                "X-Requested-With": "XMLHttpRequest"
-                            },
-                            body: JSON.stringify({
-                                id: jobId,
-                                employer_id: employerId
-                            })
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-Requested-With": "XMLHttpRequest"
+                        },
+                        body: JSON.stringify({
+                            id: jobId,
+                            employer_id: employerId
                         })
+                    })
                         .then(res => res.json())
                         .then(data => {
                             if (data.success) {

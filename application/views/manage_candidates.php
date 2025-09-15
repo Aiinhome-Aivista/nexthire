@@ -174,9 +174,9 @@
             font-size: 14px;
         }
 
-        th {
+        .table th {
             background: #fca911d4;
-            color: #fca911d4;
+            color: #48494a;
         }
 
         tr:nth-child(even) {
@@ -312,7 +312,7 @@
             padding: 20px;
             font-size: 14px;
             color: #666;
-            margin-top: 40px;
+            margin-top: 140px;
         }
 
         /* Responsive styles */
@@ -509,16 +509,22 @@
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <div style="display: flex; align-items: center; gap: 10px;">
-                <img style="height:40px; width:90px;" src="<?= base_url('assets/images/sahajjobs1.png'); ?>" alt="SahajJobs">
+                <img style="height:50px; width:135px;" src="<?= base_url('assets/images/sahajjobs1.png'); ?>"
+                    alt="SahajJobs">
             </div>
         </div>
         <nav class="sidebar-menu">
             <ul>
-                <li><a href="<?= base_url('employer_dashboard'); ?>"><i class="fas fa-home me-2"></i> <span>Dashboard</span></a></li>
-                <li><a href="<?= base_url('employer_job_post'); ?>"><i class="fas fa-file-alt me-2"></i> <span>Post Job</span></a></li>
-                <li><a href="<?= base_url('employer_manage_jobs'); ?>"><i class="fas fa-briefcase me-2"></i> <span>Manage Jobs</span></a></li>
-                <li><a href="<?= base_url('employer_manage_candidates'); ?>" class="active"><i class="fas fa-user-graduate me-2"></i> <span>Candidates</span></a></li>
-                <li><a href="<?= base_url('employer_profile'); ?>"><i class="fas fa-building"></i> <span>Employer Profile</span></a></li>
+                <li><a href="<?= base_url('employer_dashboard'); ?>"><i class="fas fa-home me-2"></i>
+                        <span>Dashboard</span></a></li>
+                <li><a href="<?= base_url('employer_job_post'); ?>"><i class="fas fa-file-alt me-2"></i> <span>Post
+                            Job</span></a></li>
+                <li><a href="<?= base_url('employer_manage_jobs'); ?>"><i class="fas fa-briefcase me-2"></i>
+                        <span>Manage Jobs</span></a></li>
+                <li><a href="<?= base_url('employer_manage_candidates'); ?>" class="active"><i
+                            class="fas fa-user-graduate me-2"></i> <span>Candidates</span></a></li>
+                <li><a href="<?= base_url('employer_profile'); ?>"><i class="fas fa-building"></i> <span>Employer
+                            Profile</span></a></li>
                 <li>
                     <a href="#" id="logoutBtn">
                         <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
@@ -531,7 +537,7 @@
     <!-- Content -->
     <div class="content">
         <div class="container">
-            <h2>Manage Candidates</h2>
+            <h4 class="fw-bold" style="color: #fca911; margin-bottom: 2rem;">Manage Candidates</h4>
 
             <div class="search-container">
                 <div class="search-box">
@@ -542,7 +548,7 @@
 
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
-                    <thead class="table-dark">
+                    <thead>
                         <tr>
                             <th>S.No</th>
                             <th>Name</th>
@@ -568,7 +574,8 @@
                                         <button class="btn btn-table btn-edit" title="Edit" data-id="<?= $candidate->id; ?>">
                                             <i class="fas fa-edit"></i>
                                         </button>
-                                        <button class="btn btn-table btn-delete" title="Delete" data-id="<?= $candidate->id; ?>">
+                                        <button class="btn btn-table btn-delete" title="Delete"
+                                            data-id="<?= $candidate->id; ?>">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </td>
@@ -599,7 +606,8 @@
     </div>
 
     <!-- Edit Candidate Modal (Bootstrap version) -->
-    <div class="modal fade" id="editCandidateModal" tabindex="-1" aria-labelledby="editCandidateModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editCandidateModal" tabindex="-1" aria-labelledby="editCandidateModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -656,7 +664,7 @@
 
         // Desktop sidebar toggle (guarded)
         if (sidebarToggle && sidebar) {
-            sidebarToggle.addEventListener('click', function(e) {
+            sidebarToggle.addEventListener('click', function (e) {
                 // toggle collapsed state
                 sidebar.classList.toggle('collapsed');
 
@@ -680,7 +688,7 @@
 
         // Mobile sidebar toggle (guarded + stopPropagation to avoid immediate close)
         if (mobileToggle && sidebar) {
-            mobileToggle.addEventListener('click', function(e) {
+            mobileToggle.addEventListener('click', function (e) {
                 // prevent the document click handler from immediately closing the sidebar
                 e.stopPropagation();
 
@@ -699,13 +707,13 @@
             });
 
             // If sidebar receives clicks, do not let them bubble up to document click
-            sidebar.addEventListener('click', function(e) {
+            sidebar.addEventListener('click', function (e) {
                 e.stopPropagation();
             });
         }
 
         // Close sidebar when clicking outside on mobile (guarded)
-        document.addEventListener('click', function(event) {
+        document.addEventListener('click', function (event) {
             if (!sidebar) return;
             // only for mobile/smaller screens
             if (window.innerWidth <= 768 &&
@@ -720,7 +728,7 @@
         });
 
         // Handle window resize
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             if (!sidebar) return;
 
             if (window.innerWidth > 768) {
@@ -776,7 +784,7 @@
         initSidebar();
 
         // Search and Pagination functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const searchInput = document.getElementById('searchInput');
             const tableBody = document.getElementById('candidateTableBody');
             const firstPageBtn = document.getElementById('firstPage');
@@ -793,8 +801,8 @@
             const rowsPerPage = 10;
 
             // Use MutationObserver to detect when table content is loaded
-            const observer = new MutationObserver(function(mutations) {
-                mutations.forEach(function(mutation) {
+            const observer = new MutationObserver(function (mutations) {
+                mutations.forEach(function (mutation) {
                     if (mutation.addedNodes.length) {
                         initializeTable();
                     }
@@ -827,7 +835,7 @@
             }
 
             // Search functionality
-            searchInput.addEventListener('input', function() {
+            searchInput.addEventListener('input', function () {
                 const searchText = this.value.toLowerCase();
 
                 if (searchText === '') {
@@ -936,14 +944,14 @@
 
         // Logout functionality
         const logoutBtn = document.getElementById('logoutBtn');
-        logoutBtn.addEventListener('click', function() {
+        logoutBtn.addEventListener('click', function () {
             if (confirm('Are you sure you want to logout?')) {
                 window.location.href = '<?= base_url("Employer_controller/logout"); ?>';
             }
         });
 
         // Open edit modal with candidate data
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (e.target.closest('.btn-edit')) {
                 const row = e.target.closest('tr');
                 const candidateId = row.getAttribute('data-id');
@@ -965,14 +973,14 @@
         });
 
         // Submit Edit Form
-        document.getElementById("editCandidateForm").addEventListener("submit", function(e) {
+        document.getElementById("editCandidateForm").addEventListener("submit", function (e) {
             e.preventDefault();
             let formData = new FormData(this);
 
             fetch("<?= base_url('Employer_controller/update_candidate'); ?>", {
-                    method: "POST",
-                    body: formData
-                })
+                method: "POST",
+                body: formData
+            })
                 .then(res => res.json())
                 .then(response => {
                     alert(response.message);
@@ -981,15 +989,15 @@
         });
 
         // Delete Candidate
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (e.target.closest('.btn-delete')) {
                 const row = e.target.closest('tr');
                 const candidateId = row.getAttribute('data-id');
 
                 if (confirm("Are you sure you want to delete this candidate?")) {
                     fetch("<?= base_url('Employer_controller/delete_candidate'); ?>/" + candidateId, {
-                            method: "POST"
-                        })
+                        method: "POST"
+                    })
                         .then(res => res.json())
                         .then(response => {
                             alert(response.message);
