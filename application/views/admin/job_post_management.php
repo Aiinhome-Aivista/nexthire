@@ -154,12 +154,12 @@
       padding: 20px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       overflow: hidden;
-      padding-top: 10px;
-      padding-left: 60px;
+      padding-top: 40px;
+      padding-left: 30px;
     }
 
     .container h2 {
-      margin-left: 50px;
+      margin-left: 5px;
       position: relative;
       z-index: 1;
     }
@@ -333,6 +333,7 @@
       opacity: 0;
       visibility: hidden;
       transition: all 0.3s ease;
+      overflow: hidden;
     }
 
     .modal.show {
@@ -357,7 +358,7 @@
     }
 
     .modal-header {
-      padding: 20px 25px 15px;
+      padding: 15px 25px 15px;
       border-bottom: 1px solid #eee;
       display: flex;
       justify-content: space-between;
@@ -372,11 +373,14 @@
     }
 
     .modal-body {
-      padding: 25px;
+      padding: 10px;
+      padding: 1rem;
+      overflow-y: auto;
+      flex: 1;
     }
 
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 5px;
     }
 
     .form-group label {
@@ -755,7 +759,7 @@
         <span class="page-info" id="pageInfo"></span>
       </div>
     </div>
-    <footer style="text-align:center; padding-top: 170px;">
+    <footer style="text-align:center; padding-top: 130px;">
       &copy; 2025 SahajJobs Inc. All Rights Reserved.
     </footer>
   </div>

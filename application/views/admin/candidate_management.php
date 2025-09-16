@@ -154,12 +154,12 @@
             padding: 20px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            padding-top: 10px;
-            padding-left: 60px;
+            padding-top: 40px;
+            padding-left: 30px;
         }
 
         .container h2 {
-            margin-left: 50px;
+            margin-left: 5px;
             /* Push it a bit right */
             position: relative;
             z-index: 1;
@@ -749,7 +749,7 @@
         </div>
 
         <!-- Footer added here -->
-        <footer style="text-align:center; padding-top: 20px;">
+        <footer style="text-align:center; padding-top: 130px;">
             &copy; 2025 SahajJobs Inc. All Rights Reserved.
         </footer>
     </div>
