@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
 
     <style>
         :root {
@@ -27,7 +29,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Nunito', Arial, sans-serif;
         }
 
         body {
@@ -127,7 +129,7 @@
         }
 
         .sidebar-menu a.active {
-            background: #fca911d4;
+            background: #FFF44F;
             border-left: 4px solid var(--warning);
         }
 
@@ -180,7 +182,7 @@
         }
 
         th {
-            background: #fca911d4;
+            background: #FFF44F;
             color: #48494a;
         }
 
@@ -513,7 +515,7 @@
             }
         }
 
-         footer {
+        footer {
             text-align: center;
             padding: 20px;
             font-size: 14px;
@@ -561,8 +563,8 @@
     <div class="main-content">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h4 class="fw-bold" style="color: #fca911;">Manage Jobs</h4>
-                <a href="<?= base_url('employer_job_post'); ?>" class="btn btn-warning text-dark">
+                <h4 class="fw-bold" style="color: #f1e42cff;">Manage Jobs</h4>
+                <a href="<?= base_url('employer_job_post'); ?>" class="btn text-dark"style="background-color: #f1e42cff;">
                     <i class="fas fa-plus me-1"></i> Post New Job
                 </a>
             </div>

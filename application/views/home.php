@@ -21,6 +21,15 @@
             font-family: 'Nunito', Arial, sans-serif !important;
         }
 
+        .form-control:focus {
+            border-color: #FFC107;
+            /* Substitute with your desired color */
+            box-shadow: none;
+            /* Remove Bootstrap box-shadow */
+            outline: none;
+            /* Remove browser default outline */
+        }
+
         .hero-section {
             padding: 80px 0;
             text-align: center;
@@ -688,6 +697,11 @@
                 document.getElementById("search-button").click();
             }
         });
+        document.getElementById("job-search-input").addEventListener("input", function () {
+            document.getElementById("search-error-message").style.display = "none"; // Hide error message
+            document.getElementById("search-container").classList.remove("error-outline"); // Remove error outline
+        });
+
     </script>
 
 </body>

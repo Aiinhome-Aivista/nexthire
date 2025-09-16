@@ -7,6 +7,8 @@
     <title>SahajJobs | Employer Post Job</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --primary: #fca911d4;
@@ -25,7 +27,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Nunito', Arial, sans-serif;
         }
 
         body {
@@ -120,7 +122,7 @@
         }
 
         .sidebar-menu a.active {
-            background: var(--primary);
+            background: #FFF44F;
             border-left: 4px solid var(--warning);
         }
 
@@ -217,8 +219,8 @@
         }
 
         button[type="submit"] {
-            background: #fca311;
-            color: #fff;
+            background: #FFF44F;
+            color: #29374d;
             padding: 14px;
             border: none;
             border-radius: 8px;
@@ -385,14 +387,18 @@
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <div style="display: flex; align-items: center; gap: 10px;">
-                <img src="<?= base_url('assets/images/sahajjobs1.png'); ?>" alt="SahajJOB" style="height:50px; width:135px;">
+                <img src="<?= base_url('assets/images/sahajjobs1.png'); ?>" alt="SahajJOB"
+                    style="height:50px; width:135px;">
             </div>
         </div>
         <nav class="sidebar-menu">
             <ul>
-                <li><a href="<?= base_url('employer_dashboard'); ?>"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
-                <li><a href="<?= base_url('employer_job_post'); ?>" class="active"><i class="fas fa-file-alt"></i> <span>Post Job</span></a></li>
-                <li><a href="<?= base_url('employer_manage_jobs'); ?>"><i class="fas fa-briefcase"></i> <span>Manage Jobs</span></a></li>
+                <li><a href="<?= base_url('employer_dashboard'); ?>"><i class="fas fa-home"></i>
+                        <span>Dashboard</span></a></li>
+                <li><a href="<?= base_url('employer_job_post'); ?>" class="active"><i class="fas fa-file-alt"></i>
+                        <span>Post Job</span></a></li>
+                <li><a href="<?= base_url('employer_manage_jobs'); ?>"><i class="fas fa-briefcase"></i> <span>Manage
+                            Jobs</span></a></li>
                 <li><a href="#"><i class="fas fa-user-graduate"></i> <span>Candidates</span></a></li>
                 <li><a href="#"><i class="fas fa-building"></i> <span>Employer Profile</span></a></li>
                 <li>
@@ -407,7 +413,7 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="page-header">
-            <h4 class="fw-bold" style="color: #fca911;">Post a Job</h4>
+            <h4 class="fw-bold" style="color: #f1e42cff;">Post a Job</h4>
         </div>
 
         <div class="container">
@@ -539,7 +545,7 @@
 
         // Desktop sidebar toggle
         if (sidebarToggle && sidebar) {
-            sidebarToggle.addEventListener('click', function(e) {
+            sidebarToggle.addEventListener('click', function (e) {
                 // toggle collapsed state
                 sidebar.classList.toggle('collapsed');
 
@@ -563,7 +569,7 @@
 
         // Mobile sidebar toggle
         if (mobileToggle && sidebar) {
-            mobileToggle.addEventListener('click', function(e) {
+            mobileToggle.addEventListener('click', function (e) {
                 // prevent the document click handler from immediately closing the sidebar
                 e.stopPropagation();
 
@@ -582,13 +588,13 @@
             });
 
             // If sidebar receives clicks, do not let them bubble up to document click
-            sidebar.addEventListener('click', function(e) {
+            sidebar.addEventListener('click', function (e) {
                 e.stopPropagation();
             });
         }
 
         // Close sidebar when clicking outside on mobile
-        document.addEventListener('click', function(event) {
+        document.addEventListener('click', function (event) {
             if (!sidebar) return;
             // only for mobile/smaller screens
             if (window.innerWidth <= 768 &&
@@ -603,7 +609,7 @@
         });
 
         // Handle window resize
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             if (!sidebar) return;
 
             if (window.innerWidth > 768) {
@@ -659,7 +665,7 @@
         initSidebar();
 
         const logoutBtn = document.getElementById('logoutBtn');
-        logoutBtn.addEventListener('click', function() {
+        logoutBtn.addEventListener('click', function () {
             if (confirm('Are you sure you want to logout?')) {
                 window.location.href = '<?= base_url("Recruiter_job_post/logout"); ?>';
             }

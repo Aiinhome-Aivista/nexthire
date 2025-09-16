@@ -7,6 +7,7 @@
     <title>SahajJobs | Employer Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
@@ -15,6 +16,8 @@
             flex-direction: column;
             min-height: 100vh;
             background: #f5f7fa;
+            font-family: 'Nunito', Arial, sans-serif;
+
         }
 
         /* Sidebar */
@@ -48,7 +51,7 @@
 
         .sidebar a:hover,
         .sidebar a.active {
-            background: #fca911d4;
+            background: #FFF44F;
         }
 
         /* Sidebar Toggle Button */
@@ -58,7 +61,7 @@
             top: 20px;
             left: 20px;
             z-index: 1100;
-            background: #fca911d4;
+            background: #FFF44F;
             border: none;
             border-radius: 4px;
             padding: 8px 12px;
@@ -75,7 +78,7 @@
         /* Table Styling */
         .table th {
             background: #f0f4ff;
-            color: #fca911d4;
+            color: #FFF44F;
             font-weight: 600;
             text-transform: uppercase;
         }
@@ -143,6 +146,7 @@
             .sidebar {
                 width: 250px;
             }
+
             .content {
                 margin-left: 230px;
             }
@@ -152,6 +156,7 @@
             .sidebar {
                 width: 220px;
             }
+
             .content {
                 margin-left: 200px;
                 padding: 20px;
@@ -163,16 +168,20 @@
                 transform: translateX(-100%);
                 width: 280px;
             }
+
             .sidebar.active {
                 transform: translateX(0);
             }
+
             .content {
                 margin-left: 0;
                 padding: 20px 15px;
             }
+
             .sidebar-toggle {
                 display: block;
             }
+
             .profile-avatar {
                 width: 100px;
                 height: 100px;
@@ -183,6 +192,7 @@
             .card-body {
                 padding: 1.5rem !important;
             }
+
             .profile-avatar {
                 width: 80px;
                 height: 80px;
@@ -225,11 +235,12 @@
                             <?php if (!empty($employer['picture'])): ?>
                                 <!-- If picture exists -->
                                 <img src="<?= base_url('uploads/employers/' . $employer['picture']); ?>"
-                                    alt="Profile Picture" class="rounded-circle mb-3 border border-3 border-primary profile-avatar">
+                                    alt="Profile Picture"
+                                    class="rounded-circle mb-3 border border-3 border-primary profile-avatar">
                             <?php else: ?>
                                 <!-- If no picture, show first letter avatar -->
                                 <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3 border border-3 profile-avatar"
-                                    style="background: #fca911d4; color: #fff; font-size: 28px; font-weight: bold;">
+                                    style="background: #FFF44F; color: #fff; font-size: 28px; font-weight: bold;">
                                     <?= strtoupper(substr($employer['full_name'], 0, 1)); ?>
                                 </div>
                             <?php endif; ?>
@@ -262,7 +273,7 @@
 
                             <!-- Edit Profile Button -->
                             <button type="button" class="btn btn-primary mt-4 px-4 rounded-pill"
-                                style="background-color: #fca911d4; color: #000000; border-color: #fca911d4;"
+                                style="background-color: #FFF44F; color: #000000; border-color: #FFF44F;"
                                 data-bs-toggle="modal" data-bs-target="#editProfileModal"
                                 data-id="<?= $employer['id']; ?>">
                                 <i class="fas fa-edit me-2"></i> Edit Profile
@@ -318,7 +329,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success">Save Changes</button>
+                            <button type="submit" class="btn" style="background:#FFF44F; color:#29374d;">Save
+                                Changes</button>
                         </div>
                     </form>
                 </div>
@@ -332,16 +344,16 @@
         const sidebarToggle = document.getElementById('sidebarToggle');
         const sidebar = document.getElementById('sidebar');
         const content = document.getElementById('content');
-        
-        sidebarToggle.addEventListener('click', function() {
+
+        sidebarToggle.addEventListener('click', function () {
             sidebar.classList.toggle('active');
         });
-        
+
         // Close sidebar when clicking outside on mobile
-        document.addEventListener('click', function(event) {
+        document.addEventListener('click', function (event) {
             const isClickInsideSidebar = sidebar.contains(event.target);
             const isClickInsideToggle = sidebarToggle.contains(event.target);
-            
+
             if (window.innerWidth < 768 && !isClickInsideSidebar && !isClickInsideToggle && sidebar.classList.contains('active')) {
                 sidebar.classList.remove('active');
             }
