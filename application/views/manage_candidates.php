@@ -7,6 +7,7 @@
     <title>SahajJobs | Employer Manage Candidates</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
@@ -27,7 +28,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Nunito', Arial, sans-serif;
         }
 
         body {
@@ -122,7 +123,7 @@
         }
 
         .sidebar-menu a.active {
-            background: var(--primary);
+            background: #FFF44F;
             border-left: 4px solid var(--warning);
         }
 
@@ -175,7 +176,7 @@
         }
 
         .table th {
-            background: #fca911d4;
+            background: #FFF44F;
             color: #48494a;
         }
 
@@ -537,7 +538,7 @@
     <!-- Content -->
     <div class="content">
         <div class="container">
-            <h4 class="fw-bold" style="color: #fca911; margin-bottom: 2rem;">Manage Candidates</h4>
+            <h4 class="fw-bold" style="color: #f1e42cff; margin-bottom: 2rem;">Manage Candidates</h4>
 
             <div class="search-container">
                 <div class="search-box">
