@@ -293,12 +293,41 @@
 
         /* Make search bar auto-adjust */
         .search-bar-top {
+            background: #fff;
+            border-radius: 999px;
             width: 100%;
             max-width: 900px;
             margin: 0 auto;
             padding: 10px 25px;
             box-sizing: border-box;
+            box-shadow: 0 8px 32px rgba(44, 62, 80, 0.08);
         }
+
+
+        .search-bar-top .input-group-text {
+            background-color: transparent;
+            border: none;
+            color: #8893b3;
+            font-size: 1.3rem;
+            padding-right: 12px;
+            padding-left: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar-top .form-control {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding-left: 0;
+            padding-right: 15px;
+            font-size: 1.1rem;
+            color: #222;
+            font-family: 'Nunito', Arial, sans-serif !important;
+            font-weight: 400;
+            transition: color 0.2s;
+        }
+
 
         .search-bar-top .input-group {
             width: 100%;
@@ -332,7 +361,7 @@
                     <input type="text" id="job-search-input" class="form-control"
                         placeholder="Jobs / Designation / Location">
                     <button id="search-button" class="btn btn-primary"
-                        style="background-color: #FFF44F; color: black; border-radius: 50px;">Search</button>
+                        style="background-color: #FFF44F; color: black; border-radius: 50px; border: none;">Search</button>
                 </div>
             </div>
 
@@ -356,15 +385,15 @@
                 <div class="category-card"><i class="fas fa-building"></i><span>IT Services</span><i
                         class="fas fa-chevron-right arrow"></i></div>
                 <div class="category-card"><i class="fas fa-user-graduate"></i><span>Internship</span><i
-                        class="fas fa-chevron-right arrow"></i></div>                
+                        class="fas fa-chevron-right arrow"></i></div>
                 <div class="category-card"><i class="fas fa-university"></i><span>Finance</span><i
-                        class="fas fa-chevron-right arrow"></i></div>               
+                        class="fas fa-chevron-right arrow"></i></div>
                 <div class="category-card"><i class="fas fa-users"></i><span>HR</span><i
                         class="fas fa-chevron-right arrow"></i></div>
                 <div class="category-card"><i class="fas fa-chart-line"></i><span>Sales</span><i
                         class="fas fa-chevron-right arrow"></i></div>
                 <div class="category-card"><i class="fas fa-cogs"></i><span>Engineer</span><i
-                        class="fas fa-chevron-right arrow"></i></div>             
+                        class="fas fa-chevron-right arrow"></i></div>
                 <div class="category-card"><i class="fas fa-user-friends"></i><span>Fresher</span><i
                         class="fas fa-chevron-right arrow"></i></div>
             </div>

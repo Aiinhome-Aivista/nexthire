@@ -7,6 +7,8 @@ class Candidate_jobsearch extends CI_Controller {
         parent::__construct();
         $this->load->model('Candidate_jobsearch_model');
         $this->load->model('Menu_model');
+        $this->load->library('session');
+        $this->load->helper('url');
     }
 
      public function index()
@@ -29,12 +31,17 @@ class Candidate_jobsearch extends CI_Controller {
         $data['jobs'] = $this->Candidate_jobsearch_model->get_jobs($filters);
 
         $this->load->view('includes/login_header', $data);
-        $this->load->view('job_search', $data);
+        $this->load->view('candidate_job_search', $data);
         $this->load->view('includes/footer');
     }
 
     public function get_job_detail($id) {
         $job = $this->Candidate_jobsearch_model->get_job_by_id($id);
         echo json_encode($job);
+    }
+
+    public function logout() {
+        $this->session->sess_destroy();
+        redirect(base_url());
     }
 }

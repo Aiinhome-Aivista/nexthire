@@ -329,7 +329,7 @@
     // Logout button
     logoutBtn.addEventListener('click', () => {
       if (confirm('Are you sure you want to logout?')) {
-        window.location.href = '<?= base_url("home"); ?>';
+        window.location.href = '<?= base_url('Candidate_jobsearch/logout'); ?>';
       }
     });
 

@@ -9,6 +9,8 @@ class Jobsearch extends CI_Controller
         parent::__construct();
         $this->load->model('Jobsearch_model');
         $this->load->model('Menu_model');
+        $this->load->library('session');
+        $this->load->helper('url');
     }
 
     public function index()
@@ -30,9 +32,17 @@ class Jobsearch extends CI_Controller
         // Pass filters to model
         $data['jobs'] = $this->Jobsearch_model->get_jobs($filters);
 
-        $this->load->view('includes/header', $data);
-        $this->load->view('job_search', $data);
-        $this->load->view('includes/footer');
+        $user_id = $this->session->userdata('user_id');
+
+        if (!empty($user_id)) {
+            $this->load->view('includes/login_header', $data);
+            $this->load->view('job_search', $data);
+            $this->load->view('includes/footer', $data);
+        } else {
+            $this->load->view('includes/header', $data);
+            $this->load->view('job_search', $data);
+            $this->load->view('includes/footer', $data);
+        }
     }
 
 

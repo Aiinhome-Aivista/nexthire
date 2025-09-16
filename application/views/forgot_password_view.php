@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SahajJobs | Forgot Password</title>
+    <title>Forgot Password</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
@@ -46,13 +46,11 @@
             border-radius: 8px;
         }
 
-        .alert-success {
-            color: #155724;
-            background-color: #d4edda;
-            border-color: #c3e6cb;
-            padding: 12px;
+        .alert {
             border-radius: 8px;
+            padding: 12px;
             text-align: center;
+            margin-bottom: 15px;
         }
     </style>
 </head>
@@ -63,6 +61,7 @@
             <div id="step1">
                 <h2>Forgot Password</h2>
                 <form id="email-form">
+                    <div id="email-msg"></div>
                     <div class="form-group">
                         <label for="email">Registered Email ID</label>
                         <input type="email" class="form-control" id="email" name="email"
@@ -71,13 +70,13 @@
                     <div class="form-group">
                         <button type="submit" class="btn" style="color: black; background-color: FFF44F;" id="validate-btn">Validate</button>
                     </div>
-                    <div id="email-error" class="alert alert-danger" style="display: none;"></div>
                 </form>
             </div>
 
             <div id="step2" style="display:none;">
                 <h2>Reset Password</h2>
                 <form id="password-form">
+                    <div id="password-msg"></div>
                     <div class="form-group">
                         <label for="new-password">New Password</label>
                         <input type="password" class="form-control" id="new-password" name="new_password" required>
@@ -90,13 +89,12 @@
                     <div class="form-group">
                         <button type="submit" class="btn" style="color: black; background-color: FFF44F;" id="reset-btn">Submit</button>
                     </div>
-                    <div id="password-error" class="alert alert-danger" style="display: none;"></div>
                 </form>
             </div>
 
             <div id="step3" style="display:none;">
                 <h2 class="text-success">Password Changed!</h2>
-                <p class="alert-success">Your password has been successfully updated. Redirecting...</p>
+                <p class="alert alert-success">Your password has been successfully updated. Redirecting...</p>
             </div>
         </div>
     </div>
@@ -110,59 +108,56 @@
             $('#email-form').on('submit', function (e) {
                 e.preventDefault();
                 const email = $('#email').val();
-                const errorDiv = $('#email-error');
+                const msgDiv = $('#email-msg');
                 const validateBtn = $('#validate-btn');
-                
-                errorDiv.hide();
+
+                msgDiv.html('');
                 validateBtn.prop('disabled', true).text('Validating...');
 
-                if (email.trim() === '') {
-                    errorDiv.text('Please enter your email address.').show();
-                    validateBtn.prop('disabled', false).text('Validate');
-                    return;
-                }
-
                 $.ajax({
-                    url: baseUrl + 'Login/verify_email',
+                    url: baseUrl + 'login/verify_email',
                     method: 'POST',
                     data: { email: email },
                     dataType: 'json',
                     success: function (response) {
                         if (response.success) {
-                            $('#step1').hide();
-                            $('#step2').show();
+                            msgDiv.html('<div class="alert alert-success">Email verified successfully!</div>');
+                            setTimeout(function () {
+                                $('#step1').hide();
+                                $('#step2').show();
+                            }, 1000);
                         } else {
-                            errorDiv.text(response.message).show();
+                            msgDiv.html('<div class="alert alert-danger">' + response.message + '</div>');
                         }
                     },
                     error: function () {
-                        errorDiv.text('An error occurred. Please try again.').show();
+                        msgDiv.html('<div class="alert alert-danger">An error occurred. Please try again.</div>');
                     },
-                    complete: function() {
+                    complete: function () {
                         validateBtn.prop('disabled', false).text('Validate');
                     }
                 });
             });
 
-            // Step 2: Handle password update and redirection
+            // Step 2: Handle password update
             $('#password-form').on('submit', function (e) {
                 e.preventDefault();
                 const newPassword = $('#new-password').val();
                 const confirmPassword = $('#confirm-password').val();
-                const errorDiv = $('#password-error');
+                const msgDiv = $('#password-msg');
                 const resetBtn = $('#reset-btn');
 
-                errorDiv.hide();
+                msgDiv.html('');
                 resetBtn.prop('disabled', true).text('Updating...');
 
                 if (newPassword.length < 6) {
-                    errorDiv.text('Password must be at least 6 characters long.').show();
+                    msgDiv.html('<div class="alert alert-danger">Password must be at least 6 characters long.</div>');
                     resetBtn.prop('disabled', false).text('Submit');
                     return;
                 }
 
                 if (newPassword !== confirmPassword) {
-                    errorDiv.text('Passwords do not match.').show();
+                    msgDiv.html('<div class="alert alert-danger">Passwords do not match.</div>');
                     resetBtn.prop('disabled', false).text('Submit');
                     return;
                 }
@@ -170,26 +165,23 @@
                 $.ajax({
                     url: baseUrl + 'login/update_password',
                     method: 'POST',
-                    data: {
-                        new_password: newPassword,
-                        confirm_password: confirmPassword
-                    },
+                    data: { new_password: newPassword, confirm_password: confirmPassword },
                     dataType: 'json',
                     success: function (response) {
                         if (response.success) {
                             $('#step2').hide();
                             $('#step3').show();
-                            // Redirect to login page after 3 seconds
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 window.location.href = baseUrl;
-                            }, 3000); // 3-second delay
+                            }, 3000);
                         } else {
-                            errorDiv.text(response.message).show();
-                            resetBtn.prop('disabled', false).text('Submit');
+                            msgDiv.html('<div class="alert alert-danger">' + response.message + '</div>');
                         }
                     },
                     error: function () {
-                        errorDiv.text('An error occurred. Please try again.').show();
+                        msgDiv.html('<div class="alert alert-danger">An error occurred. Please try again.</div>');
+                    },
+                    complete: function () {
                         resetBtn.prop('disabled', false).text('Submit');
                     }
                 });
@@ -197,5 +189,4 @@
         });
     </script>
 </body>
-
 </html>

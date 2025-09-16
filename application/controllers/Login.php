@@ -10,7 +10,7 @@ class Login extends CI_Controller
         $this->load->model('Login_model');
         $this->load->library('session');
         $this->load->helper('url');
-
+        $this->load->model('Menu_model');
     }
 
     public function process()
@@ -120,7 +120,8 @@ class Login extends CI_Controller
 
     public function forgot()
     {
-        $this->load->view('forgot_password_view'); // Use a new view file
+        $data['menu'] = $this->Menu_model->get_menu();
+        $this->load->view('forgot_password_view', $data);
     }
 
     public function verify_email()
@@ -129,12 +130,15 @@ class Login extends CI_Controller
         $user = $this->Login_model->get_user_by_email($email);
 
         if ($user) {
-            // Store the email in a session for the next step
-            $this->session->set_tempdata('reset_email', $email, 300); // Expires in 5 minutes
-            echo json_encode(['success' => true]);
+            $this->session->set_tempdata('reset_email', $email, 300);
+            $response = ['success' => true, 'message' => 'Email verified successfully!'];
         } else {
-            echo json_encode(['success' => false, 'message' => 'Email not found.']);
+            $response = ['success' => false, 'message' => 'Email not found.'];
         }
+
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
     }
 
     public function update_password()
@@ -144,23 +148,21 @@ class Login extends CI_Controller
         $confirm_password = $this->input->post('confirm_password');
 
         if (!$email) {
-            echo json_encode(['success' => false, 'message' => 'Session expired. Please start over.']);
-            return;
-        }
-
-        if ($new_password !== $confirm_password) {
-            echo json_encode(['success' => false, 'message' => 'Passwords do not match.']);
-            return;
-        }
-
-        // Hash the new password before updating
-        $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-
-        if ($this->Login_model->update_password($email, $hashed_password)) {
-            $this->session->unset_tempdata('reset_email'); // Clear the session variable
-            echo json_encode(['success' => true, 'message' => 'Password updated successfully!']);
+            $response = ['success' => false, 'message' => 'Session expired. Please start over.'];
+        } elseif ($new_password !== $confirm_password) {
+            $response = ['success' => false, 'message' => 'Passwords do not match.'];
         } else {
-            echo json_encode(['success' => false, 'message' => 'Failed to update password.']);
+            $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+            if ($this->Login_model->update_password($email, $hashed_password)) {
+                $this->session->unset_tempdata('reset_email');
+                $response = ['success' => true, 'message' => 'Password updated successfully!'];
+            } else {
+                $response = ['success' => false, 'message' => 'Failed to update password.'];
+            }
         }
+
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
     }
 }
