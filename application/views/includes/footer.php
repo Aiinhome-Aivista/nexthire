@@ -12,9 +12,16 @@
             background: #505665;
             color: #fff;
             text-align: center;
-            padding: 10px 0;
             font-family: 'Nunito', Arial, sans-serif !important;
             z-index: 9999;
+            padding: 10px 15px;
+
+            /* ✅ responsive additions */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
         }
 
         .cookie-banner a {
@@ -49,22 +56,15 @@
         .cookie-banner span {
             font-size: 1em;
             font-weight: 500;
+
+            /* ✅ responsive additions */
+            flex: 1 1 auto;
+            min-width: 200px;
+            font-size: 0.9em;
         }
 
         .custom-footer {
-            font-family: 'Nunito', Arial, sans-serif !important;
-            /* background: #fff; */
-            padding: 40px 0 0 0;
-        }
-
-        .custom-footer {
-            font-family: 'Nunito', Arial, sans-serif !important;
-        }
-    </style>
-    <style>
-        .custom-footer {
-            font-family: 'Montserrat', Arial, sans-serif;
-            /* background: #fff; */
+            font-family: 'Montserrat', Arial, sans-serif !important;
             padding: 40px 0 0 0;
         }
 
@@ -76,6 +76,9 @@
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 50px;
+
+            /* ✅ responsive addition */
+            flex-wrap: wrap;
         }
 
         .footer-logo-social {
@@ -124,6 +127,9 @@
             flex: 1;
             margin-left: 30px;
             margin-right: 30px;
+
+            /* ✅ responsive addition */
+            flex-wrap: wrap;
         }
 
         .footer-links ul {
@@ -198,20 +204,23 @@
 
         .footer-bottom {
             display: flex;
-            /* justify-content: space-between; */
-            align-items: "center";
+            align-items: center;
             max-width: 1280px;
             margin: 0 auto;
             padding: 18px 0px 32px 50px;
-            /* flex-wrap: wrap; */
             gap: 2%;
+
+            /* ✅ responsive addition */
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+            gap: 20px;
         }
 
         .footer-infoedge {
             display: flex;
             align-items: center;
             gap: 22px;
-
         }
 
         .footer-infoedge-logo {
@@ -295,6 +304,27 @@
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+
+            /* ✅ new breakpoint for tablets */
+            .footer-top {
+                flex-direction: column;
+                padding: 0 30px;
+            }
+
+            .footer-links {
+                margin: 20px 0;
+                gap: 40px;
+                flex-wrap: wrap;
+            }
+
+            .footer-app-card {
+                margin-left: 0;
+                margin-top: 20px;
+                max-width: 100%;
+            }
+        }
+
         @media (max-width: 900px) {
             .footer-top {
                 flex-direction: column;
@@ -321,6 +351,51 @@
             .business-logos-scroller li a img {
                 width: 110px;
                 height: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-top {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0 20px;
+            }
+
+            .footer-links {
+                gap: 20px;
+                margin-top: 20px;
+            }
+
+            .cookie-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-business-scroller {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+                overflow-x: hidden;
+                max-width: 100%;
+            }
+
+            .business-logos-scroller {
+                animation: none;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .business-logos-scroller li {
+                flex: 0 1 45%;
+                text-align: center;
+            }
+
+            .business-logos-scroller li a img {
+                width: 120px;
+                height: auto;
             }
         }
     </style>
