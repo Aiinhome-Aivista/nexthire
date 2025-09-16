@@ -57,4 +57,31 @@ class Login_model extends CI_Model
         return $this->db->affected_rows() > 0;
     }
 
+
+    public function verify_email()
+    {
+        $email = $this->input->post('email');
+        $user = $this->Login_model->get_user_by_email($email);
+
+        if ($user) {
+            // Store the email in a session for the next step
+            $this->session->set_tempdata('reset_email', $email, 300); // Expires in 5 minutes
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Email not found.']);
+        }
+    }
+
+    public function update_password($email, $hashed_password)
+    {
+        $data = [
+            'password' => $hashed_password
+        ];
+
+        $this->db->where('email', $email);
+        $this->db->update('register', $data);
+
+        return $this->db->affected_rows() > 0;
+    }
+
 }
