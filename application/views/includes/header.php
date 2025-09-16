@@ -157,7 +157,7 @@
           <label for="login-password">Password<span style="color:#e42e2e;">*</span></label>
           <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
           <span id="toggle-password" style="position:absolute; top:57px; right:15px; cursor:pointer;">
-            <i class="far fa-eye"></i>
+            <i class="far fa-eye-slash"></i>
           </span>
         </div>
         <small id="password-error" class="text-danger" style="display:none; font-size: 0.85em;">Please enter
@@ -291,12 +291,12 @@
       const icon = this.querySelector('i');
       if (pwd.type === 'password') {
         pwd.type = 'text';
-        icon.classList.remove('fa-eye');
-        icon.classList.add('fa-eye-slash');
-      } else {
-        pwd.type = 'password';
         icon.classList.remove('fa-eye-slash');
         icon.classList.add('fa-eye');
+      } else {
+        pwd.type = 'password';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
       }
     });
 

@@ -7,6 +7,7 @@
   <title>SahajJobs | Employer Registration</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <!-- Firebase SDK (compat version for v8 style) -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
@@ -581,8 +582,10 @@
             <div class="form-group">
               <label for="password">Password<span style="color:#e42e2e;">*</span></label>
               <input type="password" name="password" id="password" placeholder="Minimum 6 characters">
+              <span id="toggle-password" style="position:absolute; top:550px; right:305px; cursor:pointer;">
+                <i class="far fa-eye-slash"></i>
+              </span>
               <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
-
             </div>
 
             <div class="form-group">
@@ -744,6 +747,21 @@
       });
     });
 
+    // Password toggle code remains the same
+    document.getElementById('toggle-password').addEventListener('click', function () {
+      const passwordInput = document.getElementById('password');
+      const pwd = passwordInput;
+      const icon = this.querySelector('i');
+      if (pwd.type === 'password') {
+        pwd.type = 'text';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      } else {
+        pwd.type = 'password';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      }
+    });
 
   </script>
 </body>

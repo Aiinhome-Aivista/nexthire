@@ -497,7 +497,7 @@
           <label for="password">Password<span style="color:#e42e2e;">*</span></label>
           <input type="password" name="password" id="password" placeholder="Enter your password" required>
           <span id="toggle-password" style="position:absolute; top:42px; right:15px; cursor:pointer;">
-            <i class="far fa-eye"></i>
+            <i class="far fa-eye-slash"></i>
           </span>
           <div class="forgot-row" style="margin-top:4px; text-align:right; width:100%;">
             <a href="#" style="color:#1b212b; text-decoration:none; font-weight:500;">Forgot Password?</a>
@@ -630,12 +630,12 @@
       const icon = this.querySelector('i');
       if (pwd.type === 'password') {
         pwd.type = 'text';
-        icon.classList.remove('fa-eye');
-        icon.classList.add('fa-eye-slash');
-      } else {
-        pwd.type = 'password';
         icon.classList.remove('fa-eye-slash');
         icon.classList.add('fa-eye');
+      } else {
+        pwd.type = 'password';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
       }
     });
   </script>
