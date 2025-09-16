@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SahajJobs | Manage Candidates</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Nunito', Arial, sans-serif;
         }
 
         :root {
@@ -810,7 +811,7 @@
 
         // Desktop sidebar toggle (guarded)
         if (sidebarToggle && sidebar) {
-            sidebarToggle.addEventListener('click', function(e) {
+            sidebarToggle.addEventListener('click', function (e) {
                 // toggle collapsed state
                 sidebar.classList.toggle('collapsed');
 
@@ -835,7 +836,7 @@
 
         // Mobile sidebar toggle (guarded + stopPropagation to avoid immediate close)
         if (mobileToggle && sidebar) {
-            mobileToggle.addEventListener('click', function(e) {
+            mobileToggle.addEventListener('click', function (e) {
                 // prevent the document click handler from immediately closing the sidebar
                 e.stopPropagation();
 
@@ -854,13 +855,13 @@
             });
 
             // If sidebar receives clicks, do not let them bubble up to document click
-            sidebar.addEventListener('click', function(e) {
+            sidebar.addEventListener('click', function (e) {
                 e.stopPropagation();
             });
         }
 
         // Close sidebar when clicking outside on mobile (guarded)
-        document.addEventListener('click', function(event) {
+        document.addEventListener('click', function (event) {
             if (!sidebar) return;
             // only for mobile/smaller screens
             if (window.innerWidth <= 768 &&
@@ -875,7 +876,7 @@
         });
 
         // Handle window resize
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             if (!sidebar) return;
 
             if (window.innerWidth > 768) {
@@ -931,14 +932,14 @@
         initSidebar();
 
         const logoutBtn = document.getElementById('logoutBtn');
-        logoutBtn.addEventListener('click', function() {
+        logoutBtn.addEventListener('click', function () {
             if (confirm('Are you sure you want to logout?')) {
                 window.location.href = '<?= base_url("admin/candidate_management/logout"); ?>';
             }
         });
 
         // Search and Pagination functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const searchInput = document.getElementById('searchInput');
             const tableBody = document.getElementById('candidateTableBody');
             const firstPageBtn = document.getElementById('firstPage');
@@ -955,8 +956,8 @@
             const rowsPerPage = 10;
 
             // Use MutationObserver to detect when table content is loaded
-            const observer = new MutationObserver(function(mutations) {
-                mutations.forEach(function(mutation) {
+            const observer = new MutationObserver(function (mutations) {
+                mutations.forEach(function (mutation) {
                     if (mutation.addedNodes.length) {
                         initializeTable();
                     }
@@ -989,7 +990,7 @@
             }
 
             // Search functionality
-            searchInput.addEventListener('input', function() {
+            searchInput.addEventListener('input', function () {
                 const searchText = this.value.toLowerCase();
 
                 if (searchText === '') {
@@ -1099,7 +1100,7 @@
 
 
         // 🔹 Delete functionality
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (e.target.closest('.btn-delete')) {
                 const row = e.target.closest('tr');
                 const candidateId = row.getAttribute('data-id');
@@ -1128,7 +1129,7 @@
 
 
         // Open Modal with Candidate Data
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (e.target.closest('.btn-edit')) {
                 const row = e.target.closest('tr');
                 const candidateId = row.getAttribute('data-id');
@@ -1146,12 +1147,12 @@
         });
 
         // Close Modal
-        document.getElementById('closeModal').addEventListener('click', function() {
+        document.getElementById('closeModal').addEventListener('click', function () {
             document.getElementById('editModal').classList.remove('show');
         });
 
         // Update Candidate
-        document.getElementById('updateBtn').addEventListener('click', function() {
+        document.getElementById('updateBtn').addEventListener('click', function () {
             const formData = new FormData();
             formData.append('id', document.getElementById('edit_id').value);
             formData.append('full_name', document.getElementById('edit_full_name').value);
@@ -1161,9 +1162,9 @@
             // formData.append('password', document.getElementById('edit_password').value); // Add password
 
             fetch('<?= base_url("admin/candidate_management/update_candidate") ?>', {
-                    method: 'POST',
-                    body: formData
-                })
+                method: 'POST',
+                body: formData
+            })
                 .then(res => res.json())
                 .then(data => {
                     if (data.status === 'success') {

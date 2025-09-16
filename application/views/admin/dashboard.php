@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SahajJobs | Admin Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Nunito', Arial, sans-serif;
         }
 
         :root {
@@ -155,7 +156,8 @@
         .welcome-text {
             color: var(--gray);
             font-size: 0.9rem;
-            margin-left: 45px; /* Align with the title text */
+            margin-left: 45px;
+            /* Align with the title text */
             margin-top: -5px;
         }
 
@@ -332,25 +334,25 @@
                 transform: translateX(-100%);
                 width: var(--sidebar-width);
             }
-            
+
             .sidebar.show {
                 transform: translateX(0);
                 box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
             }
-            
+
             .close-sidebar {
                 display: block;
             }
-            
+
             .main-content {
                 margin-left: 0;
                 width: 100%;
             }
-            
+
             .sidebar-toggle {
                 display: block;
             }
-            
+
             .header-title h1 {
                 font-size: 1.5rem;
             }
@@ -360,66 +362,69 @@
             .dashboard-stats {
                 grid-template-columns: 1fr;
             }
-            
+
             .header {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 15px;
             }
-            
+
             .user-info {
                 align-self: flex-end;
             }
-            
-            .header-title, .user-info {
+
+            .header-title,
+            .user-info {
                 width: 100%;
             }
-            
+
             .title-container {
                 justify-content: space-between;
             }
-            
+
             .welcome-text {
                 margin-left: 0;
                 margin-top: 5px;
             }
-            
+
             .stat-card {
                 padding: 12px;
             }
-            
+
             .stat-info h3 {
                 font-size: 1.4rem;
             }
-            
+
             /* Mobile table styles - NEW CODE */
             .model-card-body {
                 overflow-x: visible;
             }
-            
+
             .table {
                 min-width: 100%;
                 display: block;
                 font-size: 0.8rem;
             }
-            
+
             .table thead {
                 display: none;
             }
-            
-            .table tbody, .table tr, .table td {
+
+            .table tbody,
+            .table tr,
+            .table td {
                 display: block;
                 width: 100%;
             }
-            
+
             .table tr {
                 margin-bottom: 15px;
                 border: 1px solid #e0e0e0;
                 border-radius: 8px;
                 padding: 10px;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
             }
-            
+
             .table td {
                 padding: 8px 10px;
                 text-align: right;
@@ -427,11 +432,11 @@
                 padding-left: 50%;
                 border-bottom: 1px solid #f0f0f0;
             }
-            
+
             .table td:last-child {
                 border-bottom: none;
             }
-            
+
             .table td::before {
                 content: attr(data-label);
                 position: absolute;
@@ -448,42 +453,42 @@
             .main-content {
                 padding: 15px;
             }
-            
+
             .header {
                 padding: 12px 15px;
             }
-            
+
             .header-title h1 {
                 font-size: 1.3rem;
             }
-            
+
             .user-info {
                 justify-content: space-between;
             }
-            
+
             .stat-info h3 {
                 font-size: 1.3rem;
             }
-            
+
             .stat-icon {
                 width: 40px;
                 height: 40px;
                 font-size: 1.1rem;
             }
-            
+
             .model-card {
                 padding: 12px;
             }
-            
+
             .table {
                 font-size: 0.8rem;
             }
-            
+
             .table td {
                 padding: 8px 10px;
                 padding-left: 50%;
             }
-            
+
             .welcome-text {
                 font-size: 0.85rem;
             }
@@ -493,43 +498,43 @@
             .sidebar {
                 width: 100%;
             }
-            
+
             .header-title h1 {
                 font-size: 1.2rem;
             }
-            
+
             .stat-card {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 10px;
             }
-            
+
             .stat-icon {
                 align-self: flex-end;
             }
-            
+
             .title-container {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 10px;
             }
-            
+
             .welcome-text {
                 margin-left: 0;
             }
-            
+
             /* Additional mobile adjustments for very small screens */
             .table td {
                 padding-left: 45%;
             }
-            
+
             .table td::before {
                 width: 40%;
             }
         }
 
         /* No data message styling */
-        .model-card-body > p {
+        .model-card-body>p {
             text-align: center;
             padding: 20px;
             color: var(--gray);
@@ -725,7 +730,7 @@
                     // Add active class to clicked item
                     this.classList.add('active');
                 }
-                
+
                 // Close sidebar on mobile after clicking a link
                 if (window.innerWidth <= 992) {
                     sidebar.classList.remove('show');
@@ -743,7 +748,7 @@
         });
 
         // Adjust table responsiveness on resize
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             // This ensures proper rendering on orientation changes
             document.body.classList.toggle('resizing', true);
             setTimeout(() => {
