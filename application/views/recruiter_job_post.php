@@ -195,7 +195,7 @@
         input:focus,
         select:focus,
         textarea:focus {
-            border-color: #fca311;
+            border-color: #ccc;
             outline: none;
         }
 
@@ -241,6 +241,12 @@
             font-size: 14px;
             color: #666;
             margin-top: 40px;
+        }
+
+        .error-msg {
+            color: red;
+            font-size: 0.85em;
+            display: none;
         }
 
         /* Mobile menu toggle */
@@ -417,15 +423,16 @@
         </div>
 
         <div class="container">
-            <form action="<?= base_url('recruiter_job_post/store'); ?>" method="post">
+            <form action="<?= base_url('recruiter_job_post/store'); ?>" method="post" id="jobPostForm">
                 <div class="row">
                     <div class="form-group">
-                        <label for="title">Job Title</label>
-                        <input type="text" id="title" name="title" placeholder="e.g., Software Engineer" required>
+                        <label for="title">Job Title<span style="color:#e42e2e;">*</span></label>
+                        <input type="text" id="title" name="title" placeholder="e.g., Software Engineer">
+                        <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
                     </div>
                     <div class="form-group">
                         <label for="industry">Industry</label>
-                        <select id="industry" name="industry" required>
+                        <select id="industry" name="industry">
                             <option value="IT-services">IT services</option>
                             <option value="BPO">BPO</option>
                             <option value="Finance">Finance</option>
@@ -435,35 +442,37 @@
 
                 <div class="row">
                     <div class="form-group">
-                        <label for="company">Company Name</label>
-                        <input type="text" id="company" name="company" placeholder="Company name" required>
+                        <label for="company">Company Name<span style="color:#e42e2e;">*</span></label>
+                        <input type="text" id="company" name="company" placeholder="Company name">
+                        <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
                     </div>
                     <div class="form-group">
-                        <label for="location">Location</label>
-                        <input type="text" id="location" name="location" placeholder="City, Country" required>
+                        <label for="location">Location<span style="color:#e42e2e;">*</span></label>
+                        <input type="text" id="location" name="location" placeholder="City, Country">
+                        <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
                     </div>
                 </div>
 
-                <div class="row">
+                <!-- <div class="row">
                     <div class="form-group">
-                        <label for="employees">Employees</label>
-                        <input type="text" id="employees" name="employees" placeholder="201-500" required>
+                        <label for="employees">Employees<span style="color:#e42e2e;">*</span></label>
+                        <input type="text" id="employees" name="employees" placeholder="201-500">
+                        <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
                     </div>
                     <div class="form-group">
-                        <label for="experience_min">Experience (Years)</label>
+                        <label for="experience_min">Experience (Years)<span style="color:#e42e2e;">*</span></label>
                         <div style="display: flex; gap: 10px;">
-                            <input type="number" id="experience_min" name="experience_min" placeholder="Min (e.g., 2)"
-                                required>
-                            <input type="number" id="experience_max" name="experience_max" placeholder="Max (e.g., 5)"
-                                required>
+                            <input type="number" id="experience_min" name="experience_min" placeholder="Min (e.g., 2)">
+                            <input type="number" id="experience_max" name="experience_max" placeholder="Max (e.g., 5)">
                         </div>
+                        <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group">
                         <label for="job_type">Employment Type</label>
-                        <select id="job_type" name="job_type" required>
+                        <select id="job_type" name="job_type">
                             <option value="Full-time">Full-time</option>
                             <option value="Part-time">Part-time</option>
                             <option value="Contract">Contract</option>
@@ -471,12 +480,58 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="salary_min">Salary Range (Annual in ₹)</label>
+                        <label for="salary_min">Salary Range (Annual in ₹)<span style="color:#e42e2e;">*</span></label>
                         <div style="display: flex; gap: 10px;">
-                            <input type="number" id="salary_min" name="salary_min" placeholder="Min (e.g., 200000)"
-                                required>
-                            <input type="number" id="salary_max" name="salary_max" placeholder="Max (e.g., 600000)"
-                                required>
+                            <input type="number" id="salary_min" name="salary_min" placeholder="Min (e.g., 200000)">
+                            <input type="number" id="salary_max" name="salary_max" placeholder="Max (e.g., 600000)">
+                        </div>
+                        <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
+                    </div>
+                </div> -->
+                <div class="row">
+                    <div class="form-group">
+                        <label for="employees">Employees<span style="color:#e42e2e;">*</span></label>
+                        <input type="text" id="employees" name="employees" placeholder="201-500">
+                        <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience_min">Experience (Years)<span style="color:#e42e2e;">*</span></label>
+                        <div style="display: flex; gap: 10px;">
+                            <div style="flex:1;">
+                                <input type="number" id="experience_min" name="experience_min"
+                                    placeholder="Min (e.g., 2)">
+                                <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
+                            </div>
+                            <div style="flex:1;">
+                                <input type="number" id="experience_max" name="experience_max"
+                                    placeholder="Max (e.g., 5)">
+                                <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="job_type">Employment Type</label>
+                        <select id="job_type" name="job_type">
+                            <option value="Full-time">Full-time</option>
+                            <option value="Part-time">Part-time</option>
+                            <option value="Contract">Contract</option>
+                            <option value="Internship">Internship</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="salary_min">Salary Range (Annual in ₹)<span style="color:#e42e2e;">*</span></label>
+                        <div style="display: flex; gap: 10px;">
+                            <div style="flex:1;">
+                                <input type="number" id="salary_min" name="salary_min" placeholder="Min (e.g., 200000)">
+                                <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
+                            </div>
+                            <div style="flex:1;">
+                                <input type="number" id="salary_max" name="salary_max" placeholder="Max (e.g., 600000)">
+                                <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -484,7 +539,7 @@
                 <div class="row">
                     <div class="form-group">
                         <label for="work_mode">Work Mode</label>
-                        <select id="work_mode" name="work_mode" required>
+                        <select id="work_mode" name="work_mode">
                             <option value="On-site">On-site</option>
                             <option value="Remote">Remote</option>
                             <option value="Hybrid">Hybrid</option>
@@ -492,30 +547,35 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="last_date">Last Date to apply</label>
-                        <input type="date" id="last_date" name="last_date" required>
+                        <label for="last_date">Last Date to apply<span style="color:#e42e2e;">*</span></label>
+                        <input type="date" id="last_date" name="last_date">
+                        <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="description">Job Description</label>
+                    <label for="description">Job Description<span style="color:#e42e2e;">*</span></label>
                     <textarea id="description" name="description" placeholder="Enter Job Description"></textarea>
+                    <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
                 </div>
 
                 <div class="form-group">
-                    <label for="requirements">Requirements</label>
+                    <label for="requirements">Requirements<span style="color:#e42e2e;">*</span></label>
                     <textarea id="requirements" name="requirements" placeholder="Enter Job Requirements"></textarea>
+                    <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
                 </div>
 
                 <div class="form-group">
-                    <label for="benefits">Benefits</label>
+                    <label for="benefits">Benefits<span style="color:#e42e2e;">*</span></label>
                     <textarea id="benefits" name="benefits" placeholder="Enter benefits provided"></textarea>
+                    <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
                 </div>
 
 
                 <div class="form-group">
-                    <label for="email">Contact Email</label>
-                    <input type="email" id="email" name="email" placeholder="hr@company.com" required>
+                    <label for="email">Contact Email<span style="color:#e42e2e;">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="hr@company.com">
+                    <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
                 </div>
 
                 <button type="submit">Post Job</button>
@@ -671,6 +731,150 @@
             }
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('jobPostForm');
+            const fields = [
+                { id: 'title', name: 'Job Title', required: true },
+                { id: 'company', name: 'Company Name', required: true },
+                { id: 'location', name: 'Location', required: true },
+                { id: 'employees', name: 'Employees', required: true },
+                { id: 'experience_min', name: 'Minimum Experience', required: true },
+                { id: 'experience_max', name: 'Maximum Experience', required: true },
+                { id: 'salary_min', name: 'Minimum Salary', required: true },
+                { id: 'salary_max', name: 'Maximum Salary', required: true },
+                { id: 'last_date', name: 'Last Date to apply', required: true },
+                { id: 'description', name: 'Job Description', required: true },
+                { id: 'requirements', name: 'Requirements', required: true },
+                { id: 'benefits', name: 'Benefits', required: true },
+                { id: 'email', name: 'Contact Email', required: true }
+            ];
+
+            function validateField(field) {
+                const input = document.getElementById(field.id);
+                const value = input.value.trim();
+                let error = '';
+
+                if (field.required && !value) {
+                    return `${field.name} is required.`;
+                }
+
+                if (field.id === 'email') {
+                    if (!(value.includes('.') && value.includes('com'))) {
+                        error = 'Email must contain .com';
+                    }
+                }
+
+                if ((field.id === 'experience_min' || field.id === 'experience_max') && value) {
+                    if (!/^\d+$/.test(value)) {
+                        error = `${field.name} must be a valid number.`;
+                    }
+                }
+
+                if ((field.id === 'salary_min' || field.id === 'salary_max') && value) {
+                    if (!/^\d+$/.test(value)) {
+                        error = `${field.name} must be a valid number.`;
+                    }
+                    else if (!/^\d+$/.test(value)) {
+                        error = `${field.name} must be a valid number.`;
+                    } else if (value.startsWith('0')) {
+                        error = `${field.name} cannot start with zero.`;
+                    }
+                }
+
+                if (field.id === 'last_date' && value) {
+                    const today = new Date().setHours(0, 0, 0, 0);
+                    const inputDate = new Date(value).setHours(0, 0, 0, 0);
+                    if (inputDate < today) {
+                        error = 'Last Date to apply cannot be in the past.';
+                    }
+                }
+
+                return error;
+            }
+
+            function validateRanges() {
+                const expMin = document.getElementById('experience_min').value.trim();
+                const expMax = document.getElementById('experience_max').value.trim();
+                const salMin = document.getElementById('salary_min').value.trim();
+                const salMax = document.getElementById('salary_max').value.trim();
+                let rangeErrors = [];
+
+                if (expMin && expMax && Number(expMin) > Number(expMax)) {
+                    rangeErrors.push({ id: 'experience_max', message: 'Maximum Experience must be greater than or equal to Minimum Experience.' });
+                }
+                if (salMin && salMax && Number(salMin) > Number(salMax)) {
+                    rangeErrors.push({ id: 'salary_max', message: 'Maximum Salary must be greater than or equal to Minimum Salary.' });
+                }
+
+                return rangeErrors;
+            }
+
+            function showError(input, message) {
+                input.style.borderColor = 'red';
+                const errorSpan = input.parentElement.querySelector('.error-msg');
+                if (errorSpan) {
+                    errorSpan.style.display = 'block';
+                    errorSpan.textContent = message;
+                }
+            }
+
+            function clearError(input) {
+                input.style.borderColor = '#ccc';
+                const errorSpan = input.parentElement.querySelector('.error-msg');
+                if (errorSpan) {
+                    errorSpan.style.display = 'none';
+                    errorSpan.textContent = '';
+                }
+            }
+
+            // Real-time validation on input
+            fields.forEach(field => {
+                const input = document.getElementById(field.id);
+                if (!input) return;
+                input.addEventListener('input', function () {
+                    const message = validateField(field);
+                    if (message) {
+                        showError(input, message);
+                    } else {
+                        clearError(input);
+                    }
+                });
+            });
+
+            form.addEventListener('submit', function (e) {
+                let isValid = true;
+
+                // Validate fields
+                fields.forEach(field => {
+                    const input = document.getElementById(field.id);
+                    if (!input) return;
+                    clearError(input);
+                    const message = validateField(field);
+                    if (message) {
+                        showError(input, message);
+                        isValid = false;
+                    }
+                });
+
+                // Validate ranges
+                const rangeErrors = validateRanges();
+                rangeErrors.forEach(({ id, message }) => {
+                    const input = document.getElementById(id);
+                    if (input) {
+                        showError(input, message);
+                        isValid = false;
+                    }
+                });
+
+                if (!isValid) {
+                    e.preventDefault();
+                }
+            });
+        });
+
+    </script>
+
 </body>
 
 </html>
