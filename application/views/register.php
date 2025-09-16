@@ -594,7 +594,7 @@
         <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
       </div>
       <div class="login-link">
-        Already Registered? <a href="<?= base_url('home'); ?>">Login</a> here
+        Already Registered? <a href="<?= base_url(); ?>">Login</a> here
       </div>
     </div>
   </div>

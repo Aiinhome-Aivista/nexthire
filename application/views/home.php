@@ -23,42 +23,36 @@
 
         .form-control:focus {
             border-color: #FFC107;
-            /* Substitute with your desired color */
             box-shadow: none;
-            /* Remove Bootstrap box-shadow */
             outline: none;
-            /* Remove browser default outline */
         }
 
         .hero-section {
-            padding: 80px 0;
+            padding: 60px 0;
             text-align: center;
         }
 
         .hero-section h1 {
             color: #000000ff;
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             font-weight: bold;
             margin-bottom: 10px;
         }
 
         .hero-section p {
             color: #000000ff;
-            font-size: 1.25rem;
-            margin-bottom: 40px;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
         }
 
         .select-experience {
             background: transparent;
             border: none;
-            font-size: 1.18rem;
+            font-size: 1rem;
             color: #222;
             font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
             font-weight: 400;
-            padding-right: 24px;
-            margin: 0;
             cursor: pointer;
-            appearance: none;
             transition: color 0.2s;
         }
 
@@ -70,11 +64,12 @@
         .resume-section {
             background: linear-gradient(to right, #00c6ff, #0072ff);
             border-radius: 12px;
-            padding: 40px;
+            padding: 30px;
             color: #fff;
-            max-width: 900px;
+            max-width: 100%;
             margin: 0 auto;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
@@ -83,21 +78,21 @@
         }
 
         .resume-section h2 {
-            font-size: 2rem;
+            font-size: 1.6rem;
             font-weight: bold;
             margin-bottom: 10px;
         }
 
         .resume-section p {
-            font-size: 1.1rem;
-            margin-bottom: 25px;
+            font-size: 1rem;
+            margin-bottom: 20px;
         }
 
         .resume-section .btn-light {
             background-color: #fff;
             color: #0072ff;
             border: none;
-            padding: 12px 30px;
+            padding: 10px 25px;
             border-radius: 6px;
             font-weight: bold;
             font-size: 1rem;
@@ -109,65 +104,41 @@
             color: #0056b3;
         }
 
-        .resume-section .naukri-logo {
-            width: 100px;
-            height: auto;
-            margin-left: 20px;
-        }
-
-        .resume-section .illustration {
-            position: absolute;
-            right: 20px;
-            bottom: -10px;
-            width: 200px;
-            /* Adjust size as needed */
-            height: auto;
-            opacity: 0.9;
-        }
-
-        .resume-section .illustration img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* New tagline image styling */
         .tagline-image {
-            max-width: 900px;
-            margin: 0 auto 40px auto;
+            max-width: 100%;
+            margin: 20px auto;
             text-align: center;
         }
 
         .tagline-image img {
-            max-width: 100%;
+            max-width: 60%;
             height: auto;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        /* Job category icons styling */
         .job-categories {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 15px;
             justify-content: center;
             margin: 30px auto;
-            max-width: 950px;
+            max-width: 1000px;
         }
 
         .category-card {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             background: #fff;
             border: 1px solid #e5e7eb;
             border-radius: 12px;
-            padding: 20px 18px;
-            font-size: 15px;
+            padding: 15px;
+            font-size: 14px;
             font-weight: 500;
             color: #111827;
             cursor: pointer;
             transition: all 0.2s ease-in-out;
-            min-width: 160px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
         }
 
@@ -178,7 +149,7 @@
 
         .category-card .arrow {
             margin-left: auto;
-            font-size: 14px;
+            font-size: 12px;
             color: #9ca3af;
         }
 
@@ -195,20 +166,11 @@
             padding: 20px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
             text-align: center;
-        }
-
-        .company-card h5 {
-            font-weight: 600;
-            font-size: 16px;
-        }
-
-        .company-card p {
-            font-size: 14px;
-            color: #6b7280;
+            flex: 1;
         }
 
         .company-card img {
-            height: 50px;
+            height: 45px;
             border-radius: 7px;
             background: #f9fafb;
             padding: 4px;
@@ -216,30 +178,11 @@
 
         .companies-wrapper {
             display: flex;
+            flex-wrap: wrap;
             gap: 15px;
             justify-content: center;
         }
 
-
-        .job-categories {
-            gap: 15px;
-        }
-
-        .category-item {
-            width: 80px;
-        }
-
-        .category-icon {
-            width: 50px;
-            height: 50px;
-            font-size: 20px;
-        }
-
-        .category-name {
-            font-size: 12px;
-        }
-
-        /* Featured Companies Section */
         .featured-companies {
             margin-top: 60px;
             text-align: center;
@@ -248,8 +191,7 @@
         .featured-wrapper {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 24px;
-            /* Exact same gaping as screenshot */
+            gap: 20px;
             justify-content: center;
         }
 
@@ -257,49 +199,40 @@
             background: #fff;
             border: 1px solid #e5e7eb;
             border-radius: 12px;
-            padding: 24px 20px;
-            /* balanced spacing */
+            padding: 20px;
             text-align: center;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
             transition: all 0.2s ease-in-out;
         }
 
         .featured-card img {
-            height: 45px;
-            margin-bottom: 14px;
+            height: 40px;
+            margin-bottom: 12px;
         }
 
         .featured-card h5 {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
             margin-bottom: 6px;
         }
 
         .featured-card p {
-            font-size: 14px;
+            font-size: 13px;
             color: #6b7280;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             min-height: 36px;
-            /* maintains same height across cards */
         }
 
         .featured-rating {
-            font-size: 14px;
+            font-size: 13px;
             margin-bottom: 6px;
             color: #333;
         }
 
-        .featured-card .btn {
-            border-radius: 999px;
-            font-size: 14px;
-            padding: 6px 18px;
-        }
-
-        /* View All Companies Button */
         .view-all-btn {
             border-radius: 999px;
-            padding: 10px 28px;
-            font-size: 16px;
+            padding: 10px 20px;
+            font-size: 15px;
             font-weight: 500;
             color: #050203;
             border: 1.8px solid #FFF44F;
@@ -312,112 +245,81 @@
             color: #5b3ce6ff;
         }
 
-        /* Siemens Banner Section */
         .siemens-banner {
-            background: #fff;
+            background: transparent;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
-            max-width: 900px;
-            margin: 40px auto;
-            height: 430px;
-            /* Fixed height to match image */
-            display: flex;
-        }
-
-        .banner-left {
-            flex: 1;
-            padding: 30px;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)),
-                url('https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80') center/cover no-repeat;
-            color: #fff;
+            max-width: 100%;
+            margin: 30px auto;
+            height: auto;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-        }
-
-        .banner-logo {
-            height: 40px;
-            width: auto;
-            margin-bottom: 15px;
-        }
-
-        .banner-title {
-            font-weight: 700;
-            margin: 10px 0;
-            font-size: 1.8rem;
-            line-height: 1.2;
-        }
-
-        .banner-link {
-            color: #2d7ef7;
-            font-weight: 600;
-            text-decoration: none;
-            margin-top: 15px;
-            display: inline-block;
         }
 
         .banner-right {
-            flex: 1;
             position: relative;
-            overflow: hidden;
+            width: 100%;
         }
 
         .banner-image {
-            width: 100%;
-            height: 100%;
+            width: 60%;
+            height: 60%;
             object-fit: cover;
-        }
-
-        .play-button-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: #000;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .play-button-overlay:hover {
-            background: rgba(255, 255, 255, 1);
-            transform: translate(-50%, -50%) scale(1.05);
-        }
-
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .hero-section h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-section p {
-                font-size: 1rem;
-            }
-
         }
 
         .error-outline {
             border: 1px solid #d32f2f;
             border-radius: 50px;
+        }
 
+        @media (max-width: 576px) {
+            .hero-section h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-section p {
+                font-size: 0.95rem;
+            }
+
+            .company-card {
+                flex: 1 1 100%;
+            }
+
+            .companies-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Make search bar auto-adjust */
+        .search-bar-top {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 10px 25px;
+            box-sizing: border-box;
+        }
+
+        .search-bar-top .input-group {
+            width: 100%;
+        }
+
+        /* Input grows with screen */
+        .search-bar-top .form-control {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        /* Hide search icon on small screens */
+        @media (max-width: 576px) {
+            .search-bar-top .input-group-text {
+                display: none;
+            }
         }
     </style>
-
-
 </head>
 
 <body>
-
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
@@ -429,181 +331,135 @@
                     <span class="input-group-text"><i class="fas fa-search"></i></span>
                     <input type="text" id="job-search-input" class="form-control"
                         placeholder="Jobs / Designation / Location">
-                    <button id="search-button" class="btn btn-primary" style="background-color: #FFF44F; color: black;">
-                        Search </button>
+                    <button id="search-button" class="btn btn-primary"
+                        style="background-color: #FFF44F; color: black; border-radius: 50px;">Search</button>
                 </div>
             </div>
 
+            <!-- Error Message -->
             <div id="search-error-message"
-                style="display:none; color:#d32f2f; margin-top:-25px; font-size:0.95em; font-weight:500; margin-right:625px; padding:5px;">
+                style="display:none; color:#d32f2f; margin-top:5px; font-size:0.95em; font-weight:500;">
                 Please enter keywords to search relevant jobs
             </div>
+
+
 
             <!-- Tagline Image -->
             <div class="tagline-image">
                 <img src="assets/images/SahajJobs.png" alt="Apply for job !!!!">
             </div>
-            <!-- <div class="tagline-image">
-                <video autoplay muted loop playsinline
-                    style="border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); width:100%; max-width:900px; height:auto; display:block;">
-                    <source src="assets/videos/sahajvideo.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div> -->
-            <!-- Job Categories from the image -->
+
+            <!-- Job Categories -->
             <div class="job-categories">
-                <div class="category-card">
-                    <i class="fas fa-laptop-house"></i>
-                    <span>Remote</span>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-building"></i>
-                    <span>MNC</span>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-user-graduate"></i>
-                    <span>Internship</span>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-tasks"></i>
-                    <span>Project Mgmt</span>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-university"></i>
-                    <span>Banking & Finance</span>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-truck"></i>
-                    <span>Supply Chain</span>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-users"></i>
-                    <span>HR</span>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Sales</span>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-cogs"></i>
-                    <span>Engineering</span>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-crown"></i>
-                    <span>Fortune 500</span>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
-                <div class="category-card">
-                    <i class="fas fa-user-friends"></i>
-                    <span>Fresher</span>
-                    <i class="fas fa-chevron-right arrow"></i>
-                </div>
+                <div class="category-card"><i class="fas fa-laptop-house"></i><span>Remote</span><i
+                        class="fas fa-chevron-right arrow"></i></div>
+                <div class="category-card"><i class="fas fa-building"></i><span>MNC</span><i
+                        class="fas fa-chevron-right arrow"></i></div>
+                <div class="category-card"><i class="fas fa-user-graduate"></i><span>Internship</span><i
+                        class="fas fa-chevron-right arrow"></i></div>
+                <div class="category-card"><i class="fas fa-tasks"></i><span>Project Mgmt</span><i
+                        class="fas fa-chevron-right arrow"></i></div>
+                <div class="category-card"><i class="fas fa-university"></i><span>Banking & Finance</span><i
+                        class="fas fa-chevron-right arrow"></i></div>
+                <div class="category-card"><i class="fas fa-truck"></i><span>Supply Chain</span><i
+                        class="fas fa-chevron-right arrow"></i></div>
+                <div class="category-card"><i class="fas fa-users"></i><span>HR</span><i
+                        class="fas fa-chevron-right arrow"></i></div>
+                <div class="category-card"><i class="fas fa-chart-line"></i><span>Sales</span><i
+                        class="fas fa-chevron-right arrow"></i></div>
+                <div class="category-card"><i class="fas fa-cogs"></i><span>Engineering</span><i
+                        class="fas fa-chevron-right arrow"></i></div>
+                <div class="category-card"><i class="fas fa-crown"></i><span>Fortune 500</span><i
+                        class="fas fa-chevron-right arrow"></i></div>
+                <div class="category-card"><i class="fas fa-user-friends"></i><span>Fresher</span><i
+                        class="fas fa-chevron-right arrow"></i></div>
             </div>
 
-            <!-- Top Companies Hiring Now -->
+            <!-- Top Companies -->
             <div class="container my-5">
                 <h2 class="fw-bold text-center mb-4">Top companies hiring now</h2>
-                <div class="companies-wrapper flex-wrap">
+                <div class="companies-wrapper">
                     <div class="company-card">
                         <h5>Edtech <i class="fas fa-chevron-right"></i></h5>
                         <p>161 are actively hiring</p>
-                        <div class="d-flex gap-2 justify-content-center">
+                        <div class="d-flex gap-2 justify-content-center flex-wrap">
                             <img src="assets/images/company1.gif" alt="">
                             <img src="assets/images/company2.gif" alt="">
                             <img src="assets/images/company3.gif" alt="">
-                            <!-- <img src="assets/images/company4.gif" alt=""> -->
                         </div>
                     </div>
                     <div class="company-card">
                         <h5>Healthcare <i class="fas fa-chevron-right"></i></h5>
                         <p>599 are actively hiring</p>
-                        <div class="d-flex gap-2 justify-content-center">
+                        <div class="d-flex gap-2 justify-content-center flex-wrap">
                             <img src="assets/images/company5.gif" alt="">
                             <img src="assets/images/company6.gif" alt="">
                             <img src="assets/images/company7.gif" alt="">
-                            <!-- <img src="assets/images/company8.gif" alt=""> -->
                         </div>
                     </div>
                     <div class="company-card">
                         <h5>Unicorns <i class="fas fa-chevron-right"></i></h5>
                         <p>87 are actively hiring</p>
-                        <div class="d-flex gap-2 justify-content-center">
+                        <div class="d-flex gap-2 justify-content-center flex-wrap">
                             <img src="assets/images/company9.gif" alt="">
                             <img src="assets/images/company10.gif" alt="">
                             <img src="assets/images/company11.gif" alt="">
-                            <!-- <img src="assets/images/company12.gif" alt=""> -->
                         </div>
                     </div>
                     <div class="company-card">
                         <h5>B2C <i class="fas fa-chevron-right"></i></h5>
                         <p>2.3k+ are actively hiring</p>
-                        <div class="d-flex gap-2 justify-content-center">
+                        <div class="d-flex gap-2 justify-content-center flex-wrap">
                             <img src="assets/images/company13.gif" alt="">
                             <img src="assets/images/company14.gif" alt="">
                             <img src="assets/images/company15.gif" alt="">
-                            <!-- <img src="assets/images/company16.gif" alt=""> -->
                         </div>
                     </div>
                     <div class="company-card">
                         <h5>Internet <i class="fas fa-chevron-right"></i></h5>
                         <p>247 are actively hiring</p>
-                        <div class="d-flex gap-2 justify-content-center">
+                        <div class="d-flex gap-2 justify-content-center flex-wrap">
                             <img src="assets/images/company17.gif" alt="">
                             <img src="assets/images/company18.gif" alt="">
                             <img src="assets/images/company19.gif" alt="">
-                            <!-- <img src="assets/images/company20.gif" alt=""> -->
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Featured Companies Section -->
+            <!-- Featured Companies -->
             <div class="container featured-companies">
                 <h2 class="fw-bold text-center mb-4">Featured companies actively hiring</h2>
                 <div class="featured-wrapper">
-                    <div class="featured-card">
-                        <img src="assets/images/reliance.gif" alt="Reliance Industries (RIL)">
+                    <div class="featured-card"><img src="assets/images/reliance.gif">
                         <h5>Reliance Industries (RIL)</h5>
                         <div class="featured-rating">⭐ 4.0 | 18.2K+ reviews</div>
-                        <p>Indian multinational conglomerate company.</p>
-                        <button class="btn  btn-sm" style="background:#FFF44F; color:#29374d;">View jobs</button>
+                        <p>Indian multinational conglomerate company.</p><button class="btn btn-sm"
+                            style="background:#FFF44F; color:#29374d;">View jobs</button>
                     </div>
-                    <div class="featured-card">
-                        <img src="assets/images/capgemini.gif" alt="Capgemini">
+                    <div class="featured-card"><img src="assets/images/capgemini.gif">
                         <h5>Capgemini</h5>
                         <div class="featured-rating">⭐ 3.7 | 48.1K+ reviews</div>
-                        <p>Global leader in technology services.</p>
-                        <button class="btn btn-sm" style="background:#FFF44F; color:#29374d;">View jobs</button>
+                        <p>Global leader in technology services.</p><button class="btn btn-sm"
+                            style="background:#FFF44F; color:#29374d;">View jobs</button>
                     </div>
-                    <div class="featured-card">
-                        <img src="assets/images/infosys.gif" alt="Infosys BPM">
-                        <h5>Infosysy BPM</h5>
+                    <div class="featured-card"><img src="assets/images/infosys.gif">
+                        <h5>Infosys BPM</h5>
                         <div class="featured-rating">⭐ 3.5 | 11K+ reviews</div>
-                        <p>Join us to navigate your next.</p>
-                        <button class="btn btn-sm" style="background:#FFF44F; color:#29374d;">View jobs</button>
+                        <p>Join us to navigate your next.</p><button class="btn btn-sm"
+                            style="background:#FFF44F; color:#29374d;">View jobs</button>
                     </div>
-                    <div class="featured-card">
-                        <img src="assets/images/amgen.gif" alt="Amgen Inc">
-                        <h5>Amzen Inc</h5>
+                    <div class="featured-card"><img src="assets/images/amgen.gif">
+                        <h5>Amgen Inc</h5>
                         <div class="featured-rating">⭐ 3.1 | 35 reviews</div>
-                        <p>LIVE. WIN. THRIVE.</p>
-                        <button class="btn btn-sm" style="background:#FFF44F; color:#29374d;">View jobs</button>
+                        <p>LIVE. WIN. THRIVE.</p><button class="btn btn-sm"
+                            style="background:#FFF44F; color:#29374d;">View jobs</button>
                     </div>
-                    <div class="featured-card">
-                        <img src="assets/images/amazon.gif" alt="Amazon">
+                    <div class="featured-card"><img src="assets/images/amazon.gif">
                         <h5>Amazon</h5>
                         <div class="featured-rating">⭐ 4.0 | 28.4K+ reviews</div>
-                        <p>World's largest Internet company.</p>
-                        <button class="btn btn-sm" style="background:#FFF44F; color:#29374d;">View jobs</button>
+                        <p>World's largest Internet company.</p><button class="btn btn-sm"
+                            style="background:#FFF44F; color:#29374d;">View jobs</button>
                     </div>
                 </div>
             </div>
@@ -612,35 +468,11 @@
                 <button class="btn view-all-btn">View all companies</button>
             </div>
 
-            <!-- Siemens Style Banner Section -->
-            <!-- <div class="container mt-5">
-                <div class="siemens-banner">
-                    <div class="row g-0">
-                        <div class="col-md-5 banner-left">
-                            <div class="d-flex align-items-center mb-2">
-                                <img src="assets/images/siemens.gif" alt="Siemens" class="banner-logo">
-                                <span class="ms-2 fw-bold">Siemens</span>
-                                <span class="ms-2 text-warning">⭐ 4.0</span>
-                            </div>
-                            <h3 class="banner-title">Belong, Inspire, Transform Together</h3>
-                            <a href="#" class="banner-link">Learn more</a>
-                        </div>
-                        <div class="col-md-7 banner-right position-relative">
-                            <img src="assets/images/siemens-collage.jpg" alt="Siemens team" class="banner-image">
-                            <div class="play-button-overlay">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
-
+            <!-- Siemens Video Banner -->
             <div class="container mt-5">
                 <div class="siemens-banner">
-                    <div class="col-md-7 banner-right position-relative">
-                        <video autoplay muted loop playsinline class="banner-image"
-                            style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="banner-right position-relative">
+                        <video autoplay muted loop playsinline class="banner-image">
                             <source src="assets/videos/image_video.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -648,24 +480,15 @@
                 </div>
             </div>
 
-
-            <!-- Young Turks Contest Banner -->
+            <!-- Job Fair Banner -->
             <div class="container mt-4">
                 <img src="assets/images/job-fair-banner.jpg" alt="Job Fair Banner"
                     style="display:block;max-width:100%;height:auto;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1);margin:0 auto;">
             </div>
-
-
-
-
-
         </div>
     </section>
 
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-
     <script>
         document.getElementById("search-button").addEventListener("click", function (e) {
             const input = document.getElementById("job-search-input");
@@ -674,36 +497,29 @@
             const container = document.getElementById("search-container");
 
             if (!search) {
-                // Block redirection if empty
                 e.preventDefault();
                 errorMsg.style.display = "block";
                 container.classList.add("error-outline");
             } else {
-                // Hide error + remove outline
                 errorMsg.style.display = "none";
                 container.classList.remove("error-outline");
-
-                // ✅ Build query param and redirect
                 const query = new URLSearchParams();
                 query.append("q", search);
-
                 window.location.href = "<?= base_url('jobsearch'); ?>?" + query.toString();
             }
         });
 
-        // Support pressing Enter
         document.getElementById("job-search-input").addEventListener("keyup", function (event) {
             if (event.key === "Enter") {
                 document.getElementById("search-button").click();
             }
         });
+
         document.getElementById("job-search-input").addEventListener("input", function () {
-            document.getElementById("search-error-message").style.display = "none"; // Hide error message
-            document.getElementById("search-container").classList.remove("error-outline"); // Remove error outline
+            document.getElementById("search-error-message").style.display = "none";
+            document.getElementById("search-container").classList.remove("error-outline");
         });
-
     </script>
-
 </body>
 
 </html>
