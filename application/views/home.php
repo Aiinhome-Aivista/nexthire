@@ -353,24 +353,18 @@
             <div class="job-categories">
                 <div class="category-card"><i class="fas fa-laptop-house"></i><span>Remote</span><i
                         class="fas fa-chevron-right arrow"></i></div>
-                <div class="category-card"><i class="fas fa-building"></i><span>MNC</span><i
+                <div class="category-card"><i class="fas fa-building"></i><span>IT Services</span><i
                         class="fas fa-chevron-right arrow"></i></div>
                 <div class="category-card"><i class="fas fa-user-graduate"></i><span>Internship</span><i
-                        class="fas fa-chevron-right arrow"></i></div>
-                <div class="category-card"><i class="fas fa-tasks"></i><span>Project Mgmt</span><i
-                        class="fas fa-chevron-right arrow"></i></div>
-                <div class="category-card"><i class="fas fa-university"></i><span>Banking & Finance</span><i
-                        class="fas fa-chevron-right arrow"></i></div>
-                <div class="category-card"><i class="fas fa-truck"></i><span>Supply Chain</span><i
-                        class="fas fa-chevron-right arrow"></i></div>
+                        class="fas fa-chevron-right arrow"></i></div>                
+                <div class="category-card"><i class="fas fa-university"></i><span>Finance</span><i
+                        class="fas fa-chevron-right arrow"></i></div>               
                 <div class="category-card"><i class="fas fa-users"></i><span>HR</span><i
                         class="fas fa-chevron-right arrow"></i></div>
                 <div class="category-card"><i class="fas fa-chart-line"></i><span>Sales</span><i
                         class="fas fa-chevron-right arrow"></i></div>
-                <div class="category-card"><i class="fas fa-cogs"></i><span>Engineering</span><i
-                        class="fas fa-chevron-right arrow"></i></div>
-                <div class="category-card"><i class="fas fa-crown"></i><span>Fortune 500</span><i
-                        class="fas fa-chevron-right arrow"></i></div>
+                <div class="category-card"><i class="fas fa-cogs"></i><span>Engineer</span><i
+                        class="fas fa-chevron-right arrow"></i></div>             
                 <div class="category-card"><i class="fas fa-user-friends"></i><span>Fresher</span><i
                         class="fas fa-chevron-right arrow"></i></div>
             </div>
