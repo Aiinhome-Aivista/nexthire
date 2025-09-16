@@ -6,12 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SahajJobs | Manage Employers</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Nunito', Arial, sans-serif;
     }
 
     :root {
@@ -814,7 +815,7 @@
 
     // Mobile sidebar toggle
     if (mobileToggle && sidebar) {
-      mobileToggle.addEventListener('click', function(e) {
+      mobileToggle.addEventListener('click', function (e) {
         // prevent the document click handler from immediately closing the sidebar
         e.stopPropagation();
 
@@ -833,13 +834,13 @@
       });
 
       // If sidebar receives clicks, do not let them bubble up to document click
-      sidebar.addEventListener('click', function(e) {
+      sidebar.addEventListener('click', function (e) {
         e.stopPropagation();
       });
     }
 
     // Close sidebar when clicking outside on mobile
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', function (event) {
       if (!sidebar) return;
       // only for mobile/smaller screens
       if (window.innerWidth <= 768 &&
@@ -854,7 +855,7 @@
     });
 
     // Handle window resize
-    window.addEventListener('resize', function() {
+    window.addEventListener('resize', function () {
       if (!sidebar) return;
 
       if (window.innerWidth > 768) {
@@ -899,14 +900,14 @@
     initSidebar();
 
     const logoutBtn = document.getElementById('logoutBtn');
-    logoutBtn.addEventListener('click', function() {
+    logoutBtn.addEventListener('click', function () {
       if (confirm('Are you sure you want to logout?')) {
         window.location.href = '<?= base_url("admin/employer_management/logout"); ?>';
       }
     });
 
     // Search and Pagination functionality (Employer Management)
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const searchInput = document.getElementById('searchInput');
       const tableBody = document.getElementById('recruiterTableBody');
       const firstPageBtn = document.getElementById('firstPage');
@@ -923,8 +924,8 @@
       const rowsPerPage = 10;
 
       // Use MutationObserver to detect when table content is loaded
-      const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
+      const observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
           if (mutation.addedNodes.length) {
             initializeTable();
           }
@@ -957,7 +958,7 @@
       }
 
       // Search functionality
-      searchInput.addEventListener('input', function() {
+      searchInput.addEventListener('input', function () {
         const searchText = this.value.toLowerCase();
 
         if (searchText === '') {
@@ -1120,9 +1121,9 @@
       formData.append('mobile_number', document.getElementById('edit_mobile_number').value);
 
       fetch('<?= base_url("admin/employer_management/update_employer") ?>', {
-          method: 'POST',
-          body: formData
-        })
+        method: 'POST',
+        body: formData
+      })
         .then(res => res.json())
         .then(data => {
           if (data.status === 'success') {
