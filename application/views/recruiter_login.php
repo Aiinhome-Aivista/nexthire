@@ -479,7 +479,7 @@
         <small id="email-error" class="text-danger" style="display:none; font-size: 0.85em;">Please enter a
           valid email (must include .com)</small>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="password">Password<span style="color:#e42e2e;">*</span></label>
           <input type="password" name="password" id="password" placeholder="Enter your password" required>
           <span id="toggle-password" style="position:absolute; top:42px; right:15px; cursor:pointer;">
@@ -490,9 +490,22 @@
           your password</small>
         <button type="submit" class="login-btn">Login</button>
 
-        <div class="forgot-row">
+        <div class="forgot-row" style="margin-top: 4px; text-align: right; width: 100%;">
           <a href="#">Forgot Password?</a>
+        </div> -->
+        <div class="form-group" style="position:relative;">
+          <label for="password">Password<span style="color:#e42e2e;">*</span></label>
+          <input type="password" name="password" id="password" placeholder="Enter your password" required>
+          <span id="toggle-password" style="position:absolute; top:42px; right:15px; cursor:pointer;">
+            <i class="far fa-eye"></i>
+          </span>
+          <div class="forgot-row" style="margin-top:4px; text-align:right; width:100%;">
+            <a href="#" style="color:#1b212b; text-decoration:none; font-weight:500;">Forgot Password?</a>
+          </div>
         </div>
+        <small id="password-error" class="text-danger" style="display:none; font-size: 0.85em;">Please enter your
+          password</small>
+        <button type="submit" class="login-btn">Login</button>
 
         <!-- Google Login -->
         <div class="google-section">
