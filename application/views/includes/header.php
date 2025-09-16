@@ -235,7 +235,7 @@
       // Email validation
       if (!emailVal || emailVal.indexOf('@') === -1 || emailVal.indexOf('.com') === -1) {
         emailError.style.display = 'block';
-        emailError.textContent = 'Please enter a valid email (must include @ and .com)';
+        emailError.textContent = 'Please enter a valid email (must include .com)';
         emailInput.classList.add('input-error');
         isValid = false;
       }
@@ -266,7 +266,7 @@
         emailInput.classList.remove('input-error');
       } else {
         emailError.style.display = 'block';
-        emailError.textContent = 'Please enter a valid email (must include @ and .com)';
+        emailError.textContent = 'Please enter a valid email (must include .com)';
         emailInput.classList.add('input-error');
       }
     });
