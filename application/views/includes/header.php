@@ -146,7 +146,7 @@
       <a href="<?= base_url('register'); ?>" class="register-for-free">Register for free</a>
       <span class="login-title">Candidate Login</span>
       <form class="login-form" method="post" action="<?= base_url('login/process'); ?>" autocomplete="off" novalidate>
-        <label for="login-username">Email ID / Username</label>
+        <label for="login-username">Email ID / Username<span style="color:#e42e2e;">*</span></label>
         <input type="text" id="login-username" name="username" placeholder="Enter your active Email ID / Username"
           required>
         <small id="email-error" class="text-danger" style="display:none; font-size: 0.85em;">Please enter a
@@ -154,7 +154,7 @@
 
         <!-- <input type="password" id="login-password" name="password" placeholder="Enter your password" required> -->
         <div style="position:relative;">
-          <label for="login-password">Password</label>
+          <label for="login-password">Password<span style="color:#e42e2e;">*</span></label>
           <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
           <span id="toggle-password" style="position:absolute; top:57px; right:15px; cursor:pointer;">
             <i class="far fa-eye"></i>
