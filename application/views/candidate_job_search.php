@@ -372,8 +372,8 @@
                     <li><a class="dropdown-item" href="#" data-value="SoftTech">SoftTech</a></li>
                     <li><a class="dropdown-item" href="#" data-value="Wipro">Wipro</a></li>
                     <li><a class="dropdown-item" href="#" data-value="Infosys">Infosys</a></li>
-                     <li><a class="dropdown-item" href="#" data-value="TCS">TCS</a></li>
-                      <li><a class="dropdown-item" href="#" data-value="Tech Mahindra">Tech Mahindra</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="TCS">TCS</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Tech Mahindra">Tech Mahindra</a></li>
                     <li><a class="dropdown-item" href="#" data-value="Capgemini">Capgemini</a></li>
                 </ul>
             </div>
@@ -611,7 +611,7 @@
             <h2 class="detail-title">${job.title}</h2>
             <div class="detail-company">${job.company}</div>
         </div>
-        <button class="apply-btn" style="background-color: #FFF44F; color: black;" onclick="window.location.href='<?= base_url('register'); ?>'">
+        <button class="apply-btn" style="background-color: #FFF44F; color: black;" onclick="window.location.href='<?= base_url('candidate_jobsearch/apply?job_id=') ?>${job.id}'">
             Apply Now
         </button>
     </div>
@@ -644,7 +644,7 @@
         </ul>
     </div>
 
-    <button class="apply-btn" style="background-color: #FFF44F; color: black; width: 100%;">Apply for this job</button>
+    <button class="apply-btn" style="background-color: #FFF44F; color: black; width: 100%;" onclick="window.location.href='<?= base_url('candidate_jobsearch/apply?job_id=') ?>${job.id}'">Apply for this job</button>
   `;
         }
 

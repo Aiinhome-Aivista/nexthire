@@ -433,7 +433,7 @@
                     <div class="form-group">
                         <label for="industry">Industry</label>
                         <select id="industry" name="industry">
-                            <option value="IT-services">IT services</option>
+                            <option value="IT Services">IT services</option>
                             <option value="BPO">BPO</option>
                             <option value="Finance">Finance</option>
                         </select>

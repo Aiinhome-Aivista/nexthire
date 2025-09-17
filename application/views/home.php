@@ -345,6 +345,16 @@
                 display: none;
             }
         }
+
+        .job-categories a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .job-categories a:hover {
+            text-decoration: none;
+            color: inherit;
+        }
     </style>
 </head>
 
@@ -380,23 +390,33 @@
 
             <!-- Job Categories -->
             <div class="job-categories">
-                <div class="category-card"><i class="fas fa-laptop-house"></i><span>Remote</span><i
-                        class="fas fa-chevron-right arrow"></i></div>
-                <div class="category-card"><i class="fas fa-building"></i><span>IT Services</span><i
-                        class="fas fa-chevron-right arrow"></i></div>
-                <div class="category-card"><i class="fas fa-user-graduate"></i><span>Internship</span><i
-                        class="fas fa-chevron-right arrow"></i></div>
-                <div class="category-card"><i class="fas fa-university"></i><span>Finance</span><i
-                        class="fas fa-chevron-right arrow"></i></div>
-                <div class="category-card"><i class="fas fa-users"></i><span>HR</span><i
-                        class="fas fa-chevron-right arrow"></i></div>
-                <div class="category-card"><i class="fas fa-chart-line"></i><span>Sales</span><i
-                        class="fas fa-chevron-right arrow"></i></div>
-                <div class="category-card"><i class="fas fa-cogs"></i><span>Engineer</span><i
-                        class="fas fa-chevron-right arrow"></i></div>
-                <div class="category-card"><i class="fas fa-user-friends"></i><span>Fresher</span><i
-                        class="fas fa-chevron-right arrow"></i></div>
+                <a href="<?= base_url('job_search?workMode=Remote') ?>" class="category-card">
+                    <i class="fas fa-laptop-house"></i><span>Remote</span><i class="fas fa-chevron-right arrow"></i>
+                </a>
+
+                <a href="<?= base_url('job_search?jobType=Internship') ?>" class="category-card">
+                    <i class="fas fa-user-graduate"></i><span>Internship</span><i
+                        class="fas fa-chevron-right arrow"></i>
+                </a>
+
+                <a href="<?= base_url('job_search?expMin=0&expMax=0') ?>" class="category-card">
+                    <i class="fas fa-user-friends"></i><span>Fresher</span><i class="fas fa-chevron-right arrow"></i>
+                </a>
+
+                <a href="<?= base_url('job_search?industry=' . urlencode('IT Services')) ?>" class="category-card">
+                    <i class="fas fa-building"></i><span>IT Services</span><i class="fas fa-chevron-right arrow"></i>
+                </a>
+
+                <a href="<?= base_url('job_search?industry=Finance') ?>" class="category-card">
+                    <i class="fas fa-university"></i><span>Finance</span><i class="fas fa-chevron-right arrow"></i>
+                </a>
+
+                <a href="<?= base_url('job_search?industry=BPO') ?>" class="category-card">
+                    <i class="fas fa-cogs"></i><span>BPO</span><i class="fas fa-chevron-right arrow"></i>
+                </a>
             </div>
+
+
 
             <!-- Top Companies -->
             <div class="container my-5">
@@ -511,7 +531,7 @@
                 container.classList.remove("error-outline");
                 const query = new URLSearchParams();
                 query.append("q", search);
-                window.location.href = "<?= base_url('jobsearch'); ?>?" + query.toString();
+                window.location.href = "<?= base_url('job_search'); ?>?" + query.toString();
             }
         });
 
