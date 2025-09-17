@@ -429,6 +429,7 @@
       justify-content: flex-end;
       align-items: center;
       margin-bottom: 6px;
+      margin-top: 10px;
     }
 
     .login-link {
@@ -744,6 +745,10 @@
       transform: scaleX(1);
     }
 
+    .menu-modal {
+      margin-top: 10px !important;
+    }
+
     /* Responsive Menu */
     @media (max-width: 1024px) {
       header>div {
@@ -818,36 +823,70 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    // Modal logic
+    // Modal logic - improved with better hover handling
     const menuLinks = document.querySelectorAll('.menu-link');
     const modals = document.querySelectorAll('.menu-modal');
+
+    // Add a small gap between menu and modal with a pseudo-element
+    const style = document.createElement('style');
+    style.textContent = `
+      .menu-link::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 100%;
+        height: 15px;
+        background: transparent;
+        z-index: 8;
+      }
+    `;
+    document.head.appendChild(style);
+
+    let activeModal = null;
+    let closeTimeout = null;
+
     menuLinks.forEach(link => {
       const targetModalId = link.getAttribute('data-modal-target');
       const targetModal = document.getElementById(targetModalId);
 
       link.addEventListener('mouseenter', function () {
+        // Clear any pending close timeouts
+        clearTimeout(closeTimeout);
+
+        // Hide all other modals
         modals.forEach(modal => {
           if (modal.id !== targetModalId) {
             modal.style.display = 'none';
           }
         });
+
+        // Show this modal
         targetModal.style.display = 'block';
+        activeModal = targetModal;
       });
 
       link.addEventListener('mouseleave', function () {
-        setTimeout(() => {
-          if (!targetModal.matches(':hover') && !link.matches(':hover')) {
-            targetModal.style.display = 'none';
+        // Set a timeout to close the modal only if not hovering over modal
+        closeTimeout = setTimeout(() => {
+          if (activeModal && !activeModal.matches(':hover')) {
+            activeModal.style.display = 'none';
+            activeModal = null;
           }
-        }, 200);
+        }, 300); // Increased delay for better usability
+      });
+
+      targetModal.addEventListener('mouseenter', function () {
+        // Clear timeout when mouse enters modal
+        clearTimeout(closeTimeout);
       });
 
       targetModal.addEventListener('mouseleave', function () {
-        setTimeout(() => {
-          if (!targetModal.matches(':hover') && !link.matches(':hover')) {
-            targetModal.style.display = 'none';
-          }
-        }, 200);
+        // Close modal after mouse leaves
+        closeTimeout = setTimeout(() => {
+          targetModal.style.display = 'none';
+          activeModal = null;
+        }, 300);
       });
     });
 
@@ -857,6 +896,7 @@
         modals.forEach(modal => {
           modal.style.display = 'none';
         });
+        activeModal = null;
       }
     });
 
@@ -874,6 +914,18 @@
       popupBg.onclick = function (e) {
         if (e.target === popupBg) popupBg.style.display = 'none';
       };
+    }
+
+    // Check if URL has showLogin parameter and open login modal
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('showLogin') === 'true') {
+      if (popupBg) {
+        popupBg.style.display = 'flex';
+      }
+
+      // Clean up the URL without reloading the page
+      const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+      window.history.replaceState({}, document.title, cleanUrl);
     }
   });
 </script>

@@ -8,7 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
-
     <style>
         body {
             font-family: 'Nunito', Arial, sans-serif;
@@ -34,16 +33,26 @@
             margin-right: 8px;
         }
 
-        /* Search bar */
+        /* Search bar - Fixed for responsiveness */
         .search-bar-top {
             background: #fff;
-            border-radius: 999px;
+            border-radius: 50px;
             padding: 10px 20px;
             box-shadow: 0 8px 32px rgba(44, 62, 80, 0.08);
             display: flex;
-            align-items: center;
+            align-items: stretch;
             margin-bottom: 20px;
             border: none;
+            overflow: hidden;
+            width: 100%;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-bar-top .input-group {
+            flex: 1;
+            background: transparent;
         }
 
         .search-bar-top .input-group-text {
@@ -51,6 +60,7 @@
             border: none;
             color: #8893b3;
             font-size: 1.2rem;
+            padding: 0.75rem 1rem 0.75rem 1.25rem;
         }
 
         .search-bar-top .form-control {
@@ -59,6 +69,8 @@
             box-shadow: none;
             font-size: 1rem;
             color: #222;
+            padding: 0.75rem 0.5rem;
+            height: 100%;
         }
 
         .search-bar-top .form-control::placeholder {
@@ -66,19 +78,20 @@
         }
 
         .search-bar-top .btn-primary {
-            background-color: #2563eb;
+            background-color: #FFF44F;
+            color: black;
             border: none;
-            padding: 8px 25px;
+            padding: 0 1.5rem;
             border-radius: 999px;
             font-size: 1rem;
             font-weight: 560;
-            color: #fff;
-            margin-left: 15px;
+            white-space: nowrap;
             transition: background 0.2s;
+            margin: 0;
         }
 
         .search-bar-top .btn-primary:hover {
-            background-color: #174bbd;
+            background-color: #e6dc47;
         }
 
         /* Filters */
@@ -281,7 +294,7 @@
             width: 100%;
         }
 
-        /* Responsive tweaks */
+        /* Responsive tweaks - Updated for search bar */
         @media (max-width: 1200px) {
             .jobs-layout {
                 grid-template-columns: 1fr 1.5fr;
@@ -289,6 +302,12 @@
 
             .featured-companies {
                 display: none;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .search-bar-top .btn-primary {
+                padding: 0 1.25rem;
             }
         }
 
@@ -303,14 +322,32 @@
 
             .search-bar-top {
                 flex-direction: column;
-                padding: 15px;
                 border-radius: 24px;
+                padding: 0;
+                overflow: visible;
+            }
+
+            .search-bar-top .input-group {
+                border-radius: 24px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                margin-bottom: 10px;
             }
 
             .search-bar-top .btn-primary {
                 width: 100%;
-                margin-top: 10px;
+                border-radius: 24px;
+                padding: 0.75rem;
                 margin-left: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .search-bar-top .input-group-text {
+                padding: 0.75rem 0.75rem 0.75rem 1rem;
+            }
+
+            .search-bar-top .form-control {
+                padding: 0.75rem 0.5rem;
             }
         }
     </style>

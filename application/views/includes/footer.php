@@ -70,7 +70,7 @@
 
         .footer-top {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: flex-start;
             gap: 40px;
             max-width: 1280px;
@@ -79,12 +79,13 @@
 
             /* ✅ responsive addition */
             flex-wrap: wrap;
+            text-align: center;
         }
 
         .footer-logo-social {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
             min-width: 180px;
             margin-right: 10px;
         }
@@ -122,12 +123,13 @@
 
         .footer-links {
             display: flex;
-            justify-content: flex-start;
+            justify-content: center;
             gap: 60px;
             flex: 1;
-            margin-left: 30px;
-            margin-right: 30px;
-
+            /* margin-left: 30px;
+            margin-right: 30px; */
+            margin: 0 auto;
+            text-align: center;
             /* ✅ responsive addition */
             flex-wrap: wrap;
         }
@@ -418,16 +420,16 @@
                 <div class="footer-social">
                     <div class="footer-social-label">Connect with us</div>
                     <div class="footer-social-icons">
-                        <a href="https://www.facebook.com/Naukri" target="_blank" rel="noopener">
+                        <a href="#" target="_blank" rel="noopener">
                             <img src="https://static.naukimg.com/s/0/0/i/new-homepage/facebook.svg" alt="Facebook" />
                         </a>
-                        <a href="https://instagram.com/naukridotcom/" target="_blank" rel="noopener">
+                        <a href="#" target="_blank" rel="noopener">
                             <img src="https://static.naukimg.com/s/0/0/i/new-homepage/instagram.svg" alt="Instagram" />
                         </a>
-                        <a href="https://twitter.com/naukri" target="_blank" rel="noopener">
+                        <a href="#" target="_blank" rel="noopener">
                             <img src="https://static.naukimg.com/s/0/0/i/new-homepage/twitter_v1.svg" alt="X" />
                         </a>
-                        <a href="http://www.linkedin.com/company/naukri.com" target="_blank" rel="noopener">
+                        <a href="#" target="_blank" rel="noopener">
                             <img src="https://static.naukimg.com/s/0/0/i/new-homepage/linkedin.svg" alt="LinkedIn" />
                         </a>
                     </div>
@@ -476,10 +478,10 @@
         <div class="footer-divider"></div>
 
         <div class="footer-bottom">
-            <div class="footer-infoedge">
+            <!-- <div class="footer-infoedge">
                 <img src="https://static.naukimg.com/s/0/0/i/new-homepage/infoedge-logo.svg" alt="Info Edge Logo"
                     class="footer-infoedge-logo" />
-            </div>
+            </div> -->
             <div class="footer-infoedge-text">
                 <div>All trademarks are the property of their respective owners</div>
                 <div>All rights reserved © 2025 Info Edge (India) Ltd.</div>

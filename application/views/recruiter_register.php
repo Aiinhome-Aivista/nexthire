@@ -209,6 +209,11 @@
       margin-bottom: 1px;
     }
 
+    .form-group .input-container {
+      position: relative;
+      width: 100%;
+    }
+
     .form-group input {
       padding: 12px 15px;
       font-size: 15px;
@@ -218,6 +223,16 @@
       background: #fff;
       transition: border 0.2s;
       width: 100%;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #666;
+      z-index: 2;
     }
 
     .form-group input:focus {
@@ -345,63 +360,6 @@
       height: 18px;
     }
 
-    /* Footer Styles */
-    .footer {
-      margin-top: 40px;
-      text-align: center;
-      padding: 20px 0;
-      font-family: 'Nunito', Arial, sans-serif;
-      background: transparent;
-      width: 100%;
-    }
-
-    .footer-content {
-      width: 100%;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      font-size: 12px;
-      margin-bottom: 8px;
-      color: #1d4ed8;
-    }
-
-    .footer-links a {
-      color: #1d4ed8;
-      text-decoration: none;
-      transition: color 0.15s;
-      font-weight: 400;
-      white-space: nowrap;
-    }
-
-    .footer-links a:hover {
-      text-decoration: underline;
-      color: #1742b0;
-    }
-
-    .footer-links .divider {
-      width: 1px;
-      height: 12px;
-      background: #dbe7ff;
-      display: inline-block;
-      vertical-align: middle;
-    }
-
-    .footer-copyright {
-      font-size: 12px;
-      color: #7a86a1;
-      margin-top: 1px;
-      font-weight: 400;
-      letter-spacing: 0.01em;
-    }
-
     /* Alert styles */
     .alert {
       padding: 10px;
@@ -492,15 +450,6 @@
         font-size: 20px;
       }
 
-      .footer-links {
-        flex-direction: column;
-        gap: 5px;
-      }
-
-      .footer-links .divider {
-        display: none;
-      }
-
       .register-btn {
         align-self: center;
       }
@@ -513,7 +462,9 @@
   <div class="header">
     <div class="header-content">
       <div class="logo">
-        <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
+        <a href="<?= base_url(); ?>">
+          <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
+        </a>
       </div>
       <div class="login-link">
         Already Registered? <a href="<?= base_url('employer_login'); ?>">Login</a> here
@@ -581,10 +532,12 @@
 
             <div class="form-group">
               <label for="password">Password<span style="color:#e42e2e;">*</span></label>
-              <input type="password" name="password" id="password" placeholder="Minimum 6 characters">
-              <span id="toggle-password" style="position:absolute; top:550px; right:305px; cursor:pointer;">
-                <i class="far fa-eye-slash"></i>
-              </span>
+              <div class="input-container">
+                <input type="password" name="password" id="password" placeholder="Minimum 6 characters">
+                <span class="password-toggle" id="toggle-password">
+                  <i class="far fa-eye-slash"></i>
+                </span>
+              </div>
               <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
             </div>
 
@@ -602,8 +555,8 @@
 
             <div class="terms-row">
               By clicking Register, you agree to the
-              <a href="#">Terms and Conditions</a> &
-              <a href="#">Privacy Policy</a> of SahajJobs
+              <a href="<?= base_url('terms-and-conditions'); ?>">Terms and Conditions</a> &
+              <a href="<?= base_url('privacy-policy'); ?>">Privacy Policy</a> of SahajJobs
             </div>
 
             <button type="submit" class="register-btn">Register as Recruiter</button>
@@ -747,17 +700,16 @@
       });
     });
 
-    // Password toggle code remains the same
+    // Password toggle code
     document.getElementById('toggle-password').addEventListener('click', function () {
       const passwordInput = document.getElementById('password');
-      const pwd = passwordInput;
       const icon = this.querySelector('i');
-      if (pwd.type === 'password') {
-        pwd.type = 'text';
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
         icon.classList.remove('fa-eye-slash');
         icon.classList.add('fa-eye');
       } else {
-        pwd.type = 'password';
+        passwordInput.type = 'password';
         icon.classList.remove('fa-eye');
         icon.classList.add('fa-eye-slash');
       }

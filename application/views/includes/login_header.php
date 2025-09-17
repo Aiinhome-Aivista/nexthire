@@ -267,6 +267,7 @@
         padding: 16px;
         gap: 12px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
       }
 
       .main-nav.active {
@@ -288,6 +289,10 @@
     const menuToggle = document.getElementById('menuToggle');
     const mainNav = document.querySelector('.main-nav');
 
+    // Track active modal and timeouts
+    let activeModal = null;
+    let modalTimeouts = {};
+
     // Hover modals
     menuLinks.forEach(link => {
       const targetModalId = link.getAttribute('data-modal-target');
@@ -295,26 +300,48 @@
 
       if (targetModal) {
         link.addEventListener('mouseenter', () => {
+          // Clear any pending timeout for this modal
+          if (modalTimeouts[targetModalId]) {
+            clearTimeout(modalTimeouts[targetModalId]);
+            delete modalTimeouts[targetModalId];
+          }
+
+          // Hide all other modals
           modals.forEach(modal => {
-            if (modal.id !== targetModalId) modal.style.display = 'none';
+            if (modal.id !== targetModalId) {
+              modal.style.display = 'none';
+            }
           });
+
+          // Show this modal
           targetModal.style.display = 'block';
+          activeModal = targetModalId;
         });
 
         link.addEventListener('mouseleave', () => {
-          setTimeout(() => {
-            if (!targetModal.matches(':hover') && !link.matches(':hover')) {
+          // Set timeout to close modal after a short delay
+          modalTimeouts[targetModalId] = setTimeout(() => {
+            if (!targetModal.matches(':hover')) {
               targetModal.style.display = 'none';
+              activeModal = null;
             }
-          }, 200);
+          }, 300); // Increased from 200ms to 300ms
+        });
+
+        targetModal.addEventListener('mouseenter', () => {
+          // Clear timeout when mouse enters modal
+          if (modalTimeouts[targetModalId]) {
+            clearTimeout(modalTimeouts[targetModalId]);
+            delete modalTimeouts[targetModalId];
+          }
         });
 
         targetModal.addEventListener('mouseleave', () => {
-          setTimeout(() => {
-            if (!targetModal.matches(':hover') && !link.matches(':hover')) {
-              targetModal.style.display = 'none';
-            }
-          }, 200);
+          // Set timeout to close modal after mouse leaves
+          modalTimeouts[targetModalId] = setTimeout(() => {
+            targetModal.style.display = 'none';
+            activeModal = null;
+          }, 300); // Increased from 200ms to 300ms
         });
       }
     });
@@ -323,6 +350,15 @@
     document.addEventListener('click', e => {
       if (!e.target.closest('.menu-link') && !e.target.closest('.menu-modal')) {
         modals.forEach(modal => modal.style.display = 'none');
+        activeModal = null;
+      }
+
+      // Close mobile menu when clicking outside
+      if (mainNav.classList.contains('active') &&
+        !e.target.closest('.main-nav') &&
+        e.target !== menuToggle &&
+        !menuToggle.contains(e.target)) {
+        mainNav.classList.remove('active');
       }
     });
 
@@ -334,7 +370,8 @@
     });
 
     // Mobile menu toggle
-    menuToggle.addEventListener('click', () => {
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
       mainNav.classList.toggle('active');
     });
   });

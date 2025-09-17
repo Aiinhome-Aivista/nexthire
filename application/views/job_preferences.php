@@ -478,7 +478,7 @@
                 const editIcon = $('#job-types-section').find('.edit-icon');
                 const addIcon = $('#job-types-section').find('.add-icon');
                 const sectionHeader = $('#job-types-section').find('.section-header .icons-container');
-                if (types.length > 0) {
+                if (types && types.length > 0) {
                     displaySpan.text(types.join(', '));
                     if (addIcon.length) {
                         addIcon.remove();
@@ -597,13 +597,25 @@
                         `;
                         break;
                     case 'job_types':
-                        const jobTypes = data.currentValues ? JSON.parse(data.currentValues) : [];
+                        let jobTypes = [];
+                        if (data.currentValues) {
+                            try {
+                                if (typeof data.currentValues === 'string') {
+                                    jobTypes = JSON.parse(data.currentValues);
+                                } else if (Array.isArray(data.currentValues)) {
+                                    jobTypes = data.currentValues;
+                                }
+                            } catch (e) {
+                                console.error('Error parsing job types:', e);
+                                jobTypes = [];
+                            }
+                        }
                         const typeOptions = ['Permanent', 'Contract', 'Temporary', 'Internship', 'Fresher'];
                         content = `<form id="dynamicForm" action="<?= base_url('jobpreferences/update_job_types'); ?>">`;
                         typeOptions.forEach(option => {
                             const isChecked = jobTypes.includes(option) ? 'checked' : '';
                             content += `
-                            <div class="form-check checkbox-group">
+                            <div class="form-check checkbox-group mb-2">
                                 <input class="form-check-input" type="checkbox" name="job_types[]" value="${option}" id="jobType-${option}" ${isChecked}>
                                 <label class="form-check-label" for="jobType-${option}">${option}</label>
                             </div>
@@ -637,7 +649,7 @@
                         const isWilling = data.currentWillingness === 'true';
                         content = `
                         <form id="dynamicForm" action="<?= base_url('jobpreferences/update_relocation'); ?>">
-                            <div class="form-check checkbox-group">
+                            <div class="form-check checkbox-group mb-2">
                                 <input class="form-check-input" type="checkbox" name="is_willing_to_relocate" id="relocationCheckbox" ${isWilling ? 'checked' : ''}>
                                 <label class="form-check-label" for="relocationCheckbox">Willing to relocate</label>
                             </div>

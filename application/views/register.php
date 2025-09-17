@@ -45,6 +45,8 @@
       background: #fff;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
       padding: 10px 0;
+      position: relative;
+      z-index: 100;
     }
 
     .header-content {
@@ -85,6 +87,7 @@
       padding: 0 20px;
       gap: 30px;
       max-width: 1300px;
+      position: relative;
     }
 
     .left-card {
@@ -97,6 +100,11 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
     }
 
     .left-card img {
@@ -163,6 +171,7 @@
       position: relative;
       display: flex;
       flex-direction: column;
+      flex: 1;
     }
 
     .form-title {
@@ -195,6 +204,7 @@
       display: flex;
       flex-direction: column;
       gap: 6px;
+      position: relative;
     }
 
     .form-group label {
@@ -390,56 +400,17 @@
       height: 18px;
     }
 
-    /* Footer Styles */
-    .footer {
-      margin: 50px auto 0;
-      text-align: center;
-      padding: 24px 20px 8px;
-      font-family: 'Nunito', Arial, sans-serif;
-      background: transparent;
-      max-width: 1200px;
-    }
-
-    .footer-links {
+    .toggle-password-eye {
+      position: absolute;
+      top: 39px;
+      right: 16px;
+      cursor: pointer;
+      z-index: 2;
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
-      gap: 10px;
-      font-size: 12px;
-      margin-bottom: 8px;
-      color: #1d4ed8;
+      height: 38px;
     }
 
-    .footer-links a {
-      color: #1d4ed8;
-      text-decoration: none;
-      transition: color 0.15s;
-      font-weight: 400;
-      white-space: nowrap;
-    }
-
-    .footer-links a:hover {
-      text-decoration: underline;
-      color: #1742b0;
-    }
-
-    .footer-links .divider {
-      width: 1px;
-      height: 16px;
-      background: #dbe7ff;
-      margin: 0 2px;
-      display: inline-block;
-      vertical-align: middle;
-    }
-
-    .footer-copyright {
-      font-size: 12px;
-      color: #7a86a1;
-      margin-top: 1px;
-      font-weight: 400;
-      letter-spacing: 0.01em;
-    }
 
     .error-msg {
       color: red;
@@ -458,6 +429,8 @@
         max-width: 100%;
         position: static;
         margin-bottom: 20px;
+        top: 0;
+        height: auto;
       }
 
       .form-card {
@@ -507,14 +480,6 @@
         margin-top: 20px;
       }
 
-      .footer-links {
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .footer-links .divider {
-        display: none;
-      }
 
       .register-btn {
         margin-left: auto;
@@ -563,8 +528,14 @@
       }
 
       .form-group input {
-        padding: 10px 15px;
+        padding: 10px 38px 10px 15px;
         font-size: 15px;
+      }
+
+      .toggle-password-eye {
+        right: 10px;
+        top: 32px;
+        height: 34px;
       }
 
       .work-status-card {
@@ -575,14 +546,11 @@
         width: 100%;
         max-width: 200px;
       }
+    }
 
-      .footer {
-        margin-top: 30px;
-        padding: 15px;
-      }
-
-      .footer-links a {
-        font-size: 11px;
+    @media (min-width: 481px) {
+      .form-group input[type="password"] {
+        padding-right: 42px;
       }
     }
   </style>
@@ -592,10 +560,12 @@
   <div class="header">
     <div class="header-content">
       <div class="logo">
-        <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
+        <a href="<?= base_url(); ?>">
+          <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
+        </a>
       </div>
       <div class="login-link">
-        Already Registered? <a href="<?= base_url(); ?>">Login</a> here
+        Already Registered? <a href="<?= base_url(); ?>?showLogin=true">Login</a> here
       </div>
     </div>
   </div>
@@ -640,10 +610,10 @@
               <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
               <span class="input-hint">We'll send relevant jobs and updates to this email</span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="position:relative;">
               <label for="password">Password<span style="color:#e42e2e;">*</span></label>
               <input type="password" name="password" id="password" placeholder="(Minimum 6 characters)">
-              <span id="toggle-password" style="position:absolute; top:265px; right:15px; cursor:pointer;">
+              <span id="toggle-password" class="toggle-password-eye">
                 <i class="far fa-eye-slash"></i>
               </span>
               <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
@@ -684,8 +654,8 @@
             </div>
             <div class="terms-row">
               By clicking Register, you agree to the
-              <a href="#">Terms and Conditions</a> &
-              <a href="<?= base_url('privacypolicy'); ?>">Privacy Policy</a> of SahajJob.com
+              <a href="<?= base_url('terms-and-conditions'); ?>">Terms and Conditions</a> &
+              <a href="<?= base_url('privacy-policy'); ?>">Privacy Policy</a> of SahajJob.com
             </div>
             <button type="submit" class="register-btn">Register now</button>
           </div>
@@ -855,7 +825,6 @@
         icon.classList.add('fa-eye-slash');
       }
     });
-
   </script>
 </body>
 
