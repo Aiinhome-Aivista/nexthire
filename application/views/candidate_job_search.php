@@ -369,7 +369,11 @@
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#" data-value="">Any</a></li>
                     <li><a class="dropdown-item" href="#" data-value="GS Infotech">GS Infotech</a></li>
-                    <li><a class="dropdown-item" href="#" data-value="Tech Mahindra">Tech Mahindra</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="SoftTech">SoftTech</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Wipro">Wipro</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Infosys">Infosys</a></li>
+                     <li><a class="dropdown-item" href="#" data-value="TCS">TCS</a></li>
+                      <li><a class="dropdown-item" href="#" data-value="Tech Mahindra">Tech Mahindra</a></li>
                     <li><a class="dropdown-item" href="#" data-value="Capgemini">Capgemini</a></li>
                 </ul>
             </div>
@@ -396,6 +400,11 @@
                     <li><a class="dropdown-item" href="#" data-value="West Bengal">West Bengal</a></li>
                     <li><a class="dropdown-item" href="#" data-value="Delhi">Delhi</a></li>
                     <li><a class="dropdown-item" href="#" data-value="Bangalore">Bangalore</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Noida">Noida</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Hyderabad">Hyderabad</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Mumbai">Mumbai</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Pune">Pune</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Chennai">Chennai</a></li>
                 </ul>
             </div>
 

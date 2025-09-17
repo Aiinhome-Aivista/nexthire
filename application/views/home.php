@@ -402,90 +402,73 @@
             <div class="container my-5">
                 <h2 class="fw-bold text-center mb-4">Top companies hiring now</h2>
                 <div class="companies-wrapper">
-                    <div class="company-card">
-                        <h5>Edtech <i class="fas fa-chevron-right"></i></h5>
-                        <p>161 are actively hiring</p>
-                        <div class="d-flex gap-2 justify-content-center flex-wrap">
-                            <img src="assets/images/company1.gif" alt="">
-                            <img src="assets/images/company2.gif" alt="">
-                            <img src="assets/images/company3.gif" alt="">
-                        </div>
-                    </div>
-                    <div class="company-card">
-                        <h5>Healthcare <i class="fas fa-chevron-right"></i></h5>
-                        <p>599 are actively hiring</p>
-                        <div class="d-flex gap-2 justify-content-center flex-wrap">
-                            <img src="assets/images/company5.gif" alt="">
-                            <img src="assets/images/company6.gif" alt="">
-                            <img src="assets/images/company7.gif" alt="">
-                        </div>
-                    </div>
-                    <div class="company-card">
-                        <h5>Unicorns <i class="fas fa-chevron-right"></i></h5>
-                        <p>87 are actively hiring</p>
-                        <div class="d-flex gap-2 justify-content-center flex-wrap">
-                            <img src="assets/images/company9.gif" alt="">
-                            <img src="assets/images/company10.gif" alt="">
-                            <img src="assets/images/company11.gif" alt="">
-                        </div>
-                    </div>
-                    <div class="company-card">
-                        <h5>B2C <i class="fas fa-chevron-right"></i></h5>
-                        <p>2.3k+ are actively hiring</p>
-                        <div class="d-flex gap-2 justify-content-center flex-wrap">
-                            <img src="assets/images/company13.gif" alt="">
-                            <img src="assets/images/company14.gif" alt="">
-                            <img src="assets/images/company15.gif" alt="">
-                        </div>
-                    </div>
-                    <div class="company-card">
-                        <h5>Internet <i class="fas fa-chevron-right"></i></h5>
-                        <p>247 are actively hiring</p>
-                        <div class="d-flex gap-2 justify-content-center flex-wrap">
-                            <img src="assets/images/company17.gif" alt="">
-                            <img src="assets/images/company18.gif" alt="">
-                            <img src="assets/images/company19.gif" alt="">
-                        </div>
-                    </div>
+                    <?php if (!empty($top_companies)): ?>
+                        <?php foreach ($top_companies as $index => $company): ?>
+                            <div class="company-card">
+                                <h5>
+                                    <?= htmlspecialchars($company->company) ?>
+                                    <!-- <i class="fas fa-chevron-right"></i> -->
+                                </h5>
+                                <p><?= $company->total_jobs ?> are actively hiring</p>
+
+                                <div class="d-flex gap-2 justify-content-center flex-wrap">
+                                    <?php if ($index == 0): ?>
+                                        <img src="assets/images/company1.gif" alt="">
+                                        <img src="assets/images/company2.gif" alt="">
+                                        <img src="assets/images/company3.gif" alt="">
+                                    <?php elseif ($index == 1): ?>
+                                        <img src="assets/images/company5.gif" alt="">
+                                        <img src="assets/images/company6.gif" alt="">
+                                        <img src="assets/images/company7.gif" alt="">
+                                    <?php elseif ($index == 2): ?>
+                                        <img src="assets/images/company9.gif" alt="">
+                                        <img src="assets/images/company10.gif" alt="">
+                                        <img src="assets/images/company11.gif" alt="">
+                                    <?php elseif ($index == 3): ?>
+                                        <img src="assets/images/company13.gif" alt="">
+                                        <img src="assets/images/company14.gif" alt="">
+                                        <img src="assets/images/company15.gif" alt="">
+                                    <?php elseif ($index == 4): ?>
+                                        <img src="assets/images/company17.gif" alt="">
+                                        <img src="assets/images/company18.gif" alt="">
+                                        <img src="assets/images/company19.gif" alt="">
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p class="text-center">No companies hiring at the moment</p>
+                    <?php endif; ?>
                 </div>
             </div>
+
 
             <!-- Featured Companies -->
             <div class="container featured-companies">
                 <h2 class="fw-bold text-center mb-4">Featured companies actively hiring</h2>
                 <div class="featured-wrapper">
-                    <div class="featured-card"><img src="assets/images/reliance.gif">
-                        <h5>Reliance Industries (RIL)</h5>
-                        <div class="featured-rating">⭐ 4.0 | 18.2K+ reviews</div>
-                        <p>Indian multinational conglomerate company.</p><button class="btn btn-sm"
-                            style="background:#FFF44F; color:#29374d;">View jobs</button>
-                    </div>
-                    <div class="featured-card"><img src="assets/images/capgemini.gif">
-                        <h5>Capgemini</h5>
-                        <div class="featured-rating">⭐ 3.7 | 48.1K+ reviews</div>
-                        <p>Global leader in technology services.</p><button class="btn btn-sm"
-                            style="background:#FFF44F; color:#29374d;">View jobs</button>
-                    </div>
-                    <div class="featured-card"><img src="assets/images/infosys.gif">
-                        <h5>Infosys BPM</h5>
-                        <div class="featured-rating">⭐ 3.5 | 11K+ reviews</div>
-                        <p>Join us to navigate your next.</p><button class="btn btn-sm"
-                            style="background:#FFF44F; color:#29374d;">View jobs</button>
-                    </div>
-                    <div class="featured-card"><img src="assets/images/amgen.gif">
-                        <h5>Amgen Inc</h5>
-                        <div class="featured-rating">⭐ 3.1 | 35 reviews</div>
-                        <p>LIVE. WIN. THRIVE.</p><button class="btn btn-sm"
-                            style="background:#FFF44F; color:#29374d;">View jobs</button>
-                    </div>
-                    <div class="featured-card"><img src="assets/images/amazon.gif">
-                        <h5>Amazon</h5>
-                        <div class="featured-rating">⭐ 4.0 | 28.4K+ reviews</div>
-                        <p>World's largest Internet company.</p><button class="btn btn-sm"
-                            style="background:#FFF44F; color:#29374d;">View jobs</button>
-                    </div>
+                    <?php if (!empty($featured_companies)): ?>
+                        <?php foreach ($featured_companies as $company): ?>
+                            <div class="featured-card">
+                                <img src="<?= base_url($company->logo) ?>"
+                                    alt="<?= htmlspecialchars($company->company_name) ?>">
+                                <h5><?= htmlspecialchars($company->company_name) ?></h5>
+                                <div class="featured-rating">
+                                    ⭐ <?= $company->rating ?> | <?= $company->reviews ?> reviews
+                                </div>
+                                <p><?= htmlspecialchars($company->description) ?></p>
+                                <a href="<?= base_url('jobs/company/' . $company->employer_id) ?>" class="btn btn-sm"
+                                    style="background:#FFF44F; color:#29374d;">
+                                    View jobs
+                                </a>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p class="text-center">No featured companies at the moment</p>
+                    <?php endif; ?>
                 </div>
             </div>
+
 
             <div class="text-center mt-4">
                 <button class="btn view-all-btn">View all companies</button>
