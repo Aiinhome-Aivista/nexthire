@@ -301,6 +301,12 @@
             }
         }
 
+        .footer-social-icons a[href="#"] {
+            pointer-events: none;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
 
@@ -418,7 +424,7 @@
                 <div class="footer-social">
                     <div class="footer-social-label">Connect with us</div>
                     <div class="footer-social-icons">
-                        <a href="#" target="_blank" rel="noopener">
+                        <a href="https://www.facebook.com/sahajjobs.developer" target="_blank" rel="noopener">
                             <img src="https://static.naukimg.com/s/0/0/i/new-homepage/facebook.svg" alt="Facebook" />
                         </a>
                         <a href="#" target="_blank" rel="noopener">
