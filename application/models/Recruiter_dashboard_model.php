@@ -14,11 +14,13 @@ class Recruiter_dashboard_model extends CI_Model
         return $this->db->count_all('posted_jobs');
     }
 
-    public function get_recent_jobs($limit = 5)
-    {
-        $this->db->order_by('created_at', 'DESC');
-        $this->db->limit($limit);
-        $query = $this->db->get('posted_jobs');
-        return $query->result();
-    }
+    public function get_recent_jobs($employer_id, $limit = 5)
+{
+    $this->db->where('employer_id', $employer_id);
+    $this->db->order_by('created_at', 'DESC');
+    $this->db->limit($limit);
+    $query = $this->db->get('posted_jobs');
+    return $query->result();
+}
+
 }

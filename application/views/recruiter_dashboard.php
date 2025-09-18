@@ -157,9 +157,9 @@
         .welcome-text {
             color: var(--gray);
             font-size: 0.9rem;
-            margin-left: 45px;
+            margin-left: 3px;
             /* Align with the title text */
-            margin-top: -5px;
+            margin-top: 5px;
         }
 
         .user-info {
