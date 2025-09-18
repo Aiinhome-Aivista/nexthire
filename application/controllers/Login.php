@@ -11,6 +11,7 @@ class Login extends CI_Controller
         $this->load->library('session');
         $this->load->helper('url');
         $this->load->model('Menu_model');
+        $this->load->library('EmailService');
     }
 
     public function process()
@@ -31,7 +32,7 @@ class Login extends CI_Controller
 
             redirect(base_url('profile'));
         } else {
-            echo "Invalid username or password!";
+            redirect(base_url('register'));
         }
     }
 
@@ -40,6 +41,7 @@ class Login extends CI_Controller
         $this->session->sess_destroy();
         redirect('login');
     }
+
     public function google_callback()
     {
         $json = file_get_contents('php://input');
@@ -75,19 +77,33 @@ class Login extends CI_Controller
             $file_name = '';
         }
 
+        $ip = $this->input->ip_address();
         // If not, create user
         if (!$user) {
+            $first_name = explode(' ', trim($userData['full_name']))[0];
+            $plainPassword = $first_name . '@123';
+            $hashedPassword = password_hash($plainPassword, PASSWORD_BCRYPT);
+
             $user_id = $this->Login_model->insert_google_user([
                 'uid' => $userData['uid'],
                 'email' => $userData['email'],
+                'ip_address' => $ip,
                 'full_name' => $userData['full_name'],
                 'picture' => $file_name,
                 'provider' => $userData['provider'],
+                'password' => $hashedPassword,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
             $this->Login_model->save_profile_photo($user_id, $file_name); // <--- Add this line
             $user = $this->Login_model->get_user_by_id($user_id);
+
+            $emailSent = $this->emailservice->sendWelcomeEmail($user['email'], $user['full_name'], $plainPassword, 'welcome_email');
+            if ($emailSent) {
+                $this->session->set_flashdata('success', 'Registration successful! A welcome email has been sent to your email address.');
+            } else {
+                $this->session->set_flashdata('success', 'Registration successful! However, we could not send the welcome email.');
+            }
         } else {
             // Update profile photo if new one downloaded successfully
             if ($file_name) {
@@ -117,6 +133,7 @@ class Login extends CI_Controller
 
         echo json_encode(['success' => true]);
     }
+
 
     public function forgot()
     {

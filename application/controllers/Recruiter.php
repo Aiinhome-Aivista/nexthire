@@ -8,6 +8,7 @@ class Recruiter extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Recruiter_model');
+        $this->load->library('EmailService');
     }
 
     public function index()
@@ -19,9 +20,11 @@ class Recruiter extends CI_Controller
     public function submit()
     {
         $plainPassword = $this->input->post('password');
+        $ip = $this->input->ip_address();
 
         $data = [
             'full_name' => $this->input->post('fullname'),
+            'ip_address' => $ip,
             'email' => $this->input->post('email'),
             'company' => $this->input->post('company'),
             'designation' => $this->input->post('designation'),
@@ -33,8 +36,6 @@ class Recruiter extends CI_Controller
 
 
         if ($insert_id) {
-            // Load email service library
-            $this->load->library('emailservice');
             $emailSent = $this->emailservice->sendWelcomeEmail($data['email'], $data['full_name'], $plainPassword, 'recruiter_welcome_email');
 
             if ($emailSent) {
@@ -82,7 +83,7 @@ class Recruiter extends CI_Controller
             $file_name = '';
         }
 
-
+        $ip = $this->input->ip_address();
         // Check if user exists
         $user = $this->Recruiter_model->get_user_by_email($userData['email']);
 
@@ -94,6 +95,7 @@ class Recruiter extends CI_Controller
             $user_id = $this->Recruiter_model->insert_google_user([
                 'uid' => $userData['uid'],
                 'email' => $userData['email'],
+                'ip_address' => $ip,
                 'full_name' => $userData['full_name'],
                 'picture' => $file_name,
                 'provider' => $userData['provider'],
@@ -103,8 +105,7 @@ class Recruiter extends CI_Controller
             ]);
             $this->Recruiter_model->save_profile_photo($user_id, $file_name); // <--- Add this line
             $user = $this->Recruiter_model->get_user_by_id($user_id);
-            // Load email service library and send welcome email with generated password
-            $this->load->library('emailservice');
+            
             $emailSent = $this->emailservice->sendWelcomeEmail($user['email'], $user['full_name'], $plainPassword, 'recruiter_welcome_email');
             if ($emailSent) {
                 $this->session->set_flashdata('success', 'Registration successful! A welcome email has been sent to your email address.');

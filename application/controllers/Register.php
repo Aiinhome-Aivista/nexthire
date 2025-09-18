@@ -8,6 +8,7 @@ class Register extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Register_model');
+        $this->load->library('EmailService');
     }
 
     public function index()
@@ -18,9 +19,11 @@ class Register extends CI_Controller
     {
 
         $plainPassword = $this->input->post('password');
+        $ip = $this->input->ip_address();
 
         $data = [
             'full_name' => $this->input->post('fullname'),
+            'ip_address' => $ip,
             'email' => $this->input->post('email'),
             'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
             'mobile_number' => $this->input->post('mobile'),
@@ -30,8 +33,6 @@ class Register extends CI_Controller
         $insert_id = $this->Register_model->insert($data);
 
         if ($insert_id) {
-            // Load email service library
-            $this->load->library('emailservice');
             $emailSent = $this->emailservice->sendWelcomeEmail($data['email'], $data['full_name'], $plainPassword, 'welcome_email');
 
             if ($emailSent) {
@@ -81,7 +82,7 @@ class Register extends CI_Controller
             $file_name = '';
         }
 
-
+        $ip = $this->input->ip_address();
         if (!$user) {
             $first_name = explode(' ', trim($userData['full_name']))[0];
             $plainPassword = $first_name . '@123';
@@ -90,6 +91,7 @@ class Register extends CI_Controller
             $user_id = $this->Register_model->insert_google_user([
                 'uid' => $userData['uid'],
                 'email' => $userData['email'],
+                'ip_address' => $ip,
                 'full_name' => $userData['full_name'],
                 'picture' => $file_name,
                 'provider' => $userData['provider'],
@@ -101,8 +103,7 @@ class Register extends CI_Controller
             ]);
             $this->Register_model->save_profile_photo($user_id, $file_name); // <--- Add this line
             $user = $this->Register_model->get_user_by_id($user_id);
-            // Load email service library and send welcome email with generated password
-            $this->load->library('emailservice');
+           
             $emailSent = $this->emailservice->sendWelcomeEmail($user['email'], $user['full_name'], $plainPassword, 'welcome_email');
             if ($emailSent) {
                 $this->session->set_flashdata('success', 'Registration successful! A welcome email has been sent to your email address.');

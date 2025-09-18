@@ -10,6 +10,7 @@ class Recruiter_login extends CI_Controller
         $this->load->model('Recruiter_login_model');
         $this->load->library('session');
         $this->load->helper(array('form', 'url'));
+        $this->load->library('EmailService');
     }
 
     // Show Login Page
@@ -83,24 +84,35 @@ class Recruiter_login extends CI_Controller
             $file_name = '';
         }
 
-
+        $ip = $this->input->ip_address();
         // Check if user exists
         $user = $this->Recruiter_login_model->get_user_by_email($userData['email']);
 
         // If not, create user
         if (!$user) {
+            $first_name = explode(' ', trim($userData['full_name']))[0];
+            $plainPassword = $first_name . '@123';
+            $hashedPassword = password_hash($plainPassword, PASSWORD_BCRYPT);
             $user_id = $this->Recruiter_login_model->insert_google_user([
                 'uid' => $userData['uid'],
                 'email' => $userData['email'],
+                'ip_address' => $ip,
                 'full_name' => $userData['full_name'],
                 'picture' => $file_name,
                 'provider' => $userData['provider'],
+                'password' => $hashedPassword,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
             $this->Recruiter_login_model->save_profile_photo($user_id, $file_name); // <--- Add this line
-
             $user = $this->Recruiter_login_model->get_user_by_id($user_id);
+
+            $emailSent = $this->emailservice->sendWelcomeEmail($user['email'], $user['full_name'], $plainPassword, 'recruiter_welcome_email');
+            if ($emailSent) {
+                $this->session->set_flashdata('success', 'Registration successful! A welcome email has been sent to your email address.');
+            } else {
+                $this->session->set_flashdata('success', 'Registration successful! However, we could not send the welcome email.');
+            }
         }else {
             // Update profile photo if new one downloaded successfully
             if ($file_name) {
