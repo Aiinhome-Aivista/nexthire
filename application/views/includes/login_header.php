@@ -9,8 +9,8 @@
     </div>
 
     <!-- Menu Section -->
-    <nav class="main-nav">
-      <a href="#" class="menu-link" data-modal-target="jobsModal">Jobs
+    <!-- <nav class="main-nav"> -->
+    <!-- <a href="#" class="menu-link" data-modal-target="jobsModal">Jobs
         <span class="menu-underline"></span>
       </a>
       <a href="#" class="menu-link" data-modal-target="companiesModal">Companies
@@ -18,28 +18,40 @@
       </a>
       <a href="#" class="menu-link" data-modal-target="servicesModal">Services
         <span class="menu-underline"></span>
-      </a>
-      <?php if ($this->uri->segment(1) == 'profile'): ?>
-        <a href="<?= base_url('candidate_job_search'); ?>" class="menu-link">Job Search</a>
-      <?php endif; ?>
+      </a> -->
+    <!-- <?php //if ($this->uri->segment(1) == 'profile'): ?>
+        <a href="<?php //base_url('candidate_job_search'); ?>" class="menu-link">Job Search</a>
+      <?php //endif; ?>
 
-    </nav>
+    </nav> -->
 
     <!-- Profile & Logout Section -->
-    <div class="user-section">
-      <div class="profile-icon">
-        <i class="fas fa-user"></i>
-      </div>
-      <button class="logout-btn" id="logoutBtn">
-        <i class="fas fa-sign-out-alt"></i>
-        Logout
+    <div class="user-menu">
+      <button id="menuToggle" class="menu-icon">
+        <i class="fas fa-user-circle"></i>
       </button>
-    </div>
 
+      <!-- Popup Menu -->
+      <div id="popupMenu" class="popup-menu hidden">
+        <a href="<?= base_url('profile'); ?>" class="menu-item">
+          <i class="fas fa-user"></i>
+          <span>My Profile</span>
+        </a>
+        <a href="<?= base_url('candidate_job_search'); ?>" class="menu-item">
+          <i class="fas fa-briefcase"></i>
+          <span>Job Search</span>
+        </a>
+        <div class="menu-item" id="logoutBtn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </div>
+
+      </div>
+    </div>
     <!-- Mobile Menu Toggle -->
-    <button class="menu-toggle" id="menuToggle">
+    <!-- <button class="menu-toggle" id="menuToggle">
       <i class="fas fa-bars"></i>
-    </button>
+    </button> -->
   </div>
 
   <!-- Jobs Modal -->
@@ -231,13 +243,17 @@
     }
 
     /* Mobile Menu Toggle */
-    .menu-toggle {
+    /* .menu-toggle {
       display: none;
       background: none;
       border: none;
       font-size: 24px;
       cursor: pointer;
     }
+
+    .menu-toggle {
+        display: block;
+    } */
 
     /* Responsive Styles */
     @media (max-width: 1024px) {
@@ -273,10 +289,58 @@
       .main-nav.active {
         display: flex;
       }
+    }
 
-      .menu-toggle {
-        display: block;
-      }
+    /* profile icon style */
+
+    .user-menu {
+      position: relative;
+      display: inline-block;
+    }
+
+    .menu-icon {
+      background: none;
+      border: none;
+      font-size: 35px;
+      cursor: pointer;
+      color: #f5e602;
+    }
+
+    .popup-menu {
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      width: 180px;
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+    }
+
+    .popup-menu.hidden {
+      display: none;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 15px;
+      text-decoration: none;
+      color: #333;
+      transition: background 0.2s;
+    }
+
+    .menu-item i {
+      margin-right: 10px;
+      font-size: 18px;
+      width: 20px;
+      text-align: center;
+    }
+
+    .menu-item:hover {
+      background: #f5f5f5;
     }
   </style>
 </header>
@@ -374,5 +438,21 @@
       e.stopPropagation();
       mainNav.classList.toggle('active');
     });
+  });
+</script>
+
+<script>
+  const menuToggle = document.getElementById("menuToggle");
+  const popupMenu = document.getElementById("popupMenu");
+
+  menuToggle.addEventListener("click", () => {
+    popupMenu.classList.toggle("hidden");
+  });
+
+  // Close menu if clicking outside
+  document.addEventListener("click", (e) => {
+    if (!menuToggle.contains(e.target) && !popupMenu.contains(e.target)) {
+      popupMenu.classList.add("hidden");
+    }
   });
 </script>

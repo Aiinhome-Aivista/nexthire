@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Cookie Banner</title>
     <style>
-        .cookie-banner {
+        /* .cookie-banner {
             position: fixed;
             bottom: 0;
             width: 100%;
@@ -15,16 +15,14 @@
             font-family: 'Nunito', Arial, sans-serif !important;
             z-index: 9999;
             padding: 10px 15px;
-
-            /* ✅ responsive additions */
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
             gap: 10px;
-        }
+        } */
 
-        .cookie-banner a {
+        /* .cookie-banner a {
             color: #FFF44F;
             text-decoration: none;
             font-weight: 300;
@@ -33,9 +31,9 @@
 
         .cookie-banner a:hover {
             text-decoration: underline;
-        }
+        } */
 
-        .cookie-btn {
+        /* .cookie-btn {
             background: #FFF44F;
             color: #29374d;
             border: none;
@@ -47,21 +45,19 @@
             margin-left: 30px;
             cursor: pointer;
             transition: background 0.2s;
-        }
+        } */
 
-        .cookie-btn:hover {
+        /* .cookie-btn:hover {
             background: #d3c830ff;
-        }
+        } */
 
-        .cookie-banner span {
+        /* .cookie-banner span {
             font-size: 1em;
             font-weight: 500;
-
-            /* ✅ responsive additions */
             flex: 1 1 auto;
             min-width: 200px;
             font-size: 0.9em;
-        }
+        } */
 
         .custom-footer {
             font-family: 'Montserrat', Arial, sans-serif !important;
@@ -230,12 +226,12 @@
             height: auto;
         }
 
-        .footer-infoedge-text {
+        .footer-text {
             display: flex;
             flex-direction: column;
             justify-content: center;
             color: #859ac3;
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             line-height: 1;
             gap: 0;
             min-height: 100%;
@@ -358,53 +354,55 @@
 
         @media (max-width: 768px) {
             .footer-top {
+                display: flex;
                 flex-direction: column;
-                align-items: flex-start;
-                padding: 0 20px;
+                align-items: center;
+                text-align: center;
             }
+
 
             .footer-links {
-                gap: 20px;
-                margin-top: 20px;
-            }
-
-            .cookie-banner {
+                display: flex;
                 flex-direction: column;
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .footer-business-scroller {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 20px;
-                overflow-x: hidden;
-                max-width: 100%;
-            }
-
-            .business-logos-scroller {
-                animation: none;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 20px;
-            }
-
-            .business-logos-scroller li {
-                flex: 0 1 45%;
+                align-items: center;
+                gap: 12px;
                 text-align: center;
             }
 
-            .business-logos-scroller li a img {
-                width: 120px;
-                height: auto;
+            .footer-links ul {
+                margin: 0;
+                padding: 0;
+                width: 220px;
+                max-width: 90%;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-links ul li {
+                width: 100%;
+                text-align: left;
+            }
+
+            .footer-links ul li a {
+                display: block;
+                width: 100%;
+                padding: 4px 0;
+            }
+
+            .footer-text {
+                text-align: center;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin-right: 3rem;
             }
         }
     </style>
     <script>
-        function hideCookieBanner() {
-            document.getElementById('cookie-banner').style.display = 'none';
-        }
+        // function hideCookieBanner() {
+        //     document.getElementById('cookie-banner').style.display = 'none';
+        // }
     </script>
 </head>
 
@@ -441,139 +439,41 @@
                     <li><a href="<?= base_url('about-us'); ?>">About us</a></li>
                     <li><a href="<?= base_url('careers'); ?>">Careers</a></li>
                     <li><a href="<?= base_url('employer-home'); ?>">Employer home</a></li>
-                    <li><a href="<?= base_url('sitemap'); ?>">Sitemap</a></li>
-                    <li><a href="<?= base_url('credits'); ?>">Credits</a></li>
                 </ul>
                 <ul>
-                    <li><a href="<?= base_url('help-center'); ?>">Help center</a></li>
-                    <li><a href="<?= base_url('summons-notices'); ?>">Summons/Notices</a></li>
-                    <li><a href="<?= base_url('grievances'); ?>">Grievances</a></li>
+                    <li><a href="<?= base_url('FAQ'); ?>">FAQ</a></li>
                     <li><a href="<?= base_url('report-issue'); ?>">Report issue</a></li>
+                    <li><a href="<?= base_url('trust-safety'); ?>">Trust & safety</a></li>
                 </ul>
                 <ul>
                     <li><a href="<?= base_url('privacy-policy'); ?>">Privacy policy</a></li>
+                    <li><a href="<?= base_url('cookie-policy'); ?>">Cookie Policy</a></li>
                     <li><a href="<?= base_url('terms-and-conditions'); ?>">Terms & conditions</a></li>
-                    <li><a href="<?= base_url('fraud-alert'); ?>">Fraud alert</a></li>
-                    <li><a href="<?= base_url('trust-safety'); ?>">Trust & safety</a></li>
+
                 </ul>
             </div>
-
-            <!-- <div class="footer-app-card">
-                <div class="footer-app-title">Apply on the go</div>
-                <div class="footer-app-desc">Get real-time job updates on our App</div>
-                <div class="footer-app-buttons">
-                    <a href="https://play.google.com/store/apps/details?id=naukriApp.appModules.login&amp;hl=en&amp;utm_source=naukri&amp;utm_medium=footer"
-                        target="_blank" rel="noopener">
-                        <img src="https://static.naukimg.com/s/0/0/i/new-homepage/android-app_v1.png"
-                            alt="Google Play" />
-                    </a>
-                    <a href="https://itunes.apple.com/in/app/naukri.com-job-search/id482877505?mt=8" target="_blank"
-                        rel="noopener">
-                        <img src="https://static.naukimg.com/s/0/0/i/new-homepage/ios-app_v1.png" alt="App Store" />
-                    </a>
-                </div>
-            </div> -->
         </div>
 
         <div class="footer-divider"></div>
 
         <div class="footer-bottom">
-            <!-- <div class="footer-infoedge">
-                <img src="https://static.naukimg.com/s/0/0/i/new-homepage/infoedge-logo.svg" alt="Info Edge Logo"
-                    class="footer-infoedge-logo" />
-            </div> -->
-            <div class="footer-infoedge-text">
-                <div>All trademarks are the property of their respective owners</div>
-                <div>All rights reserved © 2025 Info Edge (India) Ltd.</div>
+            <div class="footer-text">
+                <div>All rights reserved © 2025 Aivista Technologies Pvt. Ltd</div>
             </div>
-            <div class="footer-business">
-                <div class="footer-business-text">
-                    Our businesses
-                </div>
-                <div class="footer-business-scroller">
-                    <ul class="business-logos-scroller">
-                        <li><a href="https://www.99acres.com/" target="_blank"><img
-                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/nnacres.png"
-                                    alt="99acres" /></a></li>
-                        <li><a href="https://www.jeevansathi.com/" target="_blank"><img
-                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/jeevansathi.png"
-                                    alt="Jeevansathi.com" /></a></li>
-                        <li><a href="https://www.naukrigulf.com/" target="_blank"><img
-                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/ng_v1.png"
-                                    alt="Naukri Gulf" /></a></li>
-                        <li><a href="https://www.shiksha.com/" target="_blank"><img
-                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/shiksha.png"
-                                    alt="Shiksha.com" /></a></li>
-                        <li><a href="https://www.iimjobs.com/" target="_blank"><img
-                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/iimjobs.png"
-                                    alt="IIMJobs.com" /></a></li>
-                        <li><a href="https://www.hirist.tech/" target="_blank"><img
-                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/hirist_v1.png"
-                                    alt="hirist.tech" /></a></li>
-                        <li><a href="https://www.jobhai.com/" target="_blank"><img
-                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/jobhai.png"
-                                    alt="JobHai.com" /></a></li>
-                        <li><a href="https://doselect.com/" target="_blank"><img
-                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/doselect.png"
-                                    alt="Doselect.com" /></a></li>
-                        <li><a href="https://www.naukri.com/minis" target="_blank"><img
-                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/minis.png"
-                                    alt="Minis" /></a></li>
-                        <li><a href="https://www.codingninjas.com/?utm_source=naukri&amp;utm_medium=desktop-footer"
-                                target="_blank"><img
-                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/coding_ninjas.png"
-                                    alt="Coding Ninjas" /></a></li>
-
-                        <!-- Repeat logos for smooth infinite scroll -->
-                        <li><a href="https://www.99acres.com/" target="_blank"><img
-                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/nnacres.png"
-                                    alt="99acres" /></a></li>
-                        <li><a href="https://www.jeevansathi.com/" target="_blank"><img
-                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/jeevansathi.png"
-                                    alt="Jeevansathi.com" /></a></li>
-                        <li><a href="https://www.naukrigulf.com/" target="_blank"><img
-                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/ng_v1.png"
-                                    alt="Naukri Gulf" /></a></li>
-                        <li><a href="https://www.shiksha.com/" target="_blank"><img
-                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/shiksha.png"
-                                    alt="Shiksha.com" /></a></li>
-                        <li><a href="https://www.iimjobs.com/" target="_blank"><img
-                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/iimjobs.png"
-                                    alt="IIMJobs.com" /></a></li>
-                        <li><a href="https://www.hirist.tech/" target="_blank"><img
-                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/hirist_v1.png"
-                                    alt="hirist.tech" /></a></li>
-                        <li><a href="https://www.jobhai.com/" target="_blank"><img
-                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/jobhai.png"
-                                    alt="JobHai.com" /></a></li>
-                        <li><a href="https://doselect.com/" target="_blank"><img
-                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/doselect.png"
-                                    alt="Doselect.com" /></a></li>
-                        <li><a href="https://www.naukri.com/minis" target="_blank"><img
-                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/minis.png"
-                                    alt="Minis" /></a></li>
-                        <li><a href="https://www.codingninjas.com/?utm_source=naukri&amp;utm_medium=desktop-footer"
-                                target="_blank"><img
-                                    src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/coding_ninjas.png"
-                                    alt="Coding Ninjas" /></a></li>
-                    </ul>
-                </div>
-            </div>
-
         </div>
     </footer>
 
 
 
 
-    <div class="cookie-banner" id="cookie-banner">
+    <!-- <div class="cookie-banner" id="cookie-banner">
         <span>
             We use cookies to improve your experience. By continuing to browse the site, you agree to our
-            <a href="<?= base_url('privacy-policy'); ?>">Privacy Policy</a> &amp; <a
-                href="<?= base_url('cookie-policy') ?>">Cookie Policy</a>
+            <a href="<?php //base_url('privacy-policy'); ?>">Privacy Policy</a> &amp; <a
+                href="<?php //base_url('cookie-policy') ?>">Cookie Policy</a>
         </span>
         <button class="cookie-btn" onclick="hideCookieBanner()">Got it</button>
-    </div>
+    </div> -->
 </body>
 
 </html>

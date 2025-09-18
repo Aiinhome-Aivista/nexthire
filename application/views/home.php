@@ -505,12 +505,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Job Fair Banner -->
-            <div class="container mt-4">
-                <img src="assets/images/job-fair-banner.jpg" alt="Job Fair Banner"
-                    style="display:block;max-width:100%;height:auto;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1);margin:0 auto;">
-            </div>
         </div>
     </section>
 

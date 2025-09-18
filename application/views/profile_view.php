@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Profile</title>
+  <title>SahajJobs | Profile</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
@@ -566,55 +566,6 @@
       color: #888;
     }
 
-    /* Footer */
-    .footer {
-      margin-top: 50px;
-      text-align: center;
-      padding: 24px 20px 8px;
-      background: transparent;
-      border-top: 1px solid #e0e0e0;
-      width: 100%;
-    }
-
-    .footer-links {
-      display: inline-flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      font-size: 13px;
-      margin-bottom: 10px;
-    }
-
-    @media (max-width: 768px) {
-      .footer-links {
-        gap: 15px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .footer-links {
-        flex-direction: column;
-        gap: 10px;
-      }
-    }
-
-    .footer-links a {
-      color: #555;
-      text-decoration: none;
-      transition: color 0.2s;
-      font-weight: 500;
-    }
-
-    .footer-links a:hover {
-      color: #1d4ed8;
-    }
-
-    .footer-copyright {
-      font-size: 12px;
-      color: #7a86a1;
-      margin-top: 5px;
-    }
 
     /* Modal Styles */
     .menu-modal {
@@ -787,19 +738,6 @@
       </div>
     </div>
   </div>
-
-  <footer class="footer">
-    <div class="footer-links">
-      <a href="#">About Us</a>
-      <a href="#">Contact Us</a>
-      <a href="#">FAQs</a>
-      <a href="#">Terms and Conditions</a>
-      <a href="#">Privacy Policy</a>
-    </div>
-    <div class="footer-copyright">
-      All rights reserved © <?= date('Y'); ?> Info Edge India Ltd.
-    </div>
-  </footer>
 
   <script>
     // Function to toggle options dropdown

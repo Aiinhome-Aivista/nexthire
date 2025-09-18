@@ -33,6 +33,7 @@ class Profile extends CI_Controller
         $data = array_merge($data, $qualifications);
         $this->load->view("includes/login_header", $data);
         $this->load->view('profile_view', $data);
+        $this->load->view('includes/footer', $data);
     }
 
     // ===============================

@@ -39,7 +39,7 @@
 
     <!-- Menu Section -->
     <nav id="mainNav" style="display:flex; align-items:center; gap:24px;">
-      <a href="#" class="menu-link" data-modal-target="jobsModal"
+      <!-- <a href="#" class="menu-link" data-modal-target="jobsModal"
         style="color:#27365c; font-size:17px; text-decoration:none; display:inline-block; padding-bottom:4px;">Jobs
         <span class="menu-underline"></span>
       </a>
@@ -50,7 +50,7 @@
       <a href="#" class="menu-link" data-modal-target="servicesModal"
         style="color:#27365c; font-size:17px; text-decoration:none; display:inline-block; padding-bottom:4px;">Services
         <span class="menu-underline"></span>
-      </a>
+      </a> -->
 
       <!-- Action Buttons -->
       <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
@@ -62,7 +62,6 @@
           style="background:#FFF44F; color:#29374d; border-radius:24px; padding:8px 24px; font-size:16px; text-decoration:none; transition: all 0.3s ease;">
           Register
         </a>
-        <div style="width:1px; height:24px; background:#ccc; margin: 0 12px;"></div>
 
         <div class="employer-dropdown" id="employerDropdown">
           <a href="#" class="employer-link" id="employerToggle">
