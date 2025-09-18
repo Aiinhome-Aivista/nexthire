@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Jobnest Recruiter Platform</title>
+    <title>Welcome to SahajJobs Recruiter Platform</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -125,7 +125,7 @@
         <div class="content">
             <p class="greeting">Dear <?php echo $name; ?>,</p>
 
-            <p class="message">Welcome to Jobnest Recruiter Platform! Your recruiter account has been successfully created and is ready to help you find the perfect candidates.</p>
+            <p class="message">Welcome to SahajJobs Recruiter Platform! Your recruiter account has been successfully created and is ready to help you find the perfect candidates.</p>
 
             <div class="credentials">
                 <div class="credentials-title">Your Login Credentials</div>
@@ -145,7 +145,7 @@
             </div>
 
             <div class="features">
-                <p class="features-title">With your Jobnest Recruiter account, you can:</p>
+                <p class="features-title">With your SahajJobs Recruiter account, you can:</p>
                 <ul class="feature-list">
                     <li class="feature-item">✔ Access our advanced candidate search with intelligent matching</li>
                     <li class="feature-item">✔ Post job listings that reach thousands of qualified candidates</li>
@@ -158,13 +158,13 @@
 
             <div class="closing">
                 <p>Best regards,</p>
-                <p class="signature">The Jobnest Recruiter Team</p>
+                <p class="signature">The SahajJobs Recruiter Team</p>
             </div>
         </div>
 
         <div class="footer">
             <p class="footer-note">This is an automated message. Please do not reply to this email.</p>
-            <p class="copyright">&copy; <?php echo date('Y'); ?> Jobnest Recruiter Platform. All rights reserved.</p>
+            <p class="copyright">&copy; <?php echo date('Y'); ?> SahajJobs Recruiter Platform. All rights reserved.</p>
         </div>
     </div>
 </body>

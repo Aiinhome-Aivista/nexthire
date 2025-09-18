@@ -24,7 +24,7 @@ class EmailService
         $this->mail->Port = 465; // Adjust port if needed
 
         // Sender info
-        $this->mail->setFrom('no-reply@jobnest.com', 'Jobnest');
+        $this->mail->setFrom('no-reply@SahajJobs.com', 'SahajJobs');
         $this->mail->isHTML(true); // Set email format to HTML
     }
 
@@ -32,7 +32,7 @@ class EmailService
 {
     try {
         $this->mail->addAddress($toEmail, $toName);
-        $this->mail->Subject = 'Welcome to Jobnest - Registration Successful';
+        $this->mail->Subject = 'Welcome to SahajJobs - Registration Successful';
 
         $ci =& get_instance();
         $emailContent = $ci->load->view("emails/{$template}", [

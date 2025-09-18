@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Jobnest</title>
+    <title>Welcome to SahajJobs</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
@@ -181,7 +181,7 @@
         <div class="content">
             <p class="greeting">Dear <?php echo $name; ?>,</p>
             
-            <p class="highlight">🎉 Congratulations! Your career journey takes off today with Jobnest.</p>
+            <p class="highlight">🎉 Congratulations! Your career journey takes off today with SahajJobs.</p>
             
             <p class="message">Your registration is complete, and your account is now active. This is the first step toward shaping the career you’ve always envisioned.</p>
             
@@ -214,13 +214,13 @@
             
             <div class="closing">
                 <p>Wishing you success and growth,</p>
-                <p class="signature">The Jobnest Team</p>
+                <p class="signature">The SahajJobs Team</p>
             </div>
         </div>
         
         <div class="footer">
             <p>This is an automated message. Please do not reply to this email.</p>
-            <p class="copyright">&copy; <?php echo date('Y'); ?> Jobnest. All rights reserved.</p>
+            <p class="copyright">&copy; <?php echo date('Y'); ?> SahajJobs. All rights reserved.</p>
         </div>
     </div>
 </body>
