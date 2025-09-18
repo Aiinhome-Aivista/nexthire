@@ -330,7 +330,8 @@
                 <input type="text" id="job-search-input" class="form-control"
                     placeholder="Jobs / Designation / Location"
                     value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q']) : '' ?>">
-                <button id="search-button" class="btn btn-primary" style="background-color: #FFF44F; color: black; border-radius: 50px;">
+                <button id="search-button" class="btn btn-primary"
+                    style="background-color: #FFF44F; color: black; border-radius: 50px;">
                     Search
                 </button>
             </div>
@@ -438,9 +439,6 @@
         <!-- Jobs layout -->
         <div class="jobs-layout">
             <div class="jobs-list">
-                <?php
-                $jobs = $this->db->get('posted_jobs')->result_array();
-                ?>
                 <?php foreach ($jobs as $index => $job): ?>
                     <div class="job-card <?= $index === 0 ? 'active' : '' ?>" data-job-id="<?= $job['id'] ?>">
                         <div class="job-title"><?= htmlspecialchars($job['title']) ?></div>
@@ -605,15 +603,28 @@
             const benefits = job.benefits ? job.benefits.split('\n') : [];
 
             const detailPanel = document.getElementById('job-detail-panel');
+            let applyButtonHtml;
+            if (job.has_applied == 1) {
+                console.log('job2', job.has_applied);
+                applyButtonHtml = `<button class="btn btn-success applied-btn" disabled><i class="fas fa-check"></i> Applied</button>`;
+            } else {
+                console.log('job3 error', job.has_applied);
+                applyButtonHtml = `<button class="apply-btn" style="background-color: #FFF44F; color: black;" onclick="window.location.href='<?= base_url('candidate_jobsearch/apply?job_id=') ?>${job.id}'">Apply Now</button>`;
+            }
+
+            let applyButtonFooterHtml;
+            if (job.has_applied == 1) {
+                applyButtonFooterHtml = `<button class="btn btn-success applied-btn" disabled style="width: 100%;"><i class="fas fa-check"></i> Applied</button>`;
+            } else {
+                applyButtonFooterHtml = `<button class="apply-btn" style="background-color: #FFF44F; color: black; width: 100%;" onclick="window.location.href='<?= base_url('candidate_jobsearch/apply?job_id=') ?>${job.id}'">Apply for this job</button>`;
+            }
             detailPanel.innerHTML = `
     <div class="detail-header">
         <div>
             <h2 class="detail-title">${job.title}</h2>
             <div class="detail-company">${job.company}</div>
         </div>
-        <button class="apply-btn" style="background-color: #FFF44F; color: black;" onclick="window.location.href='<?= base_url('candidate_jobsearch/apply?job_id=') ?>${job.id}'">
-            Apply Now
-        </button>
+        ${applyButtonHtml}
     </div>
 
     <div class="detail-info">
@@ -644,7 +655,7 @@
         </ul>
     </div>
 
-    <button class="apply-btn" style="background-color: #FFF44F; color: black; width: 100%;" onclick="window.location.href='<?= base_url('candidate_jobsearch/apply?job_id=') ?>${job.id}'">Apply for this job</button>
+   ${applyButtonFooterHtml}
   `;
         }
 

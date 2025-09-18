@@ -282,7 +282,7 @@
                         <i class="fas fa-check"></i> Applied
                     </button>
                 <?php else: ?>
-                    <button type="submit" class="btn btn-primary btn-lg">
+                    <button type="submit" class="btn btn-lg" style="background-color: #FFF44F; color: black;" >
                         Apply Now
                     </button>
                 <?php endif; ?>

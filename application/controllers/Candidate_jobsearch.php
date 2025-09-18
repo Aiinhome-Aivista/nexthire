@@ -35,12 +35,24 @@ class Candidate_jobsearch extends CI_Controller
         $jobs = $this->Candidate_jobsearch_model->get_jobs($filters);
 
         // Check application status for each job
-        foreach ($jobs as $job) {
+        // foreach ($jobs as $job) {
+        //     if ($user_id) {
+        //         $job['has_applied'] = $this->Candidate_jobsearch_model->has_applied($user_id, $job['id']);
+        //         // echo '<pre>'; print_r($job);die();
+        //     } else {
+        //         $job['has_applied'] = false;
+        //     }
+        // }
+
+        $jobs = $this->Candidate_jobsearch_model->get_jobs($filters);
+        foreach ($jobs as &$job) {
             if ($user_id) {
-                $job['has_applied'] = $this->Candidate_jobsearch_model->has_applied($user_id, $job['id']);
-                // echo '<pre>'; print_r($job);die();
+                $job['has_applied'] = $this->Candidate_jobsearch_model->has_applied($user_id, $job['id']) ? 1 : 0;
+                // echo '<pre>';
+                // print_r($job);
+                // // die();
             } else {
-                $job['has_applied'] = false;
+                $job['has_applied'] = 0;
             }
         }
         $data['jobs'] = $jobs;
@@ -168,9 +180,10 @@ class Candidate_jobsearch extends CI_Controller
 
         if ($user_id && $jobpost_id) {
             $this->Candidate_jobsearch_model->apply_job($user_id, $jobpost_id);
+            redirect(base_url('candidate_jobsearch'));
         }
 
-        redirect(base_url('candidate_jobsearch/apply?job_id=' . $jobpost_id));
+        // redirect(base_url('candidate_jobsearch/apply?job_id=' . $jobpost_id));
     }
 
     public function logout()
