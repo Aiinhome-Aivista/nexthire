@@ -14,7 +14,10 @@ class Recruiter_job_post extends CI_Controller
 
     public function index()
     {
-        $this->load->view('recruiter_job_post');
+        $recruiter_id = $this->session->userdata('recruiter_id');
+        
+        $company = $this->Recruiter_post_model->get_company_name($recruiter_id);
+        $this->load->view('recruiter_job_post', $company);
     }
 
 
@@ -28,7 +31,6 @@ class Recruiter_job_post extends CI_Controller
             'industry' => $this->input->post('industry'),
             'company' => $this->input->post('company'),
             'location' => $this->input->post('location'),
-            'employees' => $this->input->post('employees'),
 
             // Experience
             'experience' => $this->input->post('experience_min') . '-' . $this->input->post('experience_max') . ' years',
@@ -38,13 +40,12 @@ class Recruiter_job_post extends CI_Controller
             'work_mode' => $this->input->post('work_mode'),
 
             // Salary
-            'salary' => '₹' . number_format($this->input->post('salary_min')) . ' - ₹' . number_format($this->input->post('salary_max')). 'a year',
-           
+            'salary' => '₹' . number_format($this->input->post('salary_min')) . ' - ₹' . number_format($this->input->post('salary_max')) . 'a year',
+
             'description' => $this->input->post('description'),
             'requirements' => $this->input->post('requirements'),
             'benefits' => $this->input->post('benefits'),
-            'last_date' => $this->input->post('last_date'),
-            'email' => $this->input->post('email')
+            'last_date' => $this->input->post('last_date')
         );
 
         if ($this->Recruiter_post_model->insert_job($data)) {

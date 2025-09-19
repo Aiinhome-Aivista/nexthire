@@ -405,8 +405,10 @@
                         <span>Post Job</span></a></li>
                 <li><a href="<?= base_url('employer_manage_jobs'); ?>"><i class="fas fa-briefcase"></i> <span>Manage
                             Jobs</span></a></li>
-                <li><a href="#"><i class="fas fa-user-graduate"></i> <span>Candidates</span></a></li>
-                <li><a href="#"><i class="fas fa-building"></i> <span>Employer Profile</span></a></li>
+                <li><a href="<?= base_url('employer_manage_candidates'); ?>"><i class="fas fa-user-graduate"></i>
+                        <span>Candidates</span></a></li>
+                <li><a href="<?= base_url('employer_profile'); ?>"><i class="fas fa-building"></i> <span>Employer
+                            Profile</span></a></li>
                 <li>
                     <a href="#" id="logoutBtn">
                         <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
@@ -433,9 +435,27 @@
                     <div class="form-group">
                         <label for="industry">Industry</label>
                         <select id="industry" name="industry">
-                            <option value="IT Services">IT services</option>
+                            <option value="IT Services">IT Services</option>
                             <option value="BPO">BPO</option>
                             <option value="Finance">Finance</option>
+                            <option value="Pharmaceuticals & Healthcare">Pharmaceuticals & Healthcare</option>
+                            <option value="Renewable Energy">Renewable Energy</option>
+                            <option value="Manufacturing & Industrial">Manufacturing & Industrial</option>
+                            <option value="Electric Vehicles & Auto Components">Electric Vehicles & Auto Components
+                            </option>
+                            <option value="Consumer Goods & FMCG">Consumer Goods & FMCG</option>
+                            <option value="Telecommunications">Telecommunications</option>
+                            <option value="Infrastructure & Construction">Infrastructure & Construction</option>
+                            <option value="E-commerce & Retail">E-commerce & Retail</option>
+                            <option value="Education & EdTech">Education & EdTech</option>
+                            <option value="Banking & Financial Services">Banking & Financial Services</option>
+                            <option value="Logistics & Supply Chain">Logistics & Supply Chain</option>
+                            <option value="Media & Entertainment">Media & Entertainment</option>
+                            <option value="Agriculture & Agro-tech">Agriculture & Agro-tech</option>
+                            <option value="Technology & Software Development">Technology & Software Development</option>
+                            <option value="Real Estate">Real Estate</option>
+                            <option value="Automobiles & Auto Services">Automobiles & Auto Services</option>
+                            <option value="Hospitality & Travel">Hospitality & Travel</option>
                         </select>
                     </div>
                 </div>
@@ -443,7 +463,10 @@
                 <div class="row">
                     <div class="form-group">
                         <label for="company">Company Name<span style="color:#e42e2e;">*</span></label>
-                        <input type="text" id="company" name="company" placeholder="Company name">
+                        <input type="text" id="company" name="company_display"
+                            value="<?php echo htmlspecialchars($company); ?>" disabled>
+                        <input type="hidden" name="company" value="<?php echo htmlspecialchars($company); ?>">
+
                         <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
                     </div>
                     <div class="form-group">
@@ -453,47 +476,7 @@
                     </div>
                 </div>
 
-                <!-- <div class="row">
-                    <div class="form-group">
-                        <label for="employees">Employees<span style="color:#e42e2e;">*</span></label>
-                        <input type="text" id="employees" name="employees" placeholder="201-500">
-                        <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="experience_min">Experience (Years)<span style="color:#e42e2e;">*</span></label>
-                        <div style="display: flex; gap: 10px;">
-                            <input type="number" id="experience_min" name="experience_min" placeholder="Min (e.g., 2)">
-                            <input type="number" id="experience_max" name="experience_max" placeholder="Max (e.g., 5)">
-                        </div>
-                        <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
-                    </div>
-                </div>
-
                 <div class="row">
-                    <div class="form-group">
-                        <label for="job_type">Employment Type</label>
-                        <select id="job_type" name="job_type">
-                            <option value="Full-time">Full-time</option>
-                            <option value="Part-time">Part-time</option>
-                            <option value="Contract">Contract</option>
-                            <option value="Internship">Internship</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="salary_min">Salary Range (Annual in ₹)<span style="color:#e42e2e;">*</span></label>
-                        <div style="display: flex; gap: 10px;">
-                            <input type="number" id="salary_min" name="salary_min" placeholder="Min (e.g., 200000)">
-                            <input type="number" id="salary_max" name="salary_max" placeholder="Max (e.g., 600000)">
-                        </div>
-                        <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
-                    </div>
-                </div> -->
-                <div class="row">
-                    <div class="form-group">
-                        <label for="employees">Employees<span style="color:#e42e2e;">*</span></label>
-                        <input type="text" id="employees" name="employees" placeholder="201-500">
-                        <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
-                    </div>
                     <div class="form-group">
                         <label for="experience_min">Experience (Years)<span style="color:#e42e2e;">*</span></label>
                         <div style="display: flex; gap: 10px;">
@@ -509,9 +492,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
                     <div class="form-group">
                         <label for="job_type">Employment Type</label>
                         <select id="job_type" name="job_type">
@@ -521,6 +501,9 @@
                             <option value="Internship">Internship</option>
                         </select>
                     </div>
+                </div>
+
+                <div class="row">
                     <div class="form-group">
                         <label for="salary_min">Salary Range (Annual in ₹)<span style="color:#e42e2e;">*</span></label>
                         <div style="display: flex; gap: 10px;">
@@ -534,9 +517,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
                     <div class="form-group">
                         <label for="work_mode">Work Mode</label>
                         <select id="work_mode" name="work_mode">
@@ -545,7 +525,9 @@
                             <option value="Hybrid">Hybrid</option>
                         </select>
                     </div>
+                </div>
 
+                <div class="row">
                     <div class="form-group">
                         <label for="last_date">Last Date to apply<span style="color:#e42e2e;">*</span></label>
                         <input type="date" id="last_date" name="last_date">
@@ -560,21 +542,16 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="requirements">Requirements<span style="color:#e42e2e;">*</span></label>
-                    <textarea id="requirements" name="requirements" placeholder="Enter Job Requirements"></textarea>
+                    <label for="requirements">Technical & Educational Requirements<span
+                            style="color:#e42e2e;">*</span></label>
+                    <textarea id="requirements" name="requirements"
+                        placeholder="Enter Technical & Educational Requirements ..... "></textarea>
                     <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
                 </div>
 
                 <div class="form-group">
-                    <label for="benefits">Benefits<span style="color:#e42e2e;">*</span></label>
-                    <textarea id="benefits" name="benefits" placeholder="Enter benefits provided"></textarea>
-                    <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="email">Contact Email<span style="color:#e42e2e;">*</span></label>
-                    <input type="email" id="email" name="email" placeholder="hr@company.com">
+                    <label for="benefits">Additional Benefits<span style="color:#e42e2e;">*</span></label>
+                    <textarea id="benefits" name="benefits" placeholder="Enter Additional benefits ...."></textarea>
                     <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
                 </div>
 

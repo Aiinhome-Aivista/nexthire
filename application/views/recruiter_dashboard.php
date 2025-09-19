@@ -631,31 +631,21 @@
                     </button>
                     <h1>Employer Dashboard</h1>
                 </div>
-                <p class="welcome-text">Welcome back, Employer!</p>
+               <p class="welcome-text">Welcome back, <?php echo htmlspecialchars($welcome_name); ?>!</p>
             </div>
             <div class="user-info">
                 <div class="notifications">
                     <i class="fas fa-bell"></i>
                 </div>
-                <div class="user-name">Employer</div>
+                <div class="user-name"><?php echo htmlspecialchars($company_name); ?></div>
             </div>
         </div>
 
         <!-- Dashboard Stats -->
         <div class="dashboard-stats">
-            <div class="stat-card candidates">
-                <div class="stat-info">
-                    <h3><?= $candidates_count ?></h3>
-                    <p>Candidates</p>
-                </div>
-                <div class="stat-icon">
-                    <i class="fas fa-user-graduate"></i>
-                </div>
-            </div>
-
             <div class="stat-card jobs">
                 <div class="stat-info">
-                    <h3><?= $job_posts_count ?></h3>
+                   <h3><?php echo $job_posts_count; ?></h3>
                     <p>Job Posts</p>
                 </div>
                 <div class="stat-icon">
@@ -665,7 +655,7 @@
 
             <div class="stat-card recruiters">
                 <div class="stat-info">
-                    <h3>2</h3>
+                   <h3><?php echo $active_jobs_count; ?></h3>
                     <p>Active Jobs</p>
                 </div>
                 <div class="stat-icon">
@@ -675,7 +665,7 @@
 
             <div class="stat-card applications">
                 <div class="stat-info">
-                    <h3>10</h3>
+                    <h3><?php echo $total_applications; ?></h3>
                     <p>Total Applications</p>
                 </div>
                 <div class="stat-icon">
