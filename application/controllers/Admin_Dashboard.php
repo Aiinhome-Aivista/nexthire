@@ -10,6 +10,7 @@ class Admin_Dashboard extends CI_Controller
         $this->load->model('admin/Candidate_management_model');
         $this->load->model('admin/Employer_management_model');
         $this->load->model('admin/Job_post_management_model');
+        $this->load->model('admin/Featured_companies_model');
         $this->load->model('Admin_dashboard_model');
     }
 
@@ -44,6 +45,12 @@ class Admin_Dashboard extends CI_Controller
     {
         $data['job_post'] = $this->Job_post_management_model->get_all_job_posts();
         $this->load->view('admin/job_post_management', $data);
+    }
+
+    public function featured_companies()
+    {
+        $data['featured_companies'] = $this->Featured_companies_model->get_all_featured_companies();
+        $this->load->view('admin/featured_companies', $data);
     }
 
     public function logout()

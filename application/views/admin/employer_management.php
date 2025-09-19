@@ -682,7 +682,9 @@
             <span>Employers</span></a></li>
         <li><a href="<?= base_url('admin/job_post_management') ?>"><i class="fas fa-file-alt"></i> <span>Job
               Posts</span></a></li>
-        <!-- <li><a href="#"><i class="fas fa-cog"></i> <span>Settings</span></a></li> -->
+        <li><a href="<?= base_url('admin/featured_companies') ?>"><i class="fas fa-building"></i>
+            <span>Featured Companies</span></a></li>
+        <li>
         <li>
           <a href="#" id="logoutBtn">
             <i class="fas fa-sign-out-alt"></i> <span>Logout</span>

@@ -104,3 +104,4 @@ $route['admin/dashboard'] = 'Admin_Dashboard/dashboard';
 $route['admin/candidate_management'] = 'Admin_Dashboard/candidate_management';
 $route['admin/employer_management'] = 'Admin_Dashboard/employer_management';
 $route['admin/job_post_management'] = 'Admin_Dashboard/job_post_management';
+$route['admin/featured_companies'] = 'Admin_Dashboard/featured_companies';
