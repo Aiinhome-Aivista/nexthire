@@ -10,6 +10,7 @@ class Employer_controller extends CI_Controller
         $this->load->model('Manage_job_model');
         $this->load->model('Manage_candidate_model');
         $this->load->model('Employer_profile_model');
+        $this->load->library('pagination');
         $this->load->library('session');
         $this->load->helper('url');
     }
@@ -56,39 +57,34 @@ class Employer_controller extends CI_Controller
     //manage candidates functions
     public function manage_candidates()
     {
-        $data['candidates'] = $this->Manage_candidate_model->get_all_candidates();
+        $employer_id = $this->session->userdata('recruiter_id');
+
+        // Pagination Config
+        $config['base_url'] = base_url('employer_controller/manage_candidates');
+        $config['total_rows'] = $this->Manage_candidate_model->count_candidates_by_employer($employer_id);
+        $config['per_page'] = 10;
+        $config['uri_segment'] = 3;
+        $this->pagination->initialize($config);
+
+        $offset = $this->uri->segment(3, 0);
+
+        $data['candidates'] = $this->Manage_candidate_model->get_candidates_by_employer($employer_id, $config['per_page'], $offset);
+        $data['pagination_links'] = $this->pagination->create_links();
+
         $this->load->view('manage_candidates', $data);
     }
 
-    public function get_candidate($id)
+    public function update_application_status()
     {
-        $candidate = $this->Manage_candidate_model->get_candidate_by_id($id);
-        echo json_encode($candidate);
+        $application_id = $this->input->post('application_id');
+        $status = $this->input->post('status'); // 'Accepted' or 'Rejected'
+
+        if ($this->Manage_candidate_model->update_application_status($application_id, $status)) {
+            echo json_encode(['success' => true, 'message' => "Application status updated to $status"]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Failed to update status']);
+        }
     }
-
-    // Update candidate
-    public function update_candidate()
-    {
-        $data = [
-            'full_name' => $this->input->post('full_name'),
-            'email' => $this->input->post('email'),
-            'mobile_number' => $this->input->post('mobile_number'),
-            'work_status' => $this->input->post('work_status')
-        ];
-        $id = $this->input->post('id');
-
-        $this->Manage_candidate_model->update_candidate($id, $data);
-
-        echo json_encode(["status" => true, "message" => "Candidate updated successfully"]);
-    }
-
-    // Delete candidate
-    public function delete_candidate($id)
-    {
-        $this->Manage_candidate_model->delete_candidate($id);
-        echo json_encode(["status" => true, "message" => "Candidate deleted successfully"]);
-    }
-
 
 
     //manage employer profile functions
@@ -128,7 +124,8 @@ class Employer_controller extends CI_Controller
     }
 
 
-     public function logout() {
+    public function logout()
+    {
         $this->session->sess_destroy();
         redirect(base_url('employer_login'));
     }

@@ -607,8 +607,9 @@
                 <li><a href="<?= base_url('employer_job_post'); ?>"> <i class="fas fa-file-alt"></i> Post Job</a></li>
                 <li><a href="<?= base_url('employer_manage_jobs'); ?>"><i class="fas fa-briefcase"></i> Manage Jobs</a>
                 </li>
-                <li><a href="<?= base_url('employer_manage_candidates'); ?>"><i class="fas fa-user-graduate"></i>
-                        Candidates</a></li>
+                 <li><a href="<?= base_url('employer_manage_applications'); ?>"><i 
+                            class="fas fa-user-graduate me-2"></i> <span>Applications</span></a>
+                </li>
                 <li><a href="<?= base_url('employer_profile'); ?>"><i class="fas fa-building"></i> Employer Profile</a>
                 </li>
                 <li>

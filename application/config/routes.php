@@ -59,7 +59,7 @@ $route['employer_login'] = 'Recruiter_login/index';
 $route['employer_dashboard'] = 'Recruiter_dashboard/index';
 $route['employer_job_post'] = 'Recruiter_job_post/index';
 $route['employer_manage_jobs'] = 'Employer_controller/manage_jobs';
-$route['employer_manage_candidates'] = 'Employer_controller/manage_candidates';
+$route['employer_manage_applications'] = 'Employer_controller/manage_candidates';
 $route['employer_profile'] = 'Employer_controller/manage_profile';
 
 $route['login/google_callback'] = 'Login/google_callback';

@@ -2,14 +2,19 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SahajJobs | Employer Manage Candidates</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SahajJobs | Employer Manage Applications</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         :root {
             --primary: #fca911d4;
@@ -502,15 +507,12 @@
 </head>
 
 <body>
-    <button class="mobile-toggle">
-        <i class="fas fa-bars"></i>
-    </button>
+    <button class="mobile-toggle"><i class="fas fa-bars"></i></button>
 
-    <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <div style="display: flex; align-items: center; gap: 10px;">
-                <img style="height:50px; width:135px;" src="<?= base_url('assets/images/sahajjobs1.png'); ?>"
+                <img style="height:50px; width:135px;" src="<?= base_url('assets/images/sahajjobs1.png'); ?>" 
                     alt="SahajJobs">
             </div>
         </div>
@@ -518,13 +520,16 @@
             <ul>
                 <li><a href="<?= base_url('employer_dashboard'); ?>"><i class="fas fa-home me-2"></i>
                         <span>Dashboard</span></a></li>
-                <li><a href="<?= base_url('employer_job_post'); ?>"><i class="fas fa-file-alt me-2"></i> <span>Post
+                <li><a href="<?= base_url('employer_job_post'); ?>"><i class="fas fa-file-alt me-2"></i>
+                        <span>Post
                             Job</span></a></li>
                 <li><a href="<?= base_url('employer_manage_jobs'); ?>"><i class="fas fa-briefcase me-2"></i>
                         <span>Manage Jobs</span></a></li>
-                <li><a href="<?= base_url('employer_manage_candidates'); ?>" class="active"><i
-                            class="fas fa-user-graduate me-2"></i> <span>Candidates</span></a></li>
-                <li><a href="<?= base_url('employer_profile'); ?>"><i class="fas fa-building"></i> <span>Employer
+                <li><a href="<?= base_url('employer_manage_applications'); ?>" class="active"><i 
+                            class="fas fa-user-graduate me-2"></i> <span>Applications</span></a>
+                </li>
+                <li><a href="<?= base_url('employer_profile'); ?>"><i class="fas fa-building"></i>
+                        <span>Employer
                             Profile</span></a></li>
                 <li>
                     <a href="#" id="logoutBtn">
@@ -535,15 +540,14 @@
         </nav>
     </div>
 
-    <!-- Content -->
     <div class="content">
         <div class="container">
-            <h4 class="fw-bold" style="color: #f1e42cff; margin-bottom: 2rem;">Manage Candidates</h4>
+            <h4 class="fw-bold" style="color: #f1e42cff; margin-bottom: 2rem;">Manage Applications</h4>
 
             <div class="search-container">
                 <div class="search-box">
                     <i class="fas fa-search"></i>
-                    <input type="text" id="searchInput" placeholder="Search candidates...">
+                    <input type="text" id="searchInput" placeholder="Search Applications ..." />
                 </div>
             </div>
 
@@ -551,40 +555,83 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>S.No</th>
+                            <th>SL No</th>
+                            <th>Job Position</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Mobile Number</th>
-                            <th>Work Status</th>
-                            <th>Registered On</th>
+                            <th>Phone Number</th>
+                            <th>Work Experience</th>
+                            <th>Resume (View / Download)</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody id="candidateTableBody">
                         <?php if (!empty($candidates)): ?>
-                            <?php $ui_id = 1; ?>
+                            <?php $sl_no = 1; ?>
                             <?php foreach ($candidates as $candidate): ?>
-                                <tr data-id="<?= $candidate->id ?>">
-                                    <td data-label="S.No"><?= $ui_id++; ?></td>
-                                    <td data-label="Name" class="col-name"><?= $candidate->full_name ?></td>
-                                    <td data-label="Email" class="col-email"><?= $candidate->email ?></td>
-                                    <td data-label="Mobile" class="col-mobile"><?= $candidate->mobile_number ?></td>
-                                    <td data-label="Work Status" class="col-work"><?= $candidate->work_status ?></td>
-                                    <td data-label="Registered On"><?= date('d-M-Y', strtotime($candidate->created_at)); ?></td>
-                                    <td data-label="Action">
-                                        <button class="btn btn-table btn-edit" title="Edit" data-id="<?= $candidate->id; ?>">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="btn btn-table btn-delete" title="Delete"
-                                            data-id="<?= $candidate->id; ?>">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
+                                <tr>
+                                    <td data-label="SL No"><?= $sl_no++; ?></td>
+                                    <td data-label="Job Positions">
+                                        <?= htmlspecialchars($candidate->job_position); ?>
                                     </td>
+                                    <td data-label="Name">
+                                        <?= htmlspecialchars($candidate->full_name); ?>
+                                    </td>
+                                    <td data-label="Email">
+                                        <?= htmlspecialchars($candidate->email); ?>
+                                    </td>
+                                    <td data-label="Phone Number">
+                                        <?= htmlspecialchars($candidate->mobile_number); ?>
+                                    </td>
+                                    <td data-label="Work Experience">
+                                        <?= htmlspecialchars($candidate->work_experience); ?>
+                                    </td>
+                                    <td data-label="Resume">
+                                        <?php if (!empty($candidate->resume_path)): ?>
+                                            <a href="<?= base_url($candidate->resume_path); ?>" target="_blank" title="View Resume">
+                                                <i class="fas fa-eye" style="color:black;"></i>
+                                            </a>
+                                            &nbsp;|&nbsp;
+                                            <a href="<?= base_url($candidate->resume_path); ?>" download title="Download Resume">
+                                                <i class="fas fa-download" style="color:black;"></i>
+                                            </a>
+                                        <?php else: ?>
+                                            N/A
+                                        <?php endif; ?>
+                                    </td>
+
+
+                                    <td data-label="Action">
+
+                                        <?php if ($candidate->application_status === 'Applied'): ?>
+                                            <button type="button" class="btn btn-link p-0 open-confirm-modal" 
+                                                data-id="<?= $candidate->application_id; ?>"
+                                                data-status="Accepted" 
+                                                data-message="Do you want to accept this application?" data-bs-toggle="modal" 
+                                                data-bs-target="#confirmModal" title="Accept">
+                                                <i class="fas fa-check" style="color: green; font-size: 1.25rem;"></i>
+                                            </button>
+
+                                            <button type="button" class="btn btn-link p-0 open-confirm-modal" 
+                                                data-id="<?= $candidate->application_id; ?>"
+                                                data-status="Rejected" 
+                                                data-message="Do you want to reject this application?" data-bs-toggle="modal" 
+                                                data-bs-target="#confirmModal" title="Reject">
+                                                <i class="fas fa-times" style="color: red; font-size: 1.25rem;"></i>
+                                            </button>
+
+                                        <?php else: ?>
+
+                                            <span><?= htmlspecialchars($candidate->application_status); ?></span>
+                                        <?php endif; ?>
+                                    </td>
+
                                 </tr>
                             <?php endforeach; ?>
                         <?php else: ?>
                             <tr class="table-no-candidates">
-                                <td colspan="7">No candidates found</td>
+                                <td colspan="8" class="text-center">No applications found
+                                </td>
                             </tr>
                         <?php endif; ?>
                     </tbody>
@@ -599,192 +646,40 @@
                 <button id="lastPage">Last</button>
                 <span class="page-info" id="pageInfo"></span>
             </div>
-        </div>
 
-        <footer>
-            &copy; 2025 SahajJobs Inc. All Rights Reserved.
-        </footer>
-    </div>
-
-    <!-- Edit Candidate Modal (Bootstrap version) -->
-    <div class="modal fade" id="editCandidateModal" tabindex="-1" aria-labelledby="editCandidateModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editCandidateModalLabel">Edit Candidate</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <form id="editCandidateForm">
-                    <div class="modal-body">
-                        <input type="hidden" name="id" id="candidate_id">
-
-                        <div class="mb-3">
-                            <label>Full Name</label>
-                            <input type="text" class="form-control" name="full_name" id="full_name">
-                        </div>
-
-                        <div class="mb-3">
-                            <label>Email</label>
-                            <input type="email" class="form-control" name="email" id="email">
-                        </div>
-
-                        <div class="mb-3">
-                            <label>Mobile</label>
-                            <input type="text" class="form-control" name="mobile_number" id="mobile_number">
-                        </div>
-
-                        <div class="mb-3">
-                            <label>Work Status</label>
-                            <input type="text" class="form-control" name="work_status" id="work_status">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-warning">Update</button>
-                    </div>
-                </form>
+            <div>
+                <?= isset($pagination_links) ? $pagination_links : ''; ?>
             </div>
         </div>
+        <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmModalLabel">Confirm Action</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="confirmModalMessage">Are you sure?</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" style="background-color: #f1e42cff; color: black; border: none;" id="confirmModalOkBtn">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <footer>&copy; 2025 SahajJobs Inc. All Rights Reserved.</footer>
     </div>
 
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        // Sidebar toggle functionality
-        const sidebar = document.getElementById('sidebar');
-        const sidebarToggle = document.querySelector('.sidebar-toggle');
-        const mobileToggle = document.querySelector('.mobile-toggle');
-        const mainContent = document.querySelector('.content');
-
-        // Helper to read CSS variable values
-        function cssVar(name, fallback = '') {
-            try {
-                return getComputedStyle(document.documentElement).getPropertyValue(name) || fallback;
-            } catch (e) {
-                return fallback;
-            }
-        }
-
-        // Desktop sidebar toggle (guarded)
-        if (sidebarToggle && sidebar) {
-            sidebarToggle.addEventListener('click', function (e) {
-                // toggle collapsed state
-                sidebar.classList.toggle('collapsed');
-
-                // toggle chevron icon safely
-                const icon = sidebarToggle.querySelector('i');
-                if (icon) {
-                    icon.classList.toggle('fa-chevron-left');
-                    icon.classList.toggle('fa-chevron-right');
-                }
-
-                // adjust main content margin so layout stays consistent
-                const collapsedWidth = cssVar('--sidebar-collapsed-width', '70px').trim();
-                const fullWidth = cssVar('--sidebar-width', '280px').trim();
-                if (sidebar.classList.contains('collapsed')) {
-                    if (mainContent) mainContent.style.marginLeft = collapsedWidth;
-                } else {
-                    if (mainContent) mainContent.style.marginLeft = fullWidth;
-                }
-            });
-        }
-
-        // Mobile sidebar toggle (guarded + stopPropagation to avoid immediate close)
-        if (mobileToggle && sidebar) {
-            mobileToggle.addEventListener('click', function (e) {
-                // prevent the document click handler from immediately closing the sidebar
-                e.stopPropagation();
-
-                sidebar.classList.toggle('show');
-
-                // Prevent body scrolling when sidebar is open on mobile
-                if (sidebar.classList.contains('show')) {
-                    document.body.style.overflow = 'hidden';
-                    // ensure it's fully visible on mobile
-                    sidebar.style.transform = 'translateX(0)';
-                } else {
-                    document.body.style.overflow = 'auto';
-                    // hide it off-canvas
-                    sidebar.style.transform = 'translateX(-100%)';
-                }
-            });
-
-            // If sidebar receives clicks, do not let them bubble up to document click
-            sidebar.addEventListener('click', function (e) {
-                e.stopPropagation();
-            });
-        }
-
-        // Close sidebar when clicking outside on mobile (guarded)
-        document.addEventListener('click', function (event) {
-            if (!sidebar) return;
-            // only for mobile/smaller screens
-            if (window.innerWidth <= 768 &&
-                !sidebar.contains(event.target) &&
-                (!mobileToggle || !mobileToggle.contains(event.target)) &&
-                sidebar.classList.contains('show')) {
-                sidebar.classList.remove('show');
-                document.body.style.overflow = 'auto';
-                // hide off-canvas for good measure
-                sidebar.style.transform = 'translateX(-100%)';
+         const logoutBtn = document.getElementById('logoutBtn');
+        logoutBtn.addEventListener('click', function () {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '<?= base_url("Employer_controller/logout"); ?>';
             }
         });
-
-        // Handle window resize
-        window.addEventListener('resize', function () {
-            if (!sidebar) return;
-
-            if (window.innerWidth > 768) {
-                // Reset styles for desktop view
-                sidebar.classList.remove('show');
-                document.body.style.overflow = 'auto';
-                sidebar.style.transform = 'translateX(0)';
-
-                // Ensure collapsed class keeps width consistent
-                if (!sidebar.classList.contains('collapsed')) {
-                    sidebar.style.width = cssVar('--sidebar-width', '280px').trim();
-                } else {
-                    sidebar.style.width = cssVar('--sidebar-collapsed-width', '70px').trim();
-                }
-
-                // adjust main content margin
-                if (mainContent) {
-                    mainContent.style.marginLeft = sidebar.classList.contains('collapsed') ?
-                        cssVar('--sidebar-collapsed-width', '70px').trim() :
-                        cssVar('--sidebar-width', '280px').trim();
-                }
-            } else {
-                // Mobile view - hide sidebar by default (unless explicitly shown)
-                if (!sidebar.classList.contains('show')) {
-                    sidebar.style.transform = 'translateX(-100%)';
-                }
-                // Remove collapsed on mobile (avoid layout issues)
-                sidebar.classList.remove('collapsed');
-                if (mainContent) mainContent.style.marginLeft = '0';
-            }
-        });
-
-        // Initialize sidebar state based on screen size
-        function initSidebar() {
-            if (!sidebar) return;
-
-            if (window.innerWidth <= 768) {
-                sidebar.style.transform = 'translateX(-100%)';
-                sidebar.classList.remove('collapsed');
-                if (mainContent) mainContent.style.marginLeft = '0';
-            } else {
-                sidebar.style.transform = 'translateX(0)';
-                // set main-content margin according to collapsed state
-                if (mainContent) {
-                    mainContent.style.marginLeft = sidebar.classList.contains('collapsed') ?
-                        cssVar('--sidebar-collapsed-width', '70px').trim() :
-                        cssVar('--sidebar-width', '280px').trim();
-                }
-            }
-        }
-
-        // Call initialization function
-        initSidebar();
-
-        // Search and Pagination functionality
         document.addEventListener('DOMContentLoaded', function () {
             const searchInput = document.getElementById('searchInput');
             const tableBody = document.getElementById('candidateTableBody');
@@ -799,84 +694,36 @@
             let allRows = [];
             let filteredRows = [];
             let currentPage = 1;
-            const rowsPerPage = 10;
-
-            // Use MutationObserver to detect when table content is loaded
-            const observer = new MutationObserver(function (mutations) {
-                mutations.forEach(function (mutation) {
-                    if (mutation.addedNodes.length) {
-                        initializeTable();
-                    }
-                });
-            });
-
-            // Start observing the table body for changes
-            observer.observe(tableBody, {
-                childList: true
-            });
-
-            // Also try to initialize after a short delay in case content is already there
-            setTimeout(initializeTable, 500);
+            const rowsPerPage = 8;
 
             function initializeTable() {
-                const rows = Array.from(tableBody.querySelectorAll('tr:not(.table-no-candidates)'));
-
-                // Only reinitialize if we have rows and they haven't been processed yet
-                if (rows.length > 0 && allRows.length === 0) {
+                const rows = Array.from(tableBody.querySelectorAll('tr'));
+                if (rows.length > 0 && !rows[0].classList.contains('table-no-candidates')) {
                     allRows = rows;
                     filteredRows = [...allRows];
-
-                    // Show pagination controls
                     paginationControls.style.display = 'flex';
                     updatePagination();
-                } else if (tableBody.querySelector('.table-no-candidates')) {
-                    // If no data row is present, hide pagination
+                } else {
+                    tableBody.innerHTML = '<tr class="table-no-candidates"><td colspan="8" class="text-center">No Applications found</td></tr>';
                     paginationControls.style.display = 'none';
                 }
             }
 
-            // Search functionality
-            searchInput.addEventListener('input', function () {
-                const searchText = this.value.toLowerCase();
-
-                if (searchText === '') {
-                    filteredRows = [...allRows];
-                } else {
-                    filteredRows = allRows.filter(row => {
-                        const cells = row.querySelectorAll('td');
-                        for (let i = 0; i < cells.length - 1; i++) { // Skip action column
-                            if (cells[i].textContent.toLowerCase().includes(searchText)) {
-                                return true;
-                            }
-                        }
-                        return false;
-                    });
-                }
-
-                currentPage = 1;
-                updatePagination();
-            });
-
-            // Pagination functionality
             function updatePagination() {
                 const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
 
                 if (filteredRows.length === 0) {
+                    tableBody.innerHTML = '<tr class="table-no-candidates"><td colspan="8" class="text-center">No Applications found</td></tr>';
                     paginationControls.style.display = 'none';
-                    tableBody.innerHTML = '<tr class="table-no-candidates"><td colspan="7">No candidates found</td></tr>';
                     return;
                 }
 
-                // Show pagination controls
                 paginationControls.style.display = 'flex';
-
-                // Update button states
                 firstPageBtn.disabled = currentPage === 1;
                 prevPageBtn.disabled = currentPage === 1;
                 nextPageBtn.disabled = currentPage === totalPages;
                 lastPageBtn.disabled = currentPage === totalPages;
 
-                // Generate page numbers
                 pageNumbers.innerHTML = '';
                 const maxVisiblePages = 5;
                 let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
@@ -889,35 +736,32 @@
                 for (let i = startPage; i <= endPage; i++) {
                     const pageBtn = document.createElement('button');
                     pageBtn.textContent = i;
+                    pageBtn.addEventListener('click', () => goToPage(i));
                     if (i === currentPage) {
                         pageBtn.style.fontWeight = 'bold';
                         pageBtn.style.backgroundColor = '#e6cf4d';
                     }
-                    pageBtn.addEventListener('click', () => goToPage(i));
                     pageNumbers.appendChild(pageBtn);
                 }
 
-                // Update page info
                 const startItem = (currentPage - 1) * rowsPerPage + 1;
                 const endItem = Math.min(currentPage * rowsPerPage, filteredRows.length);
-                pageInfo.textContent = `Showing ${startItem}-${endItem} of ${filteredRows.length} candidates`;
+                pageInfo.textContent = `Showing ${startItem}-${endItem} of ${filteredRows.length} applications`;
 
-                // Show current page rows
                 displayCurrentPage();
             }
 
             function displayCurrentPage() {
-                // Clear existing table content
                 tableBody.innerHTML = '';
-
-                // Show rows for current page
                 const startIndex = (currentPage - 1) * rowsPerPage;
                 const endIndex = startIndex + rowsPerPage;
-
                 const pageRows = filteredRows.slice(startIndex, endIndex);
-                pageRows.forEach(row => {
-                    tableBody.appendChild(row);
-                });
+
+                if (pageRows.length > 0) {
+                    pageRows.forEach(row => tableBody.appendChild(row));
+                } else {
+                    tableBody.innerHTML = '<tr class="table-no-candidates"><td colspan="8" class="text-center">No Applications found</td></tr>';
+                }
             }
 
             function goToPage(page) {
@@ -925,7 +769,15 @@
                 updatePagination();
             }
 
-            // Pagination button event listeners
+            searchInput.addEventListener('input', function () {
+                const val = this.value.toLowerCase();
+                filteredRows = allRows.filter(row => {
+                    return Array.from(row.children).some(td => td.textContent.toLowerCase().includes(val));
+                });
+                currentPage = 1;
+                updatePagination();
+            });
+
             firstPageBtn.addEventListener('click', () => goToPage(1));
             prevPageBtn.addEventListener('click', () => goToPage(currentPage - 1));
             nextPageBtn.addEventListener('click', () => goToPage(currentPage + 1));
@@ -933,81 +785,92 @@
                 const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
                 goToPage(totalPages);
             });
-        });
 
-        // 🔹 Function to re-number the IDs in the first column
-        function renumberTable() {
-            const rows = document.querySelectorAll("#candidateTableBody tr");
-            rows.forEach((row, index) => {
-                row.querySelector("td").textContent = index + 1;
-            });
-        }
+            // Handle Accept/Reject Actions
+            tableBody.addEventListener('click', function (e) {
+                const button = e.target.closest('.update-status');
+                if (!button) return;
 
-        // Logout functionality
-        const logoutBtn = document.getElementById('logoutBtn');
-        logoutBtn.addEventListener('click', function () {
-            if (confirm('Are you sure you want to logout?')) {
-                window.location.href = '<?= base_url("Employer_controller/logout"); ?>';
-            }
-        });
+                const applicationId = button.getAttribute('data-id');
+                const status = button.getAttribute('data-status');
+                const row = button.closest('tr');
 
-        // Open edit modal with candidate data
-        document.addEventListener('click', function (e) {
-            if (e.target.closest('.btn-edit')) {
-                const row = e.target.closest('tr');
-                const candidateId = row.getAttribute('data-id');
-
-                fetch("<?= base_url('Employer_controller/get_candidate'); ?>/" + candidateId)
-                    .then(res => res.json())
-                    .then(data => {
-                        document.getElementById("candidate_id").value = data.id;
-                        document.getElementById("full_name").value = data.full_name;
-                        document.getElementById("email").value = data.email;
-                        document.getElementById("mobile_number").value = data.mobile_number;
-                        document.getElementById("work_status").value = data.work_status;
-
-                        // Show the Bootstrap modal
-                        var editModal = new bootstrap.Modal(document.getElementById("editCandidateModal"));
-                        editModal.show();
-                    });
-            }
-        });
-
-        // Submit Edit Form
-        document.getElementById("editCandidateForm").addEventListener("submit", function (e) {
-            e.preventDefault();
-            let formData = new FormData(this);
-
-            fetch("<?= base_url('Employer_controller/update_candidate'); ?>", {
-                method: "POST",
-                body: formData
-            })
-                .then(res => res.json())
-                .then(response => {
-                    alert(response.message);
-                    location.reload();
-                });
-        });
-
-        // Delete Candidate
-        document.addEventListener('click', function (e) {
-            if (e.target.closest('.btn-delete')) {
-                const row = e.target.closest('tr');
-                const candidateId = row.getAttribute('data-id');
-
-                if (confirm("Are you sure you want to delete this candidate?")) {
-                    fetch("<?= base_url('Employer_controller/delete_candidate'); ?>/" + candidateId, {
-                        method: "POST"
+                if (confirm(`Are you sure you want to ${status.toLowerCase()} this application?`)) {
+                    fetch("<?= base_url('employer_controller/update_application_status'); ?>", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: `application_id=${encodeURIComponent(applicationId)}&status=${encodeURIComponent(status)}`
                     })
                         .then(res => res.json())
-                        .then(response => {
-                            alert(response.message);
-                            location.reload();
+                        .then(data => {
+                            if (data.success) {
+                                alert(data.message);
+                                location.reload(); // A simple way to refresh the view
+                            } else {
+                                alert(`Error: ${data.message}`);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('An error occurred. Please try again.');
                         });
                 }
-            }
+            });
+
+            // Mobile sidebar toggle
+            document.querySelector('.mobile-toggle').addEventListener('click', function () {
+                document.getElementById('sidebar').classList.toggle('show');
+            });
+
+            initializeTable();
         });
     </script>
+
+    <script>
+        var confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'));
+        var selectedApplicationId = null;
+        var selectedStatus = null;
+
+        // Open confirm modal on button click
+        document.querySelectorAll('.open-confirm-modal').forEach(function (button) {
+            button.addEventListener('click', function () {
+                selectedApplicationId = this.getAttribute('data-id');
+                selectedStatus = this.getAttribute('data-status');
+                var message = this.getAttribute('data-message');
+                document.getElementById('confirmModalMessage').textContent = message;
+                confirmModal.show();
+            });
+        });
+
+        // Handle OK button in modal
+        document.getElementById('confirmModalOkBtn').addEventListener('click', function () {
+            if (selectedApplicationId && selectedStatus) {
+                fetch("<?= base_url('employer_controller/update_application_status'); ?>", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'application_id=' + encodeURIComponent(selectedApplicationId) +
+                        '&status=' + encodeURIComponent(selectedStatus)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        alert(data.message);
+                        if (data.success) {
+                            // Reload or update UI accordingly
+                            location.reload();
+                        }
+                    });
+            }
+            confirmModal.hide();
+        });
+    </script>
+
+
+   
+
 </body>
 
 </html>

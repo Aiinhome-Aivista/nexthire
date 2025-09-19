@@ -546,8 +546,9 @@
                             Job</span></a></li>
                 <li><a href="<?= base_url('employer_manage_jobs'); ?>" class="active"><i
                             class="fas fa-briefcase me-2"></i> <span>Manage Jobs</span></a></li>
-                <li><a href="<?= base_url('employer_manage_candidates'); ?>"><i class="fas fa-user-graduate me-2"></i>
-                        <span>Candidates</span></a></li>
+                 <li><a href="<?= base_url('employer_manage_applications'); ?>"><i 
+                            class="fas fa-user-graduate me-2"></i> <span>Applications</span></a>
+                </li>
                 <li><a href="<?= base_url('employer_profile'); ?>"><i class="fas fa-building"></i> <span>Employer
                             Profile</span></a></li>
                 <li>
