@@ -111,7 +111,7 @@
         }
 
         .tagline-image img {
-            max-width: 60%;
+            max-width: 76%;
             height: auto;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -262,7 +262,7 @@
         }
 
         .banner-image {
-            width: 60%;
+            width: 80%;
             height: 60%;
             object-fit: cover;
         }
@@ -296,7 +296,7 @@
             background: #fff;
             border-radius: 999px;
             width: 100%;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 10px 25px;
             box-sizing: border-box;

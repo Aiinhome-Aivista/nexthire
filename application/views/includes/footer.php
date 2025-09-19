@@ -5,60 +5,6 @@
     <meta charset="UTF-8">
     <title>Cookie Banner</title>
     <style>
-        /* .cookie-banner {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: #505665;
-            color: #fff;
-            text-align: center;
-            font-family: 'Nunito', Arial, sans-serif !important;
-            z-index: 9999;
-            padding: 10px 15px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        } */
-
-        /* .cookie-banner a {
-            color: #FFF44F;
-            text-decoration: none;
-            font-weight: 300;
-            font-size: 0.95em;
-        }
-
-        .cookie-banner a:hover {
-            text-decoration: underline;
-        } */
-
-        /* .cookie-btn {
-            background: #FFF44F;
-            color: #29374d;
-            border: none;
-            outline: none;
-            padding: 7px 14px;
-            border-radius: 25px;
-            font-size: 1em;
-            font-weight: bold;
-            margin-left: 30px;
-            cursor: pointer;
-            transition: background 0.2s;
-        } */
-
-        /* .cookie-btn:hover {
-            background: #d3c830ff;
-        } */
-
-        /* .cookie-banner span {
-            font-size: 1em;
-            font-weight: 500;
-            flex: 1 1 auto;
-            min-width: 200px;
-            font-size: 0.9em;
-        } */
-
         .custom-footer {
             font-family: 'Montserrat', Arial, sans-serif !important;
             padding: 40px 0 0 0;
@@ -67,27 +13,49 @@
         .footer-top {
             display: flex;
             justify-content: center;
+            /* ✅ center the whole group */
             align-items: flex-start;
-            gap: 40px;
+            gap: 80px;
+            /* spacing between each section */
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 50px;
-
-            /* ✅ responsive addition */
-            flex-wrap: wrap;
-            text-align: center;
+            flex-wrap: nowrap;
+            /* keep all 4 in one row */
+            text-align: left;
         }
 
         .footer-logo-social {
+            flex: 0 0 220px;
+            /* keep logo/social compact */
             display: flex;
             flex-direction: column;
-            align-items: center;
-            min-width: 180px;
-            margin-right: 10px;
+            align-items: flex-start;
         }
 
+        .footer-links {
+            display: flex;
+            justify-content: flex-start;
+            gap: 60px;
+            /* spacing between link columns */
+            flex: 0 1 auto;
+            text-align: left;
+        }
+
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+
         .footer-logo img {
-            width: 140px;
+            width: 160px;
             margin-bottom: 28px;
             height: 70px;
         }
@@ -97,6 +65,7 @@
             font-size: 16px;
             margin-bottom: 9px;
             color: #232a35;
+            margin-left: 10px;
         }
 
         .footer-social-icons a {
@@ -106,6 +75,7 @@
             border-radius: 4px;
             padding: 4px;
             transition: box-shadow 0.15s;
+            margin-left: 4px;
         }
 
         .footer-social-icons a img {
@@ -115,29 +85,6 @@
 
         .footer-social-icons a:hover {
             box-shadow: 0 0 0 2px #e4eaf1;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            flex: 1;
-            /* margin-left: 30px;
-            margin-right: 30px; */
-            margin: 0 auto;
-            text-align: center;
-            /* ✅ responsive addition */
-            flex-wrap: wrap;
-        }
-
-        .footer-links ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-links ul li {
-            margin-bottom: 14px;
         }
 
         .footer-links ul li a {
@@ -409,6 +356,60 @@
         // function hideCookieBanner() {
         //     document.getElementById('cookie-banner').style.display = 'none';
         // }
+
+        /* .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #505665;
+            color: #fff;
+            text-align: center;
+            font-family: 'Nunito', Arial, sans-serif !important;
+            z-index: 9999;
+            padding: 10px 15px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        } */
+
+        /* .cookie-banner a {
+            color: #FFF44F;
+            text-decoration: none;
+            font-weight: 300;
+            font-size: 0.95em;
+        }
+
+        .cookie-banner a:hover {
+            text-decoration: underline;
+        } */
+
+        /* .cookie-btn {
+            background: #FFF44F;
+            color: #29374d;
+            border: none;
+            outline: none;
+            padding: 7px 14px;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            margin-left: 30px;
+            cursor: pointer;
+            transition: background 0.2s;
+        } */
+
+        /* .cookie-btn:hover {
+            background: #d3c830ff;
+        } */
+
+        /* .cookie-banner span {
+            font-size: 1em;
+            font-weight: 500;
+            flex: 1 1 auto;
+            min-width: 200px;
+            font-size: 0.9em;
+        } */
     </script>
 </head>
 

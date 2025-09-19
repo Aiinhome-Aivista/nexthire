@@ -70,6 +70,7 @@
           </a>
           <span class="employer-underline"></span>
           <div class="employer-menu">
+             <a href="<?= base_url('employer_register'); ?>">Employer Register</a>
             <a href="<?= base_url('employer_login'); ?>">Employer Login</a>
           </div>
         </div>
