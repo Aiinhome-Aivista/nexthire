@@ -636,16 +636,6 @@
                     <i class="fas fa-file-alt"></i>
                 </div>
             </div>
-
-            <div class="stat-card applications">
-                <div class="stat-info">
-                    <h3>10</h3>
-                    <p>Applications</p>
-                </div>
-                <div class="stat-icon">
-                    <i class="fas fa-briefcase"></i>
-                </div>
-            </div>
         </div>
 
         <!-- Model Cards -->
