@@ -18,6 +18,13 @@ class Register extends CI_Controller
     public function submit()
     {
 
+        // Check if email is verified
+        $email_verified = $this->input->post('email_verified');
+        if ($email_verified !== '1') {
+            $this->session->set_flashdata('error', 'Please verify your email before registering.');
+            redirect(base_url('register'));
+            return;
+        }
         $plainPassword = $this->input->post('password');
         $ip = $this->input->ip_address();
 
@@ -28,6 +35,7 @@ class Register extends CI_Controller
             'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
             'mobile_number' => $this->input->post('mobile'),
             'work_status' => $this->input->post('workStatus'),
+            'email_verified' => 1 // Mark email as verified
         ];
 
         $insert_id = $this->Register_model->insert($data);
@@ -47,6 +55,7 @@ class Register extends CI_Controller
             redirect(base_url('register'));
         }
     }
+
     public function google_callback()
     {
         $json = file_get_contents('php://input');
@@ -97,20 +106,20 @@ class Register extends CI_Controller
                 'provider' => $userData['provider'],
                 'password' => $hashedPassword,
                 'mobile_number' => null,
+                'email_verified' => 1,
                 // 'work_status' => null,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
             $this->Register_model->save_profile_photo($user_id, $file_name); // <--- Add this line
             $user = $this->Register_model->get_user_by_id($user_id);
-           
+
             $emailSent = $this->emailservice->sendWelcomeEmail($user['email'], $user['full_name'], $plainPassword, 'welcome_email');
             if ($emailSent) {
                 $this->session->set_flashdata('success', 'Registration successful! A welcome email has been sent to your email address.');
             } else {
                 $this->session->set_flashdata('success', 'Registration successful! However, we could not send the welcome email.');
             }
-
         } else {
             // Update profile photo if new one downloaded successfully
             if ($file_name) {
@@ -137,5 +146,102 @@ class Register extends CI_Controller
         ]);
 
         echo json_encode(['success' => true]);
+    }
+
+    public function send_verification_email()
+    {
+        $email = $this->input->post('email');
+
+        // Validate email
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo json_encode(['success' => false, 'message' => 'Invalid email format']);
+            return;
+        }
+
+        // Generate verification token
+        $verification_token = bin2hex(random_bytes(32));
+
+        // Store token in session with expiration time (1 hour)
+        $this->session->set_userdata([
+            'email_verification_token' => $verification_token,
+            'email_verification_email' => $email,
+            'email_verification_expires' => time() + 3600 // 1 hour from now
+        ]);
+
+        // Create verification link
+        $verification_link = base_url('register/verify_email?email=' . urlencode($email) . '&token=' . $verification_token);
+
+        // Send verification email
+        $ci = &get_instance();
+        $emailContent = $ci->load->view("emails/register_verification_email", [
+            'verification_link' => $verification_link,
+            'email' => $email
+        ], TRUE);
+
+        try {
+            $this->emailservice->sendEmail($email, 'Verify your email - SahajJobs', $emailContent);
+            echo json_encode(['success' => true, 'message' => 'Verification email sent successfully']);
+        } catch (Exception $e) {
+            echo json_encode(['success' => false, 'message' => 'Failed to send verification email']);
+        }
+    }
+
+    public function verify_email()
+    {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $user = $this->Register_model->get_user_by_email($email);
+
+        // If user doesn't exist, insert only the email (and a blank full_name)
+        if (!$user) {
+            $data = [
+                'email' => $email,
+                'full_name' => '',  // required since 'full_name' is NOT NULL
+                'email_verified' => 0, // initially not verified
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ];
+            $insert_id = $this->Register_model->insert($data);
+
+            if ($insert_id) {
+                $user = $this->Register_model->get_user_by_id($insert_id);
+            } else {
+                echo "<h2 style='text-align:center;color:red;margin-top:30px;'>Failed to add email to database.</h2>";
+                exit;
+            }
+        }
+
+
+        $session_token = $this->session->userdata('email_verification_token');
+        $validToken = ($session_token === $token);
+
+        if ($user && $validToken) {
+            $this->Register_model->update_email_verified($user['id'], 1);
+
+            $this->session->unset_userdata([
+                'email_verification_token',
+                'email_verification_email',
+                'email_verification_expires'
+            ]);
+
+            echo "<h2 style='text-align:center;color:green;margin-top:30px;'>Your email is verified! Please return to your registration tab.</h2>";
+            exit;
+        } else {
+            echo "<h2 style='text-align:center;color:red;margin-top:30px;'>Invalid or expired verification link.</h2>";
+            exit;
+        }
+    }
+
+    public function check_email_verification()
+    {
+        $email = $this->input->get('email');
+        if (!$email) {
+            echo json_encode(['verified' => false]);
+            return;
+        }
+        $user = $this->Register_model->get_user_by_email($email);
+        $verified = $user && $user['email_verified'] ? true : false;
+        echo json_encode(['verified' => $verified]);
     }
 }

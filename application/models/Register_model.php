@@ -56,7 +56,7 @@ class Register_model extends CI_Model
         return $this->db->insert_id();
     }
 
-    
+
     // Profile photo methods
     public function get_profile_photo($user_id)
     {
@@ -83,5 +83,11 @@ class Register_model extends CI_Model
         $this->db->where('user_id', $user_id)->update('profile_photos', $data);
         return $this->db->affected_rows() > 0;
     }
+    public function update_email_verified($user_id, $status)
+    {
+        $this->db->where('id', $user_id);
+        $this->db->update('register', ['email_verified' => $status]);
+    }
+
 
 }

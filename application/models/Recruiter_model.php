@@ -65,5 +65,10 @@ class Recruiter_model extends CI_Model
         return $this->db->affected_rows() > 0;
     }
 
+    public function update_email_verified($user_id, $status)
+    {
+        $this->db->where('id', $user_id);
+        $this->db->update('employer_register', ['email_verified' => $status]);
+    }
 
 }
