@@ -512,7 +512,7 @@
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <div style="display: flex; align-items: center; gap: 10px;">
-                <img style="height:50px; width:135px;" src="<?= base_url('assets/images/sahajjobs1.png'); ?>" 
+                <img style="height:50px; width:135px;" src="<?= base_url('assets/images/sahajjobs1.png'); ?>"
                     alt="SahajJobs">
             </div>
         </div>
@@ -525,7 +525,7 @@
                             Job</span></a></li>
                 <li><a href="<?= base_url('employer_manage_jobs'); ?>"><i class="fas fa-briefcase me-2"></i>
                         <span>Manage Jobs</span></a></li>
-                <li><a href="<?= base_url('employer_manage_applications'); ?>" class="active"><i 
+                <li><a href="<?= base_url('employer_manage_applications'); ?>" class="active"><i
                             class="fas fa-user-graduate me-2"></i> <span>Applications</span></a>
                 </li>
                 <li><a href="<?= base_url('employer_profile'); ?>"><i class="fas fa-building"></i>
@@ -604,19 +604,38 @@
                                     <td data-label="Action">
 
                                         <?php if ($candidate->application_status === 'Applied'): ?>
-                                            <button type="button" class="btn btn-link p-0 open-confirm-modal" 
+                                            <!-- <button type="button" class="btn btn-link p-0 open-confirm-modal" 
                                                 data-id="<?= $candidate->application_id; ?>"
                                                 data-status="Accepted" 
                                                 data-message="Do you want to accept this application?" data-bs-toggle="modal" 
                                                 data-bs-target="#confirmModal" title="Accept">
                                                 <i class="fas fa-check" style="color: green; font-size: 1.25rem;"></i>
-                                            </button>
+                                            </button> -->
 
-                                            <button type="button" class="btn btn-link p-0 open-confirm-modal" 
+                                            <!-- <button type="button" class="btn btn-link p-0 open-confirm-modal" 
                                                 data-id="<?= $candidate->application_id; ?>"
                                                 data-status="Rejected" 
                                                 data-message="Do you want to reject this application?" data-bs-toggle="modal" 
                                                 data-bs-target="#confirmModal" title="Reject">
+                                                <i class="fas fa-times" style="color: red; font-size: 1.25rem;"></i>
+                                            </button> -->
+                                            <button type="button" class="btn btn-link p-0 open-confirm-modal"
+                                                data-id="<?= $candidate->application_id; ?>" data-status="Accepted"
+                                                data-message="Do you want to accept this application?"
+                                                data-employername="<?= htmlspecialchars($employer_name); ?>"
+                                                data-employeename="<?= htmlspecialchars($candidate->full_name); ?>"
+                                                data-positionname="<?= htmlspecialchars($candidate->job_position); ?>"
+                                                data-bs-toggle="modal" data-bs-target="#confirmModal" title="Accept">
+                                                <i class="fas fa-check" style="color: green; font-size: 1.25rem;"></i>
+                                            </button>
+
+                                            <button type="button" class="btn btn-link p-0 open-confirm-modal"
+                                                data-id="<?= $candidate->application_id; ?>" data-status="Rejected"
+                                                data-message="Do you want to reject this application?"
+                                                data-employername="<?= htmlspecialchars($employer_name); ?>"
+                                                data-employeename="<?= htmlspecialchars($candidate->full_name); ?>"
+                                                data-positionname="<?= htmlspecialchars($candidate->job_position); ?>"
+                                                data-bs-toggle="modal" data-bs-target="#confirmModal" title="Reject">
                                                 <i class="fas fa-times" style="color: red; font-size: 1.25rem;"></i>
                                             </button>
 
@@ -655,13 +674,15 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="confirmModalLabel">Confirm Action</h5>
+                        <h5 class="modal-title" id="confirmModalLabel">Confirm Application</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" id="confirmModalMessage">Are you sure?</div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary" style="background-color: #f1e42cff; color: black; border: none;" id="confirmModalOkBtn">OK</button>
+                        <button type="button" class="btn btn-primary"
+                            style="background-color: #f1e42cff; color: black; border: none;"
+                            id="confirmModalOkBtn">OK</button>
                     </div>
                 </div>
             </div>
@@ -674,7 +695,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-         const logoutBtn = document.getElementById('logoutBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
         logoutBtn.addEventListener('click', function () {
             if (confirm('Are you sure you want to logout?')) {
                 window.location.href = '<?= base_url("Employer_controller/logout"); ?>';
@@ -834,12 +855,63 @@
         var selectedStatus = null;
 
         // Open confirm modal on button click
+        // document.querySelectorAll('.open-confirm-modal').forEach(function (button) {
+        //     button.addEventListener('click', function () {
+        //         selectedApplicationId = this.getAttribute('data-id');
+        //         selectedStatus = this.getAttribute('data-status');
+        //         var message = this.getAttribute('data-message');
+        //         document.getElementById('confirmModalMessage').textContent = message;
+        //         confirmModal.show();
+        //     });
+        // });
         document.querySelectorAll('.open-confirm-modal').forEach(function (button) {
             button.addEventListener('click', function () {
                 selectedApplicationId = this.getAttribute('data-id');
                 selectedStatus = this.getAttribute('data-status');
-                var message = this.getAttribute('data-message');
-                document.getElementById('confirmModalMessage').textContent = message;
+
+                var employerName = this.getAttribute('data-employername');
+                var employeeName = this.getAttribute('data-employeename');
+                var positionName = this.getAttribute('data-positionname');
+
+                let message = '';
+                // if (selectedStatus === 'Accepted') {
+                //     message = `Hi ${employerName},<br><br>
+                // You are confirming <strong>${employeeName}</strong> for the position of <strong>${positionName}</strong>.<br>
+                // We will send a mail.<br><br>
+                // Do you want to continue?`;
+                // } else if (selectedStatus === 'Rejected') {
+                //     message = `Hi ${employerName},<br><br>
+                // You are <strong>rejecting</strong> <strong>${employeeName}</strong> for the position of <strong>${positionName}</strong>.<br><br>
+                // Do you want to continue?`;
+                // } else {
+                //     message = 'Are you sure?';
+                // }
+
+                if (selectedStatus === 'Accepted') {
+                    message = `<div style="text-align:left;">
+        <div style="margin-bottom:10px;">Hi <strong>${employerName}</strong>,</div>
+        <div style="margin-bottom:10px;">
+            You are confirming <strong>${employeeName}</strong> for the position of<br>
+            <strong>${positionName}</strong>.
+        </div>
+        <div style="margin-bottom:10px;">We will send a mail.</div>
+        <div>Do you want to continue?</div>
+    </div>`;
+                } else if (selectedStatus === 'Rejected') {
+                    message = `<div style="text-align:left;">
+        <div style="margin-bottom:10px;">Hi <strong>${employerName}</strong>,</div>
+        <div style="margin-bottom:10px;">
+            You are <span style="color:#e63946;font-weight:bold;">rejecting</span>
+            <strong>${employeeName}</strong> for the position of<br>
+            <strong>${positionName}</strong>.
+        </div>
+        <div style="margin-bottom:10px;">We will send a mail.</div>
+        <div>Do you want to continue?</div>
+    </div>`;
+                }
+
+
+                document.getElementById('confirmModalMessage').innerHTML = message;
                 confirmModal.show();
             });
         });
@@ -869,7 +941,7 @@
     </script>
 
 
-   
+
 
 </body>
 

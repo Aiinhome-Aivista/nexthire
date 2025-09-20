@@ -345,7 +345,7 @@
             'skills' => ['label' => 'Skills', 'fields' => ['skill_name'], 'header' => 'Skill Name'],
             'work_experience' => ['label' => 'Work Experience', 'fields' => ['job_title', 'company_name'], 'header' => ['Job Title', 'Company Name']],
             'education' => ['label' => 'Education', 'fields' => ['school_name', 'degree'], 'header' => ['School/University', 'Degree']],
-            'licenses' => ['label' => 'Licenses', 'fields' => ['license_name'], 'header' => 'License Name'],
+            'licenses' => ['label' => 'Identification Details', 'fields' => ['license_name'], 'header' => 'License Name'],
             'certifications' => ['label' => 'Certifications', 'fields' => ['cert_name'], 'header' => 'Certification Name'],
             'languages' => ['label' => 'Languages', 'fields' => ['language_name'], 'header' => 'Language']
         ];

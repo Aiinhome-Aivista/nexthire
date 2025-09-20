@@ -169,9 +169,9 @@
         </div>
         <input type="submit" value="Login">
       </form>
-      <div style="text-align:center; margin:20px 0 8px;">
+      <!-- <div style="text-align:center; margin:20px 0 8px;">
         <span style="color:#1b212b;">Use OTP to Login</span>
-      </div>
+      </div> -->
       <div class="login-divider">Or</div>
       <button id="googleSignInBtn" class="login-google">
         <img style="height:30px; width:30px;" src="<?= base_url('assets/images/google.png'); ?>" alt="google" />

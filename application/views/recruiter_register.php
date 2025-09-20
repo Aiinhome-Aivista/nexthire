@@ -43,6 +43,30 @@
       flex-direction: column;
     }
 
+    .spinner {
+      border: 3px solid #f3f3f3;
+      /* Light gray */
+      border-top: 3px solid #555;
+      /* Darker gray */
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
     .header {
       width: 100%;
       background: #fff;
@@ -513,9 +537,20 @@
 
             <div class="form-group">
               <label for="email">Official Email ID<span style="color:#e42e2e;">*</span></label>
-              <input type="email" name="email" id="email" placeholder="Enter your company email">
+              <!-- <input type="email" name="email" id="email" placeholder="Enter your company email"> -->
+              <div class="email-verification-container" style="display: flex; align-items: center; gap: 10px;">
+                <input type="email" name="email" id="email" placeholder="Enter your company email" style="flex: 1;">
+                <button type="button" id="verify-email-btn" class="verify-email-btn"
+                  style="background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; padding: 8px 12px; font-size: 14px; cursor: pointer; white-space: nowrap;">Verify
+                  Email</button>
+                <span id="email-verified" class="email-verified"
+                  style="color: #38b200; font-weight: 600; display: none;">
+                  <i class="fas fa-check-circle"></i> Verified
+                </span>
+              </div>
               <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
               <span class="input-hint">Use your company domain email (e.g. hr@company.com)</span>
+              <input type="hidden" id="email_verified_status" name="email_verified" value="0">
             </div>
 
             <div class="form-group">
@@ -716,6 +751,168 @@
     });
 
   </script>
+  <script>
+    function showEmailVerified() {
+      document.getElementById('email-verified').style.display = 'flex';
+      document.getElementById('verify-email-btn').style.display = 'none';
+      document.getElementById('email_verified_status').value = '1';
+    }
+
+    // Function to start polling backend for email verification status
+    function startPollingEmailVerification(email, button, originalText) {
+      const interval = setInterval(() => {
+        fetch('<?= base_url('recruiter/check_email_verification') ?>?email=' + encodeURIComponent(email))
+          .then(res => res.json())
+          .then(data => {
+            if (data.verified) {
+              clearInterval(interval);
+              showEmailVerified();
+              if (button) button.style.display = 'none';
+            }
+          });
+      }, 5000);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const emailInput = document.getElementById('email');
+      const verifyBtn = document.getElementById('verify-email-btn');
+
+      // Start polling immediately if email field already has a value (user refresh or revisit)
+      if (emailInput.value.trim() !== '') {
+        startPollingEmailVerification(emailInput.value.trim(), verifyBtn);
+      }
+
+      // Form validation and handling as before...
+      const form = document.getElementById('registration-form');
+      const fields = [
+        { id: 'fullname', name: 'Full name' },
+        { id: 'email', name: 'Email ID' },
+        { id: 'password', name: 'Password' },
+        { id: 'mobile', name: 'Mobile number' },
+      ];
+
+      function validateField(field, value) {
+        if (!value) {
+          return `${field.name} is required.`;
+        } else {
+          if (field.id === 'email') {
+            if (!(value.includes('.') && value.includes('com'))) {
+              return 'Email must contain .com';
+            }
+          }
+          if (field.id === 'password') {
+            if (value.length < 6) {
+              return 'Password must be at least 6 characters.';
+            }
+          }
+          if (field.id === 'mobile') {
+            if (!/^[0-9]{10}$/.test(value)) {
+              return 'Mobile number must be exactly 10 digits.';
+            }
+          }
+        }
+        return '';
+      }
+
+      form.addEventListener('submit', function (e) {
+        let isValid = true;
+
+        fields.forEach(field => {
+          const input = document.getElementById(field.id);
+          const errorSpan = input.parentElement.querySelector('.error-msg');
+          const value = input.value.trim();
+          const message = validateField(field, value);
+
+          input.style.borderColor = '#808080';
+          errorSpan.style.display = 'none';
+          errorSpan.textContent = '';
+
+          if (message) {
+            isValid = false;
+            input.style.borderColor = 'red';
+            errorSpan.style.display = 'block';
+            errorSpan.textContent = message;
+          }
+        });
+
+        const emailVerified = document.getElementById('email_verified_status').value;
+        if (emailVerified === '0') {
+          isValid = false;
+          alert('Please verify your email address before submitting the form.');
+        }
+
+        if (!isValid) {
+          e.preventDefault();
+        }
+      });
+
+      fields.forEach(field => {
+        const input = document.getElementById(field.id);
+        const errorSpan = input.parentElement.querySelector('.error-msg');
+        input.addEventListener('input', function () {
+          const value = input.value.trim();
+          const message = validateField(field, value);
+          if (message) {
+            input.style.borderColor = 'red';
+            errorSpan.style.display = 'block';
+            errorSpan.textContent = message;
+          } else {
+            input.style.borderColor = '#808080';
+            errorSpan.style.display = 'none';
+            errorSpan.textContent = '';
+          }
+        });
+      });
+    });
+
+    // Email verification button click handler
+    document.getElementById('verify-email-btn').addEventListener('click', function () {
+      const email = document.getElementById('email').value.trim();
+
+      if (!email) {
+        alert('Please enter your email address first');
+        return;
+      }
+
+      if (!(email.includes('.') && email.includes('com'))) {
+        alert('Please enter a valid email address');
+        return;
+      }
+
+      const button = this;
+      const originalText = button.innerHTML;
+
+      button.disabled = true;
+      button.innerHTML = 'Sending <span class="spinner"></span>';
+
+      fetch('<?= base_url('recruiter/send_verification_email') ?>', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'email=' + encodeURIComponent(email)
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert('Verification email sent! Please check your inbox.');
+            startPollingEmailVerification(email, button, originalText); // Start polling after success
+          } else {
+            alert('Error: ' + data.message);
+            button.disabled = false;
+            button.innerHTML = originalText;
+          }
+        })
+        .catch(error => {
+          alert('Error sending verification email');
+          console.error('Error:', error);
+          button.disabled = false;
+          button.innerHTML = originalText;
+        });
+    });
+
+   
+  </script>
+
+
 </body>
 
 </html>

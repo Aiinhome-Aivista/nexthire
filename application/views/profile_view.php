@@ -716,7 +716,7 @@
         <h2>Improve your job matches</h2>
         <div class="info-card">
           <div class="info-details">
-            <h4>Qualifications</h4>
+            <h4>Qualifications / Work Experience / Skills / Centifcations</h4>
             <p>Highlight your skills and experience.</p>
           </div>
           <a href="<?= base_url('profile/qualifications'); ?>" class="arrow-link">›</a>

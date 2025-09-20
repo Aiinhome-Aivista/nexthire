@@ -13,6 +13,8 @@ class Employer_controller extends CI_Controller
         $this->load->library('pagination');
         $this->load->library('session');
         $this->load->helper('url');
+        $this->load->library('EmailService');
+
     }
 
     // manage job functions
@@ -68,11 +70,29 @@ class Employer_controller extends CI_Controller
 
         $offset = $this->uri->segment(3, 0);
 
+        // Fetch employer name and pass to view
+        $data['employer'] = $this->Employer_profile_model->get_employer_by_id($employer_id);
+        $employer_name = isset($data['employer']['full_name']) ? $data['employer']['full_name'] : '';
+        $data['employer_name'] = $employer_name;
+
+
         $data['candidates'] = $this->Manage_candidate_model->get_candidates_by_employer($employer_id, $config['per_page'], $offset);
         $data['pagination_links'] = $this->pagination->create_links();
 
         $this->load->view('manage_candidates', $data);
     }
+
+    // public function update_application_status()
+    // {
+    //     $application_id = $this->input->post('application_id');
+    //     $status = $this->input->post('status'); // 'Accepted' or 'Rejected'
+
+    //     if ($this->Manage_candidate_model->update_application_status($application_id, $status)) {
+    //         echo json_encode(['success' => true, 'message' => "Application status updated to $status"]);
+    //     } else {
+    //         echo json_encode(['success' => false, 'message' => 'Failed to update status']);
+    //     }
+    // }
 
     public function update_application_status()
     {
@@ -80,6 +100,24 @@ class Employer_controller extends CI_Controller
         $status = $this->input->post('status'); // 'Accepted' or 'Rejected'
 
         if ($this->Manage_candidate_model->update_application_status($application_id, $status)) {
+
+
+            // Get application details for email content
+            $application = $this->Manage_candidate_model->get_application_by_id($application_id);
+
+            if ($application) {
+                $toEmail = $application['email'];
+                $toName = $application['full_name'];
+                $jobPosition = $application['job_position'];
+                $company = $application['company'];
+                // Send the notification email
+                $emailSent = $this->emailservice->sendApplicationStatusEmail($toEmail, $toName, $jobPosition, $status, $company);
+
+                if (!$emailSent) {
+                    log_message('error', "Failed to send notification email to $toEmail");
+                }
+            }
+
             echo json_encode(['success' => true, 'message' => "Application status updated to $status"]);
         } else {
             echo json_encode(['success' => false, 'message' => 'Failed to update status']);

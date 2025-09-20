@@ -463,7 +463,7 @@
 
                 <div class="row">
                     <div class="form-group">
-                        <label for="company">Company Name<span style="color:#e42e2e;">*</span></label>
+                        <label for="company">Company Name</label>
                         <input type="text" id="company" name="company_display"
                             value="<?php echo htmlspecialchars($company); ?>" disabled>
                         <input type="hidden" name="company" value="<?php echo htmlspecialchars($company); ?>">
