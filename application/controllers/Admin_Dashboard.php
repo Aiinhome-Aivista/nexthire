@@ -49,7 +49,9 @@ class Admin_Dashboard extends CI_Controller
 
     public function featured_companies()
     {
-        $data['featured_companies'] = $this->Featured_companies_model->get_all_featured_companies();
+        $data['employers'] = $this->Featured_companies_model->get_all_employers();
+        $data['companies'] = $this->Featured_companies_model->get_all_company();
+        $data['featured_companies'] = $this->Featured_companies_model->get_all_featured_companies_with_job_count();
         $this->load->view('admin/featured_companies', $data);
     }
 
