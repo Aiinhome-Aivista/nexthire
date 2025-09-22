@@ -16,47 +16,161 @@ class Recruiter extends CI_Controller
         $this->load->view('recruiter_register'); // recruiter registration view
     }
 
-
     public function submit()
     {
-        // Check if email is verified
-        $email_verified = $this->input->post('email_verified');
-        if ($email_verified !== '1') {
-            $this->session->set_flashdata('error', 'Please verify your email before registering.');
+        $email = $this->input->post('email');
+
+        // Check if email already registered
+        $existing_user = $this->Recruiter_model->get_user_by_email($email);
+        if ($existing_user) {
+            $this->session->set_flashdata('error', 'This email is already registered. Please use a different email.');
+            redirect(base_url('recruiter'));
+            return;
+        }
+
+        // Generate verification token
+        $verification_token = bin2hex(random_bytes(32));
+        // Get plain password for email
+        $plain_password = $this->input->post('password');
+        // Collect full registration data, but DO NOT insert into DB yet
+        $registration_data = [
+            'full_name' => $this->input->post('fullname'),
+            'email' => $email,
+            'company' => $this->input->post('company'),
+            'designation' => $this->input->post('designation'),
+            'password' => password_hash($plain_password, PASSWORD_BCRYPT),
+            'mobile_number' => $this->input->post('mobile'),
+            'ip_address' => $this->input->ip_address(),
+            // 'password' => $this->input->post('password') // for welcome email
+        ];
+
+        // Save registration data and token in session temporarily
+        $this->session->set_userdata([
+            'registration_data' => $registration_data,
+            'plain_password' => $plain_password,
+            'email_verification_token' => $verification_token,
+            'email_verification_email' => $email,
+            'email_verification_expires' => time() + 3600 // expires in 1 hour
+        ]);
+
+        // Create verification link
+        $verification_link = base_url('recruiter/verify_email?email=' . urlencode($email) . '&token=' . $verification_token);
+
+        // Load email content view
+        $emailContent = $this->load->view("emails/recruiter_verification_email", [
+            'verification_link' => $verification_link,
+            'email' => $email
+        ], TRUE);
+
+        // Send verification email
+        if ($this->emailservice->sendEmail($email, 'Verify your email - SahajJobs', $emailContent)) {
+            $this->session->set_flashdata('success', 'Verification email sent. Please check your inbox and click the verification link to complete registration.');
+        } else {
+            $this->session->set_flashdata('error', 'Failed to send verification email. Please try again.');
+        }
+
+        redirect(base_url('employer_register'));
+    }
+
+    public function verify_email()
+    {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $session_token = $this->session->userdata('email_verification_token');
+        $session_email = $this->session->userdata('email_verification_email');
+        $session_expires = $this->session->userdata('email_verification_expires');
+
+        if (!$session_token || !$session_email || !$session_expires || time() > $session_expires) {
+            $this->session->set_flashdata('error', 'Verification link has expired or is invalid. Please register again.');
             redirect(base_url('employer_register'));
             return;
         }
-        $plainPassword = $this->input->post('password');
-        $ip = $this->input->ip_address();
 
-        $data = [
-            'full_name' => $this->input->post('fullname'),
-            'ip_address' => $ip,
-            'email' => $this->input->post('email'),
-            'company' => $this->input->post('company'),
-            'designation' => $this->input->post('designation'),
-            'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
-            'mobile_number' => $this->input->post('mobile'),
-        ];
-
-        $insert_id = $this->Recruiter_model->insert_recruiter($data);
-
-
-        if ($insert_id) {
-            $emailSent = $this->emailservice->sendWelcomeEmail($data['email'], $data['full_name'], $plainPassword, 'recruiter_welcome_email');
-
-            if ($emailSent) {
-                $this->session->set_flashdata('success', 'Registration successful! A welcome email has been sent to your email address.');
-            } else {
-                $this->session->set_flashdata('success', 'Registration successful! However, we could not send the welcome email.');
-            }
-
-            redirect(base_url('employer_login'));
-        } else {
-            $this->session->set_flashdata('error', 'Something went wrong with your registration. Please try again.');
+        if ($token !== $session_token || $email !== $session_email) {
+            $this->session->set_flashdata('error', 'Invalid verification link.');
             redirect(base_url('employer_register'));
+            return;
         }
+
+        // Retrieve registration data from session
+        $registration_data = $this->session->userdata('registration_data');
+        $plain_password = $this->session->userdata('plain_password');
+        if (!$registration_data || !$plain_password) {
+            $this->session->set_flashdata('error', 'No registration data found. Please register again.');
+            redirect(base_url('employer_register'));
+            return;
+        }
+
+        // Insert recruiter data into DB
+        $insert_id = $this->Recruiter_model->insert_recruiter($registration_data);
+        if (!$insert_id) {
+            $this->session->set_flashdata('error', 'Failed to complete registration. Please try again.');
+            redirect(base_url('employer_register'));
+            return;
+        }
+
+        // Update email verified flag
+        $this->Recruiter_model->update_email_verified($insert_id, 1);
+
+        // Send welcome email (optional)
+        $this->emailservice->sendWelcomeEmail($registration_data['email'], $registration_data['full_name'], $plain_password, 'recruiter_welcome_email');
+
+        // Clear session temporary data
+        $this->session->unset_userdata([
+            'registration_data',
+            'email_verification_token',
+            'email_verification_email',
+            'email_verification_expires'
+        ]);
+
+        // Flash success message for registration completed
+        $this->session->set_flashdata('success', 'Thank you for your registration!.');
+
+        // Redirect to login or any page
+        redirect(base_url('employer_register'));
     }
+
+    // public function submit()
+    // {
+    //     // Check if email is verified
+    //     $email_verified = $this->input->post('email_verified');
+    //     if ($email_verified !== '1') {
+    //         $this->session->set_flashdata('error', 'Please verify your email before registering.');
+    //         redirect(base_url('employer_register'));
+    //         return;
+    //     }
+    //     $plainPassword = $this->input->post('password');
+    //     $ip = $this->input->ip_address();
+
+    //     $data = [
+    //         'full_name' => $this->input->post('fullname'),
+    //         'ip_address' => $ip,
+    //         'email' => $this->input->post('email'),
+    //         'company' => $this->input->post('company'),
+    //         'designation' => $this->input->post('designation'),
+    //         'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
+    //         'mobile_number' => $this->input->post('mobile'),
+    //     ];
+
+    //     $insert_id = $this->Recruiter_model->insert_recruiter($data);
+
+
+    //     if ($insert_id) {
+    //         $emailSent = $this->emailservice->sendWelcomeEmail($data['email'], $data['full_name'], $plainPassword, 'recruiter_welcome_email');
+
+    //         if ($emailSent) {
+    //             $this->session->set_flashdata('success', 'Registration successful! A welcome email has been sent to your email address.');
+    //         } else {
+    //             $this->session->set_flashdata('success', 'Registration successful! However, we could not send the welcome email.');
+    //         }
+
+    //         redirect(base_url('employer_login'));
+    //     } else {
+    //         $this->session->set_flashdata('error', 'Something went wrong with your registration. Please try again.');
+    //         redirect(base_url('employer_register'));
+    //     }
+    // }
 
     public function google_callback()
     {
@@ -189,55 +303,55 @@ class Recruiter extends CI_Controller
         }
     }
 
-    public function verify_email()
-    {
-        $email = $this->input->get('email');
-        $token = $this->input->get('token');
+    // public function verify_email()
+    // {
+    //     $email = $this->input->get('email');
+    //     $token = $this->input->get('token');
 
-        $user = $this->Recruiter_model->get_user_by_email($email);
+    //     $user = $this->Recruiter_model->get_user_by_email($email);
 
-        // If user doesn't exist, insert only the email (and a blank full_name)
-        if (!$user) {
-            $data = [
-                'email' => $email,
-                'full_name' => '',  // required since 'full_name' is NOT NULL
-                'email_verified' => 0, // initially not verified
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ];
-            $insert_id = $this->Recruiter_model->insert_recruiter($data);
+    //     // If user doesn't exist, insert only the email (and a blank full_name)
+    //     if (!$user) {
+    //         $data = [
+    //             'email' => $email,
+    //             'full_name' => '',  // required since 'full_name' is NOT NULL
+    //             'email_verified' => 0, // initially not verified
+    //             'created_at' => date('Y-m-d H:i:s'),
+    //             'updated_at' => date('Y-m-d H:i:s')
+    //         ];
+    //         $insert_id = $this->Recruiter_model->insert_recruiter($data);
 
-            if ($insert_id) {
-                $user = $this->Recruiter_model->get_user_by_id($insert_id);
-            } else {
-                echo "<h2 style='text-align:center;color:red;margin-top:30px;'>Failed to add email to database.</h2>";
-                exit;
-            }
-        }
-
-
+    //         if ($insert_id) {
+    //             $user = $this->Recruiter_model->get_user_by_id($insert_id);
+    //         } else {
+    //             echo "<h2 style='text-align:center;color:red;margin-top:30px;'>Failed to add email to database.</h2>";
+    //             exit;
+    //         }
+    //     }
 
 
 
-        $session_token = $this->session->userdata('email_verification_token');
-        $validToken = ($session_token === $token);
 
-        if ($user && $validToken) {
-            $this->Recruiter_model->update_email_verified($user['id'], 1);
 
-            $this->session->unset_userdata([
-                'email_verification_token',
-                'email_verification_email',
-                'email_verification_expires'
-            ]);
+    //     $session_token = $this->session->userdata('email_verification_token');
+    //     $validToken = ($session_token === $token);
 
-            echo "<h2 style='text-align:center;color:green;margin-top:30px;'>Your email is verified! Please return to your registration tab.</h2>";
-            exit;
-        } else {
-            echo "<h2 style='text-align:center;color:red;margin-top:30px;'>Invalid or expired verification link.</h2>";
-            exit;
-        }
-    }
+    //     if ($user && $validToken) {
+    //         $this->Recruiter_model->update_email_verified($user['id'], 1);
+
+    //         $this->session->unset_userdata([
+    //             'email_verification_token',
+    //             'email_verification_email',
+    //             'email_verification_expires'
+    //         ]);
+
+    //         echo "<h2 style='text-align:center;color:green;margin-top:30px;'>Your email is verified! Please return to your registration tab.</h2>";
+    //         exit;
+    //     } else {
+    //         echo "<h2 style='text-align:center;color:red;margin-top:30px;'>Invalid or expired verification link.</h2>";
+    //         exit;
+    //     }
+    // }
 
     public function check_email_verification()
     {

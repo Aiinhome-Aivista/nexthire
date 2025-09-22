@@ -537,8 +537,8 @@
 
             <div class="form-group">
               <label for="email">Official Email ID<span style="color:#e42e2e;">*</span></label>
-              <!-- <input type="email" name="email" id="email" placeholder="Enter your company email"> -->
-              <div class="email-verification-container" style="display: flex; align-items: center; gap: 10px;">
+              <input type="email" name="email" id="email" placeholder="Enter your company email">
+              <!-- <div class="email-verification-container" style="display: flex; align-items: center; gap: 10px;">
                 <input type="email" name="email" id="email" placeholder="Enter your company email" style="flex: 1;">
                 <button type="button" id="verify-email-btn" class="verify-email-btn"
                   style="background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; padding: 8px 12px; font-size: 14px; cursor: pointer; white-space: nowrap;">Verify
@@ -547,7 +547,7 @@
                   style="color: #38b200; font-weight: 600; display: none;">
                   <i class="fas fa-check-circle"></i> Verified
                 </span>
-              </div>
+              </div> -->
               <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
               <span class="input-hint">Use your company domain email (e.g. hr@company.com)</span>
               <input type="hidden" id="email_verified_status" name="email_verified" value="0">
