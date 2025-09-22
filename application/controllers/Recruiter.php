@@ -65,7 +65,7 @@ class Recruiter extends CI_Controller
 
         // Send verification email
         if ($this->emailservice->sendEmail($email, 'Verify your email - SahajJobs', $emailContent)) {
-            $this->session->set_flashdata('success', 'Verification email sent. Please check your inbox and click the verification link to complete registration.');
+            $this->session->set_flashdata('success', 'Verification email sent. Please check your inbox and click on the verification link to complete registration.');
         } else {
             $this->session->set_flashdata('error', 'Failed to send verification email. Please try again.');
         }
@@ -126,7 +126,7 @@ class Recruiter extends CI_Controller
         ]);
 
         // Flash success message for registration completed
-        $this->session->set_flashdata('success', 'Thank you for your registration! Your email has been verified.!');
+        $this->session->set_flashdata('success', 'Thank you for your registration! Your email has been verified.');
 
         // Redirect to login or any page
         redirect(base_url('employer_login'));

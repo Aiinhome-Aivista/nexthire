@@ -147,7 +147,7 @@
       <span class="login-title">Candidate Login</span>
       <form class="login-form" method="post" action="<?= base_url('login/process'); ?>" autocomplete="off" novalidate>
         <!-- Flash Messages -->
-        <?php if ($this->session->flashdata('success')): ?>
+        <!-- <?php if ($this->session->flashdata('success')): ?>
           <div class="alert alert-success"
             style="padding: 10px; background: #d4edda; color: #155724; border-radius: 4px; margin-bottom: 20px;">
             <?= $this->session->flashdata('success') ?>
@@ -159,7 +159,7 @@
             style="padding: 10px; background: #f8d7da; color: #721c24; border-radius: 4px; margin-bottom: 20px;">
             <?= $this->session->flashdata('error') ?>
           </div>
-        <?php endif; ?>
+        <?php endif; ?> -->
         <label for="login-username">Email ID / Username<span style="color:#e42e2e;">*</span></label>
         <input type="text" id="login-username" name="username" placeholder="Enter your active Email ID / Username"
           required>
@@ -194,6 +194,14 @@
 
     </div>
   </div>
+  <!-- Flash Message Modal -->
+  <div id="flashModal" class="modal">
+    <div class="modal-content" id="modalContent">
+      <span class="modal-close" id="modalClose">&times;</span>
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-message" id="modalMessage"></div>
+    </div>
+  </div>
   <script>
     document.getElementById('googleSignInBtn').addEventListener('click', function () {
       var provider = new firebase.auth.GoogleAuthProvider();
@@ -218,12 +226,12 @@
               if (data.success) {
                 window.location.href = '<?= base_url('profile') ?>';
               } else {
-                alert('Login failed: ' + data.message);
+                showFlashModal('error', 'Login failed: ' + data.message);
               }
             });
         })
         .catch(function (error) {
-          alert(error.message);
+          showFlashModal('error', error.message);
         });
     });
 
@@ -315,6 +323,55 @@
     });
 
   </script>
+  <script>
+    // Show flash messages in modal
+    document.addEventListener('DOMContentLoaded', function () {
+      <?php if ($this->session->flashdata('success')): ?>
+        showFlashModal('success', '<?= $this->session->flashdata('success') ?>');
+      <?php endif; ?>
+
+      <?php if ($this->session->flashdata('error')): ?>
+        showFlashModal('error', '<?= $this->session->flashdata('error') ?>');
+      <?php endif; ?>
+
+      function showFlashModal(type, message) {
+        const modal = document.getElementById('flashModal');
+        const modalContent = document.getElementById('modalContent');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMessage = document.getElementById('modalMessage');
+
+        // Set modal content based on type
+        if (type === 'success') {
+          modalTitle.textContent = 'Success';
+          modalContent.classList.add('modal-success');
+        } else {
+          modalTitle.textContent = 'Error';
+          modalContent.classList.add('modal-error');
+        }
+
+        modalMessage.textContent = message;
+        modal.style.display = 'block';
+
+        // Auto close after 5 seconds
+        setTimeout(() => {
+          modal.style.display = 'none';
+        }, 15000);
+      }
+
+      // Close modal when clicking close button
+      document.getElementById('modalClose').addEventListener('click', function () {
+        document.getElementById('flashModal').style.display = 'none';
+      });
+
+      // Close modal when clicking outside
+      window.addEventListener('click', function (event) {
+        const modal = document.getElementById('flashModal');
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+    });
+  </script>
   <!-- Login Popup HTML and CSS -->
   <style>
     /* Alert styles */
@@ -333,6 +390,70 @@
     .alert-danger {
       background: #f8d7da;
       color: #721c24;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .modal-close:hover {
+      color: #000;
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .modal-success .modal-title {
+      color: #155724;
+    }
+
+    .modal-error .modal-title {
+      color: #721c24;
+    }
+
+    .modal-error {
+      border-left: 4px solid #dc3545;
+    }
+
+    .modal-message {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .modal-success {
+      border-left: 4px solid #28a745;
     }
 
     .login-popup-bg {
