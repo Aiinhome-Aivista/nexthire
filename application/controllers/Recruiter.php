@@ -126,7 +126,7 @@ class Recruiter extends CI_Controller
         ]);
 
         // Flash success message for registration completed
-        $this->session->set_flashdata('success', 'Thank you for your registration!.');
+        $this->session->set_flashdata('success', 'Thank you for your registration! Your email has been verified.!');
 
         // Redirect to login or any page
         redirect(base_url('employer_login'));

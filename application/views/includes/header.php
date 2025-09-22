@@ -70,7 +70,7 @@
           </a>
           <span class="employer-underline"></span>
           <div class="employer-menu">
-             <a href="<?= base_url('employer_register'); ?>">Employer Register</a>
+            <a href="<?= base_url('employer_register'); ?>">Employer Register</a>
             <a href="<?= base_url('employer_login'); ?>">Employer Login</a>
           </div>
         </div>
@@ -146,6 +146,20 @@
       <a href="<?= base_url('register'); ?>" class="register-for-free">Register for free</a>
       <span class="login-title">Candidate Login</span>
       <form class="login-form" method="post" action="<?= base_url('login/process'); ?>" autocomplete="off" novalidate>
+        <!-- Flash Messages -->
+        <?php if ($this->session->flashdata('success')): ?>
+          <div class="alert alert-success"
+            style="padding: 10px; background: #d4edda; color: #155724; border-radius: 4px; margin-bottom: 20px;">
+            <?= $this->session->flashdata('success') ?>
+          </div>
+        <?php endif; ?>
+
+        <?php if ($this->session->flashdata('error')): ?>
+          <div class="alert alert-danger"
+            style="padding: 10px; background: #f8d7da; color: #721c24; border-radius: 4px; margin-bottom: 20px;">
+            <?= $this->session->flashdata('error') ?>
+          </div>
+        <?php endif; ?>
         <label for="login-username">Email ID / Username<span style="color:#e42e2e;">*</span></label>
         <input type="text" id="login-username" name="username" placeholder="Enter your active Email ID / Username"
           required>
@@ -303,6 +317,24 @@
   </script>
   <!-- Login Popup HTML and CSS -->
   <style>
+    /* Alert styles */
+    .alert {
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .alert-success {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .alert-danger {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
     .login-popup-bg {
       position: fixed;
       top: 0;
@@ -929,3 +961,13 @@
     }
   });
 </script>
+<?php if (!empty($showLoginPopup)): ?>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const popupBg = document.getElementById('loginPopupBg');
+      if (popupBg) {
+        popupBg.style.display = 'flex';
+      }
+    });
+  </script>
+<?php endif; ?>
