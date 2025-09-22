@@ -9,6 +9,7 @@ class Register extends CI_Controller
         parent::__construct();
         $this->load->model('Register_model');
         $this->load->model('Home_model');
+        $this->load->model('Menu_model', 'menu_model');
         $this->load->library('EmailService');
     }
 
