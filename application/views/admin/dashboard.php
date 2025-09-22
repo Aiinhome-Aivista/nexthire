@@ -574,7 +574,8 @@
                             Posts</span></a></li>
                 <li><a href="<?= base_url('admin/featured_companies') ?>"><i class="fas fa-building"></i>
                         <span>Featured Companies</span></a></li>
-                <li></li>
+                <li><a href="<?= base_url('admin/sitemap_settings') ?>"><i class="fas fa-sitemap"></i>
+                        <span>Sitemap Settings</span></a></li>
                 <li>
                     <a href="#" id="logoutBtn">
                         <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
