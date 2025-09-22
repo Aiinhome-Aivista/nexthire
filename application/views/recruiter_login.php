@@ -486,13 +486,13 @@
         <button type="submit" class="login-btn">Login</button>
 
         <!-- Google Login -->
-        <div class="google-section">
+        <!-- <div class="google-section">
           <div class="or-text">Or</div>
           <button type="button" class="google-btn" id="googleSignInBtn">
             <img src="<?= base_url('assets/images/google.png'); ?>" alt="google">
             Continue with Google
           </button>
-        </div>
+        </div> -->
       </form>
     </div>
   </div>
