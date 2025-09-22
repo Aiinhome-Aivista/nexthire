@@ -128,7 +128,7 @@ class Recruiter extends CI_Controller
         $this->session->set_flashdata('success', 'Thank you for your registration!.');
 
         // Redirect to login or any page
-        redirect(base_url('employer_register'));
+        redirect(base_url('employer_login'));
     }
 
     // public function submit()
