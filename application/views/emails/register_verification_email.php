@@ -93,7 +93,7 @@
 <body>
     <div class="container">
         <div class="content">
-            <p class="greeting">Hello Job Seeker,</p>
+            <p class="greeting">Hello <?php echo htmlspecialchars($full_name); ?>,</p>
 
             <p class="message">Thank you for registering with SahajJobs. Please verify your email address to complete your registration and start exploring job opportunities.</p>
 

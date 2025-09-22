@@ -442,6 +442,24 @@
       display: none;
     }
 
+    /* Alert styles */
+    .alert {
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .alert-success {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .alert-danger {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
     /* Responsive styles */
     @media (max-width: 1100px) {
       .container {
@@ -630,7 +648,8 @@
             </div>
             <div class="form-group">
               <label for="email">Email ID<span style="color:#e42e2e;">*</span></label>
-              <div class="email-verification-container" style="display: flex; align-items: center; gap: 10px;">
+              <input type="email" name="email" id="email" placeholder="Tell us your Email ID" style="flex: 1;">
+              <!-- <div class="email-verification-container" style="display: flex; align-items: center; gap: 10px;">
                 <input type="email" name="email" id="email" placeholder="Tell us your Email ID" style="flex: 1;">
                 <button type="button" id="verify-email-btn" class="verify-email-btn"
                   style="background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; padding: 8px 12px; font-size: 14px; cursor: pointer; white-space: nowrap;">Verify
@@ -639,10 +658,10 @@
                   style="color: #38b200; font-weight: 600; display: none;">
                   <i class="fas fa-check-circle"></i> Verified
                 </span>
-              </div>
+              </div> -->
               <span class="error-msg" style="color:red; font-size:0.85em; display:none;"></span>
               <span class="input-hint">We'll send relevant jobs and updates to this email</span>
-              <input type="hidden" id="email_verified_status" name="email_verified" value="0">
+              <!-- <input type="hidden" id="email_verified_status" name="email_verified" value="0"> -->
             </div>
             <div class="form-group" style="position:relative;">
               <label for="password">Password<span style="color:#e42e2e;">*</span></label>
@@ -997,35 +1016,35 @@
     });
   </script> -->
   <script>
-    function showEmailVerified() {
-      document.getElementById('email-verified').style.display = 'flex';
-      document.getElementById('verify-email-btn').style.display = 'none';
-      document.getElementById('email_verified_status').value = '1';
-    }
+    // function showEmailVerified() {
+    //   document.getElementById('email-verified').style.display = 'flex';
+    //   document.getElementById('verify-email-btn').style.display = 'none';
+    //   document.getElementById('email_verified_status').value = '1';
+    // }
 
     // Function to start polling backend for email verification status
-    function startPollingEmailVerification(email, button, originalText) {
-      const interval = setInterval(() => {
-        fetch('<?= base_url('register/check_email_verification') ?>?email=' + encodeURIComponent(email))
-          .then(res => res.json())
-          .then(data => {
-            if (data.verified) {
-              clearInterval(interval);
-              showEmailVerified();
-              if (button) button.style.display = 'none';
-            }
-          });
-      }, 5000);
-    }
+    // function startPollingEmailVerification(email, button, originalText) {
+    //   const interval = setInterval(() => {
+    //     fetch('<?= base_url('register/check_email_verification') ?>?email=' + encodeURIComponent(email))
+    //       .then(res => res.json())
+    //       .then(data => {
+    //         if (data.verified) {
+    //           clearInterval(interval);
+    //           showEmailVerified();
+    //           if (button) button.style.display = 'none';
+    //         }
+    //       });
+    //   }, 5000);
+    // }
 
     document.addEventListener('DOMContentLoaded', function () {
-      const emailInput = document.getElementById('email');
-      const verifyBtn = document.getElementById('verify-email-btn');
+      // const emailInput = document.getElementById('email');
+      // const verifyBtn = document.getElementById('verify-email-btn');
 
-      // Start polling immediately if email field already has a value (user refresh or revisit)
-      if (emailInput.value.trim() !== '') {
-        startPollingEmailVerification(emailInput.value.trim(), verifyBtn);
-      }
+      // // Start polling immediately if email field already has a value (user refresh or revisit)
+      // if (emailInput.value.trim() !== '') {
+      //   startPollingEmailVerification(emailInput.value.trim(), verifyBtn);
+      // }
 
       // Form validation and handling as before...
       const form = document.getElementById('registration-form');
@@ -1080,15 +1099,15 @@
           }
         });
 
-        const emailVerified = document.getElementById('email_verified_status').value;
-        if (emailVerified === '0') {
-          isValid = false;
-          alert('Please verify your email address before submitting the form.');
-        }
+        // const emailVerified = document.getElementById('email_verified_status').value;
+        // if (emailVerified === '0') {
+        //   isValid = false;
+        //   alert('Please verify your email address before submitting the form.');
+        // }
 
-        if (!isValid) {
-          e.preventDefault();
-        }
+        // if (!isValid) {
+        //   e.preventDefault();
+        // }
       });
 
       fields.forEach(field => {
@@ -1111,48 +1130,48 @@
     });
 
     // Email verification button click handler
-    document.getElementById('verify-email-btn').addEventListener('click', function () {
-      const email = document.getElementById('email').value.trim();
+    // document.getElementById('verify-email-btn').addEventListener('click', function () {
+    //   const email = document.getElementById('email').value.trim();
 
-      if (!email) {
-        alert('Please enter your email address first');
-        return;
-      }
+    //   if (!email) {
+    //     alert('Please enter your email address first');
+    //     return;
+    //   }
 
-      if (!(email.includes('.') && email.includes('com'))) {
-        alert('Please enter a valid email address');
-        return;
-      }
+    //   if (!(email.includes('.') && email.includes('com'))) {
+    //     alert('Please enter a valid email address');
+    //     return;
+    //   }
 
-      const button = this;
-      const originalText = button.innerHTML;
+    //   const button = this;
+    //   const originalText = button.innerHTML;
 
-      button.disabled = true;
-      button.innerHTML = 'Sending <span class="spinner"></span>';
+    //   button.disabled = true;
+    //   button.innerHTML = 'Sending <span class="spinner"></span>';
 
-      fetch('<?= base_url('register/send_verification_email') ?>', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: 'email=' + encodeURIComponent(email)
-      })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            alert('Verification email sent! Please check your inbox.');
-            startPollingEmailVerification(email, button, originalText); // Start polling after success
-          } else {
-            alert('Error: ' + data.message);
-            button.disabled = false;
-            button.innerHTML = originalText;
-          }
-        })
-        .catch(error => {
-          alert('Error sending verification email');
-          console.error('Error:', error);
-          button.disabled = false;
-          button.innerHTML = originalText;
-        });
-    });
+    //   fetch('<?= base_url('register/send_verification_email') ?>', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    //     body: 'email=' + encodeURIComponent(email)
+    //   })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //       if (data.success) {
+    //         alert('Verification email sent! Please check your inbox.');
+    //         startPollingEmailVerification(email, button, originalText); // Start polling after success
+    //       } else {
+    //         alert('Error: ' + data.message);
+    //         button.disabled = false;
+    //         button.innerHTML = originalText;
+    //       }
+    //     })
+    //     .catch(error => {
+    //       alert('Error sending verification email');
+    //       console.error('Error:', error);
+    //       button.disabled = false;
+    //       button.innerHTML = originalText;
+    //     });
+    // });
 
     // Password toggle handler remains unchanged
     document.getElementById('toggle-password').addEventListener('click', function () {

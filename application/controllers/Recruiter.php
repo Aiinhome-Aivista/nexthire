@@ -59,7 +59,8 @@ class Recruiter extends CI_Controller
         // Load email content view
         $emailContent = $this->load->view("emails/recruiter_verification_email", [
             'verification_link' => $verification_link,
-            'email' => $email
+            'email' => $email,
+            'full_name' => $this->input->post('fullname')
         ], TRUE);
 
         // Send verification email

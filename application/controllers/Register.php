@@ -15,46 +15,166 @@ class Register extends CI_Controller
     {
         $this->load->view('register');
     }
+
     public function submit()
     {
+        $email = $this->input->post('email');
 
-        // Check if email is verified
-        $email_verified = $this->input->post('email_verified');
-        if ($email_verified !== '1') {
-            $this->session->set_flashdata('error', 'Please verify your email before registering.');
+        // Check if email already registered
+        $existing_user = $this->Register_model->get_user_by_email($email);
+        if ($existing_user) {
+            $this->session->set_flashdata('error', 'This email is already registered. Please use a different email.');
             redirect(base_url('register'));
             return;
         }
-        $plainPassword = $this->input->post('password');
-        $ip = $this->input->ip_address();
 
-        $data = [
+        // Generate verification token
+        $verification_token = bin2hex(random_bytes(32));
+
+        // Get plain password for welcome email
+        $plain_password = $this->input->post('password');
+
+        // Collect registration data, hash password for DB
+        $registration_data = [
             'full_name' => $this->input->post('fullname'),
-            'ip_address' => $ip,
-            'email' => $this->input->post('email'),
-            'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
+            'ip_address' => $this->input->ip_address(),
+            'email' => $email,
+            'password' => password_hash($plain_password, PASSWORD_BCRYPT),
             'mobile_number' => $this->input->post('mobile'),
             'work_status' => $this->input->post('workStatus'),
-            'email_verified' => 1 // Mark email as verified
+            // email_verified = 0 until verification completes
+            'email_verified' => 0,
         ];
 
-        $insert_id = $this->Register_model->insert($data);
+        // Save registration data + token + plain password in session temporarily
+        $this->session->set_userdata([
+            'registration_data' => $registration_data,
+            'plain_password' => $plain_password,
+            'email_verification_token' => $verification_token,
+            'email_verification_email' => $email,
+            'email_verification_expires' => time() + 3600, // 1 hour expiry
+        ]);
 
-        if ($insert_id) {
-            $emailSent = $this->emailservice->sendWelcomeEmail($data['email'], $data['full_name'], $plainPassword, 'welcome_email');
+        // Create verification link
+        $verification_link = base_url('register/verify_email?email=' . urlencode($email) . '&token=' . $verification_token);
 
-            if ($emailSent) {
-                $this->session->set_flashdata('success', 'Registration successful! A welcome email has been sent to your email address.');
-            } else {
-                $this->session->set_flashdata('success', 'Registration successful! However, we could not send the welcome email.');
-            }
+        // Load email content view
+        $emailContent = $this->load->view("emails/register_verification_email", [
+            'verification_link' => $verification_link,
+            'email' => $email,
+            'full_name' => $this->input->post('fullname')
+        ], TRUE);
 
-            redirect(base_url('home'));
+        // Send verification email
+        if ($this->emailservice->sendEmail($email, 'Verify your email - SahajJobs', $emailContent)) {
+            $this->session->set_flashdata('success', 'Verification email sent. Please check your inbox and click the verification link to complete registration.');
         } else {
-            $this->session->set_flashdata('error', 'Something went wrong with your registration. Please try again.');
-            redirect(base_url('register'));
+            $this->session->set_flashdata('error', 'Failed to send verification email. Please try again.');
         }
+
+        redirect(base_url('register'));
     }
+
+    public function verify_email()
+    {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $session_token = $this->session->userdata('email_verification_token');
+        $session_email = $this->session->userdata('email_verification_email');
+        $session_expires = $this->session->userdata('email_verification_expires');
+
+        if (!$session_token || !$session_email || !$session_expires || time() > $session_expires) {
+            $this->session->set_flashdata('error', 'Verification link has expired or is invalid. Please register again.');
+            redirect(base_url('register'));
+            return;
+        }
+
+        if ($token !== $session_token || $email !== $session_email) {
+            $this->session->set_flashdata('error', 'Invalid verification link.');
+            redirect(base_url('register'));
+            return;
+        }
+
+        // Retrieve registration data and plain password from session
+        $registration_data = $this->session->userdata('registration_data');
+        $plain_password = $this->session->userdata('plain_password');
+
+        if (!$registration_data || !$plain_password) {
+            $this->session->set_flashdata('error', 'No registration data found. Please register again.');
+            redirect(base_url('register'));
+            return;
+        }
+
+        // Insert recruiter data into DB
+        $insert_id = $this->Register_model->insert($registration_data);
+        if (!$insert_id) {
+            $this->session->set_flashdata('error', 'Failed to complete registration. Please try again.');
+            redirect(base_url('register'));
+            return;
+        }
+
+        // Update email_verified flag to 1
+        $this->Register_model->update_email_verified($insert_id, 1);
+
+        // Send welcome email with plain password
+        $this->emailservice->sendWelcomeEmail($registration_data['email'], $registration_data['full_name'], $plain_password, 'welcome_email');
+
+        // Clear related session data
+        $this->session->unset_userdata([
+            'registration_data',
+            'plain_password',
+            'email_verification_token',
+            'email_verification_email',
+            'email_verification_expires'
+        ]);
+
+        $this->session->set_flashdata('success', 'Thank you for your registration! Your email has been verified.');
+
+        redirect(base_url('register'));  // Redirect to login or welcome page as needed
+    }
+
+
+    // public function submit()
+    // {
+
+    //     // Check if email is verified
+    //     $email_verified = $this->input->post('email_verified');
+    //     if ($email_verified !== '1') {
+    //         $this->session->set_flashdata('error', 'Please verify your email before registering.');
+    //         redirect(base_url('register'));
+    //         return;
+    //     }
+    //     $plainPassword = $this->input->post('password');
+    //     $ip = $this->input->ip_address();
+
+    //     $data = [
+    //         'full_name' => $this->input->post('fullname'),
+    //         'ip_address' => $ip,
+    //         'email' => $this->input->post('email'),
+    //         'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
+    //         'mobile_number' => $this->input->post('mobile'),
+    //         'work_status' => $this->input->post('workStatus'),
+    //         'email_verified' => 1 // Mark email as verified
+    //     ];
+
+    //     $insert_id = $this->Register_model->insert($data);
+
+    //     if ($insert_id) {
+    //         $emailSent = $this->emailservice->sendWelcomeEmail($data['email'], $data['full_name'], $plainPassword, 'welcome_email');
+
+    //         if ($emailSent) {
+    //             $this->session->set_flashdata('success', 'Registration successful! A welcome email has been sent to your email address.');
+    //         } else {
+    //             $this->session->set_flashdata('success', 'Registration successful! However, we could not send the welcome email.');
+    //         }
+
+    //         redirect(base_url('home'));
+    //     } else {
+    //         $this->session->set_flashdata('error', 'Something went wrong with your registration. Please try again.');
+    //         redirect(base_url('register'));
+    //     }
+    // }
 
     public function google_callback()
     {
@@ -186,52 +306,52 @@ class Register extends CI_Controller
         }
     }
 
-    public function verify_email()
-    {
-        $email = $this->input->get('email');
-        $token = $this->input->get('token');
+    // public function verify_email()
+    // {
+    //     $email = $this->input->get('email');
+    //     $token = $this->input->get('token');
 
-        $user = $this->Register_model->get_user_by_email($email);
+    //     $user = $this->Register_model->get_user_by_email($email);
 
-        // If user doesn't exist, insert only the email (and a blank full_name)
-        if (!$user) {
-            $data = [
-                'email' => $email,
-                'full_name' => '',  // required since 'full_name' is NOT NULL
-                'email_verified' => 0, // initially not verified
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ];
-            $insert_id = $this->Register_model->insert($data);
+    //     // If user doesn't exist, insert only the email (and a blank full_name)
+    //     if (!$user) {
+    //         $data = [
+    //             'email' => $email,
+    //             'full_name' => '',  // required since 'full_name' is NOT NULL
+    //             'email_verified' => 0, // initially not verified
+    //             'created_at' => date('Y-m-d H:i:s'),
+    //             'updated_at' => date('Y-m-d H:i:s')
+    //         ];
+    //         $insert_id = $this->Register_model->insert($data);
 
-            if ($insert_id) {
-                $user = $this->Register_model->get_user_by_id($insert_id);
-            } else {
-                echo "<h2 style='text-align:center;color:red;margin-top:30px;'>Failed to add email to database.</h2>";
-                exit;
-            }
-        }
+    //         if ($insert_id) {
+    //             $user = $this->Register_model->get_user_by_id($insert_id);
+    //         } else {
+    //             echo "<h2 style='text-align:center;color:red;margin-top:30px;'>Failed to add email to database.</h2>";
+    //             exit;
+    //         }
+    //     }
 
 
-        $session_token = $this->session->userdata('email_verification_token');
-        $validToken = ($session_token === $token);
+    //     $session_token = $this->session->userdata('email_verification_token');
+    //     $validToken = ($session_token === $token);
 
-        if ($user && $validToken) {
-            $this->Register_model->update_email_verified($user['id'], 1);
+    //     if ($user && $validToken) {
+    //         $this->Register_model->update_email_verified($user['id'], 1);
 
-            $this->session->unset_userdata([
-                'email_verification_token',
-                'email_verification_email',
-                'email_verification_expires'
-            ]);
+    //         $this->session->unset_userdata([
+    //             'email_verification_token',
+    //             'email_verification_email',
+    //             'email_verification_expires'
+    //         ]);
 
-            echo "<h2 style='text-align:center;color:green;margin-top:30px;'>Your email is verified! Please return to your registration tab.</h2>";
-            exit;
-        } else {
-            echo "<h2 style='text-align:center;color:red;margin-top:30px;'>Invalid or expired verification link.</h2>";
-            exit;
-        }
-    }
+    //         echo "<h2 style='text-align:center;color:green;margin-top:30px;'>Your email is verified! Please return to your registration tab.</h2>";
+    //         exit;
+    //     } else {
+    //         echo "<h2 style='text-align:center;color:red;margin-top:30px;'>Invalid or expired verification link.</h2>";
+    //         exit;
+    //     }
+    // }
 
     public function check_email_verification()
     {

@@ -302,6 +302,24 @@
       height: 18px;
     }
 
+    /* Alert styles */
+    .alert {
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .alert-success {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .alert-danger {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
     /* Responsive styles */
     @media (max-width: 992px) {
       .container {
@@ -416,6 +434,17 @@
 
     <!-- Form Card -->
     <div class="form-card">
+      <?php if ($this->session->flashdata('success')): ?>
+        <div class="alert alert-success">
+          <?= $this->session->flashdata('success') ?>
+        </div>
+      <?php endif; ?>
+
+      <?php if ($this->session->flashdata('error')): ?>
+        <div class="alert alert-danger">
+          <?= $this->session->flashdata('error') ?>
+        </div>
+      <?php endif; ?>
       <div class="form-title">Recruiter Login</div>
       <div class="form-subtitle">Access your dashboard and start hiring</div>
 
