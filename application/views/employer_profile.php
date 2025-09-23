@@ -235,7 +235,7 @@
                             <!-- Profile Avatar -->
                             <?php if (!empty($employer['picture'])): ?>
                                 <!-- If picture exists -->
-                                <img src="<?= base_url('uploads/employers/' . $employer['picture']); ?>"
+                                <img src="<?= base_url('assets/profile_photos/' . $employer['picture']); ?>"
                                     alt="Profile Picture"
                                     class="rounded-circle mb-3 border border-3 border-primary profile-avatar">
                             <?php else: ?>

@@ -253,7 +253,7 @@ class Recruiter extends CI_Controller
 
         // Set session
         $this->session->set_userdata([
-            'user_id' => $user['id'],
+            'recruiter_id' => $user['id'],
             'user_name' => $user['full_name'],
             'user_email' => $user['email'],
             'user_picture' => $user['picture'],

@@ -133,7 +133,7 @@ class Recruiter_login extends CI_Controller
 
         // Set session
         $this->session->set_userdata([
-            'user_id' => $user['id'],
+            'recruiter_id' => $user['id'],
             'user_name' => $user['full_name'],
             'user_email' => $user['email'],
             'user_picture' => $user['picture'],
@@ -141,5 +141,11 @@ class Recruiter_login extends CI_Controller
         ]);
 
         echo json_encode(['success' => true]);
+    }
+
+    public function forgot()
+    {
+        $data['menu'] = $this->Menu_model->get_menu();
+        $this->load->view('forgot_password_view', $data);
     }
 }

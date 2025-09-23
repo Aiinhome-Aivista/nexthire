@@ -474,7 +474,9 @@
   <div class="header">
     <div class="header-content">
       <div class="logo">
-        <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
+        <a href="<?= base_url(); ?>">
+          <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
+        </a>
       </div>
       <div class="signup-link">
         New Recruiter? <a href="<?= base_url('employer_register'); ?>">Register</a> here
@@ -541,7 +543,7 @@
             <i class="far fa-eye-slash"></i>
           </span>
           <div class="forgot-row" style="margin-top:4px; text-align:right; width:100%;">
-            <a href="#" style="color:#1b212b; text-decoration:none; font-weight:500;">Forgot Password?</a>
+            <a href="<?= base_url('employer_login/forgot'); ?>" style="color:#1b212b; text-decoration:none; font-weight:500;">Forgot Password?</a>
           </div>
         </div>
         <small id="password-error" class="text-danger" style="display:none; font-size: 0.85em;">Please enter your

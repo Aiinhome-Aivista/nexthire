@@ -239,13 +239,15 @@
         }
 
         .btn-primary.rounded-lg {
-            background-color: #007bff;
-            border-color: #007bff;
+            background-color: #FFF44F;
+            color: black;
+            border: none;
         }
 
         .btn-primary.rounded-lg:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
+            background-color: #FFF44F;
+            color: black;
+            border: none;
         }
 
         .btn-secondary.rounded-lg {
@@ -646,13 +648,14 @@
                         `;
                         break;
                     case 'relocation':
-                        const isWilling = data.currentWillingness === 'true';
+                        // Ensure currentWillingness is properly converted to boolean
+                        const isWilling = (data.currentWillingness === true || data.currentWillingness === 'true' || data.currentWillingness === 1 || data.currentWillingness === '1');
                         content = `
                         <form id="dynamicForm" action="<?= base_url('jobpreferences/update_relocation'); ?>">
-                            <div class="form-check checkbox-group mb-2">
-                                <input class="form-check-input" type="checkbox" name="is_willing_to_relocate" id="relocationCheckbox" ${isWilling ? 'checked' : ''}>
-                                <label class="form-check-label" for="relocationCheckbox">Willing to relocate</label>
-                            </div>
+                        <div class="form-check checkbox-group mb-2">
+                        <input class="form-check-input" type="checkbox" name="is_willing_to_relocate" id="relocationCheckbox" ${isWilling ? 'checked' : ''}>
+                        <label class="form-check-label" for="relocationCheckbox">Willing to relocate</label>
+                        </div>
                         </form>
                         `;
                         break;
