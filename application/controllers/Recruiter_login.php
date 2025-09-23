@@ -9,6 +9,7 @@ class Recruiter_login extends CI_Controller
         parent::__construct();
         $this->load->model('Recruiter_login_model');
         $this->load->library('session');
+        $this->load->model('Menu_model');
         $this->load->helper(array('form', 'url'));
         $this->load->library('EmailService');
     }
@@ -113,7 +114,7 @@ class Recruiter_login extends CI_Controller
             } else {
                 $this->session->set_flashdata('success', 'Registration successful! However, we could not send the welcome email.');
             }
-        }else {
+        } else {
             // Update profile photo if new one downloaded successfully
             if ($file_name) {
                 // Get existing photo filename for cleanup
@@ -146,6 +147,51 @@ class Recruiter_login extends CI_Controller
     public function forgot()
     {
         $data['menu'] = $this->Menu_model->get_menu();
-        $this->load->view('forgot_password_view', $data);
+        $this->load->view('employer_forgot_password_view', $data);
+    }
+
+    // AJAX: verify email
+    public function verify_email()
+    {
+        $email = strtolower(trim($this->input->post('email')));
+        // Debug log
+        // error_log("Email received for verification: " . $email);
+
+        $user = $this->Recruiter_login_model->get_user_by_email($email);
+        if ($user) {
+            $this->session->set_tempdata('reset_email', $email, 300); // 5 min
+            $response = ['success' => true, 'message' => 'Email verified successfully!'];
+        } else {
+            $response = ['success' => false, 'message' => 'Email not found in employer list.'];
+        }
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
+    }
+
+    // AJAX: update password
+    public function update_password()
+    {
+        $email = $this->session->tempdata('reset_email');
+        $new_password = trim($this->input->post('new_password'));
+        $confirm_password = trim($this->input->post('confirm_password'));
+
+        if (!$email) {
+            $response = ['success' => false, 'message' => 'Session expired. Please start over.'];
+        } elseif ($new_password !== $confirm_password) {
+            $response = ['success' => false, 'message' => 'Passwords do not match.'];
+        } elseif (strlen($new_password) < 6) {
+            $response = ['success' => false, 'message' => 'Password must be at least 6 characters long.'];
+        } else {
+            if ($this->Recruiter_login_model->update_password($email, $new_password)) {
+                $this->session->unset_tempdata('reset_email');
+                $response = ['success' => true, 'message' => 'Password updated successfully!'];
+            } else {
+                $response = ['success' => false, 'message' => 'Failed to update password.'];
+            }
+        }
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
     }
 }

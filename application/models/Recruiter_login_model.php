@@ -64,4 +64,22 @@ class Recruiter_login_model extends CI_Model
         $this->db->where('user_id', $user_id)->update('profile_photos', $data);
         return $this->db->affected_rows() > 0;
     }
+
+    // Verify email exists for password reset (case-insensitive)
+    public function verify_email_for_reset($email)
+    {
+        $user = $this->db->where('LOWER(email)', strtolower(trim($email)))->get('employer_register')->row_array();
+        return $user ? true : false;
+    }
+
+    // Update user password securely (by email, case-insensitive)
+    public function update_password($email, $new_password)
+    {
+        $this->db->where('LOWER(email)', strtolower(trim($email)));
+        $this->db->update('employer_register', [
+            'password' => password_hash($new_password, PASSWORD_DEFAULT),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+        return $this->db->affected_rows() > 0;
+    }
 }

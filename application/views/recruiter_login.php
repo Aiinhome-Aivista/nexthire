@@ -573,37 +573,37 @@
   <?php $this->load->view('includes/footer'); ?>
 
   <script>
-    document.getElementById('googleSignInBtn').addEventListener('click', function () {
-      var provider = new firebase.auth.GoogleAuthProvider();
-      firebase.auth().signInWithPopup(provider)
-        .then(function (result) {
-          var user = result.user;
+    // document.getElementById('googleSignInBtn').addEventListener('click', function () {
+    //   var provider = new firebase.auth.GoogleAuthProvider();
+    //   firebase.auth().signInWithPopup(provider)
+    //     .then(function (result) {
+    //       var user = result.user;
 
-          // Send user info to CodeIgniter backend
-          fetch('<?= base_url('recruiter_login/google_callback') ?>', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              uid: user.uid,
-              full_name: user.displayName,
-              email: user.email,
-              picture: user.photoURL,
-              provider: 'google'
-            })
-          })
-            .then(response => response.json())
-            .then(data => {
-              if (data.success) {
-                window.location.href = '<?= base_url('recruiter_dashboard') ?>';
-              } else {
-                showFlashModal('error', 'Login failed: ' + data.message);
-              }
-            });
-        })
-        .catch(function (error) {
-          showFlashModal('error', error.message);
-        });
-    });
+    //       // Send user info to CodeIgniter backend
+    //       fetch('<?php //base_url('recruiter_login/google_callback') ?>', {
+    //         method: 'POST',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify({
+    //           uid: user.uid,
+    //           full_name: user.displayName,
+    //           email: user.email,
+    //           picture: user.photoURL,
+    //           provider: 'google'
+    //         })
+    //       })
+    //         .then(response => response.json())
+    //         .then(data => {
+    //           if (data.success) {
+    //             window.location.href = '<?php //base_url('recruiter_dashboard') ?>';
+    //           } else {
+    //             showFlashModal('error', 'Login failed: ' + data.message);
+    //           }
+    //         });
+    //     })
+    //     .catch(function (error) {
+    //       showFlashModal('error', error.message);
+    //     });
+    // });
 
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
