@@ -542,7 +542,7 @@
 
     <div class="content">
         <div class="container">
-            <h4 class="fw-bold" style="color: #f1e42cff; margin-bottom: 2rem;">Manage Applications</h4>
+            <h4 class="fw-bold" style="color:  var(--dark); margin-bottom: 2rem;">Manage Applications</h4>
 
             <div class="search-container">
                 <div class="search-box">

@@ -528,7 +528,7 @@
       border: 1px solid #808080;
       border-radius: 12px;
       font-size: 16px;
-      margin-bottom: 18px;
+      margin-bottom: 5px;
       outline: none;
       background: #fff !important;
       color: #27365c;

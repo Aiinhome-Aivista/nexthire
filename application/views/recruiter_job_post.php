@@ -422,7 +422,7 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="page-header">
-            <h4 class="fw-bold" style="color: #f1e42cff;">Post a Job</h4>
+            <h4 class="fw-bold" style="color:  var(--dark);">Post a Job</h4>
         </div>
 
         <div class="container">

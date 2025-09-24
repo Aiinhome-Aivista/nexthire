@@ -564,7 +564,7 @@
     <div class="main-content">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h4 class="fw-bold" style="color: #f1e42cff;">Manage Jobs</h4>
+                <h4 class="fw-bold" style="color:  var(--dark);">Manage Jobs</h4>
                 <a href="<?= base_url('employer_job_post'); ?>" class="btn text-dark"style="background-color: #f1e42cff;">
                     <i class="fas fa-plus me-1"></i> Post New Job
                 </a>

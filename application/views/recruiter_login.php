@@ -197,7 +197,7 @@
       display: flex;
       flex-direction: column;
       gap: 6px;
-      margin-bottom: 20px;
+      margin-bottom: 5px;
       position: relative;
     }
 
@@ -244,8 +244,10 @@
 
     .forgot-row {
       margin-top: 12px;
-      font-size: 14px;
+      /* font-size: 14px; */
       color: #666;
+      display: flex;
+      justify-content: space-between;
     }
 
     .forgot-row a {
@@ -519,7 +521,7 @@
           <label for="email">Official Email ID<span style="color:#e42e2e;">*</span></label>
           <input type="email" name="email" id="email" placeholder="Enter your company email" required>
         </div>
-        <small id="email-error" class="text-danger" style="display:none; font-size: 0.85em;">Please enter a
+        <small id="email-error" class="text-danger" style="display:none; font-size: 14px;">Please enter a
           valid email (must include .com)</small>
 
         <!-- <div class="form-group">
@@ -536,18 +538,20 @@
         <div class="forgot-row" style="margin-top: 4px; text-align: right; width: 100%;">
           <a href="#">Forgot Password?</a>
         </div> -->
-        <div class="form-group" style="position:relative;">
+        <div class="form-group" style="position:relative;margin-top: 5px;">
           <label for="password">Password<span style="color:#e42e2e;">*</span></label>
           <input type="password" name="password" id="password" placeholder="Enter your password" required>
           <span id="toggle-password" style="position:absolute; top:42px; right:15px; cursor:pointer;">
             <i class="far fa-eye-slash"></i>
           </span>
-          <div class="forgot-row" style="margin-top:4px; text-align:right; width:100%;">
-            <a href="<?= base_url('employer_login/forgot'); ?>" style="color:#1b212b; text-decoration:none; font-weight:500;">Forgot Password?</a>
+          <div class="forgot-row d-flex justify-content-between" style="margin-top:0; text-align:right; width:100%;">
+            <small id="password-error" class="text-danger" style="display:none; font-size: 0.85em;">Please enter your
+              password</small>
+            <a href="<?= base_url('employer_login/forgot'); ?>"
+              style="color:#1b212b; text-decoration:none; font-weight:500;margin-left:auto">Forgot Password?</a>
           </div>
         </div>
-        <small id="password-error" class="text-danger" style="display:none; font-size: 0.85em;">Please enter your
-          password</small>
+
         <button type="submit" class="login-btn">Login</button>
 
         <!-- Google Login -->

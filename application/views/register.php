@@ -426,7 +426,7 @@
 
     .toggle-password-eye {
       position: absolute;
-      top: 39px;
+      top: 35px;
       right: 16px;
       cursor: pointer;
       z-index: 2;
