@@ -50,7 +50,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'home';
-$route['policy'] = 'Policy/index'; // This will map /policy to Policy/index
+$route['policy'] = 'Policy/index';
 $route['privacypolicy'] = 'Policy/index';
 $route['register'] = 'Register/index';
 
@@ -82,20 +82,15 @@ $route['translate_uri_dashes'] = FALSE;
 $route['about-us'] = 'Static_pages/about_us';
 $route['careers'] = 'Static_pages/careers';
 $route['employer-home'] = 'Static_pages/employer_home';
-// $route['sitemap'] = 'Static_pages/sitemap';
-// $route['credits'] = 'Static_pages/credits';
 
 // Routes for the help and support links
 $route['FAQ'] = 'Static_pages/help_center';
-// $route['summons-notices'] = 'Static_pages/summons_notices';
-// $route['grievances'] = 'Static_pages/grievances';
 $route['report-issue'] = 'Static_pages/report_issue';
 
 // Routes for the legal and safety links
 $route['privacy-policy'] = 'Static_pages/privacy_policy';
 $route['cookie-policy'] = 'Static_pages/cookie_policy';
 $route['terms-and-conditions'] = 'Static_pages/terms_and_conditions';
-// $route['fraud-alert'] = 'Static_pages/fraud_alert';
 $route['trust-safety'] = 'Static_pages/trust_safety';
 
 
@@ -110,3 +105,8 @@ $route['admin/sitemap_settings'] = 'admin/Sitemap_settings/index';
 $route['employer_login/forgot'] = 'Recruiter_login/forgot';
 $route['employer_login/verify_email'] = 'Recruiter_login/verify_email';
 $route['employer_login/update_password'] = 'Recruiter_login/update_password';
+
+$route['knowledge-based'] = 'KnowledgeBase/index';
+$route['admin/posts_add'] = 'admin/Posts/posts_add';
+$route['admin/posts_categories'] = 'admin/Posts_categories';
+$route['admin/posts_manage'] = 'admin/Posts/posts_manage';

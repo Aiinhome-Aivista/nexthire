@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Cookie Banner</title>
+    <title>SahajJobs | Footer</title>
     <style>
         .custom-footer {
             font-family: 'Montserrat', Arial, sans-serif !important;
@@ -352,65 +352,6 @@
             }
         }
     </style>
-    <script>
-        // function hideCookieBanner() {
-        //     document.getElementById('cookie-banner').style.display = 'none';
-        // }
-
-        /* .cookie-banner {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: #505665;
-            color: #fff;
-            text-align: center;
-            font-family: 'Nunito', Arial, sans-serif !important;
-            z-index: 9999;
-            padding: 10px 15px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        } */
-
-        /* .cookie-banner a {
-            color: #FFF44F;
-            text-decoration: none;
-            font-weight: 300;
-            font-size: 0.95em;
-        }
-
-        .cookie-banner a:hover {
-            text-decoration: underline;
-        } */
-
-        /* .cookie-btn {
-            background: #FFF44F;
-            color: #29374d;
-            border: none;
-            outline: none;
-            padding: 7px 14px;
-            border-radius: 25px;
-            font-size: 1em;
-            font-weight: bold;
-            margin-left: 30px;
-            cursor: pointer;
-            transition: background 0.2s;
-        } */
-
-        /* .cookie-btn:hover {
-            background: #d3c830ff;
-        } */
-
-        /* .cookie-banner span {
-            font-size: 1em;
-            font-weight: 500;
-            flex: 1 1 auto;
-            min-width: 200px;
-            font-size: 0.9em;
-        } */
-    </script>
 </head>
 
 <body>
@@ -446,6 +387,7 @@
                     <li><a href="<?= base_url('about-us'); ?>">About us</a></li>
                     <li><a href="<?= base_url('careers'); ?>">Careers</a></li>
                     <li><a href="<?= base_url('employer-home'); ?>">Employer home</a></li>
+                    <li><a href="" id="knowledgeBasedLink">Knowledge Base</a></li>
                 </ul>
                 <ul>
                     <li><a href="<?= base_url('FAQ'); ?>">FAQ</a></li>
@@ -471,16 +413,35 @@
     </footer>
 
 
+    <script>
+        const isLoggedIn = <?php echo isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true ? 'true' : 'false'; ?>;
 
+        document.getElementById('knowledgeBasedLink').addEventListener('click', function (event) {
+            event.preventDefault();
+            if (isLoggedIn) {
+                // Redirect to the knowledge based page if logged in
+                window.location.href = '<?= base_url('knowledge-based'); ?>';
+            } else {
+                // Set a flag in sessionStorage to indicate knowledge base redirect
+                sessionStorage.setItem('redirectToKnowledgeBase', 'true');
 
-    <!-- <div class="cookie-banner" id="cookie-banner">
-        <span>
-            We use cookies to improve your experience. By continuing to browse the site, you agree to our
-            <a href="<?php //base_url('privacy-policy'); ?>">Privacy Policy</a> &amp; <a
-                href="<?php //base_url('cookie-policy') ?>">Cookie Policy</a>
-        </span>
-        <button class="cookie-btn" onclick="hideCookieBanner()">Got it</button>
-    </div> -->
+                // Show the login modal if not logged in
+                var loginPopupBg = document.getElementById('loginPopupBg');
+                if (loginPopupBg) {
+                    loginPopupBg.style.display = 'flex';
+                }
+            }
+        });
+
+        // Check if we need to redirect to knowledge base after login
+        window.addEventListener('load', function () {
+            const redirectToKnowledgeBase = sessionStorage.getItem('redirectToKnowledgeBase');
+            if (redirectToKnowledgeBase === 'true' && isLoggedIn) {
+                sessionStorage.removeItem('redirectToKnowledgeBase');
+                window.location.href = '<?= base_url('knowledge-based'); ?>';
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -8,87 +8,151 @@ class Static_pages extends CI_Controller
         parent::__construct();
         // Load the Menu_model in the constructor to make it available for all methods
         $this->load->model('Menu_model');
+        $this->load->library('session');
+        $this->load->helper('url');
     }
 
     public function about_us()
     {
         $data['menu'] = $this->Menu_model->get_menu();
-        $this->load->view('about_us', $data);
+        $user_id = $this->session->userdata('user_id');
+
+        if (!empty($user_id)) {
+            $this->load->view('includes/login_header', $data);
+            $this->load->view('about_us', $data);
+            $this->load->view('includes/footer', $data);
+        } else {
+            $this->load->view('includes/header', $data);
+            $this->load->view('about_us', $data);
+            $this->load->view('includes/footer', $data);
+        }
     }
 
     public function careers()
     {
         $data['menu'] = $this->Menu_model->get_menu();
-        $this->load->view('careers', $data);
+        $user_id = $this->session->userdata('user_id');
+
+        if (!empty($user_id)) {
+            $this->load->view('includes/login_header', $data);
+            $this->load->view('careers', $data);
+            $this->load->view('includes/footer', $data);
+        } else {
+            $this->load->view('includes/header', $data);
+            $this->load->view('careers', $data);
+            $this->load->view('includes/footer', $data);
+        }
     }
 
     public function employer_home()
     {
         $data['menu'] = $this->Menu_model->get_menu();
-        $this->load->view('employer_home', $data);
+        $user_id = $this->session->userdata('user_id');
+
+        if (!empty($user_id)) {
+            $this->load->view('includes/login_header', $data);
+            $this->load->view('employer_home', $data);
+            $this->load->view('includes/footer', $data);
+        } else {
+            $this->load->view('includes/header', $data);
+            $this->load->view('employer_home', $data);
+            $this->load->view('includes/footer', $data);
+        }
     }
 
-    public function sitemap()
-    {
-        $data['menu'] = $this->Menu_model->get_menu();
-        $this->load->view('sitemap', $data);
-    }
-
-    public function credits()
-    {
-        $data['menu'] = $this->Menu_model->get_menu();
-        $this->load->view('credits', $data);
-    }
 
     public function help_center()
     {
         $data['menu'] = $this->Menu_model->get_menu();
-        $this->load->view('help_center', $data);
-    }
+        $user_id = $this->session->userdata('user_id');
 
-    public function summons_notices()
-    {
-        $data['menu'] = $this->Menu_model->get_menu();
-        $this->load->view('summons_notices', $data);
-    }
-
-    public function grievances()
-    {
-        $data['menu'] = $this->Menu_model->get_menu();
-        $this->load->view('grievances', $data);
+        if (!empty($user_id)) {
+            $this->load->view('includes/login_header', $data);
+            $this->load->view('help_center', $data);
+            $this->load->view('includes/footer', $data);
+        } else {
+            $this->load->view('includes/header', $data);
+            $this->load->view('help_center', $data);
+            $this->load->view('includes/footer', $data);
+        }
     }
 
     public function report_issue()
     {
         $data['menu'] = $this->Menu_model->get_menu();
-        $this->load->view('report_issue', $data);
+        $user_id = $this->session->userdata('user_id');
+
+        if (!empty($user_id)) {
+            $this->load->view('includes/login_header', $data);
+            $this->load->view('report_issue', $data);
+            $this->load->view('includes/footer', $data);
+        } else {
+            $this->load->view('includes/header', $data);
+            $this->load->view('report_issue', $data);
+            $this->load->view('includes/footer', $data);
+        }
     }
 
     public function privacy_policy()
     {
         $data['menu'] = $this->Menu_model->get_menu();
-        $this->load->view('privacy_policy', $data);
+        $user_id = $this->session->userdata('user_id');
+
+        if (!empty($user_id)) {
+            $this->load->view('includes/login_header', $data);
+            $this->load->view('privacy_policy', $data);
+            $this->load->view('includes/footer', $data);
+        } else {
+            $this->load->view('includes/header', $data);
+            $this->load->view('privacy_policy', $data);
+            $this->load->view('includes/footer', $data);
+        }
     }
-    public function cookie_policy() {
-    $data['menu'] = $this->Menu_model->get_menu();
-    $this->load->view('cookie_policy', $data);
-}
+    public function cookie_policy()
+    {
+        $data['menu'] = $this->Menu_model->get_menu();
+        $user_id = $this->session->userdata('user_id');
+
+        if (!empty($user_id)) {
+            $this->load->view('includes/login_header', $data);
+            $this->load->view('cookie_policy', $data);
+            $this->load->view('includes/footer', $data);
+        } else {
+            $this->load->view('includes/header', $data);
+            $this->load->view('cookie_policy', $data);
+            $this->load->view('includes/footer', $data);
+        }
+    }
 
     public function terms_and_conditions()
     {
         $data['menu'] = $this->Menu_model->get_menu();
-        $this->load->view('terms_and_conditions', $data);
-    }
+        $user_id = $this->session->userdata('user_id');
 
-    public function fraud_alert()
-    {
-        $data['menu'] = $this->Menu_model->get_menu();
-        $this->load->view('fraud_alert', $data);
+        if (!empty($user_id)) {
+            $this->load->view('includes/login_header', $data);
+            $this->load->view('terms_and_conditions', $data);
+            $this->load->view('includes/footer', $data);
+        } else {
+            $this->load->view('includes/header', $data);
+            $this->load->view('terms_and_conditions', $data);
+            $this->load->view('includes/footer', $data);
+        }
     }
 
     public function trust_safety()
     {
         $data['menu'] = $this->Menu_model->get_menu();
-        $this->load->view('trust_safety', $data);
+        $user_id = $this->session->userdata('user_id');
+
+        if (!empty($user_id)) {
+            $this->load->view('includes/login_header', $data);
+            $this->load->view('trust_safety', $data);
+            $this->load->view('includes/footer', $data);
+        } else {
+            $this->load->view('includes/header', $data);
+            $this->load->view('trust_safety', $data);
+            $this->load->view('includes/footer', $data);
+        }
     }
 }

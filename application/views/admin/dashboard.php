@@ -547,6 +547,40 @@
             color: var(--gray);
             font-size: 0.9rem;
         }
+
+        /* New Submenu Styles */
+        .sidebar-menu .submenu {
+            padding-left: 40px;
+            /* Indent sub-options */
+            list-style: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+
+        .sidebar-menu .submenu.show {
+            max-height: 250px;
+            /* Arbitrary large number to allow content to show */
+        }
+
+        .sidebar-menu .submenu a {
+            padding: 10px 20px;
+            /* Smaller padding for sub-items */
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        .sidebar-menu .submenu a::before {
+            /* content: ''; */
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 5px;
+            background-color: var(--warning);
+            border-radius: 50%;
+        }
     </style>
 </head>
 
@@ -574,8 +608,21 @@
                             Posts</span></a></li>
                 <li><a href="<?= base_url('admin/featured_companies') ?>"><i class="fas fa-building"></i>
                         <span>Featured Companies</span></a></li>
-                <li><a href="<?= base_url('admin/sitemap_settings') ?>"><i class="fas fa-sitemap"></i>
-                        <span>Sitemap Settings</span></a></li>
+                <li>
+                    <a href="#" class="has-submenu" id="posts-menu-toggle" class="active">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Posts</span>
+                        <i class="fas fa-caret-down" style="margin-left: auto;"></i>
+                    </a>
+                    <ul class="submenu" id="posts-submenu">
+                        <li>
+                            <a href="<?= base_url('admin/posts_manage'); ?>">Blog</a>
+                        </li>
+                        <li>
+                            <a href="<?= base_url('admin/posts_categories'); ?>">Categories</a>
+                        </li>
+                    </ul>
+                </li>
                 <li>
                     <a href="#" id="logoutBtn">
                         <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
@@ -689,7 +736,7 @@
         const sidebar = document.querySelector('.sidebar');
         const sidebarToggle = document.querySelector('.sidebar-toggle');
         const closeSidebar = document.querySelector('.close-sidebar');
-        const mainContent = document.querySelector('.main-content');
+        // const mainContent = document.querySelector('.main-content');
 
         sidebarToggle.addEventListener('click', () => {
             sidebar.classList.toggle('show');
@@ -697,6 +744,11 @@
 
         closeSidebar.addEventListener('click', () => {
             sidebar.classList.remove('show');
+        });
+
+        document.getElementById('posts-menu-toggle').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('posts-submenu').classList.toggle('show');
         });
 
         // Close sidebar when clicking outside of it

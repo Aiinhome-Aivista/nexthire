@@ -8,26 +8,21 @@
       </a>
     </div>
 
-    <!-- Menu Section -->
-    <!-- <nav class="main-nav"> -->
-    <!-- <a href="#" class="menu-link" data-modal-target="jobsModal">Jobs
-        <span class="menu-underline"></span>
-      </a>
-      <a href="#" class="menu-link" data-modal-target="companiesModal">Companies
-        <span class="menu-underline"></span>
-      </a>
-      <a href="#" class="menu-link" data-modal-target="servicesModal">Services
-        <span class="menu-underline"></span>
-      </a> -->
-    <!-- <?php //if ($this->uri->segment(1) == 'profile'): ?>
-        <a href="<?php //base_url('candidate_job_search'); ?>" class="menu-link">Job Search</a>
-      <?php //endif; ?>
-
-    </nav> -->
-
-    <!-- Profile & Logout Section -->
+    <!-- Profile & Knowledge Section -->
     <div class="user-menu">
-      <button id="menuToggle" class="menu-icon">
+
+      <!-- Knowledge Dropdown (only visible on Knowledge pages) -->
+      <div class="knowledge-dropdown" id="knowledgeDropdown"
+        style="font-family: 'Nunito', Arial, sans-serif !important; display:none;">
+        <a href="javascript:void(0)" class="knowledge-link" id="knowledgeToggle">
+          Knowledge Base <span class="caret"></span>
+        </a>
+        <span class="knowledge-underline"></span>
+        <div class="knowledge-menu" id="knowledgeMenu"></div>
+      </div>
+
+      <!-- Profile Icon -->
+      <button id="profileToggle" class="menu-icon">
         <i class="fas fa-user-circle"></i>
       </button>
 
@@ -45,71 +40,13 @@
           <i class="fas fa-sign-out-alt"></i>
           <span>Logout</span>
         </div>
-
       </div>
     </div>
-    <!-- Mobile Menu Toggle -->
-    <!-- <button class="menu-toggle" id="menuToggle">
-      <i class="fas fa-bars"></i>
-    </button> -->
   </div>
 
-  <!-- Jobs Modal -->
-  <div id="jobsModal" class="menu-modal">
-    <div class="modal-grid">
-      <?php foreach ($menu['Jobs'] as $sub): ?>
-        <div>
-          <h4><?= $sub['sub_type'] ?></h4>
-          <ul>
-            <?php foreach ($sub['children'] as $child): ?>
-              <li>
-                <a href="#"><?= $child['name'] ?></a>
-              </li>
-            <?php endforeach; ?>
-          </ul>
-        </div>
-      <?php endforeach; ?>
-    </div>
-  </div>
-
-  <!-- Companies Modal -->
-  <div id="companiesModal" class="menu-modal">
-    <div class="modal-grid">
-      <?php foreach ($menu['Companies'] as $sub): ?>
-        <div>
-          <h4><?= $sub['sub_type'] ?></h4>
-          <ul>
-            <?php foreach ($sub['children'] as $child): ?>
-              <li>
-                <a href="#"><?= $child['name'] ?></a>
-              </li>
-            <?php endforeach; ?>
-          </ul>
-        </div>
-      <?php endforeach; ?>
-    </div>
-  </div>
-
-  <!-- Services Modal -->
-  <div id="servicesModal" class="menu-modal">
-    <div class="modal-grid">
-      <?php foreach ($menu['Services'] as $sub): ?>
-        <div>
-          <h4><?= $sub['sub_type'] ?></h4>
-          <ul>
-            <?php foreach ($sub['children'] as $child): ?>
-              <li>
-                <a href="#"><?= $child['name'] ?></a>
-              </li>
-            <?php endforeach; ?>
-          </ul>
-        </div>
-      <?php endforeach; ?>
-    </div>
-  </div>
-
+  <!-- Styles -->
   <style>
-    /* Base Layout */
+    /* --- Global Header Styles --- */
     .header-container {
       display: flex;
       align-items: center;
@@ -122,180 +59,13 @@
     .logo {
       height: 70px;
       width: auto;
-      display: block;
     }
-
-    .main-nav {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .menu-link {
-      color: #27365c;
-      font-size: 17px;
-      text-decoration: none;
-      display: inline-block;
-      padding-bottom: 4px;
-      position: relative;
-    }
-
-    .menu-underline {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 3px;
-      background: #FFF44F;
-      border-radius: 2px;
-      transform: scaleX(0);
-      transform-origin: center;
-      transition: transform 0.3s ease;
-      pointer-events: none;
-    }
-
-    .menu-link:hover .menu-underline {
-      transform: scaleX(1);
-    }
-
-    .user-section {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .profile-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: #ebf2ff;
-      border: 2px solid #FFF44F;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .profile-icon:hover {
-      transform: scale(1.05);
-    }
-
-    .logout-btn {
-      background: #FFF44F;
-      color: #29374d;
-      border: none;
-      border-radius: 24px;
-      padding: 8px 16px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .logout-btn:hover {
-      background: #d3c830ff;
-      box-shadow: 0 2px 4px rgba(252, 90, 54, 0.3);
-    }
-
-    /* Menu Modal */
-    .menu-modal {
-      display: none;
-      position: absolute;
-      top: 70px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #fff;
-      padding: 24px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      z-index: 9;
-      width: 700px;
-      border-radius: 12px;
-    }
-
-    .modal-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .modal-grid h4 {
-      margin: 8px 0;
-      font-size: 15px;
-      color: #333;
-      font-weight: bold;
-    }
-
-    .modal-grid ul {
-      list-style: none;
-      margin: 0;
-      padding: 0 0 12px 0;
-    }
-
-    .modal-grid a {
-      text-decoration: none;
-      font-size: 14px;
-      color: #555;
-      display: block;
-      padding: 4px 0;
-    }
-
-    /* Mobile Menu Toggle */
-    /* .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    .menu-toggle {
-        display: block;
-    } */
-
-    /* Responsive Styles */
-    @media (max-width: 1024px) {
-      .header-container {
-        padding: 0 40px;
-      }
-
-      .main-nav {
-        gap: 16px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .header-container {
-        padding: 0 20px;
-      }
-
-      .main-nav {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 70px;
-        right: 20px;
-        background: #fff;
-        border: 1px solid #eee;
-        border-radius: 8px;
-        padding: 16px;
-        gap: 12px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-      }
-
-      .main-nav.active {
-        display: flex;
-      }
-    }
-
-    /* profile icon style */
 
     .user-menu {
+      display: flex;
+      align-items: center;
+      gap: 20px;
       position: relative;
-      display: inline-block;
     }
 
     .menu-icon {
@@ -306,6 +76,7 @@
       color: #f5e602;
     }
 
+    /* Popup Menu */
     .popup-menu {
       position: absolute;
       top: 40px;
@@ -314,145 +85,340 @@
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
       width: 180px;
-      display: flex;
       flex-direction: column;
       z-index: 100;
+      display: none;
     }
 
     .popup-menu.hidden {
       display: none;
     }
 
-    .menu-item {
+    .popup-menu .menu-item {
       display: flex;
       align-items: center;
       padding: 12px 15px;
-      text-decoration: none;
       color: #333;
-      transition: background 0.2s;
+      text-decoration: none;
     }
 
-    .menu-item i {
+    .popup-menu .menu-item:hover {
+      background: #f5f5f5;
+    }
+
+    .popup-menu .menu-item i {
       margin-right: 10px;
       font-size: 18px;
       width: 20px;
       text-align: center;
     }
 
-    .menu-item:hover {
-      background: #f5f5f5;
+    /* Knowledge Dropdown */
+    .knowledge-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .knowledge-link {
+      color: #27365c;
+      font-size: 18px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .caret {
+      border: solid #27365c;
+      border-width: 0 2px 2px 0;
+      padding: 3px;
+      transform: rotate(45deg);
+      transition: transform .3s;
+    }
+
+    .knowledge-underline {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 3px;
+      background: #FFF44F;
+      border-radius: 2px;
+      transform: scaleX(0);
+      transition: transform .3s;
+    }
+
+    .knowledge-dropdown.active .knowledge-underline {
+      transform: scaleX(1);
+    }
+
+    .knowledge-menu {
+      display: none;
+      position: absolute;
+      top: 46px;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 180px;
+      background: #fff;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .08);
+      border-radius: 12px;
+      padding: 12px 0;
+      z-index: 100;
+    }
+
+    .knowledge-menu a {
+      display: block;
+      padding: 10px 20px;
+      color: #27365c;
+      font-size: 16px;
+      text-decoration: none;
+    }
+
+    .knowledge-menu a:hover {
+      background: #f7f8fa;
+    }
+
+    .knowledge-menu a.active {
+      background: #FFF44F;
+      font-weight: 600;
+      color: #27365c;
+      position: relative;
+    }
+
+    .knowledge-dropdown.active .knowledge-menu {
+      display: block;
+    }
+
+    .knowledge-dropdown.active .caret {
+      transform: rotate(-135deg);
+    }
+
+
+    .knowledge-menu a.active {
+      background: #FFF44F;
+      font-weight: bold;
+      color: black;
+    }
+
+    /* Responsive Styles */
+    /* Tablet (up to 1024px) */
+    @media (max-width: 1024px) {
+      .header-container {
+        padding: 0 24px;
+        height: 64px;
+      }
+
+      .logo {
+        height: 56px;
+      }
+
+      .main-nav {
+        gap: 16px;
+      }
+
+      .menu-link {
+        font-size: 15px;
+      }
+
+      .menu-icon {
+        font-size: 28px;
+      }
+    }
+
+    /* Mobile (up to 768px) */
+    @media (max-width: 768px) {
+      .header-container {
+        padding: 0 16px;
+        height: 60px;
+      }
+
+      /* Logo scales down */
+      .logo {
+        height: 48px;
+      }
+
+      /* Nav hidden by default */
+      .main-nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-top: 1px solid #eee;
+        padding: 16px;
+        gap: 14px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, .12);
+        z-index: 1000;
+      }
+
+      /* Show nav when active */
+      .main-nav.active {
+        display: flex;
+      }
+
+      /* Links in mobile nav */
+      .menu-link {
+        font-size: 16px;
+        padding: 10px 0;
+      }
+
+      /* User menu & hamburger */
+      .user-menu {
+        gap: 12px;
+      }
+
+      .menu-icon {
+        font-size: 26px;
+      }
+
+      .hamburger {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 26px;
+        cursor: pointer;
+        color: #27365c;
+      }
+    }
+
+    /* Extra Small (up to 480px) */
+    @media (max-width: 480px) {
+      .header-container {
+        padding: 0 12px;
+        height: 56px;
+      }
+
+      .logo {
+        height: 42px;
+      }
+
+      .menu-link {
+        font-size: 15px;
+      }
+
+      .menu-icon,
+      .hamburger {
+        font-size: 24px;
+      }
+
+      /* Popup reposition for tiny screens */
+      .popup-menu {
+        top: 46px;
+        right: 8px;
+        width: 160px;
+      }
     }
   </style>
 </header>
 
+<!-- Scripts -->
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const menuLinks = document.querySelectorAll('.menu-link');
-    const modals = document.querySelectorAll('.menu-modal');
-    const logoutBtn = document.getElementById('logoutBtn');
-    const menuToggle = document.getElementById('menuToggle');
-    const mainNav = document.querySelector('.main-nav');
+    const logoutBtn = document.getElementById("logoutBtn");
+    const profileToggle = document.getElementById("profileToggle");
+    const popupMenu = document.getElementById("popupMenu");
+    const knowledgeDropdown = document.getElementById("knowledgeDropdown");
+    const knowledgeToggle = document.getElementById("knowledgeToggle");
 
-    // Track active modal and timeouts
-    let activeModal = null;
-    let modalTimeouts = {};
-
-    // Hover modals
-    menuLinks.forEach(link => {
-      const targetModalId = link.getAttribute('data-modal-target');
-      const targetModal = document.getElementById(targetModalId);
-
-      if (targetModal) {
-        link.addEventListener('mouseenter', () => {
-          // Clear any pending timeout for this modal
-          if (modalTimeouts[targetModalId]) {
-            clearTimeout(modalTimeouts[targetModalId]);
-            delete modalTimeouts[targetModalId];
-          }
-
-          // Hide all other modals
-          modals.forEach(modal => {
-            if (modal.id !== targetModalId) {
-              modal.style.display = 'none';
-            }
-          });
-
-          // Show this modal
-          targetModal.style.display = 'block';
-          activeModal = targetModalId;
-        });
-
-        link.addEventListener('mouseleave', () => {
-          // Set timeout to close modal after a short delay
-          modalTimeouts[targetModalId] = setTimeout(() => {
-            if (!targetModal.matches(':hover')) {
-              targetModal.style.display = 'none';
-              activeModal = null;
-            }
-          }, 300); // Increased from 200ms to 300ms
-        });
-
-        targetModal.addEventListener('mouseenter', () => {
-          // Clear timeout when mouse enters modal
-          if (modalTimeouts[targetModalId]) {
-            clearTimeout(modalTimeouts[targetModalId]);
-            delete modalTimeouts[targetModalId];
-          }
-        });
-
-        targetModal.addEventListener('mouseleave', () => {
-          // Set timeout to close modal after mouse leaves
-          modalTimeouts[targetModalId] = setTimeout(() => {
-            targetModal.style.display = 'none';
-            activeModal = null;
-          }, 300); // Increased from 200ms to 300ms
-        });
-      }
-    });
-
-    // Close modals when clicking outside
-    document.addEventListener('click', e => {
-      if (!e.target.closest('.menu-link') && !e.target.closest('.menu-modal')) {
-        modals.forEach(modal => modal.style.display = 'none');
-        activeModal = null;
-      }
-
-      // Close mobile menu when clicking outside
-      if (mainNav.classList.contains('active') &&
-        !e.target.closest('.main-nav') &&
-        e.target !== menuToggle &&
-        !menuToggle.contains(e.target)) {
-        mainNav.classList.remove('active');
-      }
-    });
-
-    // Logout button
-    logoutBtn.addEventListener('click', () => {
-      if (confirm('Are you sure you want to logout?')) {
-        window.location.href = '<?= base_url('Candidate_jobsearch/logout'); ?>';
-      }
-    });
-
-    // Mobile menu toggle
-    menuToggle.addEventListener('click', (e) => {
+    // --- Profile Menu ---
+    profileToggle.addEventListener("click", (e) => {
       e.stopPropagation();
-      mainNav.classList.toggle('active');
+      // Close knowledge menu if open
+      knowledgeDropdown.classList.remove("active");
+      popupMenu.classList.toggle("hidden");
+      popupMenu.style.display = popupMenu.classList.contains("hidden") ? "none" : "flex";
     });
-  });
-</script>
 
-<script>
-  const menuToggle = document.getElementById("menuToggle");
-  const popupMenu = document.getElementById("popupMenu");
+    document.addEventListener("click", (e) => {
+      if (!profileToggle.contains(e.target) && !popupMenu.contains(e.target)) {
+        popupMenu.classList.add("hidden");
+        popupMenu.style.display = "none";
+      }
+    });
 
-  menuToggle.addEventListener("click", () => {
-    popupMenu.classList.toggle("hidden");
-  });
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", () => {
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = '<?= base_url("Candidate_jobsearch/logout"); ?>';
+        }
+      });
+    }
 
-  // Close menu if clicking outside
-  document.addEventListener("click", (e) => {
-    if (!menuToggle.contains(e.target) && !popupMenu.contains(e.target)) {
-      popupMenu.classList.add("hidden");
+    // --- Knowledge Dropdown ---
+    function isKnowledgeBasedPage() {
+      return window.location.pathname.includes("knowledge-based");
+    }
+
+    function loadCategories() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const activeCategory = urlParams.get("category");
+
+      fetch('<?= base_url("admin/Posts_categories/get_categories_json"); ?>')
+        .then(res => res.json())
+        .then(cats => {
+          const menu = document.getElementById("knowledgeMenu");
+
+          // "All" link
+          menu.innerHTML = `
+        <a href="<?= base_url("knowledge-based"); ?>" 
+           class="menu-item ${!activeCategory ? "active" : ""}">
+          <span>All</span>
+        </a>
+      `;
+
+          // Category links
+          cats.forEach(c => {
+            menu.innerHTML += `
+          <a href="<?= base_url("knowledge-based?category="); ?>${c.id}" 
+             class="menu-item ${activeCategory == c.id ? "active" : ""}">
+            <span>${c.name}</span>
+          </a>
+        `;
+          });
+        })
+        .catch(() => {
+          const menu = document.getElementById("knowledgeMenu");
+          const defaultCats = [
+            { id: "engineering", name: "Engineering" },
+            { id: "fresher", name: "Fresher" }
+          ];
+
+          menu.innerHTML = `
+        <a href="<?= base_url("knowledge-based"); ?>" 
+           class="menu-item ${!activeCategory ? "active" : ""}">
+          <span>All</span>
+        </a>
+      `;
+
+          defaultCats.forEach(c => {
+            menu.innerHTML += `
+          <a href="<?= base_url("knowledge-based?category="); ?>${c.id}" 
+             class="menu-item ${activeCategory == c.id ? "active" : ""}">
+            <span>${c.name}</span>
+          </a>
+        `;
+          });
+        });
+    }
+
+
+    if (knowledgeDropdown && isKnowledgeBasedPage()) {
+      knowledgeDropdown.style.display = "inline-block";
+      loadCategories();
+      knowledgeToggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        popupMenu.classList.add("hidden");
+        popupMenu.style.display = "none";
+        knowledgeDropdown.classList.toggle("active");
+      });
+      document.addEventListener("click", (e) => {
+        if (!knowledgeDropdown.contains(e.target)) {
+          knowledgeDropdown.classList.remove("active");
+        }
+      });
     }
   });
 </script>
