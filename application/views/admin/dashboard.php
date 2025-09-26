@@ -76,7 +76,7 @@
         }
 
         .sidebar-menu {
-            padding: 20px 0;
+            padding: 10px 0;
         }
 
         .sidebar-menu ul {
@@ -609,7 +609,7 @@
                 <li><a href="<?= base_url('admin/featured_companies') ?>"><i class="fas fa-building"></i>
                         <span>Featured Companies</span></a></li>
                 <li>
-                    <a href="#" class="has-submenu" id="posts-menu-toggle" class="active">
+                    <a href="#" class="has-submenu" id="posts-menu-toggle">
                         <i class="fas fa-newspaper"></i>
                         <span>Posts</span>
                         <i class="fas fa-caret-down" style="margin-left: auto;"></i>
@@ -759,29 +759,6 @@
                 sidebar.classList.contains('show')) {
                 sidebar.classList.remove('show');
             }
-        });
-
-        // Only handle tab switching for links with href="#"
-        document.querySelectorAll('.sidebar-menu a').forEach(item => {
-            item.addEventListener('click', function (e) {
-                // Only prevent default for anchor tags with href="#"
-                if (this.getAttribute('href') === '#') {
-                    e.preventDefault();
-
-                    // Remove active class from all items
-                    document.querySelectorAll('.sidebar-menu a').forEach(link => {
-                        link.classList.remove('active');
-                    });
-
-                    // Add active class to clicked item
-                    this.classList.add('active');
-                }
-
-                // Close sidebar on mobile after clicking a link
-                if (window.innerWidth <= 992) {
-                    sidebar.classList.remove('show');
-                }
-            });
         });
 
         // Logout functionality

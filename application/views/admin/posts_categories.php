@@ -146,7 +146,7 @@
         }
 
         .sidebar-menu {
-            padding: 20px 0;
+            padding: 10px 0;
         }
 
         .sidebar-menu ul {
@@ -162,7 +162,7 @@
             text-decoration: none;
             display: flex;
             align-items: center;
-            padding: 15px 20px;
+            padding: 14px 20px;
             transition: all 0.3s;
         }
 

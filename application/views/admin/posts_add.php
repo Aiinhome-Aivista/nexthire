@@ -78,7 +78,7 @@
         }
 
         .sidebar-menu {
-            padding: 20px 0;
+            padding: 10px 0;
         }
 
         .sidebar-menu ul {
@@ -94,7 +94,7 @@
             text-decoration: none;
             display: flex;
             align-items: center;
-            padding: 15px 20px;
+            padding: 14px 20px;
             transition: all 0.3s;
         }
 
@@ -524,7 +524,7 @@
                     <button class="sidebar-toggle">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <h1>Add New Post</h1>
+                    <h1>Create New Blog</h1>
                 </div>
             </div>
         </div>
@@ -577,7 +577,7 @@
                     <?= form_error('featured_image', '<div class="text-danger">', '</div>'); ?>
                 </div>
 
-                <button type="submit" class="btn-submit">Add Post</button>
+                <button type="submit" class="btn-submit">Add Blog</button>
             </form>
 
         </div>

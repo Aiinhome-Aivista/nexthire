@@ -78,9 +78,6 @@
             top: 15px;
         }
 
-        .sidebar-menu {
-            padding: 20px 0;
-        }
 
         .sidebar-menu ul {
             list-style: none;
@@ -95,7 +92,7 @@
             text-decoration: none;
             display: flex;
             align-items: center;
-            padding: 15px 10px;
+            padding: 14px 10px;
             transition: all 0.3s;
         }
 
@@ -754,7 +751,7 @@
                     <button class="sidebar-toggle">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <h1>Manage Blog Posts</h1>
+                    <h1>Manage Blogs</h1>
                     <a href="<?= base_url('admin/posts_add'); ?>" class="btn text-dark"
                         style="background-color: #f1e42cff;">
                         <i class="fas fa-plus me-1"></i> Create Blog
@@ -906,12 +903,6 @@
         postsMenuToggle.addEventListener('click', (e) => {
             e.preventDefault();
             postsSubmenu.classList.toggle('show');
-        });
-
-        blogMenuToggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            blogSubmenu.classList.toggle('show');
         });
 
         // Close sidebar when clicking outside of it
