@@ -227,7 +227,7 @@
                             ?>
                         </p>
 
-                        <a href="<?= site_url('knowledge_base/post/' . $post->id) ?>" class="read-more">Read More</a>
+                        <a href="<?= base_url('admin/post_details/index/') . $post->id ?>" class="read-more">Read More</a>
                     </div>
                 </div>
             <?php endforeach; ?>

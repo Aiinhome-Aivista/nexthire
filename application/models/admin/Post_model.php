@@ -13,6 +13,16 @@ class Post_model extends CI_Model
         $this->load->database();
     }
 
+    public function get_post_by_id($id)
+    {
+        $this->db->select('posts_add.*, post_categories.name as category_name');
+        $this->db->from($this->table);
+        $this->db->join($this->categories_table, 'posts_add.category_id = post_categories.id', 'left');
+        $this->db->where('posts_add.id', $id);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
 
     public function add_post($data)
     {

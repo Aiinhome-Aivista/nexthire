@@ -101,6 +101,7 @@ $route['admin/employer_management'] = 'Admin_Dashboard/employer_management';
 $route['admin/job_post_management'] = 'Admin_Dashboard/job_post_management';
 $route['admin/featured_companies'] = 'Admin_Dashboard/featured_companies';
 $route['admin/sitemap_settings'] = 'admin/Sitemap_settings/index';
+$route['admin/comments_management'] = 'admin/Comments';
 
 $route['employer_login/forgot'] = 'Recruiter_login/forgot';
 $route['employer_login/verify_email'] = 'Recruiter_login/verify_email';
@@ -110,3 +111,6 @@ $route['knowledge-based'] = 'KnowledgeBase/index';
 $route['admin/posts_add'] = 'admin/Posts/posts_add';
 $route['admin/posts_categories'] = 'admin/Posts_categories';
 $route['admin/posts_manage'] = 'admin/Posts/posts_manage';
+
+$route['admin/post_details'] = 'admin/Post_details/index';
+$route['admin/post_details/index/(:num)'] = 'admin/Post_details/index/$1';

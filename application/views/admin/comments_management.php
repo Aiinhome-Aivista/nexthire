@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SahajJobs | Manage Employers</title>
+  <title>SahajJobs | Manage Comments</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
   <style>
@@ -34,6 +34,75 @@
       display: flex;
       min-height: 100vh;
       overflow-x: hidden;
+    }
+
+    .sidebar-menu .submenu {
+      padding-left: 40px;
+      list-style: none;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-in-out;
+    }
+
+    .sidebar-menu .submenu.show {
+      max-height: 250px;
+    }
+
+    .sidebar-menu .submenu a {
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      position: relative;
+    }
+
+    .sidebar-menu .submenu a::before {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 5px;
+      background-color: var(--warning);
+      border-radius: 50%;
+    }
+
+    .status-active {
+      background: rgba(76, 201, 240, 0.2);
+      color: var(--success);
+    }
+
+    .status-pending {
+      background: rgba(252, 163, 17, 0.2);
+      color: var(--warning);
+    }
+
+    .status-closed {
+      background: rgba(230, 57, 70, 0.2);
+      color: var(--danger);
+    }
+
+    /* Status dropdown styles */
+    .status-dropdown {
+      padding: 6px 10px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .status-approved {
+      background: rgba(76, 201, 240, 0.2);
+      color: var(--success);
+    }
+
+    .status-pending {
+      background: rgba(252, 163, 17, 0.2);
+      color: var(--warning);
+    }
+
+    .status-rejected {
+      background: rgba(230, 57, 70, 0.2);
+      color: var(--danger);
     }
 
     /* Sidebar Styles */
@@ -312,7 +381,7 @@
       overflow-x: auto;
     }
 
-    .table-no-employers td {
+    .table-no-comments td {
       text-align: center;
       font-style: italic;
       color: #888;
@@ -333,6 +402,7 @@
       opacity: 0;
       visibility: hidden;
       transition: all 0.3s ease;
+      overflow: hidden;
     }
 
     .modal.show {
@@ -372,11 +442,14 @@
     }
 
     .modal-body {
-      padding: 15px;
+      padding: 10px;
+      padding: 1rem;
+      overflow-y: auto;
+      flex: 1;
     }
 
     .form-group {
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
 
     .form-group label {
@@ -498,11 +571,6 @@
 
       .container {
         padding: 15px;
-        padding-left: 15px;
-      }
-
-      .container h2 {
-        margin-left: 50px;
       }
 
       .search-container {
@@ -658,40 +726,6 @@
         font-size: 12px;
       }
     }
-
-    /* New Submenu Styles */
-    .sidebar-menu .submenu {
-      padding-left: 40px;
-      /* Indent sub-options */
-      list-style: none;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease-in-out;
-    }
-
-    .sidebar-menu .submenu.show {
-      max-height: 250px;
-      /* Arbitrary large number to allow content to show */
-    }
-
-    .sidebar-menu .submenu a {
-      padding: 10px 20px;
-      /* Smaller padding for sub-items */
-      font-size: 0.95rem;
-      position: relative;
-    }
-
-    .sidebar-menu .submenu a::before {
-      /* content: ''; */
-      position: absolute;
-      left: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 5px;
-      height: 5px;
-      background-color: var(--warning);
-      border-radius: 50%;
-    }
   </style>
 </head>
 
@@ -712,10 +746,10 @@
         <li><a href="<?= base_url('admin/dashboard') ?>"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
         <li><a href="<?= base_url('admin/candidate_management') ?>"><i class="fas fa-user-graduate"></i>
             <span>Candidates</span></a></li>
-        <li><a href="<?= base_url('admin/employer_management') ?>" class="active"><i class="fas fa-users"></i>
+        <li><a href="<?= base_url('admin/employer_management') ?>"><i class="fas fa-users"></i>
             <span>Employers</span></a></li>
-        <li><a href="<?= base_url('admin/job_post_management') ?>"><i class="fas fa-file-alt"></i> <span>Job
-              Posts</span></a></li>
+        <li><a href="<?= base_url('admin/job_post_management') ?>"><i class="fas fa-file-alt"></i>
+            <span>Job Posts</span></a></li>
         <li><a href="<?= base_url('admin/featured_companies') ?>"><i class="fas fa-building"></i>
             <span>Featured Companies</span></a></li>
         <li>
@@ -734,7 +768,7 @@
           </ul>
         </li>
         <li>
-          <a href="<?= base_url('admin/comments'); ?>"><i class="fas fa-message"></i> Comments</a>
+          <a href="<?= base_url('admin/comments'); ?>" class="active"><i class="fas fa-message"></i> Comments</a>
         </li>
         <li>
           <a href="#" id="logoutBtn">
@@ -748,49 +782,55 @@
   <!-- Main Content -->
   <div class="main-content">
     <div class="container">
-      <h2>Manage Employers</h2>
+      <h2>Manage Comments</h2>
 
       <!-- Search Box -->
-      <div class="search-container">
+      <!-- <div class="search-container">
         <div class="search-box">
           <i class="fas fa-search"></i>
-          <input type="text" id="searchInput" placeholder="Search employers...">
+          <input type="text" id="searchInput" placeholder="Search comments...">
         </div>
-      </div>
+      </div> -->
 
       <div class="table-responsive">
         <table>
           <thead>
             <tr>
-              <th>S.No</th>
-              <th>Full Name</th>
-              <th>Email</th>
-              <th>Company</th>
-              <th>Designation</th>
-              <th>Mobile Number</th>
-              <th>Action</th>
+              <th>ID</th>
+              <th>Post Title</th>
+              <th>User Name</th>
+              <th>Comment</th>
+              <th>Status</th>
+              <th>Created At</th>
+              <!-- <th>Action</th> -->
             </tr>
           </thead>
-          <tbody id="recruiterTableBody">
-            <?php if (!empty($employers)): ?>
-              <?php $i = 1; ?>
-              <?php foreach ($employers as $employer): ?>
-                <tr data-id="<?= $employer->id ?>">
-                  <td data-label="S.No"><?= $i++; ?></td>
-                  <td data-label="Full Name" class="col-name"><?= $employer->full_name ?></td>
-                  <td data-label="Email" class="col-email"><?= $employer->email ?></td>
-                  <td data-label="Company" class="col-company"><?= $employer->company ?></td>
-                  <td data-label="Designation" class="col-designation"><?= $employer->designation ?></td>
-                  <td data-label="Mobile Number" class="col-mobile"><?= $employer->mobile_number ?></td>
-                  <td data-label="Action">
-                    <button class="btn btn-table btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-table btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+          <tbody id="commentTableBody">
+            <?php if (!empty($comments)): ?>
+              <?php foreach ($comments as $comment): ?>
+                <tr data-id="<?= $comment->id ?>">
+                  <td data-label="ID" class="col-id"><?= htmlspecialchars($comment->id) ?></td>
+                  <td data-label="Post Title" class="col-post-title"><?= htmlspecialchars($comment->post_title) ?></td>
+                  <td data-label="User Name" class="col-user-name"><?= htmlspecialchars($comment->user_name) ?></td>
+                  <td data-label="Comment" class="col-comment"><?= htmlspecialchars($comment->comment) ?></td>
+                  <td data-label="Status" class="col-status">
+                    <select class="status-dropdown status-<?= $comment->status ?>" data-comment-id="<?= $comment->id ?>">
+                      <option value="approved" <?= $comment->status == 'approved' ? 'selected' : '' ?>>Approved</option>
+                      <option value="pending" <?= $comment->status == 'pending' ? 'selected' : '' ?>>Pending</option>
+                      <option value="rejected" <?= $comment->status == 'rejected' ? 'selected' : '' ?>>Rejected</option>
+                    </select>
                   </td>
+                  <td data-label="Created At" class="col-created-at">
+                    <?= date("M d, Y H:i", strtotime($comment->created_at)) ?>
+                  </td>
+                  <!-- <td data-label="Action">
+                    <button class="btn btn-table btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                  </td> -->
                 </tr>
               <?php endforeach; ?>
             <?php else: ?>
-              <tr class="table-no-employers">
-                <td colspan="7">No employers found</td>
+              <tr class="table-no-comments">
+                <td colspan="7">No comments found</td>
               </tr>
             <?php endif; ?>
           </tbody>
@@ -812,55 +852,12 @@
     </footer>
   </div>
 
-  <!-- Edit Employer Modal -->
-  <div id="editModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Edit Employer</h3>
-      </div>
-      <div class="modal-body">
-        <form id="editForm">
-          <input type="hidden" id="edit_id">
-
-          <div class="form-group">
-            <label for="edit_full_name">Full Name</label>
-            <input type="text" id="edit_full_name" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="edit_email">Email</label>
-            <input type="email" id="edit_email" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="edit_company">Company</label>
-            <input type="text" id="edit_company" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="edit_designation">Designation</label>
-            <input type="text" id="edit_designation" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="edit_mobile_number">Mobile</label>
-            <input type="text" id="edit_mobile_number" class="form-control">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" id="updateBtn" class="modal-btn modal-btn-primary">Update</button>
-        <button type="button" id="closeModal" class="modal-btn modal-btn-secondary">Cancel</button>
-      </div>
-    </div>
-  </div>
-
   <script>
     // Sidebar toggle functionality
     const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.querySelector('.sidebar-toggle');
     const mobileToggle = document.querySelector('.mobile-toggle');
     const mainContent = document.querySelector('.main-content');
-
-    document.getElementById('posts-menu-toggle').addEventListener('click', function (e) {
-      e.preventDefault();
-      document.getElementById('posts-submenu').classList.toggle('show');
-    });
 
     // Helper to read CSS variable values
     function cssVar(name, fallback = '') {
@@ -869,6 +866,30 @@
       } catch (e) {
         return fallback;
       }
+    }
+
+    // Desktop sidebar toggle
+    if (sidebarToggle && sidebar) {
+      sidebarToggle.addEventListener('click', function (e) {
+        // toggle collapsed state
+        sidebar.classList.toggle('collapsed');
+
+        // toggle chevron icon safely
+        const icon = sidebarToggle.querySelector('i');
+        if (icon) {
+          icon.classList.toggle('fa-chevron-left');
+          icon.classList.toggle('fa-chevron-right');
+        }
+
+        // adjust main content margin so layout stays consistent
+        const collapsedWidth = cssVar('--sidebar-collapsed-width', '70px').trim();
+        const fullWidth = cssVar('--sidebar-width', '250px').trim();
+        if (sidebar.classList.contains('collapsed')) {
+          if (mainContent) mainContent.style.marginLeft = collapsedWidth;
+        } else {
+          if (mainContent) mainContent.style.marginLeft = fullWidth;
+        }
+      });
     }
 
     // Mobile sidebar toggle
@@ -922,18 +943,26 @@
         document.body.style.overflow = 'auto';
         sidebar.style.transform = 'translateX(0)';
 
-        // Ensure sidebar has proper width
-        sidebar.style.width = cssVar('--sidebar-width', '250px').trim();
+        // Ensure collapsed class keeps width consistent
+        if (!sidebar.classList.contains('collapsed')) {
+          sidebar.style.width = cssVar('--sidebar-width', '250px').trim();
+        } else {
+          sidebar.style.width = cssVar('--sidebar-collapsed-width', '70px').trim();
+        }
 
         // adjust main content margin
         if (mainContent) {
-          mainContent.style.marginLeft = cssVar('--sidebar-width', '250px').trim();
+          mainContent.style.marginLeft = sidebar.classList.contains('collapsed') ?
+            cssVar('--sidebar-collapsed-width', '70px').trim() :
+            cssVar('--sidebar-width', '250px').trim();
         }
       } else {
         // Mobile view - hide sidebar by default (unless explicitly shown)
         if (!sidebar.classList.contains('show')) {
           sidebar.style.transform = 'translateX(-100%)';
         }
+        // Remove collapsed on mobile (avoid layout issues)
+        sidebar.classList.remove('collapsed');
         if (mainContent) mainContent.style.marginLeft = '0';
       }
     });
@@ -944,12 +973,15 @@
 
       if (window.innerWidth <= 768) {
         sidebar.style.transform = 'translateX(-100%)';
+        sidebar.classList.remove('collapsed');
         if (mainContent) mainContent.style.marginLeft = '0';
       } else {
         sidebar.style.transform = 'translateX(0)';
-        // set main-content margin
+        // set main-content margin according to collapsed state
         if (mainContent) {
-          mainContent.style.marginLeft = cssVar('--sidebar-width', '250px').trim();
+          mainContent.style.marginLeft = sidebar.classList.contains('collapsed') ?
+            cssVar('--sidebar-collapsed-width', '70px').trim() :
+            cssVar('--sidebar-width', '250px').trim();
         }
       }
     }
@@ -960,14 +992,14 @@
     const logoutBtn = document.getElementById('logoutBtn');
     logoutBtn.addEventListener('click', function () {
       if (confirm('Are you sure you want to logout?')) {
-        window.location.href = '<?= base_url("admin/employer_management/logout"); ?>';
+        window.location.href = '<?= base_url("Admin_Dashboard/logout"); ?>';
       }
     });
 
-    // Search and Pagination functionality (Employer Management)
+    // Search and Pagination functionality
     document.addEventListener('DOMContentLoaded', function () {
-      const searchInput = document.getElementById('searchInput');
-      const tableBody = document.getElementById('recruiterTableBody');
+      //       const searchInput = document.getElementById('searchInput');
+      const tableBody = document.getElementById('commentTableBody');
       const firstPageBtn = document.getElementById('firstPage');
       const prevPageBtn = document.getElementById('prevPage');
       const nextPageBtn = document.getElementById('nextPage');
@@ -999,7 +1031,7 @@
       setTimeout(initializeTable, 500);
 
       function initializeTable() {
-        const rows = Array.from(tableBody.querySelectorAll('tr:not(.table-no-employers)'));
+        const rows = Array.from(tableBody.querySelectorAll('tr:not(.table-no-comments)'));
 
         // Only reinitialize if we have rows and they haven't been processed yet
         if (rows.length > 0 && allRows.length === 0) {
@@ -1009,33 +1041,15 @@
           // Show pagination controls
           paginationControls.style.display = 'flex';
           updatePagination();
-        } else if (tableBody.querySelector('.table-no-employers')) {
+        } else if (tableBody.querySelector('.table-no-comments')) {
           // If no data row is present, hide pagination
+          paginationControls.style.display = 'none';
+        } else if (rows.length === 0) {
+          // If no rows at all, show "no data" row
+          tableBody.innerHTML = '<tr class="table-no-comments"><td colspan="7" style="text-align: center;">No comments found</td></tr>';
           paginationControls.style.display = 'none';
         }
       }
-
-      // Search functionality
-      searchInput.addEventListener('input', function () {
-        const searchText = this.value.toLowerCase();
-
-        if (searchText === '') {
-          filteredRows = [...allRows];
-        } else {
-          filteredRows = allRows.filter(row => {
-            const cells = row.querySelectorAll('td');
-            for (let i = 0; i < cells.length - 1; i++) { // Skip action column
-              if (cells[i].textContent.toLowerCase().includes(searchText)) {
-                return true;
-              }
-            }
-            return false;
-          });
-        }
-
-        currentPage = 1;
-        updatePagination();
-      });
 
       // Pagination functionality
       function updatePagination() {
@@ -1043,7 +1057,7 @@
 
         if (filteredRows.length === 0) {
           paginationControls.style.display = 'none';
-          tableBody.innerHTML = '<tr class="table-no-employers"><td colspan="7">No employers found</td></tr>';
+          tableBody.innerHTML = '<tr class="table-no-comments"><td colspan="7" style="text-align: center;">No comments found</td></tr>';
           return;
         }
 
@@ -1080,7 +1094,7 @@
         // Update page info
         const startItem = (currentPage - 1) * rowsPerPage + 1;
         const endItem = Math.min(currentPage * rowsPerPage, filteredRows.length);
-        pageInfo.textContent = `Showing ${startItem}-${endItem} of ${filteredRows.length} employers`;
+        pageInfo.textContent = `Showing ${startItem}-${endItem} of ${filteredRows.length} comments`;
 
         // Show current page rows
         displayCurrentPage();
@@ -1115,90 +1129,61 @@
       });
     });
 
+    // Status update functionality - REPLACE THIS SECTION
+    document.addEventListener('change', function (e) {
+      if (e.target.classList.contains('status-dropdown')) {
+        const commentId = e.target.getAttribute('data-comment-id');
+        const newStatus = e.target.value;
 
-    // Re-number table
-    function renumberTable() {
-      const rows = document.querySelectorAll("#recruiterTableBody tr");
-      rows.forEach((row, index) => {
-        row.querySelector("td").textContent = index + 1;
-      });
-    }
+        // Update the dropdown class immediately for better UX
+        e.target.className = `status-dropdown status-${newStatus}`;
 
-    // Delete employer
-    document.addEventListener('click', e => {
-      if (e.target.closest('.btn-delete')) {
-        const row = e.target.closest('tr');
-        const employerId = row.getAttribute('data-id');
+        // Show loading state
+        const originalValue = e.target.value;
+        e.target.disabled = true;
 
-        if (confirm('Are you sure you want to delete this employer?')) {
-          fetch('<?= base_url("admin/employer_management/delete_employer/") ?>' + employerId)
-            .then(res => res.json())
-            .then(data => {
-              if (data.status === 'success') {
-                row.remove();
-                renumberTable();
-                alert('Employer deleted successfully.');
-              } else {
-                alert('Error deleting employer.');
-              }
-            })
-            .catch(err => console.error(err));
-        }
-      }
-    });
-
-    // Open edit modal
-    document.addEventListener('click', e => {
-      if (e.target.closest('.btn-edit')) {
-        const row = e.target.closest('tr');
-        const id = row.getAttribute('data-id');
-        document.getElementById('edit_id').value = id;
-        document.getElementById('edit_full_name').value = row.querySelector('.col-name').textContent;
-        document.getElementById('edit_email').value = row.querySelector('.col-email').textContent;
-        document.getElementById('edit_company').value = row.querySelector('.col-company').textContent;
-        document.getElementById('edit_designation').value = row.querySelector('.col-designation').textContent;
-        document.getElementById('edit_mobile_number').value = row.querySelector('.col-mobile').textContent;
-
-        document.getElementById('editModal').classList.add('show');
-      }
-    });
-
-    // Close modal
-    document.getElementById('closeModal').addEventListener('click', () => {
-      document.getElementById('editModal').classList.remove('show');
-    });
-
-    // Update employer
-    document.getElementById('updateBtn').addEventListener('click', () => {
-      const formData = new FormData();
-      formData.append('id', document.getElementById('edit_id').value);
-      formData.append('full_name', document.getElementById('edit_full_name').value);
-      formData.append('email', document.getElementById('edit_email').value);
-      formData.append('company', document.getElementById('edit_company').value);
-      formData.append('designation', document.getElementById('edit_designation').value);
-      formData.append('mobile_number', document.getElementById('edit_mobile_number').value);
-
-      fetch('<?= base_url("admin/employer_management/update_employer") ?>', {
-        method: 'POST',
-        body: formData
-      })
-        .then(res => res.json())
-        .then(data => {
-          if (data.status === 'success') {
-            const row = document.querySelector(`tr[data-id="${formData.get('id')}"]`);
-            row.querySelector('.col-name').textContent = data.data.full_name;
-            row.querySelector('.col-email').textContent = data.data.email;
-            row.querySelector('.col-company').textContent = data.data.company;
-            row.querySelector('.col-designation').textContent = data.data.designation;
-            row.querySelector('.col-mobile').textContent = data.data.mobile_number;
-
-            document.getElementById('editModal').classList.remove('show');
-            alert('Employer updated successfully.');
-          } else {
-            alert('Error updating employer.');
-          }
+        fetch('<?= base_url("admin/comments/update_status") ?>', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `comment_id=${commentId}&status=${newStatus}`
         })
-        .catch(err => console.error(err));
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+            if (data.status === 'success') {
+              console.log('Status updated successfully');
+              // Status is already updated in the UI, no need to do anything
+            } else {
+              alert('Error updating comment status: ' + (data.message || 'Unknown error'));
+              // Revert to original value on error
+              e.target.value = originalValue;
+              e.target.className = `status-dropdown status-${originalValue}`;
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            alert('Error updating comment status. Please check your connection.');
+            // Revert to original value on error
+            e.target.value = originalValue;
+            e.target.className = `status-dropdown status-${originalValue}`;
+          })
+          .finally(() => {
+            e.target.disabled = false;
+          });
+      }
+    });
+  </script>
+  <script>
+    // Posts submenu toggle
+    document.getElementById('posts-menu-toggle').addEventListener('click', function (e) {
+      e.preventDefault();
+      document.getElementById('posts-submenu').classList.toggle('show');
     });
   </script>
 </body>
