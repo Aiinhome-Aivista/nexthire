@@ -626,6 +626,8 @@
                 <li>
                     <a href="<?= base_url('admin/comments'); ?>"><i class="fas fa-message"></i> Comments</a>
                 </li>
+                <li><a href="<?= base_url('admin/Sitemap_settings/xml') ?>"><i class="fas fa-sitemap"></i>
+                        <span>Sitemap Settings</span></a></li>
                 <li>
                     <a href="#" id="logoutBtn">
                         <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
