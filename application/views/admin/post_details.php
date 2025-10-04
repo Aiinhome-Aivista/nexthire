@@ -397,10 +397,10 @@
             </p>
 
             <div class="full-content">
-                <?= $post->content ?> <!-- full content with formatting -->
+                <?= nl2br(htmlspecialchars($post->content)) ?>
             </div>
 
-            <a href="<?= base_url('knowledgebase') ?>" class="back-button">← Back to Knowledge Base</a>
+            <a href="<?= base_url('knowledge-based') ?>" class="back-button">← Back to Knowledge Base</a>
         </div>
     </div>
 

@@ -56,6 +56,7 @@ class Candidate_jobsearch extends CI_Controller
             }
         }
         $data['jobs'] = $jobs;
+        $data['featured_companies'] = $this->Candidate_jobsearch_model->get_featured_companies(5);
 
         $this->load->view('includes/login_header', $data);
         $this->load->view('candidate_job_search', $data);
@@ -151,7 +152,8 @@ class Candidate_jobsearch extends CI_Controller
         $user_id = $this->session->userdata('user_id');
 
         if ($user_id) {
-            $config['upload_path'] = './assets/resumes/';
+            // $config['upload_path'] = './assets/resumes/';
+            $config['upload_path'] = '../All_Uploads/resumes/';
             $config['allowed_types'] = 'pdf|doc|docx';
             $config['max_size'] = 2048;
             $config['encrypt_name'] = TRUE;
@@ -161,7 +163,8 @@ class Candidate_jobsearch extends CI_Controller
             if ($this->upload->do_upload('resume_file')) {
                 $upload_data = $this->upload->data();
                 $file_name = $upload_data['file_name'];
-                $file_path = 'assets/resumes/' . $file_name;
+                // $file_path = 'assets/resumes/' . $file_name;
+                $file_path = '../All_Uploads/resumes/' . $file_name;
 
                 $this->Candidate_jobsearch_model->update_user_resume($user_id, $file_name, $file_path);
             } else {

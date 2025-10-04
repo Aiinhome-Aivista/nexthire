@@ -2,9 +2,15 @@
   <div class="header-container">
 
     <!-- Logo Section -->
-    <div class="logo-section">
+    <!-- <div class="logo-section">
+      <a href="<?php //base_url(); ?>">
+        <img src="<?php //base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2" class="logo">
+      </a>
+    </div> -->
+
+     <div class="logo-section">
       <a href="<?= base_url(); ?>">
-        <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2" class="logo">
+        <img src="<?= base_url('../All_Uploads/images/SahajJOB2.png'); ?>" alt="SahajJOB2" class="logo">
       </a>
     </div>
 

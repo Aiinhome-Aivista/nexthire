@@ -533,9 +533,13 @@
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
+            <!-- <div style="display: flex; align-items: center; gap: 10px;">
+                <img src="<?php //base_url('assets/images/sahajjobs1.png'); ?>" alt="SahajJobs"
+                    style="height:50px; width:135px;">
+            </div> -->
             <div style="display: flex; align-items: center; gap: 10px;">
-                <img style="height:50px; width:135px;" src="<?= base_url('assets/images/sahajjobs1.png'); ?>"
-                    alt="SahajJobs">
+                <img src="<?= base_url('../All_Uploads/images/sahajjobs1.png'); ?>" alt="SahajJobs"
+                    style="height:50px; width:135px;">
             </div>
         </div>
         <nav class="sidebar-menu">

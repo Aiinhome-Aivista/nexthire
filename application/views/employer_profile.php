@@ -209,12 +209,14 @@
 
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
-        <img style="height:40px; width:90px;" src="<?= base_url('assets/images/sahajjobs1.png'); ?>" alt="JobNest">
+        <!-- <img style="height:40px; width:90px;" src="<?php //base_url('assets/images/sahajjobs1.png'); ?>" alt="SahajJobs"> -->
+        <img style="height:40px; width:90px;" src="<?= base_url('../All_Uploads/images/sahajjobs1.png'); ?>"
+            alt="SahajJobs">
         <a href="<?= base_url('employer_dashboard'); ?>"><i class="fas fa-home me-2"></i> Dashboard</a>
         <a href="<?= base_url('employer_job_post'); ?>"><i class="fas fa-file-alt me-2"></i> Post Job</a>
         <a href="<?= base_url('employer_manage_jobs'); ?>"><i class="fas fa-briefcase me-2"></i> Manage Jobs</a>
-        <li><a href="<?= base_url('employer_manage_applications'); ?>"><i
-                    class="fas fa-user-graduate me-2"></i> <span>Applications</span></a>
+        <li><a href="<?= base_url('employer_manage_applications'); ?>"><i class="fas fa-user-graduate me-2"></i>
+                <span>Applications</span></a>
         </li>
         <a href="<?= base_url('employer_profile'); ?>" class="active"><i class="fas fa-building"></i> Employer
             Profile</a>
@@ -235,7 +237,10 @@
                             <!-- Profile Avatar -->
                             <?php if (!empty($employer['picture'])): ?>
                                 <!-- If picture exists -->
-                                <img src="<?= base_url('assets/profile_photos/' . $employer['picture']); ?>"
+                                <!-- <img src="<?php //base_url('assets/profile_photos/' . $employer['picture']); ?>"
+                                    alt="Profile Picture"
+                                    class="rounded-circle mb-3 border border-3 border-primary profile-avatar"> -->
+                                <img src="<?= base_url('../All_Uploads/profile_photos/' . $employer['picture']); ?>"
                                     alt="Profile Picture"
                                     class="rounded-circle mb-3 border border-3 border-primary profile-avatar">
                             <?php else: ?>

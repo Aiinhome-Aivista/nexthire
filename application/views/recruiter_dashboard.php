@@ -592,8 +592,12 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
+            <!-- <div style="display: flex; align-items: center; gap: 10px;">
+                <img src="<?php //base_url('assets/images/sahajjobs1.png'); ?>" alt="SahajJOB"
+                    style="height:50px; width:135px;">
+            </div> -->
             <div style="display: flex; align-items: center; gap: 10px;">
-                <img src="<?= base_url('assets/images/sahajjobs1.png'); ?>" alt="SahajJOB"
+                <img src="<?= base_url('../All_Uploads/images/sahajjobs1.png'); ?>" alt="SahajJOB"
                     style="height:50px; width:135px;">
             </div>
             <button class="close-sidebar">
@@ -607,8 +611,8 @@
                 <li><a href="<?= base_url('employer_job_post'); ?>"> <i class="fas fa-file-alt"></i> Post Job</a></li>
                 <li><a href="<?= base_url('employer_manage_jobs'); ?>"><i class="fas fa-briefcase"></i> Manage Jobs</a>
                 </li>
-                 <li><a href="<?= base_url('employer_manage_applications'); ?>"><i 
-                            class="fas fa-user-graduate me-2"></i> <span>Applications</span></a>
+                <li><a href="<?= base_url('employer_manage_applications'); ?>"><i class="fas fa-user-graduate me-2"></i>
+                        <span>Applications</span></a>
                 </li>
                 <li><a href="<?= base_url('employer_profile'); ?>"><i class="fas fa-building"></i> Employer Profile</a>
                 </li>
@@ -632,7 +636,7 @@
                     </button>
                     <h1>Employer Dashboard</h1>
                 </div>
-               <p class="welcome-text">Welcome back, <?php echo htmlspecialchars($welcome_name); ?>!</p>
+                <p class="welcome-text">Welcome back, <?php echo htmlspecialchars($welcome_name); ?>!</p>
             </div>
             <div class="user-info">
                 <div class="notifications">
@@ -646,7 +650,7 @@
         <div class="dashboard-stats">
             <div class="stat-card jobs">
                 <div class="stat-info">
-                   <h3><?php echo $job_posts_count; ?></h3>
+                    <h3><?php echo $job_posts_count; ?></h3>
                     <p>Job Posts</p>
                 </div>
                 <div class="stat-icon">
@@ -656,7 +660,7 @@
 
             <div class="stat-card recruiters">
                 <div class="stat-info">
-                   <h3><?php echo $active_jobs_count; ?></h3>
+                    <h3><?php echo $active_jobs_count; ?></h3>
                     <p>Active Jobs</p>
                 </div>
                 <div class="stat-icon">

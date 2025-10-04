@@ -42,7 +42,8 @@ class Featured_companies extends CI_Controller
         $logo_path = $this->input->post('logo'); // Default to existing path
 
         if (!empty($_FILES['logo_file']['name'])) {
-            $config['upload_path'] = './assets/images/';
+            // $config['upload_path'] = './assets/images/';
+            $config['upload_path'] = '../All_Uploads/images/';
             $config['allowed_types'] = 'gif|jpg|png|jpeg';
             $config['max_size'] = 2048;
             $config['encrypt_name'] = FALSE;
@@ -52,7 +53,8 @@ class Featured_companies extends CI_Controller
 
             if ($this->upload->do_upload('logo_file')) {
                 $upload_data = $this->upload->data();
-                $logo_path = 'assets/images/' . $upload_data['file_name'];
+                // $logo_path = 'assets/images/' . $upload_data['file_name'];
+                $logo_path = '../All_Uploads/images/' . $upload_data['file_name'];
             } else {
                 // Upload failed, return error
                 $error = $this->upload->display_errors();
@@ -70,7 +72,7 @@ class Featured_companies extends CI_Controller
             'is_featured' => $this->input->post('is_featured'),
         ];
 
-         $top_hiring_data = [
+        $top_hiring_data = [
             'employer_id' => $employer_id,
             'is_top_hiring' => $this->input->post('is_top_hiring'),
         ];
@@ -108,7 +110,7 @@ class Featured_companies extends CI_Controller
 
 
 
-   public function add_featured_company()
+    public function add_featured_company()
     {
         header('Content-Type: application/json');
 
@@ -116,7 +118,8 @@ class Featured_companies extends CI_Controller
         $logo_path = '';
 
         if (!empty($_FILES['logo_file']['name'])) {
-            $config['upload_path'] = './assets/images/';
+            // $config['upload_path'] = './assets/images/';
+            $config['upload_path'] = '../All_Uploads/images/';
             $config['allowed_types'] = 'gif|jpg|png|jpeg';
             $config['max_size'] = 2048;
             $config['encrypt_name'] = FALSE;
@@ -126,7 +129,8 @@ class Featured_companies extends CI_Controller
 
             if ($this->upload->do_upload('logo_file')) {
                 $upload_data = $this->upload->data();
-                $logo_path = 'assets/images/' . $upload_data['file_name'];
+                // $logo_path = 'assets/images/' . $upload_data['file_name'];
+                $logo_path = '../All_Uploads/images/' . $upload_data['file_name'];
             } else {
                 // Upload failed, return error
                 $error = $this->upload->display_errors();

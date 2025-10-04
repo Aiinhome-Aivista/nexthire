@@ -130,4 +130,37 @@ class Post_model extends CI_Model
 
         return $posts;
     }
+
+    public function get_posts_count()
+    {
+        return $this->db->count_all_results('posts_add');
+    }
+
+    public function get_posts_by_category_count($category_id)
+    {
+        $this->db->from('posts_add');
+        $this->db->where('category_id', $category_id);
+        return $this->db->count_all_results();
+    }
+
+    public function get_posts_with_categories_paginated($limit, $offset)
+    {
+        $this->db->select('posts_add.*, post_categories.name as category_name');
+        $this->db->from('posts_add');
+        $this->db->join('post_categories', 'posts_add.category_id = post_categories.id', 'left');
+        $this->db->order_by('posts_add.created_at', 'DESC');
+        $this->db->limit($limit, $offset);
+        return $this->db->get()->result();
+    }
+
+    public function get_posts_by_category_paginated($category_id, $limit, $offset)
+    {
+        $this->db->select('posts_add.*, post_categories.name as category_name');
+        $this->db->from('posts_add');
+        $this->db->join('post_categories', 'posts_add.category_id = post_categories.id', 'left');
+        $this->db->where('posts_add.category_id', $category_id);
+        $this->db->order_by('posts_add.created_at', 'DESC');
+        $this->db->limit($limit, $offset);
+        return $this->db->get()->result();
+    }
 }

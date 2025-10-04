@@ -101,22 +101,22 @@
         .back-btn:hover {
             background-color: gold;
         }
-        
+
         .logo-container {
             display: flex;
             justify-content: flex-end;
         }
-        
+
         @media (max-width: 576px) {
             .form-container {
                 padding: 15px;
             }
-            
+
             .header {
                 flex-direction: column;
                 align-items: flex-start;
             }
-            
+
             .logo-container {
                 justify-content: flex-start;
                 width: 100%;
@@ -124,7 +124,7 @@
                 border-top: 1px solid #eee;
                 margin-top: 10px;
             }
-            
+
             h2 {
                 font-size: 18px;
             }
@@ -139,7 +139,9 @@
         </a>
 
         <div class="logo-container">
-            <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="jobnestLogo" class="img-fluid"
+            <!-- <img src="<?php //base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJobLogo" class="img-fluid"
+                style="height:50px; width:100px;"> -->
+            <img src="<?= base_url('../All_Uploads/images/SahajJOB2.png'); ?>" alt="SahajJobLogo" class="img-fluid"
                 style="height:50px; width:100px;">
         </div>
     </div>

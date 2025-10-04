@@ -392,8 +392,12 @@
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
+            <!-- <div style="display: flex; align-items: center; gap: 10px;">
+                <img src="<?php //base_url('assets/images/sahajjobs1.png'); ?>" alt="SahajJOB"
+                    style="height:50px; width:135px;">
+            </div> -->
             <div style="display: flex; align-items: center; gap: 10px;">
-                <img src="<?= base_url('assets/images/sahajjobs1.png'); ?>" alt="SahajJOB"
+                <img src="<?= base_url('../All_Uploads/images/sahajjobs1.png'); ?>" alt="SahajJOB"
                     style="height:50px; width:135px;">
             </div>
         </div>
@@ -405,8 +409,8 @@
                         <span>Post Job</span></a></li>
                 <li><a href="<?= base_url('employer_manage_jobs'); ?>"><i class="fas fa-briefcase"></i> <span>Manage
                             Jobs</span></a></li>
-                <li><a href="<?= base_url('employer_manage_applications'); ?>"><i 
-                            class="fas fa-user-graduate me-2"></i> <span>Applications</span></a>
+                <li><a href="<?= base_url('employer_manage_applications'); ?>"><i class="fas fa-user-graduate me-2"></i>
+                        <span>Applications</span></a>
                 </li>
                 <li><a href="<?= base_url('employer_profile'); ?>"><i class="fas fa-building"></i> <span>Employer
                             Profile</span></a></li>

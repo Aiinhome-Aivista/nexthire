@@ -668,7 +668,8 @@
     <div class="header-content">
       <div class="logo">
         <a href="<?= base_url(); ?>">
-          <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
+          <!-- <img src="<?php //base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2"> -->
+          <img src="<?= base_url('../All_Uploads/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
         </a>
       </div>
       <div class="login-link">
@@ -678,7 +679,8 @@
   </div>
   <div class="container">
     <div class="left-card">
-      <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
+      <!-- <img src="<?php //base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2"> -->
+      <img src="<?= base_url('../All_Uploads/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
       <h3>On registering, you can</h3>
       <ul>
         <li><span class="green-dot"></span>Build your profile and let recruiters find you</li>
@@ -785,7 +787,8 @@
           <div class="or-text">Or</div>
           <div class="continue-text">Continue with</div>
           <button id="googleSignInBtn" class="google-btn">
-            <img src="<?= base_url('assets/images/google.png'); ?>" alt="google">
+            <!-- <img src="<?php //base_url('assets/images/google.png'); ?>" alt="google"> -->
+            <img src="<?= base_url('../All_Uploads/images/google.png'); ?>" alt="google">
             Google
           </button>
         </div>

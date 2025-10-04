@@ -550,7 +550,8 @@
     <div class="header-content">
       <div class="logo">
         <a href="<?= base_url(); ?>">
-          <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
+          <!-- <img src="<?php //base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2"> -->
+          <img src="<?= base_url('../All_Uploads/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
         </a>
       </div>
       <div class="login-link">
@@ -563,7 +564,8 @@
   <div class="container">
     <!-- Left Card -->
     <div class="left-card">
-      <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
+      <!-- <img src="<?php //base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2"> -->
+      <img src="<?= base_url('../All_Uploads/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
       <h3>As a recruiter, you can</h3>
       <ul>
         <li><span class="green-dot"></span>Post jobs and reach millions of job seekers</li>
@@ -667,7 +669,8 @@
             <div class="or-text">Or</div>
             <div class="continue-text">Continue with</div>
             <button type="button" class="google-btn" id="googleSignInBtn">
-              <img src="<?= base_url('assets/images/google.png'); ?>" alt="google">
+              <!-- <img src="<?php //base_url('assets/images/google.png'); ?>" alt="google"> -->
+              <img src="<?= base_url('../All_Uploads/images/google.png'); ?>" alt="google">
               Google
             </button>
           </div>

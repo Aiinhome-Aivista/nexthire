@@ -198,7 +198,8 @@
 <body>
     <div class="container">
         <div class="indeed-logo">
-            <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2" class="img-fluid">
+            <!-- <img src="<?php //base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2" class="img-fluid"> -->
+            <img src="<?= base_url('../All_Uploads/images/SahajJOB2.png'); ?>" alt="SahajJOB2" class="img-fluid">
         </div>
 
         <div class="header">

@@ -699,8 +699,12 @@
 
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
+            <!-- <div style="display: flex; align-items: center; gap: 10px;">
+                <img src="<?php //base_url('assets/images/sahajjobs1.png'); ?>" alt="SahajJOB"
+                    style="height:50px; width:135px;">
+            </div> -->
             <div style="display: flex; align-items: center; gap: 10px;">
-                <img src="<?= base_url('assets/images/sahajjobs1.png'); ?>" alt="SahajJOB"
+                <img src="<?= base_url('../All_Uploads/images/sahajjobs1.png'); ?>" alt="SahajJOB"
                     style="height:50px; width:135px;">
             </div>
         </div>
@@ -731,7 +735,7 @@
                         </li>
                     </ul>
                 </li>
-                 <li>
+                <li>
                     <a href="<?= base_url('admin/comments'); ?>"><i class="fas fa-message"></i> Comments</a>
                 </li>
                 <li>

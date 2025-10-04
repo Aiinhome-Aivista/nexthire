@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SahajJobs | Home</title>
-    <link rel="icon" type="image/x-icon" href="/IndeedClone/nexthire/assets/images/favicon.ico">
+     <link rel="icon" type="image/x-icon" href="../All_Uploads/images/favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
@@ -386,7 +386,7 @@
 
             <!-- Tagline Image -->
             <div class="tagline-image">
-                <img src="assets/images/SahajJobs.png" alt="Apply for job !!!!">
+                 <img src="../All_Uploads/images/SahajJobs.png" alt="Apply for job !!!!">
             </div>
 
             <!-- Job Categories -->
@@ -434,25 +434,25 @@
 
                                 <div class="d-flex gap-2 justify-content-center flex-wrap">
                                     <?php if ($index == 0): ?>
-                                        <img src="assets/images/company1.gif" alt="">
-                                        <img src="assets/images/company2.gif" alt="">
-                                        <img src="assets/images/company3.gif" alt="">
+                                        <img src="../All_Uploads/images/company1.gif" alt="">
+                                        <img src="../All_Uploads/images/company2.gif" alt="">
+                                        <img src="../All_Uploads/images/company3.gif" alt="">
                                     <?php elseif ($index == 1): ?>
-                                        <img src="assets/images/company5.gif" alt="">
-                                        <img src="assets/images/company6.gif" alt="">
-                                        <img src="assets/images/company7.gif" alt="">
+                                        <img src="../All_Uploads/images/company5.gif" alt="">
+                                        <img src="../All_Uploads/images/company6.gif" alt="">
+                                        <img src="../All_Uploads/images/company7.gif" alt="">
                                     <?php elseif ($index == 2): ?>
-                                        <img src="assets/images/company9.gif" alt="">
-                                        <img src="assets/images/company10.gif" alt="">
-                                        <img src="assets/images/company11.gif" alt="">
+                                        <img src="../All_Uploads/images/company9.gif" alt="">
+                                        <img src="../All_Uploads/images/company10.gif" alt="">
+                                        <img src="../All_Uploads/images/company11.gif" alt="">
                                     <?php elseif ($index == 3): ?>
-                                        <img src="assets/images/company13.gif" alt="">
-                                        <img src="assets/images/company14.gif" alt="">
-                                        <img src="assets/images/company15.gif" alt="">
+                                        <img src="../All_Uploads/images/company13.gif" alt="">
+                                        <img src="../All_Uploads/images/company14.gif" alt="">
+                                        <img src="../All_Uploads/images/company15.gif" alt="">
                                     <?php elseif ($index == 4): ?>
-                                        <img src="assets/images/company17.gif" alt="">
-                                        <img src="assets/images/company18.gif" alt="">
-                                        <img src="assets/images/company19.gif" alt="">
+                                        <img src="../All_Uploads/images/company17.gif" alt="">
+                                        <img src="../All_Uploads/images/company18.gif" alt="">
+                                        <img src="../All_Uploads/images/company19.gif" alt="">
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -500,7 +500,7 @@
                 <div class="siemens-banner">
                     <div class="banner-right position-relative">
                         <video autoplay muted loop playsinline class="banner-image">
-                            <source src="assets/videos/image_video.mp4" type="video/mp4">
+                            <source src="../All_Uploads/videos/image_video.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>

@@ -530,7 +530,7 @@
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             width: 600px;
-            max-width: 90%;
+            max-width: 90vh;
             /* Removed max-height and overflow to eliminate scrollbar */
             transform: translateY(-50px);
             transition: transform 0.4s ease;
@@ -546,6 +546,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-shrink: 0;
         }
 
         .modal-header h3 {
@@ -559,6 +560,8 @@
             padding: 1rem;
             /* Removed overflow-y to eliminate scrollbar */
             flex: 1;
+            overflow-y: auto;
+            max-height: calc(90vh - 130px);
         }
 
         .form-group {
@@ -598,6 +601,7 @@
             display: flex;
             justify-content: flex-end;
             gap: 12px;
+            flex-shrink: 0;
         }
 
         .modal-btn {
@@ -692,6 +696,27 @@
         ul {
             padding-left: 1rem !important;
         }
+
+        /* Image preview styling */
+        #current_image_container {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        #current_image {
+            max-width: 200px;
+            max-height: 150px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            display: none;
+        }
+
+        #current_image_name {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 5px;
+            word-break: break-all;
+        }
     </style>
 </head>
 
@@ -699,8 +724,12 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
+            <!-- <div style="display: flex; align-items: center; gap: 10px;">
+                <img src="<?php //base_url('assets/images/sahajjobs1.png'); ?>" alt="SahajJOB"
+                    style="height:50px; width:135px;">
+            </div> -->
             <div style="display: flex; align-items: center; gap: 10px;">
-                <img src="<?= base_url('assets/images/sahajjobs1.png'); ?>" alt="SahajJOB"
+                <img src="<?= base_url('../All_Uploads/images/sahajjobs1.png'); ?>" alt="SahajJOB"
                     style="height:50px; width:135px;">
             </div>
             <button class="close-sidebar">
@@ -869,6 +898,18 @@
                             <option value="">Select a Category</option>
                             <!-- Categories will be populated dynamically -->
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_featured_image">Featured Image</label>
+                        <input type="file" id="edit_featured_image" name="featured_image" class="form-control"
+                            style="padding: 8px 12px;">
+                        <div id="current_image_container">
+                            <img id="current_image" src="" alt="Current Image">
+                            <div id="current_image_name"></div>
+                        </div>
+                        <small style="color: var(--gray); font-size: 0.8rem; display: block; margin-top: 5px;">
+                            Leave blank to keep current image. Allowed: jpg, jpeg, png, gif. Max: 2MB
+                        </small>
                     </div>
                 </form>
             </div>
@@ -1162,6 +1203,20 @@
                 const categorySelect = document.getElementById('edit_category_id');
                 categorySelect.value = categoryId;
 
+                // Get and display current image
+
+                const imageCell = row.querySelector('.col-image');
+                let imageUrl = '';
+                let imagePath = '';
+
+                const imgElement = imageCell.querySelector('img.thumbnail');
+                if (imgElement) {
+                    imageUrl = imgElement.src;
+                    imagePath = imgElement.getAttribute('src').replace('<?= base_url() ?>', '');
+                }
+
+                displayCurrentImage(imageUrl, imagePath);
+
                 document.getElementById('editModal').classList.add('show');
             }
         });
@@ -1178,6 +1233,10 @@
             formData.append('title', document.getElementById('edit_title').value);
             formData.append('content', document.getElementById('edit_content').value);
             formData.append('category_id', document.getElementById('edit_category_id').value);
+            const featuredImageInput = document.getElementById('edit_featured_image');
+            if (featuredImageInput.files[0]) {
+                formData.append('featured_image', featuredImageInput.files[0]);
+            }
 
             fetch('<?= base_url("admin/posts/update_post") ?>', {
                 method: 'POST',
@@ -1198,6 +1257,11 @@
                         row.querySelector('.col-category').textContent = selectedOption.textContent;
                         row.setAttribute('data-category-id', formData.get('category_id'));
 
+                        if (data.data.featured_image) {
+                            const imageCell = row.querySelector('.col-image');
+                            imageCell.innerHTML = `<img src="<?= base_url() ?>${data.data.featured_image}" alt="Featured Image" class="thumbnail">`;
+                        }
+
                         document.getElementById('editModal').classList.remove('show');
                         alert('Post updated successfully.');
                     } else {
@@ -1214,6 +1278,26 @@
                 document.body.classList.toggle('resizing', false);
             }, 100);
         });
+
+        // Function to display current image in edit modal
+        function displayCurrentImage(imageUrl, imagePath) {
+            const currentImage = document.getElementById('current_image');
+            const currentImageName = document.getElementById('current_image_name');
+
+            if (imageUrl && imageUrl !== '' && !imageUrl.includes('No Image')) {
+                currentImage.src = imageUrl;
+                currentImage.style.display = 'block';
+
+                // Extract filename from path for display
+                const fileName = imagePath.split('/').pop();
+                currentImageName.textContent = 'Current: ' + fileName;
+                currentImageName.style.display = 'block';
+            } else {
+                currentImage.style.display = 'none';
+                currentImageName.textContent = 'No current image';
+                currentImageName.style.display = 'block';
+            }
+        }
     </script>
 </body>
 

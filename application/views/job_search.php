@@ -507,11 +507,19 @@
                 <p>See Jobs in Featured Companies</p>
                 <div class="company-logos">
                     <div class="row g-2">
-                        <div class="col-6"><img src="assets/images/reliance.gif" alt="Reliance Industries"></div>
-                        <div class="col-6"><img src="assets/images/capgemini.gif" alt="Capgemini"></div>
-                        <div class="col-6"><img src="assets/images/infosys.gif" alt="Infosys BPM"></div>
-                        <div class="col-6"><img src="assets/images/amgen.gif" alt="Amgen Inc"></div>
-                        <div class="col-6"><img src="assets/images/amazon.gif" alt="Amazon"></div>
+                        <?php if (!empty($featured_companies)): ?>
+                            <?php foreach ($featured_companies as $company): ?>
+                                <div class="col-6 col-md-4 col-lg-3 text-center">
+                                    <a href="<?= base_url('jobs/company/' . $company->employer_id) ?>">
+                                        <img src="<?= base_url($company->logo) ?>"
+                                            alt="<?= htmlspecialchars($company->company_name) ?>"
+                                            class="img-fluid featured-logo" style="max-height: 80px; object-fit: contain;">
+                                    </a>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <p class="text-center">No featured companies available</p>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

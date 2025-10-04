@@ -128,7 +128,8 @@ class Profile extends CI_Controller
             redirect('login');
         }
 
-        $config['upload_path'] = FCPATH . 'assets/resumes/';
+        // $config['upload_path'] = FCPATH . 'assets/resumes/';
+        $config['upload_path'] = FCPATH . '../All_Uploads/resumes/';
         $config['allowed_types'] = 'pdf|doc|docx';
         $config['max_size'] = 2048;
         $config['encrypt_name'] = TRUE;
@@ -144,7 +145,8 @@ class Profile extends CI_Controller
         $resumeData = [
             'user_id' => $user_id,
             'file_name' => $fileData['client_name'],
-            'file_path' => 'assets/resumes/' . $fileData['file_name'],
+            // 'file_path' => 'assets/resumes/' . $fileData['file_name'],
+            'file_path' => '../All_Uploads/resumes/' . $fileData['file_name'],
             'uploaded_at' => date('Y-m-d H:i:s')
         ];
         $this->Profile_model->save_resume($resumeData);
@@ -328,7 +330,8 @@ class Profile extends CI_Controller
 
         $user_id = $this->session->userdata('user_id');
 
-        $config['upload_path'] = FCPATH . 'assets/profile_photos/';
+        // $config['upload_path'] = FCPATH . 'assets/profile_photos/';
+        $config['upload_path'] = FCPATH . '../All_Uploads/profile_photos/';
         $config['allowed_types'] = 'jpg|jpeg|png';
         $config['max_size'] = 1024; // 1MB
         $config['encrypt_name'] = TRUE;
@@ -342,7 +345,8 @@ class Profile extends CI_Controller
         } else {
             $upload_data = $this->upload->data();
             $file_name = $upload_data['file_name'];
-            $file_path = 'assets/profile_photos/' . $file_name;
+            // $file_path = 'assets/profile_photos/' . $file_name;
+            $file_path = '../All_Uploads/profile_photos/' . $file_name;
 
             $existing_photo = $this->Profile_model->get_profile_photo($user_id);
 

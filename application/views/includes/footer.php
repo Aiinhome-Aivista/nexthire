@@ -360,8 +360,11 @@
     <footer class="custom-footer">
         <div class="footer-top">
             <div class="footer-logo-social">
+                <!-- <a href="<?php //base_url(); ?>" class="footer-logo">
+                    <img src="<?php //base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
+                </a> -->
                 <a href="<?= base_url(); ?>" class="footer-logo">
-                    <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
+                    <img src="<?= base_url('../All_Uploads/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
                 </a>
                 <div class="footer-social">
                     <div class="footer-social-label">Connect with us</div>

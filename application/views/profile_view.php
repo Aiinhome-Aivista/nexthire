@@ -178,11 +178,11 @@
         text-align: center;
         gap: 20px;
       }
-      
+
       .profile-info {
         width: 100%;
       }
-      
+
       .profile-info p {
         justify-content: center;
       }
@@ -396,7 +396,7 @@
         align-items: flex-start;
         gap: 15px;
       }
-      
+
       .info-card .arrow-link {
         align-self: flex-end;
       }
@@ -674,7 +674,9 @@
           <div class="info-card">
             <div class="info-card-left"
               style="display:flex; align-items:center; gap:12px; padding:8px 12px; border:1px solid #e0e0e0; border-radius:8px; background:#f9f9f9; margin-bottom:8px;">
-              <img src="<?= base_url('assets/images/pdf.png'); ?>" alt="PDF icon" class="pdf-icon"
+              <!-- <img src="<?php //base_url('assets/images/pdf.png'); ?>" alt="PDF icon" class="pdf-icon"
+                style="width:40px; height:40px; object-fit:contain;"> -->
+              <img src="<?= base_url('../All_Uploads/images/pdf.png'); ?>" alt="PDF icon" class="pdf-icon"
                 style="width:40px; height:40px; object-fit:contain;">
               <div class="info-details" style="display:flex; flex-direction:column;">
                 <h4 style="margin:0; font-size:16px; color:#222;">

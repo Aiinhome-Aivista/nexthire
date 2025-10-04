@@ -250,46 +250,46 @@
             .container-fluid {
                 padding: 15px;
             }
-            
+
             .header {
                 flex-direction: column;
                 text-align: center;
             }
-            
+
             .header h2 {
                 margin: 10px 0;
                 order: 2;
                 width: 100%;
             }
-            
+
             .header a {
                 align-self: flex-start;
                 order: 1;
                 margin-bottom: 10px;
             }
-            
+
             .header img {
                 /* order: 3; */
                 /* margin: 10px auto !important; */
                 float: none !important;
             }
-            
+
             .section-header {
                 font-size: 16px;
                 padding: 10px;
             }
-            
-            .table tbody td, 
+
+            .table tbody td,
             .table thead th {
                 padding: 0.5rem;
             }
-            
-            .save-btn, 
+
+            .save-btn,
             .cancel-btn {
                 padding: 0.3rem 0.6rem;
                 font-size: 0.8rem;
             }
-            
+
             .action-icons-container {
                 flex-direction: column;
                 gap: 5px;
@@ -300,28 +300,28 @@
             .container-fluid {
                 padding: 10px;
             }
-            
+
             .header h2 {
                 font-size: 20px;
             }
-            
+
             .description {
                 font-size: 13px;
                 margin-bottom: 20px;
             }
-            
+
             .section-header {
                 font-size: 15px;
             }
-            
+
             .header-icons .fas {
                 font-size: 16px;
             }
-            
+
             .table {
                 min-width: 100%;
             }
-            
+
             .save-cancel-buttons {
                 flex-direction: column;
             }
@@ -333,7 +333,9 @@
     <div class="container-fluid">
         <div class="header">
             <a href="<?= base_url('profile'); ?>" aria-label="Go back to profile"><i class="fas fa-arrow-left"></i></a>
-            <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2"
+            <!-- <img src="<?php //base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2"
+                style="height:70px; width:150px; display: block; margin: 0 auto; float: left; margin-left: 20px;"> -->
+            <img src="<?= base_url('../All_Uploads/images/SahajJOB2.png'); ?>" alt="SahajJOB2"
                 style="height:70px; width:150px; display: block; margin: 0 auto; float: left; margin-left: 20px;">
             <h2 style="margin-right:150px;">Qualifications</h2>
         </div>

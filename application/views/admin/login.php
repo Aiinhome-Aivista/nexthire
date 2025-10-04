@@ -24,8 +24,12 @@
     <section class="w-full max-w-md px-6">
         <div class="text-center mb-10 animate-fade-in-down">
             <!-- Logo -->
+            <!-- <div class="flex justify-center mb-4">
+                <img src="<?php //base_url('assets/images/sahajjobs1.png'); ?>" alt="SahajJOB"
+                    style="height:50px; width:135px;">
+            </div> -->
             <div class="flex justify-center mb-4">
-                <img src="<?= base_url('assets/images/sahajjobs1.png'); ?>" alt="SahajJOB"
+                <img src="<?= base_url('../All_Uploads/images/sahajjobs1.png'); ?>" alt="SahajJOB"
                     style="height:50px; width:135px;">
             </div>
             <h1 class="text-4xl font-extrabold text-gray-900 mb-3 tracking-tight">Admin Login</h1>

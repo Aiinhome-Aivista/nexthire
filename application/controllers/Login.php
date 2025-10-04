@@ -56,7 +56,8 @@ class Login extends CI_Controller
         $user = $this->Login_model->get_user_by_email($userData['email']);
 
         // Define upload path for profile photos
-        $upload_path = FCPATH . 'assets/profile_photos/';
+        // $upload_path = FCPATH . 'assets/profile_photos/';
+        $upload_path = FCPATH . '../All_Uploads/profile_photos/';
         // Download and save Google profile picture locally
         $picture_url = $userData['picture'];
         $image_info = pathinfo($picture_url);

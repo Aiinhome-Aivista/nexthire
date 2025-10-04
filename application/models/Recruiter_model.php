@@ -41,8 +41,11 @@ class Recruiter_model extends CI_Model
     // Profile photo methods
     public function get_profile_photo($user_id)
     {
+        // $result = $this->db->get_where('profile_photos', ['user_id' => $user_id])->row_array();
+        // return $result ? 'assets/profile_photos/' . $result['file_name'] : null;
+
         $result = $this->db->get_where('profile_photos', ['user_id' => $user_id])->row_array();
-        return $result ? 'assets/profile_photos/' . $result['file_name'] : null;
+        return $result ? '../All_Uploads/profile_photos/' . $result['file_name'] : null;
     }
 
     public function save_profile_photo($user_id, $file_name)

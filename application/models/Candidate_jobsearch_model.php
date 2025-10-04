@@ -47,6 +47,18 @@ class Candidate_jobsearch_model extends CI_Model
         return $this->db->get()->result_array();
     }
 
+    public function get_featured_companies($limit = 5)
+    {
+        $this->db->select('*');
+        $this->db->from('featured_companies');
+        $this->db->where('is_featured', 1);
+        $this->db->order_by('rating', 'DESC');
+        $this->db->order_by('reviews', 'DESC');
+        $this->db->limit($limit);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function get_job_by_id($id)
     {
         return $this->db->get_where('posted_jobs', ['id' => $id])->row_array();

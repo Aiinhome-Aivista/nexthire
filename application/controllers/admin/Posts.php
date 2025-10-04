@@ -45,7 +45,8 @@ class Posts extends CI_Controller
 
             // Handle file upload
             if (!empty($_FILES['featured_image']['name'])) {
-                $config['upload_path'] = './assets/images/';
+                // $config['upload_path'] = './assets/images/';
+                $config['upload_path'] = '../All_Uploads/images/';
                 $config['allowed_types'] = 'jpg|jpeg|png|gif';
                 $config['max_size'] = 2048;
 
@@ -53,7 +54,8 @@ class Posts extends CI_Controller
 
                 if ($this->upload->do_upload('featured_image')) {
                     $upload_data = $this->upload->data();
-                    $data['featured_image'] = './assets/images/' . $upload_data['file_name'];
+                    // $data['featured_image'] = './assets/images/' . $upload_data['file_name'];
+                    $data['featured_image'] = '../All_Uploads/images/' . $upload_data['file_name'];
                 } else {
                     $this->session->set_flashdata('error_message', $this->upload->display_errors());
                     redirect('admin/posts_add');
@@ -91,6 +93,30 @@ class Posts extends CI_Controller
             'updated_at' => date('Y-m-d H:i:s')
         ];
 
+        if (!empty($_FILES['featured_image']['name'])) {
+            // $config['upload_path'] = './assets/images/';
+            $config['upload_path'] = '../All_Uploads/images/';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['max_size'] = 2048;
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('featured_image')) {
+                $upload_data = $this->upload->data();
+                // $data['featured_image'] = './assets/images/' . $upload_data['file_name'];
+                $data['featured_image'] = '../All_Uploads/images/' . $upload_data['file_name'];
+
+                // Delete old image if exists
+                $old_post = $this->Post_model->get_post_by_id($id);
+                if ($old_post && !empty($old_post->featured_image) && file_exists($old_post->featured_image)) {
+                    unlink($old_post->featured_image);
+                }
+            } else {
+                echo json_encode(['status' => 'error', 'message' => $this->upload->display_errors()]);
+                return;
+            }
+        }
+
         if ($this->Post_model->update_post($id, $data)) {
 
             echo json_encode([
@@ -98,6 +124,8 @@ class Posts extends CI_Controller
                 'data' => [
                     'title' => $data['title'],
                     'content' => $data['content'],
+                    'category_id' => $data['category_id'],
+                    'featured_image' => $data['featured_image']
                 ]
             ]);
         } else {

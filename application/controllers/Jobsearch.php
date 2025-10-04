@@ -31,6 +31,7 @@ class Jobsearch extends CI_Controller
 
         // Pass filters to model
         $data['jobs'] = $this->Jobsearch_model->get_jobs($filters);
+        $data['featured_companies'] = $this->Jobsearch_model->get_featured_companies(5);
 
         $user_id = $this->session->userdata('user_id');
 

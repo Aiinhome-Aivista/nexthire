@@ -24,9 +24,15 @@
   <div
     style="display:flex; align-items:center; justify-content:space-between; padding:0 150px; height:70px; position:relative;">
     <!-- Logo Section -->
+    <!-- <div style="position:relative;">
+      <a href="<?php //base_url(); ?>">
+        <img src="<?php //base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2"
+          style="height:70px; width:auto; display:block; position:absolute; top:-40px; left:0;">
+      </a>
+    </div> -->
     <div style="position:relative;">
       <a href="<?= base_url(); ?>">
-        <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2"
+        <img src="<?= base_url('../All_Uploads/images/SahajJOB2.png'); ?>" alt="SahajJOB2"
           style="height:70px; width:auto; display:block; position:absolute; top:-40px; left:0;">
       </a>
     </div>
@@ -187,11 +193,14 @@
         <span style="color:#1b212b;">Use OTP to Login</span>
       </div> -->
       <div class="login-divider">Or</div>
+      <!-- <button id="googleSignInBtn" class="login-google">
+        <img style="height:30px; width:30px;" src="<?php //base_url('assets/images/google.png'); ?>" alt="google" />
+        Sign in with Google
+      </button> -->
       <button id="googleSignInBtn" class="login-google">
-        <img style="height:30px; width:30px;" src="<?= base_url('assets/images/google.png'); ?>" alt="google" />
+        <img style="height:30px; width:30px;" src="<?= base_url('../All_Uploads/images/google.png'); ?>" alt="google" />
         Sign in with Google
       </button>
-
     </div>
   </div>
   <!-- Flash Message Modal -->

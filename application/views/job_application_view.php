@@ -249,7 +249,8 @@
                 <?php if (isset($resume)): ?>
                     <div class="resume-container">
                         <div class="resume-info">
-                            <img src="<?= base_url('assets/images/pdf.png'); ?>" alt="PDF icon" class="pdf-icon">
+                            <!-- <img src="<?php //base_url('assets/images/pdf.png'); ?>" alt="PDF icon" class="pdf-icon"> -->
+                            <img src="<?= base_url('../All_Uploads/images/pdf.png'); ?>" alt="PDF icon" class="pdf-icon">
                             <div class="resume-details">
                                 <h4><?= htmlspecialchars($resume['file_name']); ?></h4>
                                 <p>Uploaded on <?= date('d M Y', strtotime($resume['uploaded_at'] ?? date('Y-m-d'))); ?></p>
@@ -282,7 +283,7 @@
                         <i class="fas fa-check"></i> Applied
                     </button>
                 <?php else: ?>
-                    <button type="submit" class="btn btn-lg" style="background-color: #FFF44F; color: black;" >
+                    <button type="submit" class="btn btn-lg" style="background-color: #FFF44F; color: black;">
                         Apply Now
                     </button>
                 <?php endif; ?>
@@ -303,19 +304,24 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="fullName" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="fullName" name="user[full_name]" value="<?= htmlspecialchars($user['full_name'] ?? $user['name'] ?? '') ?>" <?= $user_type == 'google' ? 'disabled' : '' ?>>
+                            <input type="text" class="form-control" id="fullName" name="user[full_name]"
+                                value="<?= htmlspecialchars($user['full_name'] ?? $user['name'] ?? '') ?>"
+                                <?= $user_type == 'google' ? 'disabled' : '' ?>>
                         </div>
                         <div class="mb-3">
                             <label for="workStatus" class="form-label">Work Status</label>
-                            <input type="text" class="form-control" id="workStatus" name="user[work_status]" value="<?= htmlspecialchars($user['work_status'] ?? '') ?>">
+                            <input type="text" class="form-control" id="workStatus" name="user[work_status]"
+                                value="<?= htmlspecialchars($user['work_status'] ?? '') ?>">
                         </div>
                         <div class="mb-3">
                             <label for="mobileNumber" class="form-label">Mobile Number</label>
-                            <input type="tel" class="form-control" id="mobileNumber" name="user[mobile_number]" value="<?= htmlspecialchars($user['mobile_number'] ?? '') ?>">
+                            <input type="tel" class="form-control" id="mobileNumber" name="user[mobile_number]"
+                                value="<?= htmlspecialchars($user['mobile_number'] ?? '') ?>">
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="user[email]" value="<?= htmlspecialchars($user['email']) ?>" disabled>
+                            <input type="email" class="form-control" id="email" name="user[email]"
+                                value="<?= htmlspecialchars($user['email']) ?>" disabled>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -327,7 +333,8 @@
         </div>
     </div>
 
-    <div class="modal fade" id="editEducationModal" tabindex="-1" aria-labelledby="editEducationModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editEducationModal" tabindex="-1" aria-labelledby="editEducationModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form action="<?= base_url('candidate_jobsearch/update_education') ?>" method="post">
@@ -340,27 +347,32 @@
                         <h6>Education</h6>
                         <div class="mb-3">
                             <label for="school" class="form-label">School Name</label>
-                            <input type="text" class="form-control" id="school" name="education[school_name]" value="<?= htmlspecialchars($education[0]['school_name'] ?? '') ?>">
+                            <input type="text" class="form-control" id="school" name="education[school_name]"
+                                value="<?= htmlspecialchars($education[0]['school_name'] ?? '') ?>">
                         </div>
                         <div class="mb-3">
                             <label for="degree" class="form-label">Degree</label>
-                            <input type="text" class="form-control" id="degree" name="education[degree]" value="<?= htmlspecialchars($education[0]['degree'] ?? '') ?>">
+                            <input type="text" class="form-control" id="degree" name="education[degree]"
+                                value="<?= htmlspecialchars($education[0]['degree'] ?? '') ?>">
                         </div>
                         <hr>
                         <h6>Work Experience</h6>
                         <div class="mb-3">
                             <label for="jobTitle" class="form-label">Job Title</label>
-                            <input type="text" class="form-control" id="jobTitle" name="experience[job_title]" value="<?= htmlspecialchars($experience[0]['job_title'] ?? '') ?>">
+                            <input type="text" class="form-control" id="jobTitle" name="experience[job_title]"
+                                value="<?= htmlspecialchars($experience[0]['job_title'] ?? '') ?>">
                         </div>
                         <div class="mb-3">
                             <label for="companyName" class="form-label">Company Name</label>
-                            <input type="text" class="form-control" id="companyName" name="experience[company_name]" value="<?= htmlspecialchars($experience[0]['company_name'] ?? '') ?>">
+                            <input type="text" class="form-control" id="companyName" name="experience[company_name]"
+                                value="<?= htmlspecialchars($experience[0]['company_name'] ?? '') ?>">
                         </div>
                         <hr>
                         <h6>Skills</h6>
                         <div class="mb-3">
                             <label for="skills" class="form-label">Skills (comma-separated)</label>
-                            <input type="text" class="form-control" id="skills" name="skills[skill_name]" value="<?= htmlspecialchars(implode(', ', array_column($skills, 'skill_name'))) ?>">
+                            <input type="text" class="form-control" id="skills" name="skills[skill_name]"
+                                value="<?= htmlspecialchars(implode(', ', array_column($skills, 'skill_name'))) ?>">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -372,7 +384,8 @@
         </div>
     </div>
 
-    <div class="modal fade" id="uploadResumeModal" tabindex="-1" aria-labelledby="uploadResumeModalLabel" aria-hidden="true">
+    <div class="modal fade" id="uploadResumeModal" tabindex="-1" aria-labelledby="uploadResumeModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form action="<?= base_url('candidate_jobsearch/upload_resume') ?>" method="post"
@@ -409,11 +422,11 @@
         }
 
         // Close dropdown when clicking outside
-        document.addEventListener('click', function(event) {
+        document.addEventListener('click', function (event) {
             const dropdowns = document.querySelectorAll('.options-dropdown');
             dropdowns.forEach(dropdown => {
                 if (!dropdown.contains(event.target) && !event.target.classList.contains(
-                        'options-menu-icon')) {
+                    'options-menu-icon')) {
                     dropdown.style.display = 'none';
                 }
             });

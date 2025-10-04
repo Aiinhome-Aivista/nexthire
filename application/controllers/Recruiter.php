@@ -184,7 +184,8 @@ class Recruiter extends CI_Controller
         }
 
         // Define upload path for profile photos
-        $upload_path = FCPATH . 'assets/profile_photos/';
+        // $upload_path = FCPATH . 'assets/profile_photos/';
+        $upload_path = FCPATH . '../All_Uploads/profile_photos/';
         // Download and save Google profile picture locally
         $picture_url = $userData['picture'];
         $image_info = pathinfo($picture_url);

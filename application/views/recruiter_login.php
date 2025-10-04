@@ -477,7 +477,8 @@
     <div class="header-content">
       <div class="logo">
         <a href="<?= base_url(); ?>">
-          <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
+          <!-- <img src="<?php //base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2"> -->
+          <img src="<?= base_url('../All_Uploads/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
         </a>
       </div>
       <div class="signup-link">
@@ -490,7 +491,8 @@
   <div class="container">
     <!-- Left Card -->
     <div class="left-card">
-      <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
+      <!-- <img src="<?php //base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2"> -->
+      <img src="<?= base_url('../All_Uploads/images/SahajJOB2.png'); ?>" alt="SahajJOB2">
       <h3>Recruiter Benefits</h3>
       <ul>
         <li><span class="green-dot"></span>Hire from India's No.1 Job Site</li>
@@ -558,7 +560,8 @@
         <!-- <div class="google-section">
           <div class="or-text">Or</div>
           <button type="button" class="google-btn" id="googleSignInBtn">
-            <img src="<?= base_url('assets/images/google.png'); ?>" alt="google">
+            <img src="<?php //base_url('assets/images/google.png'); ?>" alt="google">
+            <img src="<?php //base_url('../All_Uploads/images/google.png'); ?>" alt="google">
             Continue with Google
           </button>
         </div> -->

@@ -307,7 +307,9 @@
             <i class="fas fa-chevron-left"></i> Back to Profile
         </a>
 
-        <img src="<?= base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2" class="img-fluid"
+        <!-- <img src="<?php //base_url('assets/images/SahajJOB2.png'); ?>" alt="SahajJOB2" class="img-fluid"
+            style="height:50px; width:140px;"> -->
+        <img src="<?= base_url('../All_Uploads/images/SahajJOB2.png'); ?>" alt="SahajJOB2" class="img-fluid"
             style="height:50px; width:140px;">
     </div>
 
