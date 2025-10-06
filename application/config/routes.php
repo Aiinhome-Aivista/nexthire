@@ -115,4 +115,4 @@ $route['admin/posts_manage'] = 'admin/Posts/posts_manage';
 $route['admin/post_details'] = 'admin/Post_details/index';
 $route['admin/post_details/index/(:num)'] = 'admin/Post_details/index/$1';
 
-$route['sitemap.xml'] = 'admin/Sitemap_settings/xml';
+$route['sitemap2709.xml'] = 'admin/Sitemap_settings/xml';
