@@ -108,7 +108,7 @@
             If you cannot find the answer you’re looking for or face any technical issues,
             please visit our <a href="<?= base_url('report-issue'); ?>">Report an Issue</a> page
             or contact our support team at
-            <a href="mailto:supports@sahajjobs.com">supports@sahajjobs.com</a>.
+            <a href="mailto:support@sahajjobs.com">support@sahajjobs.com</a>.
             We are here to assist you every step of the way.
         </p>
     </div>
