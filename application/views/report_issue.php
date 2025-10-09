@@ -73,7 +73,7 @@
         </p>
         <p>
             <strong>Email Support:</strong>
-            <a href="mailto:supports@sahajjobs.com">supports@sahajjobs.com</a>
+            <a href="mailto:support@sahajjobs.com">support@sahajjobs.com</a>
         </p>
 
         <h2>Our Commitment</h2>

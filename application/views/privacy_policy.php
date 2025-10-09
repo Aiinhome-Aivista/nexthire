@@ -133,7 +133,7 @@
         <p>
             If you have any questions or concerns about this Privacy Policy or how
             your data is handled, please reach out to us at:
-            <a href="mailto:supports@sahajjobs.com">supports@sahajjobs.com</a>.
+            <a href="mailto:support@sahajjobs.com">support@sahajjobs.com</a>.
         </p>
     </div>
 </body>

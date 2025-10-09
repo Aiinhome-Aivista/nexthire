@@ -154,7 +154,7 @@
                 <div class="mb-3">
                     <label for="full_name" class="form-label">Full Name *</label>
                     <input type="text" name="full_name" class="form-control" id="full_name"
-                        value="<?= set_value('full_name', $user['full_name'] ?? ''); ?>" required>
+                        value="<?= set_value('full_name', $user['full_name'] ?? ''); ?>" required readonly>
                 </div>
                 <div class="mb-3">
                     <label for="phone" class="form-label">Phone *</label>
@@ -164,7 +164,7 @@
                 <div class="mb-3">
                     <label for="email" class="form-label">Email *</label>
                     <input type="email" name="email" class="form-control" id="email"
-                        value="<?= set_value('email', $user['email'] ?? ''); ?>" required>
+                        value="<?= set_value('email', $user['email'] ?? ''); ?>" required readonly>
                 </div>
             </div>
 

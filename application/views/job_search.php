@@ -691,7 +691,7 @@
         </ul>
     </div>
 
-    <button class="apply-btn" style="background-color: #FFF44F; color: black; width: 100%;">Apply for this job</button>
+    <button class="apply-btn" style="background-color: #FFF44F; color: black; width: 100%;" onclick="window.location.href='<?= base_url('register'); ?>'">Apply for this job</button>
   `;
         }
 
