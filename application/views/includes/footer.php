@@ -372,7 +372,7 @@
                         <a href="https://www.facebook.com/sahajjobs.developer" target="_blank" rel="noopener">
                             <img src="https://static.naukimg.com/s/0/0/i/new-homepage/facebook.svg" alt="Facebook" />
                         </a>
-                        <a href="#" target="_blank" rel="noopener">
+                        <a href="https://www.instagram.com/sahaj_jobs/p/DPjLD_ViWUU/" target="_blank" rel="noopener">
                             <img src="https://static.naukimg.com/s/0/0/i/new-homepage/instagram.svg" alt="Instagram" />
                         </a>
                         <a href="#" target="_blank" rel="noopener">
