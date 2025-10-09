@@ -1,3 +1,7 @@
+<?php
+$is_logged_in = $this->session->userdata('logged_in') ? true : false;
+$job_search_base = $is_logged_in ? 'candidate_job_search' : 'job_search';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SahajJobs | Home</title>
-     <link rel="icon" type="image/x-icon" href="../All_Uploads/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../All_Uploads/images/favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
@@ -386,11 +390,11 @@
 
             <!-- Tagline Image -->
             <div class="tagline-image">
-                 <img src="../All_Uploads/images/SahajJobs.png" alt="Apply for job !!!!">
+                <img src="../All_Uploads/images/SahajJobs.png" alt="Apply for job !!!!">
             </div>
 
             <!-- Job Categories -->
-            <div class="job-categories">
+            <!-- <div class="job-categories">
                 <a href="<?= base_url('job_search?workMode=Remote') ?>" class="category-card">
                     <i class="fas fa-laptop-house"></i><span>Remote</span><i class="fas fa-chevron-right arrow"></i>
                 </a>
@@ -413,6 +417,36 @@
                 </a>
 
                 <a href="<?= base_url('job_search?industry=BPO') ?>" class="category-card">
+                    <i class="fas fa-cogs"></i><span>BPO</span><i class="fas fa-chevron-right arrow"></i>
+                </a>
+            </div> -->
+
+
+            <!-- Job Categories -->
+            <div class="job-categories">
+                <a href="<?= base_url($job_search_base . '?workMode=Remote') ?>" class="category-card">
+                    <i class="fas fa-laptop-house"></i><span>Remote</span><i class="fas fa-chevron-right arrow"></i>
+                </a>
+
+                <a href="<?= base_url($job_search_base . '?jobType=Internship') ?>" class="category-card">
+                    <i class="fas fa-user-graduate"></i><span>Internship</span><i
+                        class="fas fa-chevron-right arrow"></i>
+                </a>
+
+                <a href="<?= base_url($job_search_base . '?expMin=0&expMax=0') ?>" class="category-card">
+                    <i class="fas fa-user-friends"></i><span>Fresher</span><i class="fas fa-chevron-right arrow"></i>
+                </a>
+
+                <a href="<?= base_url($job_search_base . '?industry=' . urlencode('IT Services')) ?>"
+                    class="category-card">
+                    <i class="fas fa-building"></i><span>IT Services</span><i class="fas fa-chevron-right arrow"></i>
+                </a>
+
+                <a href="<?= base_url($job_search_base . '?industry=Finance') ?>" class="category-card">
+                    <i class="fas fa-university"></i><span>Finance</span><i class="fas fa-chevron-right arrow"></i>
+                </a>
+
+                <a href="<?= base_url($job_search_base . '?industry=BPO') ?>" class="category-card">
                     <i class="fas fa-cogs"></i><span>BPO</span><i class="fas fa-chevron-right arrow"></i>
                 </a>
             </div>

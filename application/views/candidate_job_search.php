@@ -842,9 +842,64 @@
                 if (e.key === 'Enter') filterJobs();
             });
 
+            // // initial auto-filter if q param present
+            // const urlParams = new URLSearchParams(window.location.search);
+            // if (urlParams.get("q")) filterJobs();
+
+
             // initial auto-filter if q param present
+            // const urlParams = new URLSearchParams(window.location.search);
+            // if (urlParams.get("q")) filterJobs();
+
             const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get("q")) filterJobs();
+            let hasUrlFilter = false;
+
+            if (urlParams.get("q")) {
+                document.getElementById('job-search-input').value = urlParams.get("q");
+                hasUrlFilter = true;
+            }
+
+            function setFilterBtnText(filterKey, text) {
+                const btn = document.querySelector(`.filter-btn[data-filter="${filterKey}"]`);
+                if (btn) btn.textContent = text;
+            }
+
+            if (urlParams.get('workMode')) {
+                filters.workMode = urlParams.get('workMode');
+                setFilterBtnText('workMode', decodeURIComponent(urlParams.get('workMode')));
+                hasUrlFilter = true;
+            }
+
+            if (urlParams.get('jobType')) {
+                filters.jobType = urlParams.get('jobType');
+                setFilterBtnText('jobType', decodeURIComponent(urlParams.get('jobType')));
+                hasUrlFilter = true;
+            }
+
+            if (urlParams.get('industry')) {
+                filters.industry = urlParams.get('industry');
+                setFilterBtnText('industry', decodeURIComponent(urlParams.get('industry')));
+                hasUrlFilter = true;
+            }
+
+            if (urlParams.get('expMin') !== null || urlParams.get('expMax') !== null) {
+                filters.expMin = urlParams.get('expMin') ? Number(urlParams.get('expMin')) : null;
+                filters.expMax = urlParams.get('expMax') ? Number(urlParams.get('expMax')) : null;
+                hasUrlFilter = true;
+
+                if (filters.expMin === 0 && filters.expMax === 0) {
+                    setFilterBtnText('experience', 'Fresher');
+                } else {
+                    setFilterBtnText(
+                        'experience',
+                        (filters.expMin ?? '0') + (filters.expMax ? ' - ' + filters.expMax + ' yrs' : ' yrs')
+                    );
+                }
+            }
+
+            if (hasUrlFilter) {
+                filterJobs();
+            }
         });
     </script>
 
